@@ -1,3 +1,4 @@
-# manhua-studio 教学依赖（V1：仅 requests；Pillow 在 V3 引入，python-dotenv 始终）
-requests>=2.28    # HTTP 调用（UAPI 去底）：教学真实写法
+# manhua-studio 教学依赖（V3 起加 Pillow 做 WebP 压缩）
+requests>=2.28    # HTTP 调用（UAPI 去底 / Seedream 出图 / 下载）：教学真实写法
+Pillow>=10.0      # WebP 压缩（V3 构件）：生成图压成 WebP 省空间
 python-dotenv>=1.0  # 自动加载 .env（密钥集中管理，.gitignore 已忽略，不进提交）

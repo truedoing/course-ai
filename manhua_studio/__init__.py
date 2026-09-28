@@ -1,13 +1,14 @@
 """
-manhua-studio —— 电商素材管线（Python 课程改造 · V2 主线：场景图）
+manhua-studio —— 电商素材管线（Python 课程改造 · V3 主线：商品页）
 
-【V2 范围】在 V1 去底白底之上，加 S2 场景化出图（Seedream 4.0 参考图生图）+ prompts 模板。
-一张白底图 → 2–3 张场景图。任务展开/重试暂在 cli.py，V3 起移入 pipeline.py。
+【V3 范围】在 V2 场景图之上，加数据化(sku.json/js) + 商品页 + WebP 压缩 + 学号定位。
+引入 pipeline.py（任务展开/质检判定/WebP/归档/交付）与 Product 类（OOP 枢纽）。
+这是"像真家伙"的商品页成型的版本。
 
 【运行】
     cp env.example .env      # 填 UAPI_KEY（S1）+ ARK_API_KEY（S2）
     python -m manhua_studio --input 照片.jpg
-（强制依赖 requests；密钥放 .env，.gitignore 已忽略，不进提交）
+（强制依赖 requests + Pillow；密钥放 .env，.gitignore 已忽略，不进提交）
 """
 from dotenv import load_dotenv
 from pathlib import Path
@@ -19,4 +20,4 @@ _env_path = next(
 if _env_path is not None:
     load_dotenv(_env_path, override=False)
 
-__version__ = "2.0"
+__version__ = "3.0"
