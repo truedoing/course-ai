@@ -1,11 +1,10 @@
-# cli.py · 入口（V3：去底白图 + 场景图 + WebP + 商品页/数据化）
-# V3 起把任务展开/归档/交付收进 pipeline.py（cli 只解析参数、调度）。
+# cli.py · 入口（V4：S0 识别闭环 → 照片丢入全自动出全套）
 import os
 import argparse
 from pathlib import Path
 
 from .schemas import GenerationError, Product
-from .adapters import stage1_remove_bg, generate_image
+from .adapters import stage0_recognize, stage1_remove_bg, generate_image
 from .prompts import DEFAULT_SCENES
 from .pipeline import (expand_tasks, count_status, stage_optimize_web,
                        archive_run, deliver, write_sku_data)
@@ -27,7 +26,7 @@ def run_batch(tasks, max_retry=3, api_key=None, white_path=None):
 
 
 def main():
-    parser = argparse.ArgumentParser(description="manhua V3：照片 → 白底 → 场景图 → 商品页")
+    parser = argparse.ArgumentParser(description="manhua V4：照片 → S0 识别 → 全自动出全套")
     parser.add_argument("--input", required=True, help="商品照片路径")
     args = parser.parse_args()
 
@@ -35,21 +34,27 @@ def main():
     uapi_key = os.getenv("UAPI_KEY")
     if not Path(args.input).exists():
         raise SystemExit(f"[错误] --input 照片不存在: {args.input}")
-    if not uapi_key:
-        raise SystemExit("[错误] 缺少 UAPI_KEY：S1 去底需要。\n       去 uapis.cn 免费申请并填入 .env。")
     if not ark_key:
-        raise SystemExit("[错误] 缺少 ARK_API_KEY：S2 出图需要。\n       填入火山方舟密钥到 .env。")
+        raise SystemExit("[错误] 缺少 ARK_API_KEY：S0 识别 + S2 出图需要。\n       填入火山方舟密钥到 .env。")
 
-    name = Path(args.input).stem
+    print("[S0] 豆包视觉识别商品并生成文案...")
+    meta = stage0_recognize(args.input, ark_key)
     products = [{
         "sku_code": "SKU-001",
-        "name": name,
+        "name": meta.get("product_name", "未命名商品"),
+        "subtitle": meta.get("subtitle", ""),
+        "selling_point": ";".join(meta.get("points", [])) or meta.get("subtitle", ""),
+        "shop_name": meta.get("shop_name", "演示小铺"),
+        "points": meta.get("points", []),
+        "tags": meta.get("tags", ["AI 合成图"]),
         "category": "未分类",
-        "selling_point": "",
         "platform": "淘宝",
         "input_path": args.input,
-        "scenes": list(DEFAULT_SCENES),
+        "scenes": meta.get("suggested_scenes") or list(DEFAULT_SCENES),
     }]
+    if not uapi_key:
+        raise SystemExit("[错误] 缺少 UAPI_KEY：S1 去底需要。\n       去 uapis.cn 免费申请并填入 .env。")
+
     print(f"[解析] {len(products)} 个商品")
     all_tasks = []
     for p in products:

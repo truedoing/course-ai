@@ -1,5 +1,5 @@
-# adapters.py · 外部服务适配层（V2：S1 去底 + S2 出图；S0 在 V4 加入）
-import os, re, base64, mimetypes
+# adapters.py · 外部服务适配层（V4：S0 识别 + S1 去底 + S2 出图）
+import os, re, base64, mimetypes, json
 from pathlib import Path
 import requests
 
@@ -30,6 +30,45 @@ def _image_to_data_uri(path):
     mime = mimetypes.guess_type(path)[0] or "image/png"
     b64 = base64.b64encode(Path(path).read_bytes()).decode()
     return f"data:{mime};base64,{b64}"
+
+
+# ---- S0 智能识别 ----
+def stage0_recognize(image_path, api_key, model=None):
+    """真实照片 -> 豆包视觉多模态 -> 电商文案 JSON。需 ARK_API_KEY。
+    返回 dict: product_name, subtitle, shop_name, points[], tags[], suggested_scenes[]。"""
+    model = model or os.getenv("DOUBAO_VISION_MODEL", "doubao-seed-2-1-lite-260915")
+    url = os.getenv("ARK_CHAT_ENDPOINT", "https://ark.cn-beijing.volces.com/api/v3/chat/completions")
+    data_uri = _image_to_data_uri(image_path)
+    system = (
+        "你是电商商品分析师，从一张商品实拍图识别商品并撰写上架文案。只输出 JSON，不要多余文字。"
+        "字段：product_name, subtitle, shop_name, points(3-4条卖点字符串数组), "
+        "tags(标签数组), suggested_scenes(3个电商场景名数组,基于图中商品真实使用场景)。"
+    )
+    user_text = "识别这张商品照片并生成电商上架文案(严格按 system 的 JSON 字段输出)。"
+    payload = {
+        "model": model,
+        "messages": [
+            {"role": "system", "content": system},
+            {"role": "user", "content": [
+                {"type": "text", "text": user_text},
+                {"type": "image_url", "image_url": {"url": data_uri}},
+            ]},
+        ],
+        "response_format": {"type": "json_object"},
+    }
+    headers = {"Authorization": f"Bearer {api_key}", "Content-Type": "application/json"}
+    status, body = _http_post_json(url, payload, headers, timeout=90)
+    if status != 200:
+        raise GenerationError(f"豆包视觉 HTTP {status}: {body[:300]}")
+    try:
+        content = json.loads(body)["choices"][0]["message"]["content"]
+        raw = content.strip()
+        if raw.startswith("```"):
+            raw = re.sub(r"^```[a-zA-Z]*\s*\n?", "", raw)
+            raw = re.sub(r"\n?```\s*$", "", raw).strip()
+        return json.loads(raw)
+    except Exception as e:
+        raise GenerationError(f"豆包视觉返回解析失败: {str(e)} | {body[:200]}")
 
 
 # ---- S1 去底白底 ----
@@ -78,7 +117,6 @@ def _call_seedream_i2i(payload, api_key, timeout=150):
 
 
 def stage2_scene(white_path, name, selling_point, scene, api_key, prompt_override=None):
-    """S2 场景化（Seedream 4.0 参考图生图）。返回本地场景图路径。"""
     payload = {
         "model": SEEDREAM_MODEL,
         "prompt": prompt_override or build_scene_prompt(name, selling_point, scene),
@@ -99,7 +137,7 @@ def stage2_scene(white_path, name, selling_point, scene, api_key, prompt_overrid
 
 
 def generate_image(task, api_key=None, white_path=None):
-    """构件 4 · 真实出图（Seedream 4.0 参考图生图）。无 mock 分支——没有 key 由调用方报错。"""
+    """构件 4 · 真实出图（Seedream 4.0 参考图生图）。无 mock 分支。"""
     if not api_key:
         raise GenerationError("未配置 ARK_API_KEY（Seedream 4.0 场景化需要）")
     if not white_path:
