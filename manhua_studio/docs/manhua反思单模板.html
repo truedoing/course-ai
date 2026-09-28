@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>manhua 电商出图 · 反思单</title>
+<style>
+  * { box-sizing: border-box; }
+  body { font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+         color: #1f2933; background: #f7f8fa; margin: 0; padding: 24px; }
+  .page { max-width: 760px; margin: 0 auto; background: #fff; padding: 36px 44px;
+          border: 1px solid #d9dee3; border-radius: 10px; }
+  h1 { font-size: 22px; margin: 0 0 4px; color: #0f2942; }
+  .sub { color: #616e7c; font-size: 14px; margin-bottom: 20px; }
+  .field { margin: 18px 0; }
+  .field label { display: block; font-weight: 700; color: #243b53; margin-bottom: 6px; font-size: 15px; }
+  .field .hint { font-size: 12px; color: #7b8794; margin-bottom: 6px; }
+  textarea { width: 100%; min-height: 64px; border: 1px solid #cbd2d9; border-radius: 8px;
+             padding: 10px 12px; font-size: 14px; color: #1f2933; resize: vertical; }
+  .checks { display: flex; gap: 18px; flex-wrap: wrap; margin-top: 6px; }
+  .checks label { font-weight: 400; color: #1f2933; font-size: 14px; }
+  .tip { background: #eef5ff; border-left: 4px solid #2f6fed; padding: 10px 14px;
+         border-radius: 6px; font-size: 13px; color: #243b53; margin-top: 22px; }
+  .stu { margin-top: 24px; border-top: 1px dashed #cbd2d9; padding-top: 14px;
+         display: flex; gap: 30px; font-size: 14px; }
+  .stu input { border: none; border-bottom: 1px solid #9aa5b1; width: 180px; font-size: 14px; padding: 2px 4px; }
+  @media print { body { background: #fff; padding: 0; } .page { border: none; } }
+</style>
+</head>
+<body>
+<div class="page">
+  <h1>manhua 电商出图 · 反思单</h1>
+  <div class="sub">交作业必填（三句话 + 自评）。这份单子帮老师区分你做到了哪一档，也帮你复盘。</div>
+
+  <div class="field">
+    <label>1. 我做了什么</label>
+    <div class="hint">用了哪种走法？跑了哪几步？（例如：跟跑一键包 / 并跑自己写了商品名和场景 / 领跑改了代码加了场景）</div>
+    <textarea placeholder="一句话写清你实际动手的部分……"></textarea>
+  </div>
+
+  <div class="field">
+    <label>2. 我卡在哪，怎么过的</label>
+    <div class="hint">遇到什么错或不会的地方？是自己查的、问同学的、还是老师帮的？</div>
+    <textarea placeholder="写一次具体的卡点 + 怎么解决的……"></textarea>
+  </div>
+
+  <div class="field">
+    <label>3. 下次我想改哪 / 加什么</label>
+    <div class="hint">如果再来一次，你想让商品页或管线多一个什么？（例如：多一个户外场景 / 换个平台规范 / 让图更亮）</div>
+    <textarea placeholder="写一个小目标……"></textarea>
+  </div>
+
+  <div class="field">
+    <label>我做到了哪一档（打勾）</label>
+    <div class="checks">
+      <label><input type="checkbox"> 跟跑：用一键包跑出了商品页</label>
+      <label><input type="checkbox"> 并跑：自己写了需求 / 选了场景 / 调了提示词</label>
+      <label><input type="checkbox"> 领跑：改了 adapters.py/pipeline.py 代码 / 修过一次故障</label>
+    </div>
+  </div>
+
+  <div class="tip">
+    <b>口头 2 分钟（课堂上）：</b>打开你的商品页，说三件事——① 这页是用谁拍的照片做的；② 你亲手做了哪一步；③ 如果让你再加一个场景，你想加什么、为什么。说不清第三步没关系，但前两步要讲明白。
+  </div>
+
+  <div class="stu">
+    <div>学号：<input type="text" placeholder="你的学号"></div>
+    <div>姓名：<input type="text" placeholder="你的名字"></div>
+  </div>
+</div>
+</body>
+</html>

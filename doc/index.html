@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI 培训体系 · 文档首页与导航</title>
+<style>
+  :root{ --blue:#155E8F; --green:#0F6E56; --ink:#1e293b; --muted:#64748b; --line:#e2e8f0; }
+  *{ box-sizing:border-box; }
+  body{ margin:0; font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif; color:var(--ink); background:#f6f8fa; line-height:1.6; }
+  header{ background:linear-gradient(120deg,#0f172a,#1e3a5f); color:#fff; padding:34px 28px 26px; }
+  header h1{ margin:0 0 6px; font-size:25px; }
+  header p{ margin:0; color:#cbd5e1; font-size:14px; }
+  .stat{ margin-top:14px; display:flex; gap:18px; flex-wrap:wrap; }
+  .stat b{ font-size:22px; color:#fff; }
+  .stat span{ font-size:12px; color:#94a3b8; display:block; }
+  .wrap{ max-width:1080px; margin:0 auto; padding:24px 20px 60px; }
+  .block{ background:#fff; border:1px solid var(--line); border-radius:12px; padding:20px 22px; margin:18px 0; }
+  .block h2{ margin:0 0 12px; font-size:18px; }
+  .legend{ display:flex; gap:14px; flex-wrap:wrap; font-size:12.5px; color:var(--muted); margin-bottom:4px; }
+  .legend .lg{ display:inline-flex; align-items:center; gap:6px; }
+  .legend i{ width:11px; height:11px; border-radius:3px; display:inline-block; }
+  .paths{ list-style:none; padding:0; margin:0; display:grid; grid-template-columns:1fr 1fr; gap:8px 26px; }
+  .paths li{ font-size:13.5px; }
+  .paths b{ color:var(--blue); margin-right:6px; }
+  .cat{ background:#fff; border:1px solid var(--line); border-radius:12px; padding:18px 22px; margin:18px 0; }
+  .cat h2{ margin:0 0 4px; font-size:17px; display:flex; align-items:center; gap:10px; }
+  .catkey{ background:#0f172a; color:#fff; font-size:12px; padding:2px 9px; border-radius:6px; }
+  .catdesc{ margin:0 0 12px; color:var(--muted); font-size:13px; }
+  .docs{ list-style:none; margin:0; padding:0; }
+  .doc{ padding:10px 12px; border:1px solid var(--line); border-radius:9px; margin-bottom:9px; background:#fcfdfe; }
+  .doclink{ color:var(--blue); font-weight:600; font-size:14px; text-decoration:none; word-break:break-all; }
+  .doclink:hover{ text-decoration:underline; }
+  .meta{ margin:3px 0 2px; font-size:11.5px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+  .badge{ font-size:11px; padding:1px 8px; border-radius:20px; font-weight:600; }
+  .date{ color:var(--muted); }
+  .idx{ color:#cbd5e1; margin-left:auto; font-size:11px; }
+  .note{ font-size:12.5px; color:#475569; }
+  .tl{ position:relative; padding-left:18px; }
+  .tl::before{ content:""; position:absolute; left:5px; top:4px; bottom:4px; width:2px; background:var(--line); }
+  .tl-item{ position:relative; padding:0 0 16px 14px; }
+  .tl-item::before{ content:""; position:absolute; left:-18px; top:5px; width:10px; height:10px; border-radius:50%; background:var(--blue); border:2px solid #fff; box-shadow:0 0 0 1px var(--line); }
+  .tl-date{ font-size:12px; color:var(--blue); font-weight:700; }
+  .tl-title{ font-weight:700; font-size:14px; margin:1px 0 2px; }
+  .tl-text{ font-size:12.8px; color:#475569; }
+  svg{ display:block; }
+  footer{ text-align:center; color:var(--muted); font-size:12px; padding:20px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>AI 培训体系 · 文档首页与导航</h1>
+  <p>张（FDE / 技术底座）× 董老师（AIGC 应用）｜ 三版块：AI 应用与交付 · AIGC 电商 · AIGC 短剧 ｜ 沿三级火箭层层放大</p>
+  <div class="stat">
+    <div><b>26</b><span>份文档</span></div>
+    <div><b>5</b><span>个分类</span></div>
+    <div><b>09-10 → 09-20</b><span>演进跨度</span></div>
+    <div><b>2</b><span>主线人物</span></div>
+  </div>
+</header>
+<div class="wrap">
+
+  <div class="block">
+    <h2>一、怎么读这份体系（推荐路径）</h2>
+    <ul class="paths"><li><b>想一眼看懂全局</b> → A1 总纲 → A2 执行基线 v1</li><li><b>要落地 Python 课</b> → B1 课程改造方案 → B2 manhua.py 细化 → B3 PBL 场景 → B5 基础班实施方案(API版)</li><li><b>要看个人成长路线</b> → C1 张 FDE 详细 + C2 董老师 AIGC 详细</li><li><b>要写论文 / 找依据</b> → D 实证 + E 研判</li><li><b>好奇为什么改双线</b> → E6 / E7 旧合并方案（看被取代的来龙去脉）</li></ul>
+  </div>
+
+  <div class="block">
+    <h2>二、体系逻辑关系图</h2>
+    <p class="catdesc">三级火箭是「组织机制」，三版块是「课程内容」，沿三级火箭层层放大；双线把两个班分进 FDE / AIGC；双技能树是两人的落点；manhua.py 是共享底座的实体样本；市场实证是全部决策的数据地基。</p>
+    <svg viewBox="0 0 920 560" width="100%" preserveAspectRatio="xMidYMid meet" role="img" aria-label="体系逻辑关系图">
+  <defs>
+    <marker id="ar" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#94a3b8"/>
+    </marker>
+  </defs>
+  <!-- Layer1 三级火箭 -->
+  <rect x="290" y="20" width="340" height="46" rx="9" fill="#eef2ff" stroke="#334155" stroke-width="1.5"/>
+  <text x="460" y="40" text-anchor="middle" font-size="15" font-weight="700" fill="#1e293b">三级火箭 · 组织机制</text>
+  <text x="460" y="57" text-anchor="middle" font-size="11" fill="#475569">一级底座 · 二级训练营 · 三级核心项目组</text>
+
+  <!-- Layer2 三版块 -->
+  <rect x="40"  y="110" width="240" height="46" rx="9" fill="#eff6ff" stroke="#155E8F" stroke-width="1.5"/>
+  <text x="160" y="138" text-anchor="middle" font-size="14" font-weight="700" fill="#155E8F">FDE（AI 应用与交付）</text>
+
+  <rect x="340" y="110" width="240" height="46" rx="9" fill="#ecfdf5" stroke="#0F6E56" stroke-width="1.5"/>
+  <text x="460" y="138" text-anchor="middle" font-size="14" font-weight="700" fill="#0F6E56">AIGC 电商素材</text>
+
+  <rect x="640" y="110" width="240" height="46" rx="9" fill="#ecfdf5" stroke="#0F6E56" stroke-width="1.5"/>
+  <text x="760" y="138" text-anchor="middle" font-size="14" font-weight="700" fill="#0F6E56">AIGC 短剧</text>
+
+  <!-- Layer3 双线 -->
+  <rect x="90"  y="200" width="320" height="44" rx="9" fill="#f8fafc" stroke="#475569" stroke-width="1.3"/>
+  <text x="250" y="227" text-anchor="middle" font-size="13.5" fill="#1e293b">JS 班 → FDE 线</text>
+
+  <rect x="510" y="200" width="320" height="44" rx="9" fill="#f8fafc" stroke="#475569" stroke-width="1.3"/>
+  <text x="670" y="227" text-anchor="middle" font-size="13.5" fill="#1e293b">Python 班 → AIGC 线</text>
+
+  <!-- Layer4 双技能树 -->
+  <rect x="90"  y="290" width="320" height="46" rx="9" fill="#eff6ff" stroke="#155E8F" stroke-width="1.5"/>
+  <text x="250" y="318" text-anchor="middle" font-size="13.5" font-weight="700" fill="#155E8F">张 · FDE / 技术底座</text>
+
+  <rect x="510" y="290" width="320" height="46" rx="9" fill="#ecfdf5" stroke="#0F6E56" stroke-width="1.5"/>
+  <text x="670" y="318" text-anchor="middle" font-size="13.5" font-weight="700" fill="#0F6E56">董老师 · AIGC 应用</text>
+
+  <!-- Layer5 共享底座 -->
+  <rect x="290" y="384" width="340" height="46" rx="9" fill="#fffbeb" stroke="#b45309" stroke-width="1.5"/>
+  <text x="460" y="404" text-anchor="middle" font-size="13.5" font-weight="700" fill="#b45309">共享底座：manhua.py 案例主线</text>
+  <text x="460" y="421" text-anchor="middle" font-size="10.5" fill="#92400e">连接器 / 批处理 / 一致性 / 质检 / 文件契约</text>
+
+  <!-- Layer6 市场实证 -->
+  <rect x="290" y="478" width="340" height="46" rx="9" fill="#f1f5f9" stroke="#475569" stroke-width="1.5"/>
+  <text x="460" y="498" text-anchor="middle" font-size="13.5" font-weight="700" fill="#334155">市场实证（真实 JD · 数据地基）</text>
+  <text x="460" y="515" text-anchor="middle" font-size="10.5" fill="#64748b">每一条技能项均回溯到公司+城市+JD 原文</text>
+
+  <!-- edges -->
+  <g stroke="#94a3b8" stroke-width="1.4" fill="none" marker-end="url(#ar)">
+    <line x1="380" y1="66" x2="160" y2="110"/>
+    <line x1="460" y1="66" x2="460" y2="110"/>
+    <line x1="540" y1="66" x2="760" y2="110"/>
+    <line x1="160" y1="156" x2="250" y2="200"/>
+    <line x1="760" y1="156" x2="670" y2="200"/>
+    <line x1="250" y1="244" x2="250" y2="290"/>
+    <line x1="670" y1="244" x2="670" y2="290"/>
+    <line x1="250" y1="336" x2="420" y2="384"/>
+    <line x1="670" y1="336" x2="500" y2="384"/>
+    <line x1="460" y1="430" x2="460" y2="478"/>
+  </g>
+</svg>
+  </div>
+
+  <div class="block">
+    <h2>三、状态图例</h2>
+    <div class="legend"><span class="lg"><i style="background:#16a34a"></i>最新定稿</span><span class="lg"><i style="background:#2563eb"></i>体系框架</span><span class="lg"><i style="background:#64748b"></i>实证材料</span><span class="lg"><i style="background:#d97706"></i>研判·已采纳</span><span class="lg"><i style="background:#dc2626"></i>已推翻</span></div>
+    <p class="catdesc" style="margin-top:8px">「最新定稿」以这份为准；「已推翻」仅留痕，看演进时间线可知被何取代；「研判·已采纳」是过程文档，结论已写入总纲，可跳过细节。</p>
+  </div>
+
+  <h2 style="margin:26px 0 4px; font-size:19px;">四、文档分类目录（A→E）</h2>
+  <section class="cat">
+    <h2><span class="catkey">A</span> 顶层体系与决策</h2>
+    <p class="catdesc">整套体系的总地图与最新决策。改方向、看全局，先读这组。</p>
+    <ul class="docs">
+      <li class="doc">
+        <a class="doclink" href="AI%E5%9F%B9%E8%AE%AD%E4%BD%93%E7%B3%BB%E6%80%BB%E7%BA%B2%EF%BC%88%E4%B8%89%E7%89%88%E5%9D%97%C3%97%E5%8F%8C%E6%8A%80%E8%83%BD%E6%A0%91%C3%97%E8%B7%AF%E7%BA%BF%E5%9B%BE%EF%BC%89.html">AI培训体系总纲（三版块×双技能树×路线图）.html</a>
+        <div class="meta"><span class="badge" style="background:#16a34a1a;color:#16a34a;border:1px solid #16a34a55">最新定稿</span> <span class="date">2026-09-20</span> <span class="idx">A1</span></div>
+        <div class="note">总地图：三级火箭×三版块×双技能树，张与董老师定位/技能树/路线图收口。优先读</div>
+      </li>
+      <li class="doc">
+        <a class="doclink" href="%E6%89%A7%E8%A1%8C%E5%9F%BA%E7%BA%BF%20v1%EF%BC%882026-09-19%20%E5%86%B3%E7%AD%96%E8%90%BD%E5%AE%9A%EF%BC%89.html">执行基线 v1（2026-09-19 决策落定）.html</a>
+        <div class="meta"><span class="badge" style="background:#16a34a1a;color:#16a34a;border:1px solid #16a34a55">最新定稿</span> <span class="date">2026-09-19</span> <span class="idx">A2</span></div>
+        <div class="note">9-19 第四批决策固化：双线并行、社团自愿小规模、主副配合三项参数重校准</div>
+      </li>
+      <li class="doc">
+        <a class="doclink" href="JS%E7%8F%AD%E8%B5%B0FDE%E4%B8%8EPython%E7%8F%AD%E8%B5%B0AIGC%E5%8F%8C%E7%BA%BF%E5%B9%B6%E8%A1%8C%E6%96%B9%E6%A1%88.html">JS班走FDE与Python班走AIGC双线并行方案.html</a>
+        <div class="meta"><span class="badge" style="background:#2563eb1a;color:#2563eb;border:1px solid #2563eb55">体系框架</span>  <span class="idx">A3</span></div>
+        <div class="note">双线决策评估：JS→FDE 线、Python→AIGC 线，推翻 9-18 合并方案</div>
+      </li>
+      <li class="doc">
+        <a class="doclink" href="%E4%B8%89%E7%BA%A7%E7%81%AB%E7%AE%AD%E4%BD%93%E7%B3%BB%E8%AE%BE%E8%AE%A1%EF%BC%88%E5%BA%95%E5%BA%A7%C2%B7%E8%AE%AD%E7%BB%83%E8%90%A5%C2%B7%E6%A0%B8%E5%BF%83%E9%A1%B9%E7%9B%AE%E7%BB%84%EF%BC%89.html">三级火箭体系设计（底座·训练营·核心项目组）.html</a>
+        <div class="meta"><span class="badge" style="background:#2563eb1a;color:#2563eb;border:1px solid #2563eb55">体系框架</span>  <span class="idx">A4</span></div>
+        <div class="note">框架：课内底座→训练营→核心项目组的资源配置与失效隔离</div>
+      </li>
+      <li class="doc">
+        <a class="doclink" href="%E4%B8%89%E7%BA%A7%E7%81%AB%E7%AE%AD%E5%9F%B9%E8%AE%AD%E5%86%85%E5%AE%B9%E4%B8%8E%E8%83%BD%E5%8A%9B%E6%B8%85%E5%8D%95%EF%BC%88%E6%89%A7%E8%A1%8C%E6%89%8B%E5%86%8C%EF%BC%89.html">三级火箭培训内容与能力清单（执行手册）.html</a>
+        <div class="meta"><span class="badge" style="background:#2563eb1a;color:#2563eb;border:1px solid #2563eb55">体系框架</span>  <span class="idx">A5</span></div>
+        <div class="note">把三级火箭拆成能力项/任务/交付物/判据，可直接排课</div>
+      </li>
+    </ul>
+  </section>
+  <section class="cat">
+    <h2><span class="catkey">B</span> 一级底座 · Python 课程改造（manhua.py 主线）</h2>
+    <p class="catdesc">把 Python 课改造成一条能跑的电商素材管线。落地课程看这组。</p>
+    <ul class="docs">
+      <li class="doc">
+        <a class="doclink" href="Python%E8%AF%BE%E7%A8%8B%E6%94%B9%E9%80%A0%E6%96%B9%E6%A1%88%EF%BC%88%E7%AC%AC3%E7%AB%A0%E8%B5%B7%EF%BC%89.html">Python课程改造方案（第3章起）.html</a>
+        <div class="meta"><span class="badge" style="background:#2563eb1a;color:#2563eb;border:1px solid #2563eb55">体系框架</span>  <span class="idx">B1</span></div>
+        <div class="note">课内主线：剩余 60 学时一条流水线贯穿，期末交可跑管线而非习题集</div>
+      </li>
+      <li class="doc">
+        <a class="doclink" href="manhua.py%20%E7%BB%86%E5%8C%96%E4%B8%8E%E8%AE%AD%E7%BB%83%E8%90%A5%E8%A1%94%E6%8E%A5.html">manhua.py 细化与训练营衔接.html</a>
+        <div class="meta"><span class="badge" style="background:#16a34a1a;color:#16a34a;border:1px solid #16a34a55">最新定稿</span> <span class="date">2026-09-20</span> <span class="idx">B2</span></div>
+        <div class="note">构件(component)定义 + 十构件映射表 + 与二级训练营的衔接接口</div>
+      </li>
+      <li class="doc">
+        <a class="doclink" href="manhua.py%20PBL%20%E6%95%99%E5%AD%A6%E5%9C%BA%E6%99%AF%E4%B8%8E%E9%9C%80%E6%B1%82.html">manhua.py PBL 教学场景与需求.html</a>
+        <div class="meta"><span class="badge" style="background:#16a34a1a;color:#16a34a;border:1px solid #16a34a55">最新定稿</span> <span class="date">2026-09-20</span> <span class="idx">B3</span></div>
+        <div class="note">一级底座真实感来源：青瓷小铺场景 / brief / 验收 / 分章任务卡</div>
+      </li>
+      <li class="doc">
+        <a class="doclink" href="Python%E5%9F%BA%E7%A1%80%E4%B9%8B%E4%B8%8A%E7%9A%84%E5%88%86%E6%96%B9%E5%90%91%E6%8A%80%E8%83%BD%E6%A0%91.html">Python基础之上的分方向技能树.html</a>
+        <div class="meta"><span class="badge" style="background:#2563eb1a;color:#2563eb;border:1px solid #2563eb55">体系框架</span>  <span class="idx">B4</span></div>
+        <div class="note">以 Python 入门为起点，按五个就业方向×能力级反推知识缺口</div>
+      </li>
+      <li class="doc">
+        <a class="doclink" href="manhua.py%20%E5%9F%BA%E7%A1%80%E7%8F%AD%E5%AE%9E%E6%96%BD%E6%96%B9%E6%A1%88(API%E7%89%88).html">manhua.py 基础班实施方案（API 版）.html</a>
+        <div class="meta"><span class="badge" style="background:#16a34a1a;color:#16a34a;border:1px solid #16a34a55">最新定稿</span> <span class="date">2026-09-22</span> <span class="idx">B5</span></div>
+        <div class="note">真实闭环 V3.2：真实产品照片 → UAPI 免费抠图去底白底 → Seedream 4.0 参考图场景化 → 质检交付（一级基础班全 API）</div>
+      </li>
+    </ul>
+  </section>
+  <section class="cat">
+    <h2><span class="catkey">C</span> 双技能树与路线图（张 + 董老师）</h2>
+    <p class="catdesc">张（FDE/技术底座）与董老师（AIGC 应用）各自的技能树、路线图与主副配合。</p>
+    <ul class="docs">
+      <li class="doc">
+        <a class="doclink" href="%E5%BC%A0%20AI%E5%BA%94%E7%94%A8%E4%B8%8E%E4%BA%A4%E4%BB%98FDE%20%E8%AF%A6%E7%BB%86%E6%8A%80%E8%83%BD%E6%A0%91%E4%B8%8E%E8%B7%AF%E7%BA%BF%E5%9B%BE.html">张 AI应用与交付FDE 详细技能树与路线图.html</a>
+        <div class="meta"><span class="badge" style="background:#16a34a1a;color:#16a34a;border:1px solid #16a34a55">最新定稿</span>  <span class="idx">C1</span></div>
+        <div class="note">张的 FDE 详细路线：JD 实证(飞书/安庆/联想/金博)+五阶段+OPC 定位</div>
+      </li>
+      <li class="doc">
+        <a class="doclink" href="AIGC%E8%A7%86%E8%A7%89%E8%B5%84%E4%BA%A7%E6%9E%B6%E6%9E%84%E8%80%85_%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF%E5%9B%BE.html">AIGC视觉资产架构者_学习路线图.html</a>
+        <div class="meta"><span class="badge" style="background:#16a34a1a;color:#16a34a;border:1px solid #16a34a55">最新定稿</span>  <span class="idx">C2</span></div>
+        <div class="note">董老师 AIGC 应用路线：22 份 JD 实证+12 月路线图，含体系定位与主副配合</div>
+      </li>
+      <li class="doc">
+        <a class="doclink" href="AIGC%E6%97%B6%E4%BB%A3%E4%B8%AA%E4%BA%BA%E5%AE%9A%E4%BD%8D%E4%B8%8E%E8%83%BD%E5%8A%9B%E6%A0%91.html">AIGC时代个人定位与能力树.html</a>
+        <div class="meta"><span class="badge" style="background:#2563eb1a;color:#2563eb;border:1px solid #2563eb55">体系框架</span>  <span class="idx">C3</span></div>
+        <div class="note">董老师原定位原点文档（家属线）：视觉资产架构者定位与能力树</div>
+      </li>
+      <li class="doc">
+        <a class="doclink" href="AIGC%E5%9F%B9%E8%AE%AD%E8%B5%9B%E9%81%93%E5%88%87%E5%85%A5%E6%96%B9%E6%A1%88.html">AIGC培训赛道切入方案.html</a>
+        <div class="meta"><span class="badge" style="background:#2563eb1a;color:#2563eb;border:1px solid #2563eb55">体系框架</span>  <span class="idx">C4</span></div>
+        <div class="note">培训业务切入：面向双师对外培训收入的赛道与产品思路</div>
+      </li>
+    </ul>
+  </section>
+  <section class="cat">
+    <h2><span class="catkey">D</span> 市场与就业实证（数据地基）</h2>
+    <p class="catdesc">所有决策的数据地基：真实 JD 拆解。写论文、对学生讲市场、找依据，查这组。</p>
+    <ul class="docs">
+      <li class="doc">
+        <a class="doclink" href="Python%E5%B2%97%E4%BD%8D%E5%88%86%E5%B8%83%E4%B8%8EAI%E6%96%B0%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90.html">Python岗位分布与AI新需求分析.html</a>
+        <div class="meta"><span class="badge" style="background:#64748b1a;color:#64748b;border:1px solid #64748b55">实证材料</span>  <span class="idx">D1</span></div>
+        <div class="note">高职 Python 课程建设：岗位结构/增长/能力锚点</div>
+      </li>
+      <li class="doc">
+        <a class="doclink" href="Python%E5%B2%97%E4%BD%8D%E5%BA%94%E7%94%A8%E5%88%86%E5%B8%83%E5%88%86%E6%9E%90.html">Python岗位应用分布分析.html</a>
+        <div class="meta"><span class="badge" style="background:#64748b1a;color:#64748b;border:1px solid #64748b55">实证材料</span>  <span class="idx">D2</span></div>
+        <div class="note">高职应届可达岗位 JD 样本拆解</div>
+      </li>
+      <li class="doc">
+        <a class="doclink" href="Python%E8%AF%BE%E7%A8%8B%E4%B8%8E%E5%B0%B1%E4%B8%9A%E5%B8%82%E5%9C%BA%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A%EF%BC%88%E5%AD%A6%E7%94%9F%E7%89%88%EF%BC%89.html">Python课程与就业市场分析报告（学生版）.html</a>
+        <div class="meta"><span class="badge" style="background:#64748b1a;color:#64748b;border:1px solid #64748b55">实证材料</span>  <span class="idx">D3</span></div>
+        <div class="note">学生版：46 条真实招聘按可投方向整理</div>
+      </li>
+      <li class="doc">
+        <a class="doclink" href="JavaScript%E5%B0%B1%E4%B8%9A%E5%B8%82%E5%9C%BA%E4%B8%8EAI%E6%96%B0%E5%85%B4%E5%B2%97%E4%BD%8D%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A.html">JavaScript就业市场与AI新兴岗位分析报告.html</a>
+        <div class="meta"><span class="badge" style="background:#64748b1a;color:#64748b;border:1px solid #64748b55">实证材料</span> <span class="date">2026-09-18</span> <span class="idx">D4</span></div>
+        <div class="note">9-18 收缩版：砍三维可视化，聚焦 AI 增量岗位，大专够得着</div>
+      </li>
+      <li class="doc">
+        <a class="doclink" href="JavaScript%E5%B0%B1%E4%B8%9A%E5%9C%B0%E5%9B%BE%EF%BC%88%E5%AD%A6%E7%94%9F%E7%89%88%EF%BC%89.html">JavaScript就业地图（学生版）.html</a>
+        <div class="meta"><span class="badge" style="background:#64748b1a;color:#64748b;border:1px solid #64748b55">实证材料</span>  <span class="idx">D5</span></div>
+        <div class="note">学生版：剔除够不着岗位，只留真能投的 JS 就业地图</div>
+      </li>
+    </ul>
+  </section>
+  <section class="cat">
+    <h2><span class="catkey">E</span> 赛道研判与训练营方案（历史/过程）</h2>
+    <p class="catdesc">V1 阶段的赛道对比与早期训练营方案。部分为过程研判（结论已采纳），部分为已被取代的旧方案。</p>
+    <ul class="docs">
+      <li class="doc">
+        <a class="doclink" href="%E7%94%B5%E5%95%86%E4%B8%8E%E6%96%87%E6%97%85%E4%B8%A4%E6%9D%A1%E8%B5%9B%E9%81%93%E5%AF%B9%E6%AF%94%E8%AF%84%E4%BC%B0.html">电商与文旅两条赛道对比评估.html</a>
+        <div class="meta"><span class="badge" style="background:#d977061a;color:#d97706;border:1px solid #d9770655">研判·已采纳</span>  <span class="idx">E1</span></div>
+        <div class="note">研判：文旅无规模→无工程岗，不成立（结论已写入总纲）</div>
+      </li>
+      <li class="doc">
+        <a class="doclink" href="%E7%94%B5%E5%95%86%E8%A7%86%E8%A7%89%E4%B8%8E%E6%BC%AB%E5%89%A7%E4%B8%A4%E6%9D%A1%E8%B5%9B%E9%81%93%E5%B9%B3%E8%A1%8C%E5%AF%B9%E6%AF%94%E8%AF%84%E4%BC%B0.html">电商视觉与漫剧两条赛道平行对比评估.html</a>
+        <div class="meta"><span class="badge" style="background:#d977061a;color:#d97706;border:1px solid #d9770655">研判·已采纳</span>  <span class="idx">E2</span></div>
+        <div class="note">研判：选 A 电商主 + 漫剧进阶（结论已采纳）</div>
+      </li>
+      <li class="doc">
+        <a class="doclink" href="%E5%9B%BE%E6%96%87%E8%B7%AF%E7%BA%BF%E6%96%B9%E6%A1%88%E4%B8%8E%E8%A7%86%E9%A2%91%E8%B7%AF%E7%BA%BF%E5%AF%B9%E6%AF%94%E8%AF%84%E4%BC%B0.html">图文路线方案与视频路线对比评估.html</a>
+        <div class="meta"><span class="badge" style="background:#d977061a;color:#d97706;border:1px solid #d9770655">研判·已采纳</span>  <span class="idx">E3</span></div>
+        <div class="note">研判：算力差数量级但分成 1/40，解法是三档递进（已采纳）</div>
+      </li>
+      <li class="doc">
+        <a class="doclink" href="AIGC%E8%B5%9B%E9%81%93%E6%94%B6%E7%AA%84%E5%88%86%E6%9E%90%E4%B8%8EAI%E5%89%A7%E9%9B%86%E6%96%B9%E5%90%91%E8%90%BD%E7%82%B9.html">AIGC赛道收窄分析与AI剧集方向落点.html</a>
+        <div class="meta"><span class="badge" style="background:#d977061a;color:#d97706;border:1px solid #d9770655">研判·已采纳</span>  <span class="idx">E4</span></div>
+        <div class="note">赛道收窄研判：AI 剧集方向的能力锚点与课程落点</div>
+      </li>
+      <li class="doc">
+        <a class="doclink" href="AIGC%E8%AE%AD%E7%BB%83%E8%90%A5%E6%89%A7%E8%A1%8C%E8%AE%A1%E5%88%92%EF%BC%88%E4%BB%8E%E5%87%BA%E5%9B%BE%E5%88%B0%E6%8A%95%E7%A8%BF%EF%BC%89.html">AIGC训练营执行计划（从出图到投稿）.html</a>
+        <div class="meta"><span class="badge" style="background:#2563eb1a;color:#2563eb;border:1px solid #2563eb55">体系框架</span>  <span class="idx">E5</span></div>
+        <div class="note">训练营执行：社团自愿、招 30 按 12 产出，需按新小规模重校</div>
+      </li>
+      <li class="doc">
+        <a class="doclink" href="_archive/%E8%AE%AD%E7%BB%83%E8%90%A5%E7%BB%84%E7%BB%87%E5%BD%A2%E5%BC%8F%E4%B8%8E%E4%B8%A4%E7%8F%AD%E5%90%88%E8%BD%A8%E6%96%B9%E6%A1%88.html">_archive/训练营组织形式与两班合轨方案.html</a>
+        <div class="meta"><span class="badge" style="background:#dc26261a;color:#dc2626;border:1px solid #dc262655">已推翻</span>  <span class="idx">E6</span></div>
+        <div class="note">⚠ 已归档：旧合并方案（Python 造引擎 JS 造控制台），已被 9-19 双线并行方案取代</div>
+      </li>
+      <li class="doc">
+        <a class="doclink" href="_archive/JS%E4%B8%A4%E7%8F%AD%E5%B9%B6%E5%85%A5%E8%AE%AD%E7%BB%83%E8%90%A5%E7%9A%84%E5%8D%8F%E4%BD%9C%E6%9C%BA%E5%88%B6.html">_archive/JS两班并入训练营的协作机制.html</a>
+        <div class="meta"><span class="badge" style="background:#dc26261a;color:#dc2626;border:1px solid #dc262655">已推翻</span>  <span class="idx">E7</span></div>
+        <div class="note">⚠ 已归档：旧合并方案（前 8 周一视同仁后分轨），已被 9-19 双线并行方案取代</div>
+      </li>
+    </ul>
+  </section>
+
+  <div class="block">
+    <h2>五、演进时间线（看清前后）</h2>
+    <div class="tl">      <div class="tl-item">
+        <div class="tl-date">2026-09-10</div>
+        <div class="tl-body"><div class="tl-title">合并起点</div><div class="tl-text">从 Windows 端合并六个会话，建立三级火箭 V1、就业实证、赛道研判等基础材料</div></div>
+      </div>      <div class="tl-item">
+        <div class="tl-date">2026-09-17</div>
+        <div class="tl-body"><div class="tl-title">V2 主线</div><div class="tl-text">训练营主线成形（manhua.py 十零件）、选 A 赛道评估、家属 AIGC 定位</div></div>
+      </div>      <div class="tl-item">
+        <div class="tl-date">2026-09-18</div>
+        <div class="tl-body"><div class="tl-title">收缩与合并草案</div><div class="tl-text">JS 就业分析收缩版；曾提出「JS 两班并入训练营」合并方案（后推翻）</div></div>
+      </div>      <div class="tl-item">
+        <div class="tl-date">2026-09-19</div>
+        <div class="tl-body"><div class="tl-title">第四批决策</div><div class="tl-text">推翻合并方案 →「JS 走 FDE / Python 走 AIGC 双线并行」；对外名「AI 应用与交付」；执行基线 v1 固化；确认社团自愿 / 小规模 / 主副配合</div></div>
+      </div>      <div class="tl-item">
+        <div class="tl-date">2026-09-20</div>
+        <div class="tl-body"><div class="tl-title">体系收口</div><div class="tl-text">manhua.py 细化(构件+PBL)；AI 培训体系总纲；张 FDE 详细路线 + 董老师 AIGC 详细路线；融合金博 MVP</div></div>
+      </div></div>
+  </div>
+
+  <footer>本页由 WorkBuddy 自动生成 · 2026-09-20 · 文档增删后可用同名脚本重生成</footer>
+</div>
+</body>
+</html>

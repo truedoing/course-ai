@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>manhua.py 基础班实施方案（API 版）</title>
+<style>
+  :root{
+    --ink:#1f2937; --muted:#6b7280; --line:#e5e7eb; --paper:#FAF7F2;
+    --primary:#155E8F; --accent:#F97316; --emphasis:#0F6E56; --warn:#B91C1C;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Source Han Sans SC","Noto Sans CJK SC",-apple-system,"PingFang SC",sans-serif;
+    line-height:1.7;font-size:16px;}
+  .wrap{max-width:920px;margin:0 auto;padding:48px 28px 80px;}
+  header{border-bottom:3px solid var(--primary);padding-bottom:18px;margin-bottom:8px;}
+  h1{font-size:28px;margin:0 0 6px;color:var(--primary);letter-spacing:.5px;}
+  .sub{color:var(--muted);font-size:14px;}
+  h2{font-size:20px;margin:38px 0 12px;color:var(--primary);
+    border-left:5px solid var(--accent);padding-left:12px;}
+  h3{font-size:16px;margin:22px 0 8px;color:var(--emphasis);}
+  p{margin:10px 0;}
+  .card{background:#fff;border:1px solid var(--line);border-radius:12px;
+    padding:18px 20px;margin:16px 0;box-shadow:0 1px 3px rgba(0,0,0,.04);}
+  .stage{display:grid;grid-template-columns:54px 1fr;gap:14px;align-items:start;
+    border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:12px 0;background:#fff;}
+  .num{width:40px;height:40px;border-radius:50%;background:var(--primary);color:#fff;
+    display:flex;align-items:center;justify-content:center;font-weight:700;font-size:18px;}
+  .stage b{color:var(--ink);}
+  .tag{display:inline-block;font-size:12px;padding:2px 9px;border-radius:999px;
+    background:#eef2f6;color:var(--primary);margin-right:6px;font-weight:600;}
+  .tag.l2{background:#fef3e7;color:var(--accent);}
+  .tag.api{background:#e7f6ef;color:var(--emphasis);}
+  table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14.5px;}
+  th,td{border:1px solid var(--line);padding:9px 11px;text-align:left;vertical-align:top;}
+  th{background:#f1f5f9;color:var(--primary);font-weight:600;}
+  .red{color:var(--warn);font-weight:600;}
+  .ok{color:var(--emphasis);font-weight:600;}
+  ul{margin:8px 0 8px 4px;padding-left:20px;}
+  li{margin:6px 0;}
+  .note{background:#fffae9;border:1px solid #f5d98a;border-radius:10px;
+    padding:12px 16px;margin:16px 0;font-size:14.5px;}
+  .footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--line);
+    color:var(--muted);font-size:13px;}
+  code{background:#eef2f6;padding:1px 6px;border-radius:5px;font-size:13.5px;color:#0b3d5c;}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>manhua.py 基础班实施方案（API 版）</h1>
+  <div class="sub">三级火箭 · 一级语言底座（课内必修）· 真实电商 AI 出图闭环 · 修订于 2026-09-22（V3.2 Seedream 4.0）</div>
+</header>
+
+<div class="card">
+  <p><b>一句话定位：</b>manhua.py 是贯穿 Python 课的教学主线脚本，学生从"拍一张真实产品照片"出发，
+  用 <b>API</b> 完成"去底白底化 → 场景化/多版本生成 → 质检交付"的真实电商出图闭环，
+  每个章节往脚本里加一个<b>构件（component）</b>，期末拼成一条完整管线。</p>
+  <p>本方案只服务<b>基础班（一级课内）</b>：<span class="tag api">全 API</span>
+  <span class="tag l2">本地模型下放二级社团</span>，学生任意机器零本地依赖即可运行。</p>
+  <p><span class="ok">实测更新：</span>经端到端测试，<b>Seedream 4.0（火山方舟 doubao-seedream-4-0-250828）的 image 参考图生图</b>能够可靠保留原产品外观，
+  并把白底产品自然放入"手拿/办公桌/户外/车载/礼盒"等场景。因此 S2 场景化已切换为 Seedream 4.0 参考图生图，
+  S1 去底仍用国内免费抠图 API「UAPI / uapis.cn matting」。全 API / 零本地模型原则不变。</p>
+</div>
+
+<h2>1. 为什么是这个方案（修订依据）</h2>
+<div class="card">
+  <h3>原方案被推翻的点</h3>
+  <ul>
+    <li>原"文本描述产品 → 生成产品图 → 上架卖"经核对<b>是编的</b>：真实商家不会凭空编一个产品画图去卖（虚假宣传红线）。</li>
+    <li>原"新品概念图 / 调研"场景经核对<b>不成立</b>：中小电商商家基本不做"用 AI 图做市场调研"；大企业有生产前概念渲染，但非电商运营主流。</li>
+  </ul>
+  <h3>真实闭环（有公司名+数据实证）</h3>
+  <ul>
+    <li><b>天猫"家作"</b>：商家上传商品图 → 一键生成 80+ 风格场景图；慕思一年采纳近 2000 张、省 140 万；上线一年 <b>13 万+ 商家</b>（新浪财经、AIBase）。</li>
+    <li><b>Photoroom / remove.bg / 稿定抠图</b>：<b>随手拍 → AI 去背景加白底</b>，一次拖 200 张几分钟搞定（flowpix 实证）。这正是"白底不好拍"痛点的真实解法。</li>
+    <li><b>图小玉 / 千多 AI</b>：上传白底原图 → 零基础运营批量生成场景套图（今日头条案例）。</li>
+    <li><b>服饰铺货团队 A/B 测试</b>：已有真实连衣裙，换场景图测点击率；作者如实标注"转化率未同步提升、样本仅 20 款、不确定是否纯归因"（真实不粉饰记录）。</li>
+  </ul>
+</div>
+
+<h2>2. 分级策略（三级火箭的自然映射）</h2>
+<table>
+  <tr><th>层级</th><th>去底/生成技术</th><th>理由</th></tr>
+  <tr>
+    <td><b>一级 · 基础班（课内）</b></td>
+    <td><span class="tag api">全 API</span> 云端去底 + 云端生成</td>
+    <td>学生本地环境各异，不碰本地模型；任意机器联网即跑，维护成本归零，契合"薅免费额度"成本策略。</td>
+  </tr>
+  <tr>
+    <td><b>二级 · 社团训练营</b></td>
+    <td><span class="tag l2">本地模型 RMBG-1.4 等</span> 进阶改造</td>
+    <td>自驱学生在二级深化：本地推理、批量工程优化、微调、离线管线——作为一级的"工程深化版"，不进入课内考核。</td>
+  </tr>
+</table>
+<div class="note">该分级让一级"稳"、二级"深"，与既定"主副配合 + 自组织"的精力分配完全一致：课内只保 API 闭环，重活留给社团自驱者。</div>
+
+<h2>3. 基础班四阶段管线</h2>
+<div class="stage"><div class="num">0</div><div>
+  <b>S0 采集（学生动手）</b><br/>
+  手机任意背景拍一张<b>真实产品</b>照（如一只杯子）。无需影棚、无需白底——这一步本来就是"白底不好拍"难题的入口。</div></div>
+<div class="stage"><div class="num">1</div><div>
+  <b>S1 去底白底化（UAPI 免费抠图 · uapis.cn matting）</b><br/>
+  任意图（学生随手拍）→ 纯白底图（RGB 255,255,255）。学生本地照片直接上传，无需公网地址，返回白底图。<br/>
+  <span class="tag api">已定</span> UAPI / uapis.cn matting（国内免费抠图 API，符合"全 API / 薅免费额度"策略）；
+  <span class="tag l2">可替换</span> 本地模型 RMBG-1.4（二级社团工程深化，替换 _call_uapi_matting 一个函数即可）。<br/>
+  <b>为什么不用智谱做去底？</b> 实测智谱 CogView-4 编辑接口无法可靠保留原产品（输出常重绘），
+  而专用去底 API 是 Photoroom/天猫家作/千多AI 等行业工具的真实选择。这一步把 S0 的随手拍变成符合平台规范的主图底版。</div></div>
+<div class="stage"><div class="num">2</div><div>
+  <b>S2 场景化 / 多版本（Seedream 4.0 参考图生图 · 火山方舟）</b><br/>
+  把 S1 的白底商品图作为 <code>image</code> 参考传给 Seedream 4.0，prompt 描述"办公桌/户外/车载/礼盒"等场景，
+  模型在保留产品外观、颜色、材质的前提下生成整图。这是即梦、通义万相、混元等 AI 电商工具的真实链路，
+  能自然生成"手握杯子"这类无法靠 PIL 贴图实现的交互场景。
+  <span class="tag api">已定</span> Seedream 4.0 <code>doubao-seedream-4-0-250828</code>（免费额度，火山方舟）；
+  <span class="tag l2">可替换</span> 其它参考图生图 API（二级社团工程深化，替换 <code>_call_seedream_i2i</code> 一个函数即可）。</div></div>
+<div class="stage"><div class="num">3</div><div>
+  <b>S3 质检与交付</b><br/>
+  筛选翻车牌（光影/透视错位）、标注 <code>AI 合成</code>、按 SKU 归档、输出交付清单。
+  即课程 <b>B4 质检筛选</b> + 合规红线的落点。</div></div>
+
+<h2>4. 构件映射（每章加一个，期末拼成管线）</h2>
+<table>
+  <tr><th>构件</th><th>对应阶段</th><th>教的工程能力</th></tr>
+  <tr><td>构件1 · 图像采集与 IO</td><td>S0</td><td>文件读写、路径管理、参数解析</td></tr>
+  <tr><td>构件2 · 去底白底化（API 封装）</td><td>S1</td><td>第三方 API 调用、密钥管理、错误处理</td></tr>
+  <tr><td>构件3 · 云端参考图生图（Seedream 4.0）</td><td>S2</td><td>大模型 API、参考图驱动生图、prompt 工程、结构化输出</td></tr>
+  <tr><td>构件4 · 批量并发与一致性</td><td>S1+S2</td><td>并发控制、重试、命名规范、幂等</td></tr>
+  <tr><td>构件5 · 质检筛选</td><td>S3</td><td>"标准化翻译成检查项"、自动+人工复核</td></tr>
+  <tr><td>构件6 · 合规标注 + 归档交付</td><td>S3</td><td>合规意识（AI 合成）、产物归档与清单</td></tr>
+</table>
+<div class="note"><b>关键修正：</b>原"文本编造产品"的 text2img 构件，被替换为真实的 <b>去底 + 图生图</b> 双构件。Python/AI 管线核心技能（API 调用、批量、一致性、质检、归档、交付）<b>一个都不丢</b>，只是从"凭空生成"变成"基于真实产品的扩展"。</div>
+
+<h2>5. 案例范本（真实可交付）</h2>
+<div class="card">
+  <p><b>流程：</b>学生拍一只真实杯子 → S1 专用 API 去底（保留杯子本体） → S2 Seedream 4.0 参考图生图（把手持/办公桌/户外/车载/礼盒场景） → S3 质检标注归档。</p>
+  <p><b>评审口径：</b>"这能卖吗？" → <span class="ok">能</span>，因为它就是千万商家的日常（家作 13 万商家、慕思省 140 万）。
+  真实产品 + 真实出图流程，经得起任何追问。</p>
+  <p><b>教学彩蛋：</b>S2 生成的图"10 张 8 张能用、2 张翻车（光影/透视错位）"——恰好是 B4 质检模块的真实素材；
+  合规标注"AI 合成"则是职业红线教学。</p>
+</div>
+
+<h2>6. 合规红线（教学必讲，不得模糊）</h2>
+<table>
+  <tr><th>红线</th><th>说明</th></tr>
+  <tr><td class="red">纯文本编造实物直接上架</td><td>＝ 虚假宣传，职业红线，<b>我们不教这个</b>。AI 图是展示扩展，不是替代实拍信任。</td></tr>
+  <tr><td class="red">AI 生成图未标注</td><td>市场监管总局要求 AI 商品图标"AI 合成"，否则按虚假宣传论处。标注是交付必备构件。</td></tr>
+  <tr><td class="ok">真实产品才能上架</td><td>学生手里的真实杯子 + AI 扩展图＝合法合规的展示素材，逻辑自洽。</td></tr>
+</table>
+
+<h2>7. 实测风险与待张拍板事项</h2>
+<ul>
+  <li><b>S2 场景化已切换为 Seedream 4.0 参考图生图</b>：端到端测试显示，输入张老师拍的深蓝色磨砂保温杯白底图，Seedream 4.0 能可靠保留产品外观、颜色与材质，并自然生成"商务办公桌面 / 户外便携 / 车载杯架 / 礼品礼盒"四类场景图，包括"手拿着杯子"这类无法靠 PIL 贴图实现的交互场景。</li>
+  <li><b>去底 API 选型（已定）</b>：UAPI 免费抠图（uapis.cn matting）。remove.bg 将于 2026-12-01 关闭、本地 RMBG-1.4 下放二级社团，故一级基础班采用 UAPI 免费抠图，与"全 API / 薅免费额度"策略一致。</li>
+  <li><b>成本口径修正</b>：Seedream 4.0 同为免费额度（火山方舟），与"S1 UAPI 免费抠图 + S2 Seedream 免费额度"的"全 API / 薅免费额度"策略一致。学生端各自注册 UAPI 与火山方舟、各用各的免费额度；教师提供的 key 仅用于课内演示与范本，一级基础班零成本。</li>
+  <li><b>是否链入 index.html 导航</b>：已加入 B5，index 文档数已更新为 26。</li>
+  <li><b>二级社团 RMBG 改造任务书</b>：可单独立项，由自驱学生承接。</li>
+</ul>
+
+<div class="footer">
+  本文档为 manhua.py 一级（基础班）实施方案，依据 2026-09-22 与张老师的数轮真实性核对及 Seedream 4.0 实测修订。
+  所有市场论断均附公司名与来源，剔除引流软文，符合项目数据与方法纪律。
+</div>
+</div>
+</body>
+</html>

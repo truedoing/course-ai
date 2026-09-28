@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AIGC 训练营执行计划 · 从出图到投稿</title>
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;padding:40px 20px 80px;background:#FFFFFF;color:#1F2328;
+    font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif;
+    font-size:15px;line-height:1.85;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:920px;margin:0 auto}
+  .kicker{font-size:12.5px;letter-spacing:.14em;color:#0C447C;font-weight:600;margin-bottom:14px}
+  h1{font-size:29px;line-height:1.4;margin:0 0 14px;font-weight:700;letter-spacing:-.01em}
+  .sub{font-size:16px;color:#57606A;margin:0 0 10px;line-height:1.7}
+  .meta{font-size:12.5px;color:#8A919A;border-top:1px solid #EAECEF;border-bottom:1px solid #EAECEF;padding:12px 0;margin:22px 0 34px}
+  h2{font-size:21px;margin:52px 0 16px;padding-left:13px;border-left:4px solid #0C447C;font-weight:700;line-height:1.5}
+  h3{font-size:16.5px;margin:32px 0 12px;font-weight:600;color:#0C447C}
+  p{margin:0 0 15px}
+  ul,ol{margin:0 0 16px;padding-left:22px}
+  li{margin-bottom:9px}
+  strong{font-weight:600}
+  em{font-style:normal;background:#FFF6DA;padding:1px 3px;border-radius:3px}
+  table{width:100%;border-collapse:collapse;margin:18px 0 24px;font-size:13.5px}
+  th{background:#F4F6F8;text-align:left;padding:10px 11px;font-weight:600;color:#24292F;border-bottom:2px solid #DDE1E5;white-space:nowrap}
+  td{padding:10px 11px;border-bottom:1px solid #EAECEF;vertical-align:top;line-height:1.7}
+  tr:hover td{background:#FAFBFC}
+  .num{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+  .ok{color:#0B5B47;font-weight:600}
+  .j{color:#3D444D;font-size:13px}
+  .key{background:#E6F1FB;border-left:4px solid #0C447C;padding:16px 20px;margin:22px 0;border-radius:0 8px 8px 0}
+  .key p:last-child{margin-bottom:0}
+  .box{background:#F7F8FA;border:1px solid #E6E8EB;padding:16px 20px;border-radius:8px;margin:20px 0}
+  .box p:last-child{margin-bottom:0}
+  .warnbox{background:#FAEEDA;border-left:4px solid #BA7517;padding:16px 20px;margin:20px 0;border-radius:0 8px 8px 0}
+  .warnbox p:last-child{margin-bottom:0}
+  .fig{margin:26px 0 30px}
+  .fig svg{display:block;width:100%;height:auto}
+  .fig figcaption{font-size:12.5px;color:#57606A;margin-top:10px;line-height:1.65}
+  .foot{margin-top:56px;padding-top:22px;border-top:1px solid #EAECEF;font-size:12.5px;color:#8A919A}
+  .foot ul{padding-left:20px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<p class="kicker">AIGC 训练营执行计划 · 教师执行稿</p>
+<h1>从出图到投稿：一年窗口里的四个里程碑</h1>
+<p class="sub">社团形式、自愿参加、本周可开。招 30 人，按 12 人产出设计</p>
+<p class="meta">对象：大二学生，距实习约一年 ｜ 形式：每周一次 2 小时 + 每周一个可见交付 ｜ <strong>启动：学期第 4 周，不必等课内讲完</strong> ｜ 与《Python 课程改造方案（第 3 章起）》配套</p>
+
+<h2>一、它是课内的另一半</h2>
+
+<p>训练营不是"再开一门课"，也不是兴趣小组。它和课内是同一个项目的两面：</p>
+
+<table>
+<thead><tr><th style="width:110px"></th><th style="width:330px">课内（全体，剩余 60 学时）</th><th>训练营（志愿，每周 2 小时）</th></tr></thead>
+<tbody>
+<tr><td><strong>回答什么</strong></td><td class="j">为什么这样写</td><td class="j">这样做出来的效果长什么样</td></tr>
+<tr><td><strong>覆盖谁</strong></td><td class="j">全体，必须交作业</td><td class="j">报名者，可以退出</td></tr>
+<tr><td><strong>用什么</strong></td><td class="j">同一批素材、同一套角色设定</td><td class="j">同一批素材、同一套角色设定</td></tr>
+<tr><td><strong>交出什么</strong></td><td class="j">一个能跑的脚本</td><td class="j">一部能看的片子</td></tr>
+<tr><td><strong>谁说了算</strong></td><td class="j">你主讲</td><td class="j">你 + 一位动漫或数媒老师（每周只来点评 30 分钟）</td></tr>
+</tbody>
+</table>
+
+<div class="key">
+<p><strong>两边共用素材是效率的关键。</strong>课内第 8 章写的 <span style="font-family:monospace">Character</span> 类，用的就是训练营里学生在用的那三个角色；训练营出的图，就是课内批量脚本处理的对象。<strong>学生会在两边来回印证</strong>，这比任何一边的单独教学都有效。</p>
+</div>
+
+<h3>什么时候启动：第 4 周，不要等</h3>
+
+<p>常见想法是"等课内讲到调接口再开训练营，学生才有基础"。这个想法是错的，理由有两个，都跟心理有关而不是课时：</p>
+
+<ul>
+<li><strong>等下去，学生对 Python 的认知就定型了。</strong>等到第 12 周，他在课内做了两个月习题，Python 在他脑子里已经是"一门要考试的课"。那时候再招人，报名的人只会是本来就想学的那几个。第 4 周开，他还保留着"这东西能干嘛"的好奇。</li>
+<li><strong>训练营前 8 周本来就不写代码。</strong>出图、调一致性、做分镜，用现成的界面就能做。它不依赖课内进度，反而是给课内攒问题的地方——等第 12 周课内讲到真实接口，这批学生手里已经有两个月的问题要问，那一节课的效果会完全不同。</li>
+</ul>
+
+<p>两条轨的节奏对照：课内第 1–11 周走教材主线，第 12 周起进赛道模块；<strong>训练营第 4 周启动，前期不写代码，第 12 周合流接入脚本</strong>。合流之后，课内讲"为什么这样写"，训练营做"这样做出来的效果"。</p>
+
+<h2>二、招募：招 30，按 12 人产出设计</h2>
+
+<p>自愿参加的社团，跨一年还能留下 30%–40% 是正常水平。<strong>不要把人数当成失败指标</strong>——按最终 12 人能完整产出设计，剩下的都是意外收获。</p>
+
+<div class="warnbox">
+<p><strong>但门槛必须在招募时就写清楚，不要事后清人。</strong>通知里直接写明：每周固定 2 小时，每周必须有交付，连续两次不交自动退出（保留旁听）。</p>
+<p>把门槛说在前面，来的人少一些但留下的比例高；把门槛藏着，前面热闹后面崩，还消耗你的情绪。<strong>你现在没有时间处理"人来了又不干"。</strong></p>
+</div>
+
+<figure class="fig">
+<svg viewBox="0 0 900 152" width="100%" role="img" aria-label="招募留存漏斗：报名三十人，四周后约二十人，最终能完整产出约十二人">
+  <g font-family="-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif">
+    <text x="20" y="30" font-size="12" font-weight="600" fill="#24292F">报名</text>
+    <rect x="90" y="16" width="790" height="28" rx="6" fill="#EEF1F4" stroke="#D3D1C7" stroke-width="0.5"/>
+    <text x="105" y="35" font-size="12.5" fill="#2C2C2A">30 人　宣讲后报名，第一周采集基线数据</text>
+    <text x="866" y="35" text-anchor="end" font-size="12.5" font-weight="600" fill="#2C2C2A">100%</text>
+
+    <text x="20" y="76" font-size="12" font-weight="600" fill="#24292F">四周后</text>
+    <rect x="90" y="62" width="527" height="28" rx="6" fill="#CFE2F3" stroke="#9BC4E4" stroke-width="0.5"/>
+    <text x="105" y="81" font-size="12.5" fill="#0B3A61">约 20 人　掉的是"只想看看"的那批</text>
+    <text x="603" y="81" text-anchor="end" font-size="12.5" font-weight="600" fill="#0B3A61">67%</text>
+
+    <text x="20" y="122" font-size="12" font-weight="600" fill="#24292F">出成片</text>
+    <rect x="90" y="108" width="316" height="28" rx="6" fill="#E1F5EE" stroke="#5DCAA5" stroke-width="0.5"/>
+    <text x="105" y="127" font-size="12.5" fill="#085041">约 12 人　这批人的作品就是你的成果</text>
+    <text x="392" y="127" text-anchor="end" font-size="12.5" font-weight="600" fill="#085041">40%</text>
+  </g>
+</svg>
+<figcaption>图 1 ｜ 按 30 人招募、12 人产出设计。<strong>所有资源准备（算力额度、座位、设备）都按 12 人算</strong>，多来的人是缓冲，不是负担。</figcaption>
+</figure>
+
+<h3>第一周必须采集基线数据</h3>
+
+<p>训练营天然就是一次教学实验，而且比强制分班干净——<strong>未报名的同专业学生就是现成的对照组</strong>。但数据必须第一周采，事后补就废了。</p>
+
+<ul>
+<li><strong>开营问卷</strong>：编程自我效能、AI 工具使用经验、职业意向、参与动机</li>
+<li><strong>前测</strong>：10 道 Python 基础题（可与课内测验共用）+ 一道开放题"你觉得 AI 能替你做掉哪部分工作"</li>
+<li><strong>对照组</strong>：同专业未参加学生，期末用同一套题与同一份问卷再测一次</li>
+</ul>
+
+<p>这三项花不到一节课，但一年后它是<em>唯一能证明这次改革有效</em>的东西，也是期刊论文要的实证数据。</p>
+
+<h2>三、单次课的结构：120 分钟怎么分</h2>
+
+<p>固定结构，每周不变。学生知道套路，反而安心。</p>
+
+<figure class="fig">
+<svg viewBox="0 0 900 158" width="100%" role="img" aria-label="单次课一百二十分钟的结构：演示十五分钟，动手六十分钟，点评三十分钟，布置十五分钟">
+  <g font-family="-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif">
+    <rect x="50" y="30" width="100" height="44" rx="7" fill="#EEF1F4" stroke="#D3D1C7" stroke-width="0.5"/>
+    <text x="100" y="48" text-anchor="middle" font-size="12.5" font-weight="600" fill="#2C2C2A">演示</text>
+    <text x="100" y="66" text-anchor="middle" font-size="11.5" fill="#5F5E5A">15 分钟</text>
+
+    <rect x="150" y="30" width="400" height="44" rx="7" fill="#CFE2F3" stroke="#378ADD" stroke-width="0.5"/>
+    <text x="350" y="48" text-anchor="middle" font-size="12.5" font-weight="600" fill="#0B3A61">动手做</text>
+    <text x="350" y="66" text-anchor="middle" font-size="11.5" fill="#0E4470">60 分钟 · 当堂必须出东西</text>
+
+    <rect x="550" y="30" width="200" height="44" rx="7" fill="#FAEEDA" stroke="#EF9F27" stroke-width="0.5"/>
+    <text x="650" y="48" text-anchor="middle" font-size="12.5" font-weight="600" fill="#854F0B">点评</text>
+    <text x="650" y="66" text-anchor="middle" font-size="11.5" fill="#BA7517">30 分钟 · 互评 + 老师评</text>
+
+    <rect x="750" y="30" width="100" height="44" rx="7" fill="#EEF1F4" stroke="#D3D1C7" stroke-width="0.5"/>
+    <text x="800" y="48" text-anchor="middle" font-size="12.5" font-weight="600" fill="#2C2C2A">布置</text>
+    <text x="800" y="66" text-anchor="middle" font-size="11.5" fill="#5F5E5A">15 分钟</text>
+
+    <text x="50" y="102" font-size="12" fill="#57606A">你讲，学生看</text>
+    <text x="150" y="102" font-size="12" font-weight="600" fill="#0B3A61">这一段占一半时间，是训练营的主体</text>
+    <text x="550" y="102" font-size="12" fill="#854F0B">训练"好不好看"的判断力</text>
+    <text x="750" y="102" font-size="12" fill="#57606A">下周交什么</text>
+
+    <text x="50" y="134" font-size="12" fill="#8A919A">点评环节的 30 分钟可以请动漫或数媒老师来带——这是他唯一需要投入的时间，也是跨专业协作最省力的起步形态</text>
+  </g>
+</svg>
+<figcaption>图 2 ｜ 单次课结构。<strong>动手占一半</strong>，这是铁律；点评占四分之一，因为"判断哪张脸崩了、这一版够不够商用"正是"抽卡师"这个岗位存在的理由，也是 Agent 目前替代不了的部分。</figcaption>
+</figure>
+
+<h2>四、第一期 12 周：出图 → 30 秒成片</h2>
+
+<p>本学期剩余约 12 周（9 月中到 12 月中，避开考试周）。这一段的目标很单一：<strong>让留下来的 12 个人，每人交出一部 30 秒成片</strong>。</p>
+
+<figure class="fig">
+<svg viewBox="0 0 900 150" width="100%" role="img" aria-label="第一期十二周的三个阶段：第一到第三周出图，第四到第七周一致性，第八到第十二周成片">
+  <g font-family="-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif">
+    <rect x="50" y="30" width="200" height="60" rx="9" fill="#E6F1FB" stroke="#85B7EB" stroke-width="0.5"/>
+    <text x="150" y="52" text-anchor="middle" font-size="13" font-weight="600" fill="#0C447C">第 1–3 周</text>
+    <text x="150" y="74" text-anchor="middle" font-size="12" fill="#185FA5">出图 · 首课就出第一张</text>
+
+    <rect x="250" y="30" width="267" height="60" rx="9" fill="#CFE2F3" stroke="#378ADD" stroke-width="0.5"/>
+    <text x="383" y="52" text-anchor="middle" font-size="13" font-weight="600" fill="#0B3A61">第 4–7 周</text>
+    <text x="383" y="74" text-anchor="middle" font-size="12" fill="#0E4470">一致性 · 十张图长得像同一个人</text>
+
+    <rect x="517" y="30" width="333" height="60" rx="9" fill="#9BC4E4" stroke="#378ADD" stroke-width="0.5"/>
+    <text x="683" y="52" text-anchor="middle" font-size="13" font-weight="600" fill="#082F52">第 8–12 周</text>
+    <text x="683" y="74" text-anchor="middle" font-size="12" fill="#0B3A61">成片 · 三十秒有声片段 + 制作记录</text>
+
+    <text x="150" y="116" text-anchor="middle" font-size="11.5" fill="#57606A">留存靠这段时间</text>
+    <text x="383" y="116" text-anchor="middle" font-size="11.5" fill="#57606A">技术含量最高的一段</text>
+    <text x="683" y="116" text-anchor="middle" font-size="11.5" fill="#57606A">接上课内的批量生产</text>
+  </g>
+</svg>
+<figcaption>图 3 ｜ 第一期三个阶段。前 3 周决定留存，中间 4 周决定质量，最后 5 周决定能不能拿出手。<strong>第 6 周是两条线接上的时刻</strong>——课内刚好讲到调接口。</figcaption>
+</figure>
+
+<table>
+<thead><tr><th style="width:52px">周</th><th style="width:160px">主题</th><th style="width:250px">当堂交付</th><th>需要提前准备</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>开营 · 出第一张图</td><td class="j">1 张图 + 一句话说明；基线问卷与前测</td><td class="j">工具与额度就绪（<strong>不装环境，用现成界面</strong>）</td></tr>
+<tr><td>2</td><td>提示词的结构</td><td class="j">同一场景 5 个版本，写出差异在哪</td><td class="j">3 组对比示例</td></tr>
+<tr><td>3</td><td>角色设定</td><td class="j">一个角色的多角度图 5 张 <span class="ok">★ 里程碑 1</span></td><td class="j">角色设定模板（可让动漫专业提供）</td></tr>
+<tr><td>4</td><td>一致性 A · 参考图锁定</td><td class="j">10 张同一角色的图，自评相似度打分</td><td class="j">参考图锁定方法演示</td></tr>
+<tr><td>5</td><td>一致性 B · 风格与光影</td><td class="j">同一角色 5 个表情或动作，风格统一</td><td class="j">风格参数对照表</td></tr>
+<tr><td>6</td><td><strong>脚本化第一次</strong></td><td class="j">一个能跑的脚本：调接口生成 10 张</td><td class="j"><strong>接课内第 7 章之后的调接口模块</strong></td></tr>
+<tr><td>7</td><td>批量与筛选</td><td class="j">跑 30 张，人工挑 10 张，写下筛选标准</td><td class="j">筛选标准模板</td></tr>
+<tr><td>8</td><td>分镜</td><td class="j">30 秒片段的分镜表（8–10 个镜头）</td><td class="j">请动漫老师讲一节课的分镜</td></tr>
+<tr><td>9</td><td>从图到片段</td><td class="j">10 秒无声片段</td><td class="j">简单运镜或转场工具</td></tr>
+<tr><td>10</td><td>配音与字幕</td><td class="j">30 秒有声片段 v1</td><td class="j">TTS 工具与字幕工具</td></tr>
+<tr><td>11</td><td>互评与修改</td><td class="j">v2 + 一页修改说明 <span class="ok">★ 里程碑 2</span></td><td class="j">请数媒/动漫老师做 30 分钟点评</td></tr>
+<tr><td>12</td><td>验收与展映</td><td class="j">30 秒成片 + 制作记录（耗时、废片率、成本）</td><td class="j">展映场地或线上展厅</td></tr>
+</tbody>
+</table>
+
+<div class="box">
+<p><strong>关于第 1 周"不装环境"：</strong>第一次课如果花一小时装 Python、配环境、解决报错，一半人不会来第二次。<strong>用现成的网页工具让学生三十分钟内出第一张图</strong>，环境和代码从第 6 周开始介入——那时他们已经知道自己为什么要装它了。</p>
+</div>
+
+<h2>五、寒假三个任务包</h2>
+
+<p>假期不停，但降频。给三个明确的包，每两周线上检查一次，不排周次。</p>
+
+<ol>
+<li><strong>把手动流程写成脚本</strong>：这一学期手动做过的事，挑一件写成可重复运行的脚本（参数化、可复现）。正好接课内第 8 章的面向对象。</li>
+<li><strong>建立自己的资产库</strong>：角色、场景、风格整理成目录规范 + 一份 JSON 索引。这是后面做长片的前提，也是简历上能写的一条。</li>
+<li><strong>拆 3 部热门漫剧的分镜</strong>：交一份拆解表（镜头数、节奏、转折点）。这个作业不消耗算力，但决定下学期选题的眼光。</li>
+</ol>
+
+<h2>六、第二期：从成片到投稿（大二下）</h2>
+
+<p>下学期变数多，只定阶段目标，不定周次。</p>
+
+<table>
+<thead><tr><th style="width:110px">阶段</th><th style="width:70px">时长</th><th>目标</th><th style="width:170px">交付</th></tr></thead>
+<tbody>
+<tr><td>A 选题与剧本</td><td class="num">2 周</td><td class="j">拉文学或视传专业师生进选题会；按平台分账规则定形态（<strong>走 2D 漫剧</strong>，分成 40%，成本低、一致性技术成熟）</td><td class="j">10 集剧本 + 分镜</td></tr>
+<tr><td>B 流水线生产</td><td class="num">4 周</td><td class="j">10 人一组分工：脚本与参数、生图、筛选、合成、记录。<strong>每人负责一环，跑通后轮换</strong></td><td class="j">10 集成片</td></tr>
+<tr><td>C 投稿与复盘</td><td class="num">3 周</td><td class="j">投稿并跟踪数据：播放、完播、分账。这一阶段的学生第一次看到"自己做的东西有人看"</td><td class="j">数据复盘报告</td></tr>
+<tr><td>D 接单与作品集</td><td class="num">3 周</td><td class="j">接本地商家素材或电商主图（真实付费方），打包作品集对接实习</td><td class="j">作品集 + 实习去向</td></tr>
+</tbody>
+</table>
+
+<div class="key">
+<p><strong>D 阶段的意义：它是唯一能同时解决算力和留存的东西。</strong>本地商家的一单素材，价格不高但能覆盖一学期额度，而且学生第一次拿到"别人为我的产出付钱"的反馈——这比任何动员都有效。</p>
+</div>
+
+<h2>七、算力：唯一可能让训练营第一周就停摆的硬条件</h2>
+
+<p>这件事必须<strong>本周定下来</strong>，不能等。四条路同时走：</p>
+
+<ol>
+<li><strong>平台的教育扶持或免费额度</strong>——红果漫剧开放网文 IP 免费改编并配套算力补贴与项目保底，这类资源要主动去申请，不去问就没有</li>
+<li><strong>本地商家小单的预付款</strong>——用真实的单子 cover 成本，同时解决实训与留存</li>
+<li><strong>学校社团或实训经费</strong>——几千元量级即可起步，需要提前报，越早越好</li>
+<li><strong>与企业共建</strong>——地方制作公司正在释放岗位，实训设备与算力可由企业侧承担</li>
+</ol>
+
+<div class="warnbox">
+<p><strong>成本控制的技术选择：教学产出走 2D 漫剧，不要一上来追仿真人剧。</strong>分账系数上仿真人剧是 60%、2D 漫剧是 40%，看起来差不少，但 2D 的单张成本远低于视频生成，一致性技术也更成熟，学生能完整跑通。<strong>在一年窗口里，"跑通一遍"比"分成高 20%"重要得多。</strong>仿真人剧只做进阶演示。</p>
+</div>
+
+<h2>八、第一周就开：招募通知与第一次课</h2>
+
+<h3>招募通知写什么</h3>
+<ul>
+<li><strong>先放成品，不要先讲道理</strong>——一段 30 秒成片比任何说明都有说服力</li>
+<li><strong>说清门槛</strong>：每周 2 小时、每周有交付、连续两次不交退出</li>
+<li><strong>说清收获</strong>：一学期后你手上有一部自己做的片子和一份制作记录；做得好的会推荐去实习</li>
+<li><strong>不限专业</strong>：动漫、数媒、视传、文学都可以报名，跨专业组队本来就是这个方向的常态</li>
+</ul>
+
+<h3>第一次课 90 分钟怎么走</h3>
+<ol>
+<li><strong>0–15 分钟</strong>：放成品，说这一学期要做什么，说门槛</li>
+<li><strong>15–30 分钟</strong>：发工具体验额度，打开界面</li>
+<li><strong>30–70 分钟</strong>：带着一步步出第一张图</li>
+<li><strong>70–85 分钟</strong>：互相看彼此的图，说哪张好、为什么——<strong>第一次训练"评估"能力，这是整个方向的核心</strong></li>
+<li><strong>85–90 分钟</strong>：交作业（1 张图 + 一句话），说明下周，发基线问卷</li>
+</ol>
+
+<div class="key">
+<p><strong>最后一句：这个训练营真正的产出不是片子，是那 12 个人的作品集。</strong>一年后他们去实习，掏出来的是一个链接和一个"这是我做的"，而不是一张成绩单。这一年窗口里所有的时间分配，都应该按这个标准来排序。</p>
+</div>
+
+<div class="foot">
+<p style="font-weight:600;color:#33383D">说明</p>
+<ul>
+<li>学期周数按 2026 秋季学期 9 月中至 12 月中约 12 周估算，具体以校历为准。</li>
+<li>留存比例（30 → 20 → 12）为经验估算，第一周采集的数据可用于后续修正。</li>
+<li>分账与政策数据来自抖音集团短剧版权中心公开规则及 2026 年公开报道，具有时效性，正式立项前建议复核。</li>
+<li>基线数据方案与课内改造配套，可用于教学实验的对照组设计。</li>
+<li>配套文件：《Python 课程改造方案（第 3 章起）》。</li>
+</ul>
+</div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>执行基线 v1 · 决策落定</title>
+<style>
+  :root{
+    --bg:#FBFCFE; --card:#FFFFFF; --ink:#1F2733; --sub:#5A6573; --line:#E6EAF0;
+    --blue:#155E8F; --blue2:#B8D4EC; --amber:#9A6A00; --amber2:#FBE9C7;
+    --green:#1E7A46; --green2:#D6F0DF; --red:#B23B3B; --red2:#F7DCDC;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;
+    line-height:1.65;font-size:15px}
+  .wrap{max-width:920px;margin:0 auto;padding:40px 28px 80px}
+  .kicker{color:var(--sub);font-size:12px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px}
+  h1{font-size:26px;margin:0 0 6px;font-weight:700}
+  .sub{color:var(--sub);margin:0 0 28px}
+  h2{font-size:18px;margin:38px 0 14px;padding-left:11px;border-left:4px solid var(--blue)}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 20px;margin:14px 0;
+    box-shadow:0 1px 2px rgba(20,40,80,.04)}
+  table{width:100%;border-collapse:collapse;font-size:14px}
+  th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{color:var(--sub);font-weight:600;background:#F6F8FB}
+  tr:last-child td{border-bottom:none}
+  .tag{display:inline-block;font-size:12px;font-weight:700;padding:2px 9px;border-radius:20px;white-space:nowrap}
+  .done{background:var(--green2);color:var(--green)}
+  .open{background:var(--red2);color:var(--red)}
+  .do{background:var(--amber2);color:var(--amber)}
+  ol,ul{margin:8px 0;padding-left:22px}
+  li{margin:6px 0}
+  .hl{background:#FFF7E0;padding:1px 5px;border-radius:4px}
+  .note{color:var(--sub);font-size:13px;margin-top:6px}
+  .two{display:flex;gap:14px;flex-wrap:wrap}
+  .two .col{flex:1;min-width:260px}
+  .me{background:linear-gradient(180deg,#F2F8FD,#FFFFFF);border:1px solid var(--blue2)}
+  .her{background:linear-gradient(180deg,#FBF4EF,#FFFFFF);border:1px solid #F0D9C2}
+  .col h3{margin:0 0 6px;font-size:15px}
+  .col .role{font-size:12px;color:var(--sub);margin-bottom:8px}
+  .footer{color:var(--sub);font-size:12px;margin-top:40px;border-top:1px solid var(--line);padding-top:14px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="kicker">课程改革实验 · 执行基线</div>
+  <h1>执行基线 v1（2026-09-19 决策落定）</h1>
+  <p class="sub">把第四批口头决策固化为可执行的基线。三级火箭体系不变，但<span class="hl">规模、性质、分工</span>三项参数按本轮重新校准（原三级火箭文档默认"招 45-60 留 18-20"已不适用）。</p>
+
+  <h2>一、四项开放决策落定</h2>
+  <div class="card">
+    <table>
+      <thead><tr><th style="width:34%">议题</th><th style="width:46%">决策</th><th style="width:20%">状态</th></tr></thead>
+      <tbody>
+        <tr><td>对外名称</td><td>定为「AI 应用与交付」（不用 FDE 之名，FDE 名专科够不着，已抓 JD 证据）</td><td><span class="tag done">已定</span></td></tr>
+        <tr><td>JS 课换项目载体</td><td>可以换。教考分离已确认可行，期末自主命题，载体可控</td><td><span class="tag done">已定</span></td></tr>
+        <tr><td>FDE 线启动时点</td><td>本学期先跑 AIGC；FDE 以"校内客户有眉目"为唯一硬前提——有则本学期启动，无则顺延下学期</td><td><span class="tag done">已定</span></td></tr>
+        <tr><td>客户源</td><td>进行中，有眉目才开启 FDE 线。本轮未关闭</td><td><span class="tag open">跟踪</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>二、组织规模与性质（重大调整）</h2>
+  <div class="card">
+    <ul>
+      <li><b>性质：</b>社团自愿 / 兴趣小组，<span class="hl">非校方行为</span>，定位"实验性质"。</li>
+      <li><b>规模很小：</b>Python 班 <b>7–8 人</b>即可，不是大营。总盘是高质量小团队。</li>
+      <li><b>遴选与运转：</b>只收<b>高质量 + 强自驱力</b>学生；强调<b>自组织</b>，自驱力弱不收。</li>
+      <li><b>精力红线：</b>张同时承担 教学 + 体系设计 + AIGC/FDE 双边事项。<span class="hl">不靠人海，靠少数能自驱的人</span>，否则极耗精力。</li>
+    </ul>
+    <p class="note">注：这与早期"招 45-60 留 18-20"的默认参数冲突，以本轮为准。招募门槛从"数量"改为"质量+自驱"。</p>
+  </div>
+
+  <h2>三、主副配合（解决精力分配）</h2>
+  <div class="two">
+    <div class="card me">
+      <h3>张 · 全局 + 基础技术</h3>
+      <div class="role">版块侧重：FDE</div>
+      <ul>
+        <li>全局设计与体系架构</li>
+        <li>基础技术底座（调接口 / 批处理 / Git / 读报错）</li>
+        <li>FDE 方向推进（需求澄清、部署交付、沉淀复用）</li>
+      </ul>
+    </div>
+    <div class="card her">
+      <h3>董老师 · AIGC 应用层</h3>
+      <div class="role">同校计算机系，教 UI；定位"AI 内容视觉资产架构者"</div>
+      <ul>
+        <li>侧重 AIGC 应用层（一致性、质检、资产与规范）</li>
+        <li>标准 / 验收由她，管线 / 底座由张</li>
+        <li>让张得以把精力倾斜到 FDE</li>
+      </ul>
+    </div>
+  </div>
+  <p class="note">与家属线此前结论一致：她定"什么算合格"，张做"怎么批量跑"——不替她定义视觉标准，否则内核作废。</p>
+
+  <h2>四、本学期执行姿态</h2>
+  <div class="card">
+    <ul>
+      <li><b>AIGC 线：</b>正常推进；董老师进入应用层配合，张腾出精力。</li>
+      <li><b>FDE 线：</b>本学期<b>不启动招募 / 不投样品</b>；只做"探客户口风"。客户有眉目再切换启动。</li>
+      <li><b>规划提前做：</b>以下 FDE 交付物现在就可备，不占用本学期运行精力。</li>
+    </ul>
+  </div>
+
+  <h2>五、FDE 提前规划清单（现在就能做）</h2>
+  <div class="card">
+    <table>
+      <thead><tr><th style="width:40%">交付物</th><th>说明</th><th style="width:16%">状态</th></tr></thead>
+      <tbody>
+        <tr><td>FDE 线方案文档</td><td>六能力项 F1–F6、组织与排期、失败预案</td><td><span class="tag do">待写</span></td></tr>
+        <tr><td>客户洽谈清单</td><td>校内行政对象（教务/学工/招生/实训/系部/图书馆/教师个人）+ 三条筛选标准 + 启动会锁死三件事</td><td><span class="tag do">待写</span></td></tr>
+        <tr><td>招募与样品模板</td><td>招募通知 / 基线问卷 / 前测题 / 两个样品（电商素材包、漫剧 30s）制备 SOP</td><td><span class="tag do">待写</span></td></tr>
+        <tr><td>文件契约 CONTRACT.md</td><td>queue/ results/ assets/ runs/ 目录 + task.json / meta.json 字段 + 三态 status</td><td><span class="tag do">待写</span></td></tr>
+        <tr><td>最小共享接口</td><td>Git 规范与 README 模板 / 任务卡五要素 / 复盘三问 / 失败案例库（aigc/ 与 fde/ 两目录）</td><td><span class="tag do">待写</span></td></tr>
+        <tr><td>联合答辩设计</td><td>每学期半天，AIGC 组与 FDE 组互为真实用户，各提 3 条可判定修改</td><td><span class="tag do">待写</span></td></tr>
+      </tbody>
+    </table>
+    <p class="note">触发条件：客户源出现 ≥2 个真实校内部门意向 → 将"待写"转为"启动"；否则顺延下学期，清单继续作为下学期预研。</p>
+  </div>
+
+  <h2>六、仍待定（未在本轮关闭）</h2>
+  <div class="card">
+    <ol>
+      <li><b>算力预算量级</b>（3–5 千够"电商全员 + 漫剧核心组"量级，但本规模更小，需重算）</li>
+      <li><b>上机学时排法</b>（决定新增模块课上做还是课后做）</li>
+      <li><b>讲练一体场地前提已具备</b>（学生自带笔记本进课堂，理论课与动手同空间）；唯一待确认：期末是否教考分离</li>
+      <li><b>客户源进展</b>（每周跟踪，出现眉目即触发 FDE 启动评估）</li>
+    </ol>
+  </div>
+
+  <div class="footer">生成于 2026-09-19 11:08 · 依据第四批口头决策与跨设备合并的六项会话记忆 · 与《三级火箭体系设计》《JS班走FDE与Python班走AIGC双线并行方案》配套使用</div>
+</div>
+</body>
+</html>

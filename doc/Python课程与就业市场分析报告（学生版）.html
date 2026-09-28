@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Python 课程与就业市场分析报告（学生版）</title>
+<style>
+  :root{
+    --ink:#1f2328; --ink2:#57606a; --ink3:#8a9199;
+    --line:#e4e7eb; --bg:#ffffff; --bg2:#f7f8fa;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;padding:44px 20px 80px;background:var(--bg);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei","Segoe UI",sans-serif;
+    font-size:15.5px;line-height:1.8;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:940px;margin:0 auto}
+
+  .kicker{font-size:12.5px;font-weight:600;letter-spacing:.04em;color:#6B7379;margin:0 0 10px}
+  h1{font-size:27px;font-weight:600;margin:0 0 10px;letter-spacing:-.01em;line-height:1.35}
+  .sub{font-size:15px;color:#185FA5;font-weight:500;margin:0 0 10px}
+  .meta{color:var(--ink3);font-size:13px;margin:0 0 34px;padding-bottom:20px;border-bottom:1px solid var(--line)}
+
+  h2{font-size:20px;font-weight:600;margin:48px 0 14px;padding-top:24px;border-top:1px solid var(--line)}
+  h2:first-of-type{border-top:none;padding-top:0}
+  h3{font-size:17px;font-weight:600;margin:32px 0 10px}
+  h4{font-size:15px;font-weight:600;margin:22px 0 8px;color:#185FA5}
+  p{margin:0 0 14px}
+  ul{margin:0 0 14px;padding-left:22px}
+  li{margin-bottom:8px}
+  strong{font-weight:600}
+
+  .lead{background:#F4F7FA;border-radius:12px;padding:20px 24px;margin:0 0 20px;border-left:3px solid #185FA5}
+  .lead p:last-child{margin-bottom:0}
+  .lead .t{font-weight:600;font-size:15px;margin:0 0 10px;color:#0C447C}
+
+  .tip{background:#FFFBF0;border-radius:12px;padding:18px 22px;margin:18px 0;border-left:3px solid #B07A18}
+  .tip p:last-child{margin-bottom:0}
+  .tip .t{font-weight:600;font-size:14.5px;margin:0 0 8px;color:#7A4E08}
+
+  .warn{background:#FDF3F3;border-radius:12px;padding:18px 22px;margin:18px 0;border-left:3px solid #C0392B}
+  .warn p:last-child{margin-bottom:0}
+  .warn .t{font-weight:600;font-size:14.5px;margin:0 0 8px;color:#922B21}
+
+  .good{background:#F2FAF6;border-radius:12px;padding:18px 22px;margin:18px 0;border-left:3px solid #1E8E68}
+  .good p:last-child{margin-bottom:0}
+  .good .t{font-weight:600;font-size:14.5px;margin:0 0 8px;color:#0F6E56}
+
+  table{width:100%;border-collapse:collapse;margin:16px 0 20px;font-size:13.5px}
+  th{text-align:left;font-weight:600;color:#4A5259;font-size:12.5px;background:#F7F8FA;
+     border-bottom:1.5px solid #DDE1E6;padding:10px;vertical-align:bottom;letter-spacing:.02em}
+  td{padding:10px;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.65}
+  tr:last-child td{border-bottom:none}
+
+  .tag{display:inline-block;padding:1px 8px;border-radius:5px;font-size:12px;font-weight:600;white-space:nowrap}
+  .t5{background:#7EB2DA;color:#082F52}
+  .t4{background:#9BC4E4;color:#0B3A61}
+  .t3{background:#B8D4EC;color:#0E4470}
+  .t2{background:#CFE2F3;color:#12507F}
+  .t1{background:#E2ECF7;color:#155E8F}
+  .t0{background:#EEF1F4;color:#4E565D}
+
+  .fig{margin:20px 0 26px}
+  .fig svg{display:block;width:100%;height:auto}
+  .fig figcaption{font-size:12.5px;color:#57606A;margin-top:10px;line-height:1.65}
+
+  .ok{color:#0F6E56;font-weight:600}
+  .no{color:#A32D2D;font-weight:600}
+  .mid{color:#8A5A08;font-weight:600}
+  .jd{color:#4A5259;font-size:13px;line-height:1.65}
+  .jd em{font-style:normal;background:#FDF6E3;padding:0 3px;border-radius:3px;color:#6B4A08;font-weight:500}
+
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin:18px 0}
+  .card{background:#F7F8FA;border-radius:10px;padding:15px 16px}
+  .card .lbl{font-size:12.5px;color:#6B7379;margin:0 0 6px;line-height:1.4}
+  .card .num{font-size:23px;font-weight:600;margin:0;line-height:1.25;color:#1F2328}
+  .card .unit{font-size:12.5px;color:#6B7379;font-weight:400}
+  .card.up .num{color:#C0392B}
+
+  .three{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin:16px 0 20px}
+  .three .item{border-radius:10px;padding:14px 16px}
+  .three .item .h{font-size:12.5px;font-weight:600;margin:0 0 6px;letter-spacing:.02em}
+  .three .item .v{font-size:14.5px;font-weight:600;margin:0;line-height:1.5}
+  .g1{background:#E4EFFB} .g1 .h{color:#124C86} .g1 .v{color:#0C3A66}
+  .g2{background:#DFF3EC} .g2 .h{color:#0B5B47} .g2 .v{color:#084636}
+  .g3{background:#FBEEDA} .g3 .h{color:#7A4A0A} .g3 .v{color:#5E3A08}
+
+  .quote{font-size:14px;color:#3C4247;border-left:2.5px solid #D6DCE2;padding-left:16px;margin:16px 0;line-height:1.75}
+  .quote .src{display:block;font-size:12.5px;color:#8A9199;margin-top:5px}
+
+  .steps{counter-reset:s;margin:16px 0 20px;padding:0;list-style:none}
+  .steps li{counter-increment:s;position:relative;padding-left:38px;margin-bottom:14px}
+  .steps li::before{content:counter(s);position:absolute;left:0;top:1px;width:24px;height:24px;border-radius:50%;
+    background:#185FA5;color:#fff;font-size:13px;font-weight:600;display:flex;align-items:center;justify-content:center;line-height:1}
+
+  .cite{font-size:12.5px;color:#8A9199;margin-top:26px;padding-top:18px;border-top:1px solid var(--line);line-height:1.7}
+  .cite ul{padding-left:20px}
+  .cite li{margin-bottom:5px}
+  .note{font-size:13px;color:#6B7379;margin-top:6px}
+  .grp{font-weight:600;color:var(--ink)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<p class="kicker">Python 课程与就业市场分析报告 · 学生版</p>
+<h1>学 Python，能去哪些岗位</h1>
+<p class="sub">46 条真实招聘信息，按你能投的方向整理</p>
+<p class="meta">采样时间：2026 年 9 月 ｜ 46 条真实招聘信息 + 4 份行业报告 ｜ 岗位来源：智联招聘、BOSS 直聘、前程无忧、鱼泡直聘、全职招聘网、各地高校就业网等</p>
+
+<div class="lead">
+<p class="t">开始之前，先跟你说清楚三件事</p>
+<p><strong>第一，这不是招生简章。</strong>里面每一句话后面都有企业的原始招聘要求，人家怎么写的，我就怎么抄给你，没有加工成一个"看起来很美好"的版本。</p>
+<p><strong>第二，这份材料里我只放了你能投的岗位。</strong>够不着的那些本来就是够不着，写进来除了让你泄气没有任何用处。你应该看的是：<strong>在你够得到的范围里，机会到底有多少。</strong></p>
+<p><strong>第三，也是最有用的一点：</strong>你要盯的不是"这个岗位要 Python"这句结论，而是<strong>人家具体怎么描述这个要求</strong>。"精通"和"了解"是两个完全不同的世界，措辞里藏着门槛的真实高度。</p>
+</div>
+
+<h2>一、你心里那个问题：AI 都能写代码了，我学编程还有用吗</h2>
+
+<p>这个问题很实在，我们先看数字，再看招聘方的原话。</p>
+
+<p>智联招聘 2026 年的人工智能产业人才报告里，这几类岗位的需求同比变化是：</p>
+
+<figure class="fig">
+<svg viewBox="0 0 900 218" width="100%" role="img" aria-label="四类岗位招聘需求同比变化：AI智能体开发增长244%，AI产品经理增长87.7%，数据标注与AI训练师增长30.3%，人工智能工程师增长19.3%">
+  <g font-family="-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif">
+    <text x="176" y="50" text-anchor="end" font-size="13.5" font-weight="600" fill="#1F2328">AI 智能体开发</text>
+    <rect x="192" y="32" width="600" height="26" rx="6" fill="#EFF1F4"/>
+    <rect x="192" y="32" width="600" height="26" rx="6" fill="#0C447C"/>
+    <text x="806" y="50" font-size="15" font-weight="700" fill="#0C447C">+244%</text>
+
+    <text x="176" y="98" text-anchor="end" font-size="13.5" font-weight="600" fill="#1F2328">AI 产品经理</text>
+    <rect x="192" y="80" width="600" height="26" rx="6" fill="#EFF1F4"/>
+    <rect x="192" y="80" width="216" height="26" rx="6" fill="#185FA5"/>
+    <text x="420" y="98" font-size="15" font-weight="700" fill="#185FA5">+87.7%</text>
+
+    <text x="176" y="146" text-anchor="end" font-size="13.5" font-weight="600" fill="#1F2328">数据标注 / AI 训练师</text>
+    <rect x="192" y="128" width="600" height="26" rx="6" fill="#EFF1F4"/>
+    <rect x="192" y="128" width="75" height="26" rx="6" fill="#4A90D9"/>
+    <text x="279" y="146" font-size="15" font-weight="700" fill="#2F6BA3">+30.3%</text>
+
+    <text x="176" y="194" text-anchor="end" font-size="13.5" font-weight="600" fill="#57606A">人工智能工程师</text>
+    <rect x="192" y="176" width="600" height="26" rx="6" fill="#EFF1F4"/>
+    <rect x="192" y="176" width="48" height="26" rx="6" fill="#A8B0B8"/>
+    <text x="252" y="194" font-size="15" font-weight="700" fill="#545B61">+19.3%</text>
+  </g>
+</svg>
+<figcaption>图 1 ｜ 这几类岗位今年的招聘需求量，比去年同期涨了多少。最后一行的"人工智能工程师"对应的就是最传统的技术开发岗，是四类里涨得最少的。</figcaption>
+</figure>
+
+<p>需求没有消失，是<strong>换了一个形态</strong>。真正值得你注意的是接下来的这组对比，我直接把招聘原文抄下来：</p>
+
+<figure class="fig">
+<svg viewBox="0 0 900 252" width="100%" role="img" aria-label="招聘要求的措辞变化：老岗位要求精通Python，新岗位只要求了解或能验证想法">
+  <g font-family="-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif">
+    <text x="6" y="28" font-size="13" font-weight="600" fill="#6B7379">以前是这么写的</text>
+    <rect x="4" y="42" width="384" height="152" rx="12" fill="#F3F4F6" stroke="#DDE1E6" stroke-width="1.5"/>
+    <text x="28" y="84" font-size="14.5" fill="#3C4247">精通 Python 及生态库，</text>
+    <text x="28" y="110" font-size="14.5" fill="#3C4247">掌握面向对象、设计模式、协程</text>
+    <text x="28" y="158" font-size="12.5" fill="#8A9199">—— 深圳 · Python 开发工程师</text>
+
+    <line x1="400" y1="118" x2="482" y2="118" stroke="#AEBDCB" stroke-width="1.8"/>
+    <path d="M480 112 L494 118 L480 124 Z" fill="#AEBDCB"/>
+
+    <text x="510" y="28" font-size="13" font-weight="600" fill="#185FA5">现在是这么写的</text>
+    <rect x="508" y="42" width="388" height="152" rx="12" fill="#EAF2FB" stroke="#A6C9EA" stroke-width="1.5"/>
+    <text x="532" y="76" font-size="14.5" fill="#0C447C">能写脚本处理数据、</text>
+    <text x="532" y="99" font-size="14.5" font-weight="600" fill="#0C447C">能用代码快速验证想法</text>
+    <text x="532" y="119" font-size="12.5" fill="#5B7FA6">—— Inspire（原 Thoughtworks）· AI 产品经理</text>
+    <text x="532" y="151" font-size="14.5" fill="#0C447C">了解 Python 基础或 API 接口调用等概念</text>
+    <text x="532" y="171" font-size="12.5" fill="#5B7FA6">—— 艾为电子（上海）· AI 产品经理</text>
+
+    <text x="450" y="232" text-anchor="middle" font-size="13.5" font-weight="600" fill="#4A5259">从「从零造出一个系统」，变成「读懂代码、能验证一个想法」</text>
+  </g>
+</svg>
+<figcaption>图 2 ｜ 左边是传统开发岗的写法，右边是两个 AI 相关岗位的原文。要求不是变高了，在不少岗位上反而是变低、变宽了。</figcaption>
+</figure>
+
+<div class="good">
+<p class="t">还有一个变化，可能跟你听到的刚好相反</p>
+<p>企业现在不但不排斥你用 AI 写代码，还把它写进了招聘要求。有一家 AI 训练师岗位的原话是：</p>
+<p class="quote" style="margin:10px 0 0">"具备基础 Python 开发能力，能在<strong>大模型辅助下</strong>完成简单代码的<strong>编写、修改与调试</strong>"</p>
+<p style="margin-top:10px">这里的重点是"修改与调试"。企业很清楚 AI 写出来的代码经常有毛病，它需要的是<strong>能看出毛病、能改对的人</strong>。这个能力，恰恰是零基础速成班教不出来的，也是你三年在校时间真正该练的东西。</p>
+</div>
+
+<h2>二、招聘要求里的 Python，其实分好几个档</h2>
+
+<p>很多人对"要会 Python"有误解，以为只有一条线：要么精通，要么没戏。实际上在这 46 条招聘信息里，我看到了至少六个档次，差别非常大。</p>
+
+<figure class="fig">
+<svg viewBox="0 0 900 162" width="100%" role="img" aria-label="招聘要求从L0到L5六个档位，要求强度递增，L0到L3是专科可投岗位集中的区间">
+  <g font-family="-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif">
+    <text x="898" y="18" text-anchor="end" font-size="12" fill="#8A9199">要求强度递增 →</text>
+
+    <rect x="8" y="32" width="140" height="66" rx="9" fill="#EEF1F4" stroke="#D5DAE0" stroke-width="1.5"/>
+    <text x="78" y="62" text-anchor="middle" font-size="15" font-weight="700" fill="#4E565D">L0</text>
+    <text x="78" y="84" text-anchor="middle" font-size="12" fill="#4E565D">不怕代码就行</text>
+
+    <rect x="156" y="32" width="140" height="66" rx="9" fill="#E2ECF7" stroke="#B9D3E9" stroke-width="1.5"/>
+    <text x="226" y="62" text-anchor="middle" font-size="15" font-weight="700" fill="#155E8F">L1</text>
+    <text x="226" y="84" text-anchor="middle" font-size="12" fill="#155E8F">读懂、改参数</text>
+
+    <rect x="304" y="32" width="140" height="66" rx="9" fill="#CFE2F3" stroke="#9CC0E0" stroke-width="1.5"/>
+    <text x="374" y="62" text-anchor="middle" font-size="15" font-weight="700" fill="#12507F">L2</text>
+    <text x="374" y="84" text-anchor="middle" font-size="12" fill="#12507F">用 AI 干活</text>
+
+    <rect x="452" y="32" width="140" height="66" rx="9" fill="#B8D4EC" stroke="#83B0D6" stroke-width="1.5"/>
+    <text x="522" y="62" text-anchor="middle" font-size="15" font-weight="700" fill="#0E4470">L3</text>
+    <text x="522" y="84" text-anchor="middle" font-size="12" fill="#0E4470">跑通数据任务</text>
+
+    <rect x="600" y="32" width="140" height="66" rx="9" fill="#9BC4E4" stroke="#6BA0CC" stroke-width="1.5"/>
+    <text x="670" y="62" text-anchor="middle" font-size="15" font-weight="700" fill="#0B3A61">L4</text>
+    <text x="670" y="84" text-anchor="middle" font-size="12" fill="#0B3A61">搭大模型应用</text>
+
+    <rect x="748" y="32" width="140" height="66" rx="9" fill="#7EB2DA" stroke="#4E8EBE" stroke-width="1.5"/>
+    <text x="818" y="62" text-anchor="middle" font-size="15" font-weight="700" fill="#082F52">L5</text>
+    <text x="818" y="84" text-anchor="middle" font-size="12" fill="#082F52">从零造系统</text>
+
+    <line x1="8" y1="116" x2="592" y2="116" stroke="#185FA5" stroke-width="2"/>
+    <line x1="8" y1="110" x2="8" y2="122" stroke="#185FA5" stroke-width="2"/>
+    <line x1="592" y1="110" x2="592" y2="122" stroke="#185FA5" stroke-width="2"/>
+    <text x="300" y="142" text-anchor="middle" font-size="13" font-weight="600" fill="#0C447C">你能投的岗位，基本都落在这四档</text>
+
+    <line x1="748" y1="116" x2="888" y2="116" stroke="#C4CAD0" stroke-width="2"/>
+    <line x1="748" y1="110" x2="748" y2="122" stroke="#C4CAD0" stroke-width="2"/>
+    <line x1="888" y1="110" x2="888" y2="122" stroke="#C4CAD0" stroke-width="2"/>
+    <text x="818" y="142" text-anchor="middle" font-size="12.5" fill="#6B7379">要求最高的一档</text>
+  </g>
+</svg>
+<figcaption>图 3 ｜ 六个档位，颜色越深要求越高。你要留意的是下面那条蓝线：<strong>你能投的岗位基本都在左边这四档</strong>，最右边那一档不是你现在要去够的目标。</figcaption>
+</figure>
+
+<table>
+<thead><tr>
+<th style="width:70px">档次</th><th style="width:290px">招聘里大概长这样</th><th style="width:150px">它实际要你干什么</th><th>难不难</th>
+</tr></thead>
+<tbody>
+<tr>
+  <td><span class="tag t0">L0</span></td>
+  <td class="jd">"有编程语言（Python/VBA/JS）<em>或数据库基础 SQL 的学习经历</em>，对新技术有好奇心"</td>
+  <td class="jd">只要你不怕代码就行</td>
+  <td class="jd">上过课的都能写进简历</td>
+</tr>
+<tr>
+  <td><span class="tag t1">L1</span></td>
+  <td class="jd">"<em>了解</em> Python 基础或 API 接口调用等概念"<br>"具备基础编程能力，<em>可与技术团队高效协作</em>"</td>
+  <td class="jd">读懂别人的代码、能改个参数跑起来</td>
+  <td class="jd">认真学一学期能达到</td>
+</tr>
+<tr>
+  <td><span class="tag t2">L2</span></td>
+  <td class="jd">"能在<em>大模型辅助下</em>完成简单代码的编写、修改与调试"<br>"能写脚本处理数据、能用代码快速验证想法"</td>
+  <td class="jd">会用 AI 把活干出来，并且能验错</td>
+  <td class="jd"><strong>关键分水岭</strong>，学得对就够用</td>
+</tr>
+<tr>
+  <td><span class="tag t3">L3</span></td>
+  <td class="jd">"熟练掌握 Python，能使用 <em>Pandas、NumPy</em>"<br>"熟练使用 <em>SQL/Python</em> 分析用户行为数据"</td>
+  <td class="jd">独立跑通一个完整的数据任务</td>
+  <td class="jd">绝大多数可投岗位的主力档位</td>
+</tr>
+<tr>
+  <td><span class="tag t4">L4</span></td>
+  <td class="jd">"<em>LangChain / RAG / Agent</em>、向量数据库、API 封装"</td>
+  <td class="jd">用 Python 把大模型接成一个小应用</td>
+  <td class="jd">有作品就能冲，见效快</td>
+</tr>
+<tr>
+  <td><span class="tag t5">L5</span></td>
+  <td class="jd">"精通 Python 及生态库，掌握 OOP、设计模式、协程"</td>
+  <td class="jd">从零交付一个系统</td>
+  <td class="jd">要求最高、竞争最激烈的一档</td>
+</tr>
+</tbody>
+</table>
+
+<div class="tip">
+<p class="t">这张表里最重要的一句话</p>
+<p><strong>你不需要学到最高档才能找到工作。</strong>你能投的那批岗位，要求基本都落在 L0—L3 这一段；而需求量涨得最猛的两个方向（+87.7% 的 AI 产品经理、+244% 的智能体相关岗位），主要要求的恰恰是 L1—L3 的能力，不是 L5。</p>
+<p>反过来看，L5 那一档对应的传统开发岗，需求增速只有 <strong>+19.3%</strong>——它是全场最低的。</p>
+</div>
+
+<h2>三、你能去的五个方向</h2>
+
+<p>我把这 46 条招聘信息按"招人时看中的东西是不是同一类"归成了五族——<strong>这五族都是大专可以直接投的</strong>。每一族我都标了三件事：学历卡不卡、钱大概多少、要不要作品。先看下面这张总览，再往下看每一族的细节。</p>
+
+<figure class="fig">
+<svg viewBox="0 0 900 266" width="100%" role="img" aria-label="五个方向的月薪区间对比：AI数据与训练3千到1.2万，AI应用落地5千到2万，AI产品与运营4千到1.2万，AI培训与讲师4千到2.6万，传统Python开发面议居多">
+  <g font-family="-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif">
+    <text x="200" y="18" font-size="11.5" fill="#8A9199">0</text>
+    <text x="427" y="18" text-anchor="middle" font-size="11.5" fill="#8A9199">1万</text>
+    <text x="654" y="18" text-anchor="middle" font-size="11.5" fill="#8A9199">2万</text>
+    <text x="790" y="18" text-anchor="middle" font-size="11.5" fill="#8A9199">2.6万</text>
+
+    <line x1="200" y1="26" x2="200" y2="244" stroke="#E4E7EB" stroke-width="1"/>
+    <line x1="427" y1="26" x2="427" y2="244" stroke="#E4E7EB" stroke-width="1"/>
+    <line x1="654" y1="26" x2="654" y2="244" stroke="#E4E7EB" stroke-width="1"/>
+    <line x1="790" y1="26" x2="790" y2="244" stroke="#E4E7EB" stroke-width="1"/>
+
+    <text x="190" y="57" text-anchor="end" font-size="13.5" font-weight="600" fill="#1F2328">① AI 数据与训练</text>
+    <rect x="268" y="40" width="204" height="24" rx="6" fill="#DFF3EC" stroke="#7FC9AF" stroke-width="1.5"/>
+    <text x="370" y="57" text-anchor="middle" font-size="13" font-weight="600" fill="#0B5B47">3千 – 1.2万</text>
+    <text x="812" y="57" font-size="13" fill="#6B7379">不要求</text>
+
+    <text x="190" y="101" text-anchor="end" font-size="13.5" font-weight="600" fill="#1F2328">② AI 应用落地</text>
+    <rect x="314" y="84" width="340" height="24" rx="6" fill="#E4EFFB" stroke="#9CC3E8" stroke-width="1.5"/>
+    <text x="484" y="101" text-anchor="middle" font-size="13" font-weight="600" fill="#0C447C">5千 – 2万</text>
+    <text x="812" y="101" font-size="13" font-weight="700" fill="#0C447C">必须有</text>
+
+    <text x="190" y="145" text-anchor="end" font-size="13.5" font-weight="600" fill="#1F2328">③ AI 产品与运营</text>
+    <rect x="291" y="128" width="181" height="24" rx="6" fill="#FBEEDA" stroke="#E3C48D" stroke-width="1.5"/>
+    <text x="381" y="145" text-anchor="middle" font-size="13" font-weight="600" fill="#7A4A0A">4千 – 1.2万</text>
+    <text x="812" y="145" font-size="13" fill="#8A5A08">最好有</text>
+
+    <text x="190" y="189" text-anchor="end" font-size="13.5" font-weight="600" fill="#1F2328">④ AI 培训与讲师</text>
+    <rect x="291" y="172" width="499" height="24" rx="6" fill="#EFEDFD" stroke="#BDB5F0" stroke-width="1.5"/>
+    <text x="540" y="189" text-anchor="middle" font-size="13" font-weight="600" fill="#443BA8">4千 – 2.6万</text>
+    <text x="812" y="189" font-size="13" fill="#443BA8">要能讲</text>
+
+    <text x="190" y="233" text-anchor="end" font-size="13.5" font-weight="600" fill="#1F2328">⑤ 传统 Python 开发</text>
+    <text x="208" y="233" font-size="13" fill="#8A9199">面议居多</text>
+    <text x="812" y="233" font-size="13" fill="#6B7379">要有项目</text>
+  </g>
+</svg>
+<figcaption>图 4 ｜ 五个方向的月薪区间（照录招聘原文）。横条越长，说明这一族的薪资上限越高；右边一列写的是"要不要作品"——<strong>②那一族把作品写成了硬条件</strong>，恰好也是增长最快的方向。</figcaption>
+</figure>
+
+<h3>方向 ① · AI 数据与训练方向</h3>
+<div class="three">
+  <div class="item g1"><p class="h">学历门槛</p><p class="v">大专、应届可投<br><span style="font-weight:400;font-size:13px">多个岗位写"专业不限"</span></p></div>
+  <div class="item g2"><p class="h">薪资区间</p><p class="v">3千 – 1.2万<br><span style="font-weight:400;font-size:13px">跨度大，看城市和企业</span></p></div>
+  <div class="item g3"><p class="h">要不要作品</p><p class="v">不要求<br><span style="font-weight:400;font-size:13px">"零基础可学""没有可培训"</span></p></div>
+</div>
+
+<table>
+<thead><tr><th style="width:170px">岗位</th><th style="width:150px">企业 / 城市</th><th style="width:110px">学历</th><th style="width:100px">薪资</th><th>招聘要求里关于 Python 的原话</th><th style="width:40px">档</th></tr></thead>
+<tbody>
+<tr><td>数据标注 / AI 训练师</td><td class="jd">江西智核云标（新余）</td><td class="ok">大专 应届可投</td><td>8千-1.2万</td><td class="jd"><em>零基础可学，无需编程、无需技术底子</em>；负责数据清洗、质检、提示词优化</td><td><span class="tag t0">L0</span></td></tr>
+<tr><td>数据标注 / AI 训练师</td><td class="jd">荟骏人力（天津）</td><td class="ok">专科及以上</td><td>3-10K</td><td class="jd">熟练电脑操作，会用标注工具完成拉框、分类、注释</td><td><span class="tag t0">L0</span></td></tr>
+<tr><td>AI 智能训练师</td><td class="jd">小咖智数（贵阳）</td><td class="ok">2026 届大专</td><td>3-5K</td><td class="jd">多模态数据标注；<em>对主流 AI 辅助工具有基本认知</em></td><td><span class="tag t0">L0</span></td></tr>
+<tr><td>AI 训练师（代码型）</td><td class="jd">四川中鸿数智（遂宁）</td><td class="ok">专科及以上</td><td>4.5-5.5K</td><td class="jd">掌握 C/C#/Java/JavaScript/Python/Node.js 等<em>任意一种</em>编程语言</td><td><span class="tag t1">L1</span></td></tr>
+<tr><td>AI 训练师（提示词）</td><td class="jd">（公开校招岗）</td><td class="ok">专科优秀者可投</td><td>—</td><td class="jd">具备基础 Python 开发能力，能<em>在大模型辅助下</em>完成简单代码的编写、修改与调试</td><td><span class="tag t2">L2</span></td></tr>
+<tr><td>AI 训练师</td><td class="jd">上海坤载元码（郑州）</td><td class="ok">大专</td><td class="ok">5-10K×13</td><td class="jd">熟练掌握 Python，能使用 <em>Pandas、NumPy</em>；精通 Prompt 工程</td><td><span class="tag t3">L3</span></td></tr>
+</tbody>
+</table>
+
+<div class="tip">
+<p class="t">这一族里，同一个岗位名字底下是两条不同的路</p>
+<p>同样叫"数据标注"，一种是给图片拉框、给文本分类，按件计酬，薪资常年停在 3-5K；另一种是优化提示词、评估模型输出、清洗训练数据，薪资能到 8千-1.2万。</p>
+<p>区别在哪里？<strong>在于你是否理解模型需要什么样的数据。</strong>前者只看数量，后者要判断质量。投之前看一眼岗位职责里，有没有出现"提示词""质检规则""评估标准""多模态"这些词——有这些词的，是后者。</p>
+</div>
+
+<h3>方向 ② · AI 应用落地方向</h3>
+<div class="three">
+  <div class="item g1"><p class="h">学历门槛</p><p class="v">大专 / 校招不限经验<br><span style="font-weight:400;font-size:13px">这一族学历写得比想象中松</span></p></div>
+  <div class="item g2"><p class="h">薪资区间</p><p class="v">5千 – 2万<br><span style="font-weight:400;font-size:13px">上限最高的一族</span></p></div>
+  <div class="item g3"><p class="h">要不要作品</p><p class="v">必须有<br><span style="font-weight:400;font-size:13px">"个人项目、课程项目、实战项目均可"</span></p></div>
+</div>
+
+<table>
+<thead><tr><th style="width:170px">岗位</th><th style="width:150px">企业 / 城市</th><th style="width:110px">学历</th><th style="width:100px">薪资</th><th>招聘要求里关于 Python 的原话</th><th style="width:40px">档</th></tr></thead>
+<tbody>
+<tr><td>大模型 AI 应用开发工程师</td><td class="jd">武汉（接受实习生）</td><td class="ok">大专 应届可投</td><td class="ok">1-2万</td><td class="jd">Python + LangChain / AutoGen / Milvus / FAISS；RAG 搭建、Agent 开发、模型编排</td><td><span class="tag t4">L4</span></td></tr>
+<tr><td>AIGC 应用工程师（智能体）</td><td class="jd">成都</td><td class="ok">大专 应届可投</td><td>5千-2万</td><td class="jd">LangChain / Dify / Coze；RAG 知识库搭建、向量数据库、API 封装对接</td><td><span class="tag t4">L4</span></td></tr>
+<tr><td>大模型应用开发工程师</td><td class="jd">欧钛鑫光电（苏州）</td><td class="ok">校招 大专 不限经验</td><td>—</td><td class="jd">掌握 Python、PyTorch/TensorFlow；LangChain/LlamaIndex；向量数据库；FastAPI</td><td><span class="tag t4">L4</span></td></tr>
+<tr><td>AI Agent 研发工程师（初级/实习）</td><td class="jd">海妖科技（成都）</td><td class="ok">大专</td><td>—</td><td class="jd">扎实 Python 基础、FastAPI、asyncio；Prompt 调试；RAG 清洗切片</td><td><span class="tag t4">L4</span></td></tr>
+<tr><td>AIGC 应用工程师</td><td class="jd">四川晟昇文化（成都）</td><td class="ok">大专 1 年以下</td><td class="ok">7千-1.4万</td><td class="jd">精通 Stable Diffusion / Midjourney / Sora 等工具与工作流，<em>熟练使用 Python 进行脚本开发与流程自动化</em>；提示词工程、模型微调</td><td><span class="tag t4">L4</span></td></tr>
+<tr><td>AIGC 内容生成工程师</td><td class="jd">内蒙古数智云（包头）</td><td class="ok">大专</td><td class="ok">7-12K</td><td class="jd">设计提示词、调用大模型接口产出内容；<em>熟悉 Python 或 JavaScript 是加分项，能直接调 API 上手更快</em></td><td><span class="tag t3">L3</span></td></tr>
+</tbody>
+</table>
+
+<div class="tip">
+<p class="t">这一族的关键不是"技术多难"，而是"有没有一个能跑起来的东西"</p>
+<p>你会发现它们的学历栏写得很松，但要求栏里几乎都有一句：<strong>"有可展示、可复盘的实战项目成果，个人项目、课程项目、实战项目均可"</strong>。</p>
+<p>这句话翻译过来就是：<strong>比起你学过什么，它更想看你做过什么。</strong>这其实是好消息——"做过什么"完全由你自己决定。</p>
+<p>要提醒的是，这一族用的工具（LangChain、Dify、Coze、Milvus……）更新得非常快，两三年换一批。真正稳定的能力是<strong>知道一个大模型应用是怎么被搭起来的</strong>——工具是壳，下面这条链路才是里子：</p>
+
+<figure class="fig">
+<svg viewBox="0 0 900 96" width="100%" role="img" aria-label="大模型应用的六个环节：用户输入、检索知识、拼提示词、调模型、结构化输出、返回结果">
+  <g font-family="-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif">
+    <rect x="0" y="24" width="125" height="48" rx="9" fill="#E8F0F9" stroke="#A6C9EA" stroke-width="1.5"/>
+    <text x="62" y="53" text-anchor="middle" font-size="12.5" font-weight="600" fill="#0C447C">用户输入</text>
+
+    <line x1="129" y1="48" x2="145" y2="48" stroke="#AEBDCB" stroke-width="1.6"/>
+    <path d="M143 43 L152 48 L143 53 Z" fill="#AEBDCB"/>
+
+    <rect x="155" y="24" width="125" height="48" rx="9" fill="#E8F0F9" stroke="#A6C9EA" stroke-width="1.5"/>
+    <text x="217" y="53" text-anchor="middle" font-size="12.5" font-weight="600" fill="#0C447C">检索知识</text>
+
+    <line x1="284" y1="48" x2="300" y2="48" stroke="#AEBDCB" stroke-width="1.6"/>
+    <path d="M298 43 L307 48 L298 53 Z" fill="#AEBDCB"/>
+
+    <rect x="310" y="24" width="125" height="48" rx="9" fill="#E8F0F9" stroke="#A6C9EA" stroke-width="1.5"/>
+    <text x="372" y="53" text-anchor="middle" font-size="12.5" font-weight="600" fill="#0C447C">拼提示词</text>
+
+    <line x1="439" y1="48" x2="455" y2="48" stroke="#AEBDCB" stroke-width="1.6"/>
+    <path d="M453 43 L462 48 L453 53 Z" fill="#AEBDCB"/>
+
+    <rect x="465" y="24" width="125" height="48" rx="9" fill="#E8F0F9" stroke="#A6C9EA" stroke-width="1.5"/>
+    <text x="527" y="53" text-anchor="middle" font-size="12.5" font-weight="600" fill="#0C447C">调模型</text>
+
+    <line x1="594" y1="48" x2="610" y2="48" stroke="#AEBDCB" stroke-width="1.6"/>
+    <path d="M608 43 L617 48 L608 53 Z" fill="#AEBDCB"/>
+
+    <rect x="620" y="24" width="125" height="48" rx="9" fill="#E8F0F9" stroke="#A6C9EA" stroke-width="1.5"/>
+    <text x="682" y="53" text-anchor="middle" font-size="12.5" font-weight="600" fill="#0C447C">结构化输出</text>
+
+    <line x1="749" y1="48" x2="765" y2="48" stroke="#AEBDCB" stroke-width="1.6"/>
+    <path d="M763 43 L772 48 L763 53 Z" fill="#AEBDCB"/>
+
+    <rect x="775" y="24" width="125" height="48" rx="9" fill="#E8F0F9" stroke="#A6C9EA" stroke-width="1.5"/>
+    <text x="837" y="53" text-anchor="middle" font-size="12.5" font-weight="600" fill="#0C447C">返回结果</text>
+  </g>
+</svg>
+<figcaption>图 5 ｜ 一个大模型应用是怎么被搭起来的。这六个环节五年后还在，框架的名字会换一批又一批。</figcaption>
+</figure>
+
+<p>把这条链路记在脑子里，比背十个框架名字都管用。因为它两年后还在，框架不会。</p>
+</div>
+
+<h4>这一族里还有一支：用 AI 生成内容的 AIGC 岗位</h4>
+
+<p>你可能会问：招聘里 AIGC 不是到处都是吗，前面怎么没怎么提？原因是——<strong>AIGC 招人最多的那批岗位（AI 剪辑、AI 设计、AI 电商图文）基本不在要求里写 Python</strong>，它们看的是工具熟不熟、有没有作品。但其中有一支明确写着 Python，而且学历那栏写的是大专。</p>
+
+<div class="tip">
+<p class="t">同样的 Python，在 AIGC 里干的活不一样</p>
+<p>第四节那条数据链路是"取数 → 处理 → 图表 → 结论"。AIGC 这条支线里，Python 是拿来<strong>把工具串成流水线</strong>的：批量调接口出图出片、把几个工具接成一条能自动跑的工作流、对生成结果做批量筛选和质检。</p>
+
+<figure class="fig">
+<svg viewBox="0 0 900 96" width="100%" role="img" aria-label="AIGC 岗位里 Python 的三件事：批量调接口生成、脚本串工作流、批量筛选质检">
+  <g font-family="-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif">
+    <rect x="20" y="24" width="260" height="48" rx="9" fill="#E8F0F9" stroke="#A6C9EA" stroke-width="1.5"/>
+    <text x="150" y="53" text-anchor="middle" font-size="12.5" font-weight="600" fill="#0C447C">调接口，批量生成</text>
+
+    <line x1="285" y1="48" x2="313" y2="48" stroke="#AEBDCB" stroke-width="1.6"/>
+    <path d="M311 43 L320 48 L311 53 Z" fill="#AEBDCB"/>
+
+    <rect x="320" y="24" width="260" height="48" rx="9" fill="#E8F0F9" stroke="#A6C9EA" stroke-width="1.5"/>
+    <text x="450" y="53" text-anchor="middle" font-size="12.5" font-weight="600" fill="#0C447C">写脚本，串成工作流</text>
+
+    <line x1="585" y1="48" x2="613" y2="48" stroke="#AEBDCB" stroke-width="1.6"/>
+    <path d="M611 43 L620 48 L611 53 Z" fill="#AEBDCB"/>
+
+    <rect x="620" y="24" width="260" height="48" rx="9" fill="#E8F0F9" stroke="#A6C9EA" stroke-width="1.5"/>
+    <text x="750" y="53" text-anchor="middle" font-size="12.5" font-weight="600" fill="#0C447C">批量筛选与质检</text>
+  </g>
+</svg>
+<figcaption>图 6 ｜ AIGC 这条支线里 Python 干的活。和第四节那条数据链路放在一起看就清楚了：<strong>不是另一种语法，是另一种用法</strong>——一个用来讲清楚数据，一个用来让机器替你干活。</figcaption>
+</figure>
+
+<p>有一条官方发布的招聘信息，把这类岗位的名字直接列了四个：<strong>AIGC 应用工程师、AIGC 内容创意工程师、AIGC 提示词工程师、AIGC 产品运营师</strong>，大专、专业不限，加分项写的是"熟悉 Python 基础编程，了解大模型微调、RAG 搭建、AI 绘画模型训练"。岗位名字不统一是这一支的特点，投的时候认职责、不认名字。</p>
+
+<p>要是你手上还没有拿得出手的作品，可以先找这类台阶：成都有公司在招 <em>AI 多模态应用支持实习生</em>，3-7K，专科及以上、2026 届，做的是多模态 AIGC 内容（图文、视频）的采集清洗标注、用豆包/千问/即梦做生成与测试、整理数据出报表。<strong>它一只脚在数据族，一只脚在 AIGC，是很合适的入口。</strong></p>
+</div>
+
+<h3>方向 ③ · AI 产品与运营方向</h3>
+<div class="three">
+  <div class="item g1"><p class="h">学历门槛</p><p class="v">大专可投<br><span style="font-weight:400;font-size:13px">中小厂与实业企业，专业多不限</span></p></div>
+  <div class="item g2"><p class="h">薪资区间</p><p class="v">4千 – 1.2万<br><span style="font-weight:400;font-size:13px">看企业规模和岗位层级</span></p></div>
+  <div class="item g3"><p class="h">要不要作品</p><p class="v">最好有<br><span style="font-weight:400;font-size:13px">有原型或数据结论会加分</span></p></div>
+</div>
+
+<p>你之前提到的那类岗位（"有编程语言学习经历或数据库基础 SQL，对新技术有好奇心"）就落在这里。这一族的企业以中小公司和实体企业为主，它们的数智化刚刚起步，需要有人把 AI 接进具体业务里。</p>
+
+<h4>可投的岗位长这样</h4>
+<table>
+<thead><tr><th style="width:170px">岗位</th><th style="width:150px">企业 / 城市</th><th style="width:150px">学历</th><th style="width:100px">薪资</th><th>核心要求</th></tr></thead>
+<tbody>
+<tr><td>AI 应用运营专员</td><td class="jd">通用依沃（深圳）</td><td class="ok">大专 2025-26 应届</td><td>5.5千-1万</td><td class="jd">搭建 AI 提示词模板、给 AI 做知识投喂、审核 AI 输出；<em>不要求精通，要有实操意愿</em></td></tr>
+<tr><td>AI 数字化储备干部</td><td class="jd">厦门（2026 应届）</td><td class="ok">大专及以上 专业不限</td><td>—</td><td class="jd">熟练使用各类 AI 工具完成文案、设计、剪辑、数据分析</td></tr>
+<tr><td>AI 专员</td><td class="jd">慧创精供（广州）</td><td class="ok">大专 无需经验</td><td>5-7千</td><td class="jd">设计与管理 Prompt 模板；基于 RAG 技术搭建内部 AI 问答系统；开展分层 AI 培训</td></tr>
+<tr><td>智能客服专员</td><td class="jd">明晟智服（佛山）</td><td class="ok">专科 专业不限</td><td>4-5K</td><td class="jd">优化 AI 回复、搭建智能话术库；用过 DeepSeek/Kimi 等任一工具优先，<em>没有可培训</em></td></tr>
+</tbody>
+</table>
+
+<p>这些岗位的共同点是：<strong>要你"会用"，不要你"会造"</strong>。它们的工作内容是跟 AI 打交道——写提示词、审核输出、把 AI 接进业务流程里。需求量大、门槛松，但薪资天花板也相对明确。</p>
+
+<div class="tip">
+<p class="t">这一族最看重的，是"能把想法快速变成能看的东西"</p>
+<p>有企业的岗位职责里直接单列了一项 <em>Vibe Coding</em>，要求"结合 AI 代码工具与低代码平台，快速搭出可跑通、可演示的原型"，任职要求写的是"<em>能写脚本处理数据、能用代码快速验证想法</em>"。</p>
+<p>注意这句话的落点：它没有要你交付一个系统，要的是<strong>你有一个想法，能自己把它验证出来</strong>。</p>
+</div>
+
+<h3>方向 ④ · AI 培训与讲师方向</h3>
+<div class="three">
+  <div class="item g1"><p class="h">学历门槛</p><p class="v">2026 届大专及以上<br><span style="font-weight:400;font-size:13px">计算机、教育技术、数字媒体优先</span></p></div>
+  <div class="item g2"><p class="h">薪资区间</p><p class="v">4千 – 2.6万<br><span style="font-weight:400;font-size:13px">厦门政企内训岗 1.4-2.6万</span></p></div>
+  <div class="item g3"><p class="h">要不要作品</p><p class="v">要能讲<br><span style="font-weight:400;font-size:13px">有讲课、支教、社团分享经历优先</span></p></div>
+</div>
+
+<p>这一族是我在整理这些招聘信息时<strong>最意外、也最想推荐你看一眼</strong>的。它招的人要干的事是：把 AI 工具怎么用，讲给别的公司听。</p>
+
+<table>
+<thead><tr><th style="width:180px">岗位</th><th style="width:150px">企业 / 城市</th><th style="width:150px">学历</th><th style="width:100px">薪资</th><th>核心要求</th></tr></thead>
+<tbody>
+<tr><td>AI 赋能项目实战讲师（储备）</td><td class="jd">圆心启点（西安）</td><td class="ok">2026 届大专及以上</td><td>—</td><td class="jd">承担 AI 效率提升、提示词工程、Coze 智能体搭建课程授课；<em>体验过至少 2 款主流 AI 工具</em>；有讲课/分享经历优先</td></tr>
+<tr><td>AI 行业培训讲师（政企内训）</td><td class="jd">鹭港智联（厦门）</td><td class="ok">大专 1-3 年</td><td class="ok">1.4-2.6万</td><td class="jd">面向企业客户开设 AI 智能体落地实训课；Docker 部署、平台全流程实操教学</td></tr>
+<tr><td>AI 应用培训师</td><td class="jd">联达重锻（重庆）</td><td class="ok">大专 经验不限 可应届</td><td>4-8千</td><td class="jd">掌握主流 AI 工具全场景实操（文案/图像/数据处理/编程辅助）</td></tr>
+</tbody>
+</table>
+
+<div class="good">
+<p class="t">为什么这一族值得你认真考虑</p>
+<p>它要求的组合是"<strong>懂 AI 工具 + 会讲清楚</strong>"，而不是"能写复杂系统"。对你来说，这个组合有两个好处：</p>
+<p>一是<strong>不跟技术最强的那批人抢同一个位置</strong>。技术比你强的人很多，但技术强又能把话讲明白的人，其实不多。</p>
+<p>二是<strong>门槛写在明面上、可以提前准备</strong>。有一个岗位的要求只有一句："体验过至少 2 款主流 AI 工具"——这件事你今晚就能开始做。</p>
+<p>如果你在学校里做过班委、带过社团、参加过支教或者上台讲过东西，这些经历在这一族里是能写进简历的加分项，别浪费。</p>
+</div>
+
+<h3>方向 ⑤ · 传统 Python 开发方向</h3>
+
+<p>这一族的招聘要求长这样：</p>
+<ul>
+<li class="jd">"精通 Python 及生态库，掌握面向对象、设计模式、协程"（深圳）</li>
+<li class="jd">"扎实掌握 Python 语法，熟练使用 Django 框架"（天津）</li>
+<li class="jd">"掌握 Python，能编写模块化、可重用、易维护的代码"（杭州）</li>
+</ul>
+
+<p>这些岗位仍然在招人，钱也不少，而且如果你想真正把技术底子练扎实，它是个很好的训练场。只是在决定主攻方向之前，有两件事值得你先看清楚。</p>
+
+<div class="tip">
+<p class="t">"不限学历"的另一层含义，是"所有人都可以来投"</p>
+<p>这类岗位的学历栏常常写"不限"或者"大专及以上"，看起来对你最友好。但这两句话同时也意味着<strong>前面没有一道门槛替你挡掉竞争对手</strong>——和你一起投的人里，有实习做得更久的、有项目更完整的。而它对应的职位增速是 <strong>+19.3%</strong>，是前面几类里最低的。</p>
+<p class="t" style="margin-top:14px">但"不要只投它"，不等于"不要投它"</p>
+<p>如果你真的喜欢写代码、愿意啃底层，这一族完全值得冲——L4–L5 的能力本身就是你去做其他所有方向的底气。区别只在投递策略：<strong>把它和前面几族放在一起投</strong>，而不是当成唯一出口。技术岗的反馈通常慢一些，其他方向先有回应，你才不至于在等待里消耗掉信心。</p>
+</div>
+
+<h2>四、招聘里出现最多的一对组合：Python + SQL</h2>
+
+<p>这是我从这 46 条招聘信息里统计出来的一个很硬的信号：<strong>有 14 条把 Python 和 SQL 并列写在同一句要求里，接近六成。</strong></p>
+
+<p>它们通常是这么写的：</p>
+<div class="quote">
+"有编程语言（Python/VBA/JS）<strong>或数据库基础 SQL</strong> 的学习经历"
+<span class="src">—— 初级产品专员岗</span>
+</div>
+<div class="quote">
+"熟练使用 <strong>SQL/Python</strong> 分析用户行为数据，或具备基础技术开发能力"
+<span class="src">—— 阿里巴巴 · AI 产品经理</span>
+</div>
+<div class="quote">
+"了解 RPA 开发原理，熟悉 <strong>Python、SQL</strong> 基本语法优先"
+<span class="src">—— 招商局港口 · 流程数智管理岗校招</span>
+</div>
+
+<p>这说明企业真正想买的能力，不是"会 Python"这个技能点，而是<strong>一整条链路</strong>：</p>
+
+<figure class="fig">
+<svg viewBox="0 0 900 124" width="100%" role="img" aria-label="数据能力链路：取数、处理、可视化、讲结论四个步骤">
+  <g font-family="-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif">
+    <rect x="0" y="26" width="192" height="68" rx="10" fill="#E4EFFB" stroke="#9CC3E8" stroke-width="1.5"/>
+    <text x="96" y="58" text-anchor="middle" font-size="14" font-weight="600" fill="#0C447C">① 把数据取出来</text>
+    <text x="96" y="79" text-anchor="middle" font-size="12" fill="#5B7FA6">SQL</text>
+
+    <line x1="198" y1="60" x2="222" y2="60" stroke="#AEBDCB" stroke-width="1.8"/>
+    <path d="M220 54 L230 60 L220 66 Z" fill="#AEBDCB"/>
+
+    <rect x="236" y="26" width="192" height="68" rx="10" fill="#E4EFFB" stroke="#9CC3E8" stroke-width="1.5"/>
+    <text x="332" y="58" text-anchor="middle" font-size="14" font-weight="600" fill="#0C447C">② 处理干净</text>
+    <text x="332" y="79" text-anchor="middle" font-size="12" fill="#5B7FA6">Python · Pandas</text>
+
+    <line x1="434" y1="60" x2="458" y2="60" stroke="#AEBDCB" stroke-width="1.8"/>
+    <path d="M456 54 L466 60 L456 66 Z" fill="#AEBDCB"/>
+
+    <rect x="472" y="26" width="192" height="68" rx="10" fill="#E4EFFB" stroke="#9CC3E8" stroke-width="1.5"/>
+    <text x="568" y="58" text-anchor="middle" font-size="14" font-weight="600" fill="#0C447C">③ 做成看得懂的图</text>
+    <text x="568" y="79" text-anchor="middle" font-size="12" fill="#5B7FA6">图表 · BI 工具</text>
+
+    <line x1="670" y1="60" x2="694" y2="60" stroke="#AEBDCB" stroke-width="1.8"/>
+    <path d="M692 54 L702 60 L692 66 Z" fill="#AEBDCB"/>
+
+    <rect x="708" y="26" width="192" height="68" rx="10" fill="#FBEEDA" stroke="#E3C48D" stroke-width="1.5"/>
+    <text x="804" y="58" text-anchor="middle" font-size="14" font-weight="700" fill="#7A4A0A">④ 说清结论</text>
+    <text x="804" y="79" text-anchor="middle" font-size="12" fill="#A07428">这一步才是你的价值</text>
+  </g>
+</svg>
+<figcaption>图 7 ｜ 企业真正在招的不是"会 Python"，是这条链路。前三步是工具，谁都能学；第四步是你能不能把数据讲成人话——招聘要求里反复出现的"能向非技术人员解释复杂问题"，说的就是它。</figcaption>
+</figure>
+
+<p>注意最后一步。前面三步都是工具，最后一步才是你的价值——<strong>数据本身不会说话</strong>。很多岗位的招聘要求里都会出现"具备良好的沟通与表达能力""能向非技术人员解释复杂问题"，这不是套话，是它真的需要。</p>
+
+<div class="tip">
+<p class="t">对你意味着什么</p>
+<p>只学 Python 语法，你会在意"for 循环怎么写"；理解这条链路，你会去想"这份数据能回答什么问题"。<strong>面试时这两种人一眼就能分出来。</strong></p>
+</div>
+
+<h2>五、投之前，花三分钟看清一个岗位</h2>
+
+<p>这 46 条岗位都是真实在招的，但同一个岗位名字底下，工作内容可能完全不是一回事。下面三条判断方法，建议你在投简历之前过一遍——它们不是让你提防什么，是帮你把时间花在对的地方。</p>
+
+<h4>第一件事：看它让你交付什么</h4>
+<p>岗位职责那一栏，最后一定会落到某个具体的交付物上。把它找出来，这个岗位是什么，基本就清楚了：</p>
+<ul>
+<li><strong>交付"处理量"</strong>（每天标注多少条、审核多少条、完成多少篇）——这类是执行型工作，按量结算，起薪稳定但涨得慢，通常落在 3-5K。</li>
+<li><strong>交付"成交额"</strong>（客户开发、续费、招生、地推）——这类本质是销售岗，哪怕岗位名字里写着"AI"。</li>
+<li><strong>交付"一个能跑起来的东西"</strong>（一个能用的助手、一份有结论的分析、一套跑通的流程）——这类是技术型工作，起薪更高，成长空间也更大。</li>
+</ul>
+<p>所以岗位名字里有"AI"这三个字符，并不代表工作内容跟 AI 有关。<strong>决定你会做什么的，是那一栏里写的交付物。</strong></p>
+
+<h4>第二件事：把薪资数字读明白，然后当面问清楚</h4>
+<p>有些数据标注岗写到"8千-1.2万"，实际结构是"底薪 + 按件计的绩效"。这不是虚假信息，但它意味着你的收入取决于产量，而不是能力增长。面试时把这三句话问出来就行：</p>
+<ul>
+<li>这个岗位的底薪是多少？</li>
+<li>绩效具体怎么算，按什么计量？</li>
+<li>团队里上一个拿满绩效的人，大概每天要处理多少量？</li>
+</ul>
+<p>这三个问题问出来一点都不尴尬，招聘方反而会觉得你在认真对待这件事。<strong>而含糊其辞、不肯把结构说清楚的，本身就是一种回答。</strong></p>
+
+<h4>第三件事：看它要求的是"会用某个工具"还是"理解某件事"</h4>
+<p>LangChain、Dify、Coze、Milvus……这些名字在招聘要求里出现得很密，但它们更新得很快，两三年换一批。如果一份 JD 通篇只列工具名，你可以想一下：两年后这些名字还在不在？</p>
+<p>真正值得你花时间的是那条链路——就是方向②里画给你看的那六个环节。工具是壳，这条链路是里子。面试的时候，能讲清这条链路的人，比能背出一堆工具名的人值钱得多。</p>
+
+<div class="tip">
+<p class="t">这三件事加起来花不了三分钟</p>
+<p>但它们能帮你避开"投了二十份、面了三家、发现全不是自己想干的方向"这种消耗。<strong>看清楚再投，比投得多更有效。</strong></p>
+</div>
+
+<h2>六、给你自己的准备清单</h2>
+
+<p>这里不是课程表，是你自己可以安排的事。每条都很具体，也都跟招聘要求对得上。我把它分成两组：先解决"手上会什么"，再解决"怎么让人知道"。</p>
+
+<h4>第一组 · 手上要有的东西</h4>
+<ol class="steps">
+<li><strong>把 Python + SQL 练到"能跑通一条完整链路"。</strong>不用学得多深，但要做到：给一份原始数据，你能自己取出来、清洗、算出几个数、做成一张图、说出一个结论。这件事对应的是需求最大的 L3 档。</li>
+<li><strong>刻意练"读懂别人代码"这件事，而不只是"从零写"。</strong>招聘方原话是"在大模型辅助下完成简单代码的修改与调试"。你可以直接拿 AI 生成的一段代码，试着找出它哪里会出错、改对、再验证一遍。这个练习的价值比刷语法题高得多。</li>
+<li><strong>至少完整地做过一个能演示的小东西。</strong>不用大，比如"读一份表格自动出周报""做一个能回答某份文档内容的小问答"。企业要求栏里普遍写着"个人项目、课程项目、实战项目均可"——它要的是从零到跑通的那次经历。</li>
+<li><strong>把 AI 工具真正用起来，并且能讲清楚你怎么用的。</strong>这不是为了炫技，是因为"体验过至少 2 款主流 AI 工具"这样的要求，已经被写进真实岗位的任职要求里了。</li>
+</ol>
+
+<h4>第二组 · 投出去时要注意的</h4>
+<ol class="steps" style="counter-reset:s 4">
+<li><strong>简历上别写"学过 Python"，写"用 Python 做过什么"。</strong>前一句招聘方见得太多了，几乎没有重量。能被记住的是这种句子："用 Python 处理过 XX 份数据，做了一份 X 页的分析，结论是……"，或者"用 AI 搭了一个能回答 XX 问题的小助手，中间卡在 XX，后来用 XX 解决的"。<strong>能说出你卡在哪里、怎么解决的，才是真做过的人。</strong></li>
+<li><strong>现在就开始投，别等"学完"。</strong>大量岗位都写着"应届可投""不限经验""接受实习生"——它们的筛选逻辑不是"你学完没有"，而是"你愿不愿意动手"。投之前花三分钟过一遍第五节那三条判断，觉得合适就直接投。面试会非常清楚地告诉你缺什么，这比自己猜要准得多。</li>
+<li><strong>准备一段两分钟的自我介绍，讲一个你解决过的具体问题。</strong>不管投哪一类岗位，面试最后都会问到这个。前面说的那条链路——"遇到什么问题、怎么试的、最后怎么解决的"——就是最好的答案模板。</li>
+</ol>
+
+<div class="good">
+<p class="t">最后说一句实在话</p>
+<p>这份报告里有几个结论对你确实是有利的：岗位需求在增长、学历门槛在放松、要求从"精通"降到了"了解"、企业甚至主动要求你会用 AI 工具。</p>
+<p>但有一条没有变，也不会变：<strong>企业最终要的是"你真的动手做过"。</strong>招聘要求里那句被反复写的话——"有可展示、可复盘的实战项目成果"——才是真正卡住大多数人的地方。</p>
+<p>好消息是，这一条完全由你自己决定。</p>
+</div>
+
+<p class="cite">
+<strong>数据来源与说明</strong>
+<ul>
+<li>岗位信息来自真实招聘公开页面，含智联招聘、BOSS 直聘、前程无忧、鱼泡直聘、全职招聘网、ChinaHR、今日招聘、应届生求职网等平台，以及西安交通大学、华北水利水电大学、西安培华学院、广东职业技术学院、中国地质大学、河北工业大学、重庆市高校毕业生智慧就业平台等高校就业网。</li>
+<li>行业数据来自智联招聘《2026 年人工智能产业人才发展报告》（2026 年 7 月发布，基于平台 2026 上半年数据）、普华永道《AI Jobs Barometer》，以及经济日报、经济参考报（新华社）、央视网、中国教育在线、北京日报的相关报道。</li>
+<li>文中所有薪资数字、能力要求措辞均照录招聘原文，未做调整与美化。招聘信息具有时效性，投递前请以企业最新发布的岗位为准。</li>
+<li>本页只收录专科可以直接投递的岗位，其余岗位未列入。</li>
+</ul>
+</p>
+
+</div>
+</body>
+</html>

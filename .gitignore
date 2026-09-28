@@ -1,0 +1,25 @@
+# ===== 密钥：绝不提交 =====
+.env
+
+# ===== Python 缓存 =====
+__pycache__/
+*.pyc
+
+# ===== 学生产物（按学号归档，不进库）=====
+deliverables/
+
+# ===== 学生本地照片（隐私，不进库）=====
+input/
+
+# ===== 本地配置（真实配置不进库；模板 env.example 保留）=====
+config.json
+
+# ===== 工具数据（WorkBuddy 会话记忆，非项目文件）=====
+.workbuddy/
+
+# ===== 系统 / 个人杂物（不进库）=====
+.DS_Store
+test.jpg
+归档.zip
+_archive/
+manhua任务背景引入/

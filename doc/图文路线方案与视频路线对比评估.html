@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>图文路线方案与视频路线对比评估</title>
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;padding:40px 20px 80px;background:#FFFFFF;color:#1F2328;
+    font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif;
+    font-size:15px;line-height:1.85;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:920px;margin:0 auto}
+  .kicker{font-size:12.5px;letter-spacing:.14em;color:#0C447C;font-weight:600;margin-bottom:14px}
+  h1{font-size:29px;line-height:1.4;margin:0 0 14px;font-weight:700;letter-spacing:-.01em}
+  .sub{font-size:16px;color:#57606A;margin:0 0 10px;line-height:1.7}
+  .meta{font-size:12.5px;color:#8A919A;border-top:1px solid #EAECEF;border-bottom:1px solid #EAECEF;padding:12px 0;margin:22px 0 34px}
+  h2{font-size:21px;margin:52px 0 16px;padding-left:13px;border-left:4px solid #0C447C;font-weight:700;line-height:1.5}
+  h3{font-size:16.5px;margin:32px 0 12px;font-weight:600;color:#0C447C}
+  h4{font-size:15px;margin:24px 0 8px;font-weight:600;color:#24292F}
+  p{margin:0 0 15px}
+  ul,ol{margin:0 0 16px;padding-left:22px}
+  li{margin-bottom:9px}
+  strong{font-weight:600}
+  em{font-style:normal;background:#FFF6DA;padding:1px 3px;border-radius:3px}
+  code{font-family:'SFMono-Regular',Consolas,'Liberation Mono',monospace;font-size:13px;background:#F2F4F7;padding:1px 5px;border-radius:4px;color:#0C447C}
+  table{width:100%;border-collapse:collapse;margin:18px 0 24px;font-size:13.5px}
+  th{background:#F4F6F8;text-align:left;padding:10px 11px;font-weight:600;color:#24292F;border-bottom:2px solid #DDE1E5;white-space:nowrap}
+  td{padding:10px 11px;border-bottom:1px solid #EAECEF;vertical-align:top;line-height:1.7}
+  tr:hover td{background:#FAFBFC}
+  .num{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+  .ok{color:#0B5B47;font-weight:600}
+  .cut{color:#A32D2D;font-weight:600}
+  .j{color:#3D444D;font-size:13px}
+  .key{background:#E6F1FB;border-left:4px solid #0C447C;padding:16px 20px;margin:22px 0;border-radius:0 8px 8px 0}
+  .key p:last-child{margin-bottom:0}
+  .box{background:#F7F8FA;border:1px solid #E6E8EB;padding:16px 20px;border-radius:8px;margin:20px 0}
+  .box p:last-child{margin-bottom:0}
+  .warnbox{background:#FAEEDA;border-left:4px solid #BA7517;padding:16px 20px;margin:20px 0;border-radius:0 8px 8px 0}
+  .warnbox p:last-child{margin-bottom:0}
+  .fig{margin:26px 0 30px}
+  .fig svg{display:block;width:100%;height:auto}
+  .fig figcaption{font-size:12.5px;color:#57606A;margin-top:10px;line-height:1.65}
+  .foot{margin-top:56px;padding-top:22px;border-top:1px solid #EAECEF;font-size:12.5px;color:#8A919A}
+  .foot ul{padding-left:20px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<p class="kicker">AIGC 赛道收窄 · 补充评估稿</p>
+<h1>图文不是另一条路，是这条路的前 60%</h1>
+<p class="sub">算力确实低一个数量级，但平台分成系数只有 1/40；真正的解法不是二选一，是三档递进</p>
+<p class="meta">评估时间：2026 年 9 月 ｜ 数据来源：抖音 / 快手 / B 站 / 腾讯视频 / 爱奇艺 / 百度 / 阅文 2026 年分成政策、智联与全职网 2026 年在招 JD、行业市场报告 ｜ 配套：《AIGC 赛道收窄分析与 AI 剧集方向落点》《Python 课程改造方案（第 3 章起）》《AIGC 训练营执行计划》</p>
+
+<h2>一、先说结论</h2>
+
+<div class="key">
+<p><strong>你提的两条理由，一条成立，一条要反过来听。</strong></p>
+<p><strong>算力压力低——成立，而且是硬优势。</strong>静态图与视频之间差着一个时序模型，成本不在一个量级。这个判断完全正确。</p>
+<p><strong>靠视传比较近——这条是风险，不是优势。</strong>恰恰因为靠视传近，图文方向的话语权更容易落在视传手里。前面否掉电商 AIGC 的理由，原文是"让计算机专业学生去考商业审美 + PS 精修，是拿自己的短板撞同校另一个专业的长板"。图文方向有同样的结构，而且更明显。</p>
+<p><strong>但这两条不矛盾，因为图文和漫剧不是并列的两条路。</strong>看生产链条就清楚了：一部 2D 漫剧的前三个环节——角色设定、分镜、静态画面——合起来就是一整套完整的图文产能。<em>图文是漫剧的中间产物，不是它的替代方案。</em>所以正确做法不是"改做图文"，而是<strong>把图文设为第一档，让算力按学生能力分级投放</strong>。</p>
+</div>
+
+<h2>二、这条线上真正的分水岭：平台分成系数</h2>
+
+<p>评估图文方向，第一件事是看平台愿意为它付多少钱。抖音 2026 年的分成政策把形态分得很清楚：</p>
+
+<figure class="fig">
+<svg viewBox="0 0 900 312" width="100%" role="img" aria-label="平台分成系数对比：仿真人剧 60 倍，3D 漫剧 50 倍，2D 漫剧 40 倍，动态漫 10 倍，静态漫画 1 倍">
+  <g font-family="-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif">
+    <text x="230" y="46" text-anchor="end" font-size="13.5" font-weight="600" fill="#1F2328">AI 仿真人剧</text>
+    <rect x="240" y="33" width="500" height="26" rx="6" fill="#7EB2DA"/>
+    <text x="752" y="51" font-size="13.5" font-weight="700" fill="#082F52">60 倍</text>
+
+    <text x="230" y="92" text-anchor="end" font-size="13.5" font-weight="600" fill="#1F2328">3D 漫剧</text>
+    <rect x="240" y="79" width="417" height="26" rx="6" fill="#9BC4E4"/>
+    <text x="669" y="97" font-size="13.5" font-weight="700" fill="#0B3A61">50 倍</text>
+
+    <text x="230" y="138" text-anchor="end" font-size="13.5" font-weight="600" fill="#1F2328">2D 漫剧</text>
+    <rect x="240" y="125" width="333" height="26" rx="6" fill="#B8D4EC"/>
+    <text x="585" y="143" font-size="13.5" font-weight="700" fill="#0E4470">40 倍</text>
+
+    <text x="230" y="184" text-anchor="end" font-size="13.5" font-weight="600" fill="#1F2328">动态漫 / 图文解说</text>
+    <rect x="240" y="171" width="83" height="26" rx="6" fill="#CFE2F3"/>
+    <text x="335" y="189" font-size="13.5" font-weight="700" fill="#12507F">10 倍</text>
+
+    <text x="230" y="230" text-anchor="end" font-size="13.5" font-weight="600" fill="#1F2328">静态漫画 / 静态图</text>
+    <rect x="240" y="217" width="14" height="26" rx="6" fill="#E2ECF7"/>
+    <text x="266" y="235" font-size="13.5" font-weight="700" fill="#155E8F">1 倍</text>
+
+    <text x="240" y="272" font-size="12.5" fill="#57606A">同一平台、同一套分账体系下的形态系数。静态图与 2D 漫剧之间差 40 倍。</text>
+  </g>
+</svg>
+<figcaption>图 1 ｜ 抖音 2026 年漫剧分账的形态系数（同一净付费分成比例下的倍数差异）。<strong>"静态图、表情包"被行业直接归入"纯低质跑量"一档</strong>，这不是审美判断，是平台的定价判断。</figcaption>
+</figure>
+
+<p>这是整份评估里最硬的一个数字：<strong>同样是 AI 生成的内容，静态图的分账系数是 2D 漫剧的四十分之一。</strong></p>
+
+<p>行业对这一档的描述很直接——"纯低质跑量（必死）：静态图、表情包、AI 僵硬、无剧情，分成系数 1–10 倍，基本赚不到钱"。<span class="cut">这句话不是说静态图做不好，而是说它在平台的分账体系里被明确定价成了最低档。</span></p>
+
+<p>需要说明的是，漫画平台是另一套体系，不走短剧分账：腾讯动漫签约作品基础稿费每话 500–2000 元、快看 800–3000 元、B 站漫画 600–2500 元。但这条路的前提是<strong>签约</strong>，而签约看的是画风完成度与故事——它的门槛在美术和编剧，不在工程。</p>
+
+<h2>三、岗位数据：图文岗的天花板在哪里</h2>
+
+<p>分成系数决定内容值多少钱，岗位薪资决定学生值多少钱。把 2026 年在招的相关 JD 排在一起看：</p>
+
+<figure class="fig">
+<svg viewBox="0 0 900 350" width="100%" role="img" aria-label="相关岗位薪资上限对比：执行岗集中在四到八千，工程岗在二十五到七十千">
+  <g font-family="-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif">
+    <text x="230" y="46" text-anchor="end" font-size="13" fill="#1F2328">AI 漫画师（条漫 / 立绘）</text>
+    <rect x="240" y="33" width="45" height="26" rx="6" fill="#E2ECF7"/>
+    <text x="297" y="51" font-size="13" font-weight="700" fill="#155E8F">4–6 千</text>
+    <text x="380" y="51" font-size="12" fill="#57606A">审美优先、构图配色、批量出图</text>
+
+    <text x="230" y="92" text-anchor="end" font-size="13" fill="#1F2328">漫剧抽卡师（大专）</text>
+    <rect x="240" y="79" width="37" height="26" rx="6" fill="#E2ECF7"/>
+    <text x="289" y="97" font-size="13" font-weight="700" fill="#155E8F">4–5 千</text>
+    <text x="380" y="97" font-size="12" fill="#57606A">画面抽卡、素材筛选、规范归档</text>
+
+    <text x="230" y="138" text-anchor="end" font-size="13" fill="#1F2328">AI 漫剧制作师</text>
+    <rect x="240" y="125" width="59" height="26" rx="6" fill="#CFE2F3"/>
+    <text x="311" y="143" font-size="13" font-weight="700" fill="#12507F">5–8 千</text>
+    <text x="380" y="143" font-size="12" fill="#57606A">统一风格出图、排版、合成</text>
+
+    <text x="230" y="184" text-anchor="end" font-size="13" fill="#1F2328">AI 漫剧编辑（编剧）</text>
+    <rect x="240" y="171" width="149" height="26" rx="6" fill="#B8D4EC"/>
+    <text x="401" y="189" font-size="13" font-weight="700" fill="#0E4470">7–15 千</text>
+    <text x="490" y="189" font-size="12" fill="#57606A">资深爆款 20 千以上</text>
+
+    <text x="230" y="230" text-anchor="end" font-size="13" fill="#1F2328">AI 应用开发工程师（漫剧平台）</text>
+    <rect x="240" y="217" width="297" height="26" rx="6" fill="#9BC4E4"/>
+    <text x="549" y="235" font-size="13" font-weight="700" fill="#0B3A61">25–40 千 · 16 薪</text>
+
+    <text x="230" y="276" text-anchor="end" font-size="13" fill="#1F2328">AI 漫剧负责人</text>
+    <rect x="240" y="263" width="520" height="26" rx="6" fill="#7EB2DA"/>
+    <text x="772" y="281" font-size="13" font-weight="700" fill="#082F52">40–70 千</text>
+
+    <text x="240" y="310" font-size="12.5" fill="#57606A">下面两个岗位要的是"搭建工业化生产管线、建立提示词库与质量控制标准"——是工程能力，不是出图能力。</text>
+  </g>
+</svg>
+<figcaption>图 2 ｜ 相关岗位薪资上限（2026 年在招 JD）。<strong>前四个是执行岗，后两个是工程岗，中间隔着一个数量级。</strong>条长按薪资上限比例绘制。</figcaption>
+</figure>
+
+<p>两组 JD 原文值得放在一起读。一条是青岛的 AI 漫画师（4–6 千，招 10 人，写明"零基础可教"）：</p>
+
+<div class="box">
+<p>「按照脚本，用 AI 工具<strong>批量制作条漫、人物立绘、场景、分镜</strong>，按时按量完成连载产能；把控整体画面构图、色彩、光影与<strong>人设统一</strong>；<strong>沉淀关键词、优质模型</strong>，优化出图质量和效率。」——任职要求第一条写的是「<strong>审美较好</strong>：能分辨画面好坏，懂基础构图配色」。</p>
+</div>
+
+<p>另一条是某机构招 AI 漫剧负责人（40–70 千）：「搭建 AI 漫剧<strong>工业化生产管线</strong>，建立完善的<strong>提示词库与质量控制标准</strong>，以数据 + AI 能力赋能漫剧内容生产。」</p>
+
+<p>差别一眼可见：<strong>前者考"能不能判断这张图好不好"，后者考"能不能让一百个人稳定地产出合格图"。</strong>前者是视传专业的长板，后者才是计算机专业的长板。</p>
+
+<div class="warnbox">
+<p><strong>顺带一个反常识的补充：</strong>条漫方向确实存在工程活——"批量制作""按时按量完成连载产能""沉淀关键词与优质模型""规范归档"。这些正是我们教的东西。<span class="cut">问题不在有没有工程活，而在于这些活被定价成了 4–6 千。</span>同样的能力放在链条更长的漫剧上，价格是三到十倍。</p>
+</div>
+
+<h2>四、关键判断：图文是漫剧的中间产物</h2>
+
+<p>把一条 2D 漫剧的生产链拆开，会看到一件之前没注意的事——</p>
+
+<figure class="fig">
+<svg viewBox="0 0 900 195" width="100%" role="img" aria-label="漫剧生产链的六个环节，前三个属于图文产能，后三个属于视频产能">
+  <g font-family="-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif">
+    <rect x="45" y="40" width="125" height="56" rx="9" fill="#E2ECF7" stroke="#9BC4E4" stroke-width="0.5"/>
+    <text x="107" y="68" text-anchor="middle" font-size="13" font-weight="600" fill="#155E8F">角色设定</text>
+    <line x1="175" y1="68" x2="178" y2="68" stroke="#AEBDCB" stroke-width="1.6"/>
+    <path d="M176 63 L184 68 L176 73 Z" fill="#AEBDCB"/>
+
+    <rect x="182" y="40" width="125" height="56" rx="9" fill="#E2ECF7" stroke="#9BC4E4" stroke-width="0.5"/>
+    <text x="244" y="68" text-anchor="middle" font-size="13" font-weight="600" fill="#155E8F">分镜</text>
+    <line x1="312" y1="68" x2="315" y2="68" stroke="#AEBDCB" stroke-width="1.6"/>
+    <path d="M313 63 L321 68 L313 73 Z" fill="#AEBDCB"/>
+
+    <rect x="319" y="40" width="125" height="56" rx="9" fill="#E2ECF7" stroke="#9BC4E4" stroke-width="0.5"/>
+    <text x="381" y="68" text-anchor="middle" font-size="13" font-weight="600" fill="#155E8F">静态画面</text>
+    <line x1="449" y1="68" x2="452" y2="68" stroke="#AEBDCB" stroke-width="1.6"/>
+    <path d="M450 63 L458 68 L450 73 Z" fill="#AEBDCB"/>
+
+    <rect x="456" y="40" width="125" height="56" rx="9" fill="#B8D4EC" stroke="#7EB2DA" stroke-width="0.5"/>
+    <text x="518" y="68" text-anchor="middle" font-size="13" font-weight="600" fill="#0B3A61">图转视频</text>
+    <line x1="586" y1="68" x2="589" y2="68" stroke="#AEBDCB" stroke-width="1.6"/>
+    <path d="M587 63 L595 68 L587 73 Z" fill="#AEBDCB"/>
+
+    <rect x="593" y="40" width="125" height="56" rx="9" fill="#B8D4EC" stroke="#7EB2DA" stroke-width="0.5"/>
+    <text x="655" y="68" text-anchor="middle" font-size="13" font-weight="600" fill="#0B3A61">剪辑合成</text>
+    <line x1="723" y1="68" x2="726" y2="68" stroke="#AEBDCB" stroke-width="1.6"/>
+    <path d="M724 63 L732 68 L724 73 Z" fill="#AEBDCB"/>
+
+    <rect x="730" y="40" width="125" height="56" rx="9" fill="#B8D4EC" stroke="#7EB2DA" stroke-width="0.5"/>
+    <text x="792" y="68" text-anchor="middle" font-size="13" font-weight="600" fill="#0B3A61">投稿发布</text>
+
+    <rect x="45" y="112" width="399" height="30" rx="7" fill="#E2ECF7"/>
+    <text x="244" y="131" text-anchor="middle" font-size="12.5" fill="#155E8F">前三个环节合起来，就是一整套完整的图文产能</text>
+
+    <rect x="456" y="112" width="399" height="30" rx="7" fill="#B8D4EC"/>
+    <text x="655" y="131" text-anchor="middle" font-size="12.5" fill="#0B3A61">后三个环节，才是算力与回报同时抬升的部分</text>
+
+    <text x="45" y="168" font-size="12.5" fill="#57606A">同一条链，不是两条路。先跑通左半边，右半边只是多加两步。</text>
+  </g>
+</svg>
+<figcaption>图 3 ｜ 漫剧生产链的前三个环节，产出的就是图文。<strong>一个只会做图文的学生，距离能投稿的漫剧只差两步；一个从没跑过一致性的学生，连第一步都还没开始。</strong></figcaption>
+</figure>
+
+<p>这个拆解把问题从"选 A 还是选 B"变成了"走到第几步"。它同时解释了前面的矛盾：</p>
+
+<ul>
+<li><strong>为什么算力低是真的</strong>——前三个环节只出静态图，成本确实低一个数量级。</li>
+<li><strong>为什么回报低也是真的</strong>——平台只为完整成片付 40 倍系数，半成品不享这个价。</li>
+<li><strong>为什么"靠视传近"既是优势又是风险</strong>——左半边确实最需要视传协作，但右半边他们做不了。</li>
+</ul>
+
+<h2>五、推荐方案：三档递进，而不是二选一</h2>
+
+<p>基于上面的拆解，建议把训练营改成三档。核心思路是<strong>算力和难度按学生能力分级投放</strong>，而不是全押在最高档。</p>
+
+<figure class="fig">
+<svg viewBox="0 0 900 328" width="100%" role="img" aria-label="三档递进方案：静态图文面向全体，动态漫面向进阶组，二D漫剧面向核心组">
+  <g font-family="-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif">
+    <rect x="40" y="40" width="820" height="80" rx="10" fill="#E2ECF7" stroke="#9BC4E4" stroke-width="0.5"/>
+    <text x="60" y="70" font-size="14" font-weight="600" fill="#155E8F">第一档 · 静态图文</text>
+    <text x="60" y="92" font-size="12.5" fill="#155E8F">第 1–8 周，全体参加</text>
+    <text x="290" y="70" font-size="12.5" fill="#1F2328">出图、角色一致性、批量生成、自动嵌字排版</text>
+    <text x="290" y="92" font-size="12.5" fill="#1F2328">算力：极低</text>
+    <text x="470" y="70" font-size="12.5" fill="#1F2328">分成系数 1–10 倍</text>
+    <text x="470" y="92" font-size="12.5" fill="#1F2328">出口：AI 漫画师 4–6 千</text>
+    <rect x="700" y="62" width="140" height="36" rx="8" fill="#F7F8FA" stroke="#DDE1E5" stroke-width="0.5"/>
+    <text x="770" y="84" text-anchor="middle" font-size="12.5" font-weight="600" fill="#3D444D">人人可达</text>
+
+    <rect x="40" y="136" width="820" height="80" rx="10" fill="#CFE2F3" stroke="#7EB2DA" stroke-width="0.5"/>
+    <text x="60" y="166" font-size="14" font-weight="600" fill="#0E4470">第二档 · 动态漫 / 图文解说</text>
+    <text x="60" y="188" font-size="12.5" fill="#0E4470">第 9–12 周，进阶组</text>
+    <text x="290" y="166" font-size="12.5" fill="#1F2328">图转视频、简单运镜、配音与字幕时间轴</text>
+    <text x="290" y="188" font-size="12.5" fill="#1F2328">算力：中</text>
+    <text x="470" y="166" font-size="12.5" fill="#1F2328">分成系数 10 倍</text>
+    <text x="470" y="188" font-size="12.5" fill="#1F2328">出口：漫剧制作师 5–8 千</text>
+    <rect x="700" y="158" width="140" height="36" rx="8" fill="#F7F8FA" stroke="#DDE1E5" stroke-width="0.5"/>
+    <text x="770" y="180" text-anchor="middle" font-size="12.5" font-weight="600" fill="#3D444D">留下来的人</text>
+
+    <rect x="40" y="232" width="820" height="80" rx="10" fill="#B8D4EC" stroke="#378ADD" stroke-width="0.5"/>
+    <text x="60" y="262" font-size="14" font-weight="600" fill="#0B3A61">第三档 · 2D 漫剧</text>
+    <text x="60" y="284" font-size="12.5" fill="#0B3A61">大二下学期，核心组 12 人</text>
+    <text x="290" y="262" font-size="12.5" fill="#1F2328">完整流水线、废片率与单集成本核算、投稿</text>
+    <text x="290" y="284" font-size="12.5" fill="#1F2328">算力：高，走云 API 与平台补贴</text>
+    <text x="470" y="262" font-size="12.5" fill="#1F2328">分成系数 40 倍</text>
+    <text x="470" y="284" font-size="12.5" fill="#1F2328">出口：工程岗 25–40 千</text>
+    <rect x="700" y="254" width="140" height="36" rx="8" fill="#F7F8FA" stroke="#DDE1E5" stroke-width="0.5"/>
+    <text x="770" y="276" text-anchor="middle" font-size="12.5" font-weight="600" fill="#3D444D">作品集主打</text>
+  </g>
+</svg>
+<figcaption>图 4 ｜ 三档递进。第一档解决"人人有产出、算力无压力"，第三档解决"拿得出高价值作品"。<strong>中间那一档是筛子，不是必修</strong>——它决定谁进核心组。</figcaption>
+</figure>
+
+<p>这个结构把你的两个顾虑同时解决了：</p>
+
+<table>
+<thead><tr><th style="width:150px">你的顾虑</th><th>三档递进怎么解决</th></tr></thead>
+<tbody>
+<tr><td><strong>算力压力大</strong></td><td class="j">前 8 周只用静态图，成本极低；只有进核心组的 12 人才碰视频，且集中在大二下的少数几周。<strong>算力总消耗约为全员做漫剧的十分之一。</strong></td></tr>
+<tr><td><strong>靠视传近</strong></td><td class="j">第一档恰恰是最需要视传协作的阶段，可以自然地请视传师生来做评审（每学期 3 次、每次 1 小时）。<strong>这是让视传参与，不是把主场交给视传</strong>——一致性控制、批量、归档仍然是我们的活。</td></tr>
+<tr><td><strong>时间只有一年</strong></td><td class="j">第 3 周就能出第一张图、第 8 周能交一本条漫。<span class="ok">产出前置</span>比等一部成片更能留住人，也更快形成可展示的作品。</td></tr>
+<tr><td><strong>学生基础参差</strong></td><td class="j">三档天然分层：跟不上的在第一档也能交出一本条漫（对应 4–6 千的岗位），学得好的进第三档。<strong>不会出现"做不完就什么都没有"。</strong></td></tr>
+</tbody>
+</table>
+
+<h2>六、如果只做图文，会失去什么</h2>
+
+<p>这个评估必须把话说完整。<strong>只做图文，会丢掉三样东西，其中第二样是决定性的。</strong></p>
+
+<h3>会失去的第一样：链条长度，以及链条带来的位置</h3>
+
+<p>图文的链条是"脚本 → 出图 → 嵌字 → 发布"，短到一个人用两三个工具就能闭环。前面论证过：<span class="cut">短链条里，"串联"不产生额外价值。</span>而漫剧六环节七八人协作，必须有人负责让整条线跑得通、跑得稳、可复现——这个位置在图文里不存在。</p>
+
+<h3>会失去的第二样：工程能力的定价</h3>
+
+<p>这是最要紧的一条。同样是"批量 + 一致性 + 归档"这套能力，放在图文上被定价成 4–6 千，放在漫剧工业化管线上被定价成 25–40 千。<strong>能力没变，是它服务的链条长度改变了它的价格。</strong></p>
+
+<p>如果只做图文，我们教的东西一样都不少，但学生拿它去应聘时，对面开的是执行岗的价。</p>
+
+<h3>会失去的第三样：作品集的说服力</h3>
+
+<p>一本条漫和一部能播放的 10 集漫剧，在面试里的分量不同。后者带播放数据、带完播率、带投稿记录，能讲的东西多一个量级。而且——<strong>平台反馈数据是可以写进毕业论文和课题的</strong>，静态图没有这个维度。</p>
+
+<div class="box">
+<p><strong>但反过来也要说清楚：</strong>如果算力真的撑不住第三档，退到第二档完全成立。动态漫系数 10 倍，成本远低于漫剧，一个人就能做，而且它是目前承制公司外包需求里增长最快的一块。<span class="ok">所以这个方案的下限并不低——最坏情况下，学生手上仍然有一本条漫加一部动态漫，够投 4–8 千的岗位。</span></p>
+</div>
+
+<h2>七、对现有方案的具体影响</h2>
+
+<p>这个调整对已经定稿的两份文档影响不大，主要是把节奏重新排一下：</p>
+
+<table>
+<thead><tr><th style="width:180px">现有方案</th><th style="width:90px">调整</th><th>说明</th></tr></thead>
+<tbody>
+<tr><td><strong>课内 60 学时</strong></td><td class="ok">基本不动</td><td class="j">`manhua.py` 主线仍然成立，第十个零件从"出片交付"改为"输出条漫 + 可选出片"。第 3 章到第 9 章全部不变。<strong>取消第 10、11 章的决定更稳了</strong>——图文路线同样不需要 turtle 和飞机大战。</td></tr>
+<tr><td><strong>模块 C 成片合成 3 学时</strong></td><td class="ok">可压缩到 2</td><td class="j">剩下的 1 学时给"批量嵌字与排版"——这是图文方向比视频方向更需要的一环，而且它是纯 Python 活（PIL 批量处理），教学成本极低。</td></tr>
+<tr><td><strong>训练营第 1–8 周</strong></td><td class="ok">完全不变</td><td class="j">原本前 8 周就是"不写代码，出图、一致性、分镜"，<strong>这正好就是第一档图文</strong>。不需要重新设计。</td></tr>
+<tr><td><strong>训练营第 9–12 周</strong></td><td class="cut">新增一档</td><td class="j">原计划第 12 周直接接脚本做漫剧。现在建议插一层：先用图转视频做 30 秒动态漫，跑通后再进完整漫剧。这一层同时是筛选机制。</td></tr>
+<tr><td><strong>视传协作</strong></td><td class="ok">前置到第一档</td><td class="j">原本计划下学期才拉视传进评价环节。<strong>建议提前到第 4 周</strong>——图文阶段正是最需要"判断好不好看"的时候，也是对方投入最小的时候。</td></tr>
+<tr><td><strong>算力预算</strong></td><td class="ok">压力下降</td><td class="j">第一档几乎不消耗视频算力，原本最紧张的那部分预算可以推迟到大二下再申请，中间多出一个学期去谈平台补贴和企业共建。</td></tr>
+</tbody>
+</table>
+
+<h2>八、需要你拍板的三件事</h2>
+
+<ol>
+<li><strong>第三档是否保留。</strong>如果算力或时间确实撑不住，砍掉第三档、止步于动态漫，方案仍然成立，只是学生的薪资上限从 25–40 千降到 5–8 千。这个取舍要你来做。</li>
+<li><strong>嵌字排版要不要单独占课时。</strong>图文方向里它是刚需（条漫的文字量远大于漫剧），但它确实是纯 PIL 批处理，也可以放进第 10 章"计算生态"那 2 学时里顺带讲。</li>
+<li><strong>视传老师的接触时机。</strong>建议本周就去谈，只用谈一件事：每学期三次评审，每次一小时。第一档图文阶段正好是开口的最佳时机——对方只要"看"，不要"做"。</li>
+</ol>
+
+<div class="foot">
+<p><strong>数据来源与说明</strong></p>
+<ul>
+<li>分成系数：抖音 2026 年星光 / 辰星计划公开政策（仿真人 60 倍、3D 50 倍、2D 40 倍、喜剧漫 10 倍、静态漫画 1 倍；优质内容净付费分成 90%–95%）。各平台政策变动频繁，正式立项前建议复核当期规则。</li>
+<li>稿费：腾讯动漫签约基础稿费每话 500–2000 元，快看 800–3000 元，B 站漫画 600–2500 元；未签约流量激励另计。</li>
+<li>岗位：智联招聘、全职招聘网 2026 年在招 JD（AI 漫画师 4–6 千、漫剧抽卡师 4–5 千、AI 漫剧师 3–6 千、AI 漫剧制作师 5–8 千、AI 漫剧编辑 7–15 千、AI 应用开发工程师 25–40 千、AI 漫剧负责人 40–70 千）。薪资与学历均照录原文。</li>
+<li>市场：2026 上半年 AI 剧漫剧新剧 22.19 万部，破亿 1055 部，破亿率 0.73%；2026 年一季度承制方由 1216 家降至 698 家。</li>
+<li>合规：2026 年 4 月起微短剧强制备案、AI 内容须标注；2026 年 9 月 1 日《微短剧发展管理办法》施行，AI 生成微短剧需额外提交模型来源与数字资产确权材料。</li>
+<li>本评估中"算力成本差一个数量级"为基于形态差异的推算，非引用数据；实际成本随所用平台与模型变动较大。</li>
+</ul>
+</div>
+
+</div>
+</body>
+</html>

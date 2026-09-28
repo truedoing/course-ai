@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>商品详情页（数据驱动）</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+    background: #e9eaee;
+    display: flex;
+    justify-content: center;
+    padding: 16px 0 90px;
+    color: #1f2329;
+  }
+  .phone {
+    width: 100%; max-width: 420px; background: #f2f3f5; min-height: 100vh;
+    position: relative; overflow: hidden; box-shadow: 0 8px 30px rgba(0,0,0,.12);
+  }
+  .statusbar {
+    height: 28px; background: linear-gradient(135deg, #ff6a00, #ff2d2d); color: #fff;
+    display: flex; align-items: center; justify-content: space-between; padding: 0 14px;
+    font-size: 12px; font-weight: 600;
+  }
+  .gallery-wrap { position: relative; background: #000; }
+  .gallery {
+    display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+  .gallery::-webkit-scrollbar { display: none; }
+  .gallery figure { flex: 0 0 100%; scroll-snap-align: start; position: relative; }
+  .gallery img { width: 100%; height: 420px; object-fit: contain; display: block; background: #fff; }
+  .gallery figcaption {
+    position: absolute; left: 0; bottom: 0; right: 0;
+    background: linear-gradient(transparent, rgba(0,0,0,.55)); color: #fff; font-size: 12px;
+    padding: 18px 12px 8px;
+  }
+  .arrow {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    width: 30px; height: 30px; border-radius: 50%; background: rgba(0,0,0,.35); color: #fff;
+    border: none; font-size: 16px; cursor: pointer; z-index: 2;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .arrow.prev { left: 8px; } .arrow.next { right: 8px; }
+  .dots {
+    position: absolute; bottom: 8px; left: 0; right: 0; display: flex;
+    justify-content: center; gap: 6px; z-index: 2;
+  }
+  .dots i { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,.5); transition: .2s; }
+  .dots i.on { background: #fff; width: 16px; border-radius: 3px; }
+  .compliance {
+    background: #fff7e6; color: #ad6800; font-size: 11px; padding: 7px 12px;
+    line-height: 1.5; border-bottom: 1px solid #ffe7ba;
+  }
+  .price-card { background: #fff; padding: 12px 14px 14px; }
+  .price-card h1 { font-size: 17px; font-weight: 700; line-height: 1.4; }
+  .price-card .sub { color: #888; font-size: 12px; margin-top: 4px; }
+  .price-row { display: flex; align-items: baseline; gap: 8px; margin-top: 10px; }
+  .price { color: #ff2d2d; font-size: 24px; font-weight: 800; }
+  .price small { font-size: 13px; font-weight: 700; }
+  .price .demo { font-size: 10px; font-weight: 400; color: #bbb; margin-left: 2px; }
+  .origin { color: #bbb; font-size: 13px; text-decoration: line-through; }
+  .sold { margin-left: auto; color: #999; font-size: 12px; }
+  .tags { display: flex; gap: 6px; margin-top: 10px; flex-wrap: wrap; }
+  .tags span { font-size: 11px; padding: 2px 7px; border-radius: 3px; background: #fff0ed; color: #ff5000; border: 1px solid #ffd9cc; }
+  .tags span.gray { background: #f2f3f5; color: #888; border-color: #e3e5e9; }
+  .shop { background: #fff; margin-top: 8px; padding: 12px 14px; display: flex; align-items: center; gap: 10px; }
+  .shop .logo {
+    width: 38px; height: 38px; border-radius: 8px; background: linear-gradient(135deg, #ff6a00, #ff2d2d);
+    color: #fff; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700;
+  }
+  .shop .name { font-size: 14px; font-weight: 600; }
+  .shop .meta { font-size: 11px; color: #999; margin-top: 2px; }
+  .points { background: #fff; margin-top: 8px; padding: 12px 14px; }
+  .points h2 { font-size: 14px; margin-bottom: 8px; }
+  .points ul { list-style: none; }
+  .points li { font-size: 13px; color: #444; padding: 5px 0 5px 20px; position: relative; }
+  .points li::before { content: "✓"; color: #ff5000; position: absolute; left: 0; font-weight: 700; }
+  .detail { background: #fff; margin-top: 8px; padding: 12px 14px 16px; }
+  .detail h2 { font-size: 14px; margin-bottom: 10px; }
+  .detail figure { margin-bottom: 14px; }
+  .detail img { width: 100%; border-radius: 8px; background: #f7f8fa; }
+  .detail figcaption { font-size: 12px; color: #666; margin-top: 6px; line-height: 1.5; }
+  .buybar {
+    position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: 420px;
+    background: #fff; border-top: 1px solid #eee; display: flex; align-items: center; padding: 8px 12px; gap: 10px;
+    box-shadow: 0 -2px 10px rgba(0,0,0,.06);
+  }
+  .buybar .icon { text-align: center; font-size: 11px; color: #666; width: 40px; }
+  .buybar .icon div:first-child { font-size: 18px; }
+  .buybar .btns { flex: 1; display: flex; gap: 8px; }
+  .buybar button { flex: 1; border: none; color: #fff; font-size: 14px; font-weight: 700; padding: 10px 0; border-radius: 20px; cursor: pointer; }
+  .buybar .cart { background: #ff9000; } .buybar .buy { background: linear-gradient(135deg, #ff6a00, #ff2d2d); }
+  .empty { padding: 40px 20px; text-align: center; color: #999; font-size: 13px; line-height: 1.6; }
+</style>
+</head>
+<body>
+<div class="phone">
+  <div class="statusbar">
+    <span>9:41</span>
+    <span id="status-shop">商品详情</span>
+    <span>📶 100%</span>
+  </div>
+
+  <div id="gallery-wrap" class="gallery-wrap" style="display:none">
+    <button class="arrow prev" onclick="move(-1)">‹</button>
+    <button class="arrow next" onclick="move(1)">›</button>
+    <div class="gallery" id="gallery"></div>
+    <div class="dots" id="dots"></div>
+  </div>
+
+  <div id="compliance" class="compliance" style="display:none"></div>
+  <div id="price-card" class="price-card" style="display:none"></div>
+  <div id="shop" class="shop" style="display:none"></div>
+  <div id="points" class="points" style="display:none"></div>
+  <div id="detail" class="detail" style="display:none"></div>
+
+  <div id="empty" class="empty">未加载到商品数据。<br>默认读取教师演示：<code>deliverables/SKU-001/sku.js</code><br>用 <code>?学号=学号</code> 定位某同学的演示数据，例如 <code>?学号=20260101</code></div>
+
+  <div class="buybar">
+    <div class="icon"><div>🎧</div>客服</div>
+    <div class="icon"><div>🏠</div>店铺</div>
+    <div class="icon"><div>🛒</div>购物车</div>
+    <div class="btns">
+      <button class="cart">加入购物车</button>
+      <button class="buy">立即购买</button>
+    </div>
+  </div>
+</div>
+
+<!-- 数据驱动：默认读教师演示(SKU-001)；地址栏 ?学号=XXXX 定位某同学演示数据 -->
+<script>
+  var params = new URLSearchParams(location.search);
+  var sid = params.get('学号') || params.get('sid') || '';
+  // 仅放行字母数字下划线，杜绝路径穿越(../)
+  sid = (sid.match(/^[0-9A-Za-z_]+$/) || [''])[0];
+  var SKU_SRC = sid ? 'deliverables/' + sid + '/sku.js' : 'deliverables/SKU-001/sku.js';
+  document.write('<script src="' + SKU_SRC + '"><\/script>');
+</script>
+<script>
+  function render(SKU) {
+    if (!SKU || !SKU.images || !SKU.images.length) {
+      document.getElementById('empty').style.display = 'block';
+      return;
+    }
+    document.getElementById('empty').style.display = 'none';
+    dotEls.length = 0;
+
+    // 状态栏店铺名
+    document.getElementById('status-shop').textContent = (SKU.shop_name || '商品详情');
+
+    // 主图轮播
+    var gallery = document.getElementById('gallery');
+    var dots = document.getElementById('dots');
+    SKU.images.forEach(function (img, i) {
+      var fig = document.createElement('figure');
+      var im = document.createElement('img');
+      im.src = img.src; im.alt = img.caption || '';
+      var cap = document.createElement('figcaption');
+      cap.textContent = img.caption || '';
+      fig.appendChild(im); fig.appendChild(cap);
+      gallery.appendChild(fig);
+      var d = document.createElement('i');
+      if (i === 0) d.className = 'on';
+      dots.appendChild(d);
+      dotEls.push(d);
+    });
+    document.getElementById('gallery-wrap').style.display = 'block';
+
+    // 合规提示
+    var comp = document.getElementById('compliance');
+    comp.innerHTML = '⚠️ 本页图片由 AI 生成（seedream 参考图生图），上架 / 对外展示须标注「AI 合成」——教学演示页，非真实店铺数据。';
+    comp.style.display = 'block';
+
+    // 价格卡
+    var priceCard = document.getElementById('price-card');
+    var price = (SKU.currency || '¥') + (SKU.price != null ? SKU.price : '');
+    var tagsHtml = (SKU.tags || []).map(function (t) {
+      return '<span>' + t + '</span>';
+    }).join('');
+    priceCard.innerHTML =
+      '<h1>' + (SKU.product_name || '') + '</h1>' +
+      '<div class="sub">' + (SKU.subtitle || '') + '</div>' +
+      '<div class="price-row">' +
+        '<span class="price"><small>' + (SKU.currency || '¥') + '</small>' + (SKU.price != null ? SKU.price : '') + '<span class="demo">示例</span></span>' +
+        '<span class="origin">¥' + ((SKU.price != null ? SKU.price * 1.5 : 0).toFixed(2)) + '</span>' +
+        '<span class="sold">教学演示</span>' +
+      '</div>' +
+      '<div class="tags">' + tagsHtml + '<span class="gray">教学演示</span></div>';
+    priceCard.style.display = 'block';
+
+    // 店铺
+    var shop = document.getElementById('shop');
+    shop.innerHTML =
+      '<div class="logo">' + (SKU.shop_name || '店铺').slice(0, 2) + '</div>' +
+      '<div><div class="name">' + (SKU.shop_name || '演示小铺') + '</div>' +
+      '<div class="meta">manhua.py 出图任务 · 演示案例店铺</div></div>';
+    shop.style.display = 'block';
+
+    // 卖点
+    if (SKU.points && SKU.points.length) {
+      var points = document.getElementById('points');
+      points.innerHTML = '<h2>商品卖点</h2><ul>' +
+        SKU.points.map(function (p) { return '<li>' + p + '</li>'; }).join('') + '</ul>';
+      points.style.display = 'block';
+    }
+
+    // 详情图（全部图片，含原图/白底/场景）
+    var detail = document.getElementById('detail');
+    var figs = SKU.images.map(function (img) {
+      return '<figure><img src="' + img.src + '" alt="' + (img.caption || '') + '">' +
+             '<figcaption>' + (img.caption || '') + (img.detail ? '：' + img.detail : '') + '</figcaption></figure>';
+    }).join('');
+    detail.innerHTML = '<h2>商品详情 · 滑动查看</h2>' + figs;
+    detail.style.display = 'block';
+  }
+
+  // 轮播控制
+  var gallery = document.getElementById('gallery');
+  var dotEls = [];
+  function move(step) {
+    var idx = Math.round(gallery.scrollLeft / gallery.clientWidth);
+    var next = Math.max(0, Math.min(dotEls.length - 1, idx + step));
+    gallery.scrollTo({ left: next * gallery.clientWidth, behavior: 'smooth' });
+  }
+  gallery.addEventListener('scroll', function () {
+    window.requestAnimationFrame(function () {
+      var i = Math.round(gallery.scrollLeft / gallery.clientWidth);
+      dotEls.forEach(function (d, k) { d.classList.toggle('on', k === i); });
+    });
+  });
+
+  // sku.js 同步加载后 window.SKU 已就绪
+  if (window.SKU) render(window.SKU);
+  else {
+    var em = document.getElementById('empty');
+    if (sid) em.innerHTML = '未找到学号 <code>' + sid + '</code> 的演示数据。<br>请确认 <code>deliverables/' + sid + '/sku.js</code> 是否存在。';
+    em.style.display = 'block';
+  }
+</script>
+</body>
+</html>

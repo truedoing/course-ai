@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AIGC 培训赛道切入方案</title>
+<style>
+:root{
+  --ink:#1B1B19; --ink2:#4A4A46; --ink3:#6E6E68;
+  --line:#DDDBD4; --bg2:#F7F6F2;
+  --blue:#185FA5; --blue-bg:#E6F1FB; --blue-dk:#042C53;
+  --teal:#0F6E56; --teal-bg:#E1F5EE;
+  --red:#A32D2D; --red-bg:#FCEBEB;
+  --amber:#854F0B; --amber-bg:#FAEEDA;
+}
+*{box-sizing:border-box;}
+body{
+  margin:0; padding:0 20px 64px;
+  font-family:"PingFang SC","Microsoft YaHei","Hiragino Sans GB",system-ui,sans-serif;
+  color:var(--ink); background:#fff; line-height:1.75; font-size:15px;
+}
+.wrap{max-width:920px; margin:0 auto;}
+header{padding:44px 0 20px; border-bottom:1px solid var(--line);}
+h1{font-size:26px; font-weight:600; margin:0 0 10px; letter-spacing:.5px;}
+.sub{font-size:14px; color:var(--ink3); margin:0;}
+h2{font-size:19px; font-weight:600; margin:44px 0 14px; padding-left:11px; border-left:4px solid var(--blue);}
+h3{font-size:16px; font-weight:600; margin:26px 0 10px; color:var(--blue-dk);}
+p{margin:0 0 13px;}
+.lead{background:var(--blue-bg); border-radius:10px; padding:18px 22px; margin:24px 0 0; font-size:16px; color:var(--blue-dk);}
+.lead b{color:var(--blue);}
+.cards{display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; margin:22px 0 8px;}
+.card{background:var(--bg2); border-radius:10px; padding:14px 16px;}
+.card .k{font-size:12px; color:var(--ink3); margin:0 0 4px;}
+.card .v{font-size:23px; font-weight:600; margin:0; color:var(--ink); line-height:1.25;}
+.card .n{font-size:11px; color:var(--ink3); margin:3px 0 0; line-height:1.4;}
+table{width:100%; border-collapse:collapse; margin:16px 0; font-size:14px;}
+th{background:var(--bg2); text-align:left; padding:10px 12px; font-weight:600; font-size:13px; color:var(--ink2); border-bottom:1px solid var(--line);}
+td{padding:11px 12px; border-bottom:1px solid var(--line); vertical-align:top;}
+tr.hit td{background:var(--teal-bg);}
+tr.no td{background:var(--red-bg);}
+.tag{display:inline-block; font-size:12px; padding:2px 9px; border-radius:20px; font-weight:600;}
+.tag-go{background:var(--teal-bg); color:var(--teal);}
+.tag-no{background:var(--red-bg); color:var(--red);}
+.tag-mid{background:var(--amber-bg); color:var(--amber);}
+.fig{margin:22px 0 10px; border:1px solid var(--line); border-radius:12px; padding:18px 16px 12px;}
+.fig .cap{font-size:13px; font-weight:600; color:var(--ink2); margin:0 0 12px;}
+.fig .src{font-size:11px; color:var(--ink3); margin:8px 0 0;}
+svg{display:block; width:100%; height:auto;}
+.steps{display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:10px; margin:20px 0;}
+.step{border:1px solid var(--line); border-radius:10px; padding:14px 14px 16px; background:#fff;}
+.step .no{font-size:11px; font-weight:600; color:#fff; background:var(--blue); display:inline-block; padding:2px 8px; border-radius:4px; margin-bottom:8px;}
+.step h4{font-size:14px; font-weight:600; margin:0 0 6px;}
+.step .when{font-size:11px; color:var(--ink3); margin:0 0 8px;}
+.step ul{margin:0; padding-left:16px; font-size:12.5px; color:var(--ink2);}
+.step li{margin-bottom:4px;}
+ul.main{padding-left:20px; margin:12px 0;}
+ul.main li{margin-bottom:7px;}
+.do,.dont{border-radius:10px; padding:14px 18px 14px; margin:12px 0;}
+.do{background:var(--teal-bg);}
+.dont{background:var(--red-bg);}
+.do h4,.dont h4{margin:0 0 8px; font-size:14px;}
+.do h4{color:var(--teal);} .dont h4{color:var(--red);}
+.do ul,.dont ul{margin:0; padding-left:18px; font-size:13.5px;}
+.do li,.dont li{margin-bottom:5px;}
+.note{font-size:12.5px; color:var(--ink3); background:var(--bg2); border-radius:8px; padding:12px 16px; margin:14px 0;}
+.chk{list-style:none; padding:0; margin:12px 0;}
+.chk li{padding:9px 0 9px 30px; border-bottom:1px solid var(--line); position:relative; font-size:14px;}
+.chk li:before{content:""; position:absolute; left:6px; top:15px; width:9px; height:9px; border:1.5px solid var(--blue); border-radius:2px;}
+@media(max-width:720px){.cards,.steps{grid-template-columns:repeat(2,minmax(0,1fr));}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+<h1>AIGC 培训赛道切入方案</h1>
+<p class="sub">面向两位在职高职教师（双师背景）· 目标为对外培训业务收入 · 2026 年 9 月</p>
+</header>
+
+<div class="lead">
+<b>核心判断：培训机构赛道和"自己开培训班"是两件事。</b>这条赛道上有五个角色，真正赚钱且适合你们的是<b>课程方</b>和<b>讲师方</b>——场地、资质、招生这三个最烧钱也最容易翻车的环节，让别人去扛。
+</div>
+
+<div class="cards">
+  <div class="card"><p class="k">AIGC 技能培训市场</p><p class="v">120 亿</p><p class="n">2026 年预计规模</p></div>
+  <div class="card"><p class="k">近三年复合增速</p><p class="v">40%+</p><p class="n">行业年均增长率</p></div>
+  <div class="card"><p class="k">培训投诉量同比</p><p class="v">+65%</p><p class="n">2025 Q4 消协统计</p></div>
+  <div class="card"><p class="k">C 端就业班学费</p><p class="v">1.5–3.5 万</p><p class="n">学制 3–6 个月</p></div>
+</div>
+
+<h2>一、赛道上其实有五个角色</h2>
+<p>培训机构这条链上，钱和风险不是均匀分布的。同样是"做 AIGC 培训"，站的位置不同，投入和结局完全不一样。</p>
+
+<table>
+<thead><tr><th style="width:15%">角色</th><th style="width:27%">要干什么</th><th style="width:20%">投入</th><th style="width:23%">收入方式</th><th style="width:15%">建议</th></tr></thead>
+<tbody>
+<tr class="no"><td><b>场地/资质方</b></td><td>办学许可证、校舍、宿舍、全职教务</td><td>重资产，百万级</td><td>学费大头</td><td><span class="tag tag-no">不碰</span></td></tr>
+<tr class="no"><td><b>招生方</b></td><td>流量投放、销售团队、渠道、私域</td><td>获客成本极高，最卷</td><td>佣金 / 差价</td><td><span class="tag tag-no">不碰</span></td></tr>
+<tr class="hit"><td><b>课程方</b></td><td>课程研发、课件、实操素材、迭代</td><td>一次性投入，主要是时间</td><td>授权金 + 分成 / 买断 / 研发外包</td><td><span class="tag tag-go">主攻</span></td></tr>
+<tr class="hit"><td><b>讲师方</b></td><td>交付授课</td><td>时间</td><td>课酬，按天或按课时结算</td><td><span class="tag tag-go">起步</span></td></tr>
+<tr><td><b>认证方</b></td><td>发证、背书</td><td>机构资质</td><td>溢价分成</td><td><span class="tag tag-mid">后期绑定</span></td></tr>
+</tbody>
+</table>
+
+<div class="note"><b>为什么这样选：</b>你们缺的恰恰是赛道里最难的两件事——<b>招生渠道</b>和<b>办学资质</b>。而你们有的，是别人最缺的：<b>真实产业经验（双师）+ 能交付的高质量课程内容</b>。用自己有的换别人有的，而不是拿短板去硬拼。</div>
+
+<h2>二、为什么不能自己做 C 端就业班</h2>
+
+<p>这条路的钱看得见，但坑在下面。四个硬理由：</p>
+
+<div class="dont">
+<h4>四条不能碰的理由</h4>
+<ul>
+<li><b>重资产、重运营。</b>办学许可证、固定场地、全职师资、宿舍、就业服务团队，一样都不能少。两位在职教师做不了，也不该做。</li>
+<li><b>依赖就业承诺，而承诺极易翻车。</b>市场对 AI 岗位的真实情况是"复合型人才百万级缺口"与"初级执行岗过剩"并存。承诺就业的学员大多达不到复合型门槛，兑现不了就是纠纷。</li>
+<li><b>口碑正在清算。</b>2025 年第四季度消协统计，AIGC 技能培训投诉量同比增长 65%，集中在虚假宣传、退费困难、就业承诺无法兑现三项。现在进场做 C 端，等于接盘。</li>
+<li><b>你们没有销售团队。</b>这是整条赛道最难的一环，也是最烧钱的一环。</li>
+</ul>
+</div>
+
+<div class="fig">
+<p class="cap">图 1 · C 端培训产品的客单价区间（元）</p>
+<svg viewBox="0 0 860 248" role="img" aria-label="AIGC 培训产品客单价区间条形图">
+<line x1="210" y1="24" x2="210" y2="196" stroke="#DDDBD4" stroke-width="1"/>
+<line x1="329" y1="24" x2="329" y2="196" stroke="#F0EEE8" stroke-width="1"/>
+<line x1="449" y1="24" x2="449" y2="196" stroke="#F0EEE8" stroke-width="1"/>
+<line x1="568" y1="24" x2="568" y2="196" stroke="#F0EEE8" stroke-width="1"/>
+<line x1="687" y1="24" x2="687" y2="196" stroke="#F0EEE8" stroke-width="1"/>
+<line x1="806" y1="24" x2="806" y2="196" stroke="#F0EEE8" stroke-width="1"/>
+<g font-family="system-ui,sans-serif" font-size="11" fill="#6E6E68" text-anchor="middle">
+<text x="210" y="214">0</text><text x="329" y="214">5 千</text><text x="449" y="214">1 万</text>
+<text x="568" y="214">1.5 万</text><text x="687" y="214">2 万</text><text x="806" y="214">2.5 万</text>
+</g>
+
+<g font-family="system-ui,sans-serif" font-size="12.5" fill="#1B1B19" text-anchor="end">
+<text x="192" y="46">线上录播班（含社群答疑）</text>
+<text x="192" y="88">线上直播互动班（含批改）</text>
+<text x="192" y="130">线下全日制脱产班</text>
+<text x="192" y="172">系统化 AIGC 就业课程</text>
+</g>
+
+<rect x="305" y="32" width="96" height="28" rx="4" fill="#E6F1FB" stroke="#378ADD" stroke-width="1"/>
+<rect x="401" y="74" width="95" height="28" rx="4" fill="#B5D4F4" stroke="#378ADD" stroke-width="1"/>
+<rect x="496" y="116" width="191" height="28" rx="4" fill="#85B7EB" stroke="#185FA5" stroke-width="1"/>
+<rect x="568" y="158" width="238" height="28" rx="4" fill="#378ADD" stroke="#185FA5" stroke-width="1"/>
+
+<g font-family="system-ui,sans-serif" font-size="11.5" font-weight="600" fill="#042C53">
+<text x="410" y="50">4,000 – 8,000</text>
+<text x="505" y="92">8,000 – 12,000</text>
+<text x="700" y="134">12,000 – 20,000</text>
+<text x="816" y="176" text-anchor="end">15,000 – 25,000</text>
+</g>
+
+<line x1="210" y1="196" x2="830" y2="196" stroke="#DDDBD4" stroke-width="1"/>
+<g font-family="system-ui,sans-serif" font-size="11.5" fill="#4A4A46">
+<text x="210" y="232">具体班级定价参考：AI 商业短剧就业班 19,800 元 / 48 天</text>
+<text x="210" y="246">AI 影视导演研修班 23,800 元 / 60 天</text>
+</g>
+</svg>
+<p class="src">数据来源：2026 年 AIGC 培训机构公开课程报价与行业整理。客单价越高，捆绑的就业承诺越重，对应的退费与投诉风险也越高。</p>
+</div>
+
+<h2>三、位置一：讲师方（起步，先拿案例）</h2>
+
+<p>这是零投入、最快见到钱的入口，而且目的不是赚钱，是<b>攒案例、攒背书、攒渠道</b>。</p>
+
+<div class="fig">
+<p class="cap">图 2 · 企业内训讲师日薪三档（机构渠道参考价，元/天）</p>
+<svg viewBox="0 0 860 200" role="img" aria-label="企业内训讲师日薪三档条形图">
+<line x1="210" y1="20" x2="210" y2="150" stroke="#DDDBD4" stroke-width="1"/>
+<line x1="334" y1="20" x2="334" y2="150" stroke="#F0EEE8" stroke-width="1"/>
+<line x1="458" y1="20" x2="458" y2="150" stroke="#F0EEE8" stroke-width="1"/>
+<line x1="582" y1="20" x2="582" y2="150" stroke="#F0EEE8" stroke-width="1"/>
+<line x1="706" y1="20" x2="706" y2="150" stroke="#F0EEE8" stroke-width="1"/>
+<g font-family="system-ui,sans-serif" font-size="11" fill="#6E6E68" text-anchor="middle">
+<text x="210" y="168">0</text><text x="334" y="168">1 万</text><text x="458" y="168">2 万</text>
+<text x="582" y="168">3 万</text><text x="706" y="168">4 万</text><text x="830" y="168">5 万</text>
+</g>
+<g font-family="system-ui,sans-serif" font-size="12" fill="#1B1B19" text-anchor="end">
+<text x="200" y="42">高校教授 / 科研专家（通识战略）</text>
+<text x="200" y="86">实战派应用专家（业务赋能）</text>
+<text x="200" y="130">行业专家 / 咨询顾问（深度定制）</text>
+</g>
+<rect x="334" y="26" width="124" height="32" rx="4" fill="#E6F1FB" stroke="#378ADD" stroke-width="1"/>
+<rect x="458" y="70" width="186" height="32" rx="4" fill="#B5D4F4" stroke="#185FA5" stroke-width="1"/>
+<rect x="582" y="114" width="248" height="32" rx="4" fill="#85B7EB" stroke="#0C447C" stroke-width="1"/>
+<g font-family="system-ui,sans-serif" font-size="11.5" font-weight="600" fill="#042C53">
+<text x="466" y="46">10,000 – 20,000</text>
+<text x="652" y="90">20,000 – 35,000</text>
+<text x="822" y="134" text-anchor="end">30,000 – 50,000</text>
+</g>
+<line x1="210" y1="150" x2="830" y2="150" stroke="#DDDBD4" stroke-width="1"/>
+<text x="210" y="186" font-family="system-ui,sans-serif" font-size="11.5" fill="#6E6E68">上表为机构挂牌渠道价，实际到手需扣除机构分成；起步阶段建议按 8,000–15,000 元/天报价换案例。</text>
+</svg>
+<p class="src">数据来源：2026 年企业 AI 内训讲师市场公开报价整理。院校与政府侧培训另有讲课费上限，金额低于企业内训，但结算规范、可作为可靠背书。</p>
+</div>
+
+<h3>三类客户，按优先级</h3>
+<ul class="main">
+<li><b>本地职业院校的师资培训</b>（首选）。全国设计、数媒类专业教师正被批量要求转型 AIGC，供给严重不足。她的身份天然合适——自己就是转型过来的设计师，又是老师，讲的是"我怎么把这门课上起来"。院校方有预算、有经费渠道、结算规范。</li>
+<li><b>本地中小企业的市场部 / 电商部。</b>他们要的是"出图更快、详情页更便宜"，不是技术。半天到一天，决策快。</li>
+<li><b>本地短剧 / 电商代运营公司。</b>最懂钱在哪，也最可能成为后续课程采购方。</li>
+</ul>
+
+<h3>卖点必须钉死一句话</h3>
+<div class="note">不是"教你用 AI 工具"，而是<b>"教你怎么让 AI 产出的东西能商用，而且一百个镜头不崩"</b>。市面上 AIGC 课程绝大多数停留在基础工具操作层面，师资由兼职讲师或应届毕业生组成——这是行业公开承认的问题，也正是你们的机会。</div>
+
+<h2>四、位置二：课程方（这才是真正赚钱的位置）</h2>
+
+<p>讲师方是一份时间换一份钱。课程方是<b>一次开发、多次收费</b>。三种变现模式：</p>
+
+<table>
+<thead><tr><th style="width:18%">模式</th><th style="width:36%">怎么操作</th><th style="width:26%">收入</th><th style="width:20%">适合阶段</th></tr></thead>
+<tbody>
+<tr><td><b>课程研发外包</b></td><td>按项目制为机构开发课件、脚本、讲义、题库、实操素材，一次性或分阶段结算</td><td>项目款，按套计价</td><td>阶段 1–2，最快</td></tr>
+<tr><td><b>授权 / 白标</b></td><td>把课程授权给机构或平台使用，对方可用自己的品牌销售</td><td>授权金 + 按销量阶梯分成</td><td>阶段 2，主力</td></tr>
+<tr><td><b>版权买断</b></td><td>一次性买断课程版权</td><td>保底费用 + 分成奖励</td><td>阶段 3，按需</td></tr>
+</tbody>
+</table>
+
+<div class="note"><b>关键点：</b>授权和研发外包在用工性质上属于<b>项目合作 / 承揽</b>，不是雇佣关系——这对在职身份至关重要（详见第七节）。而"课程方"不需要办学许可证、不需要场地、不需要招生团队。</div>
+
+<h2>五、四阶段路线</h2>
+
+<div class="steps">
+<div class="step"><span class="no">阶段 0</span><h4>合规确认</h4><p class="when">第 1–2 周</p><ul>
+<li>问清单位对外兼职取酬口径</li>
+<li>确认能否走横向课题 / 技术服务合同</li>
+<li>确认能否持股或合作办学</li>
+<li>明确 IP 与课程版权归属规则</li>
+</ul></div>
+<div class="step"><span class="no">阶段 1</span><h4>讲师方</h4><p class="when">第 1–3 月</p><ul>
+<li>接院校师资培训、机构外聘课</li>
+<li>起步价 8,000–15,000 元/天</li>
+<li>第一单可降价，条件是换授权案例</li>
+<li>目标不是钱，是案例与背书</li>
+</ul></div>
+<div class="step"><span class="no">阶段 2</span><h4>课程方</h4><p class="when">第 3–9 月</p><ul>
+<li>把课标准化成课程包</li>
+<li>含大纲、课件、素材、考核、讲师手册</li>
+<li>授权 / 白标 / 研发外包三条并行</li>
+<li>一次开发，多次收费</li>
+</ul></div>
+<div class="step"><span class="no">阶段 3</span><h4>垂直与生态</h4><p class="when">第 9–18 月</p><ul>
+<li>绑定行业认证，抬高客单价</li>
+<li>开面向从业者的高阶短训</li>
+<li>走技术服务合同，不做就业承诺</li>
+<li>考虑毕业生实习输送的闭环</li>
+</ul></div>
+</div>
+
+<div class="note"><b>阶段 3 的方向选择：</b>不要做"零基础转行就业班"（红海 + 投诉重灾区），要做<b>面向已经会用工具、但做不出能交货的东西的人</b>——一致性控制、批量生产管线这类高阶内容。2–3 天，客单价 3,000–8,000 元，不需要就业承诺，不需要办学许可，投诉风险极低。</div>
+
+<h2>六、你们的差异化在哪里</h2>
+
+<table>
+<thead><tr><th style="width:30%">市场现状</th><th style="width:35%">你们有的</th><th style="width:35%">对应卖点</th></tr></thead>
+<tbody>
+<tr><td>课程停留在基础工具操作层面</td><td>一致性控制、资产体系、验收标准</td><td>不教工具，教"能交货"</td></tr>
+<tr><td>师资由兼职讲师或应届生组成</td><td>两位企业背景的双师</td><td>讲真实项目，不讲演示案例</td></tr>
+<tr><td>工具三个月一换，课程半年就废</td><td>规范与管线不随工具变</td><td>课程生命周期长，可复用</td></tr>
+<tr><td>机构缺能交付的高质量内容</td><td>能研发、能交付、能迭代</td><td>做内容供应方，不抢招生</td></tr>
+</tbody>
+</table>
+
+<h2>七、合规：能做与绝对不做</h2>
+
+<div class="do">
+<h4>可以做（用工性质清晰、风险低）</h4>
+<ul>
+<li><b>特约外聘讲师。</b>单次公开课、短期集训营、周末专题课，只按授课课时结算酬劳，不接受日常人事管理，课程结束本次合作即终止。</li>
+<li><b>课程研发与课件外包制作。</b>题库编写、课程脚本、配套讲义、课程视频剪辑等项目制外包，独立交付，一次性或分阶段结算。</li>
+<li><b>知识付费专栏 / 单节课程合作。</b>与线上平台合作，按播放或售卖分成结算。</li>
+<li><b>院校师资培训与横向课题。</b>走学校账，合规且计入双师业绩，是最省心的起步通道。</li>
+</ul>
+</div>
+
+<div class="dont">
+<h4>绝对不做</h4>
+<ul>
+<li><b>不办全日制培训班、不招脱产学员。</b>无办学资质的培训业务，任何结算方式都兜不住风险。</li>
+<li><b>不做就业承诺与保薪承诺。</b>这是投诉量增长 65% 的主要来源，也是最容易翻车的一项。</li>
+<li><b>不碰培训贷、分期诱导。</b>违规手段，一旦涉及就是经营风险而非民事纠纷。</li>
+<li><b>不接受固定排班考勤的"专职授课"安排。</b>长期固定课时、接受统一考勤与绩效考核、按月发固定薪资，实践中极易被认定为事实劳动关系。</li>
+<li><b>不长期独家绑定单一机构。</b>同一人连续十余月稳定为单一机构全职式服务，税务与人社部门会重点核查用工实质。</li>
+</ul>
+</div>
+
+<div class="note"><b>第一条待办：</b>上面所有判断的前提，是你们单位的对外兼职取酬口径。有些院校允许横向课题、不允许个人持股；有些允许个人劳务、不允许占用工作时间。<b>先问科研处和人事处，再动。</b>别先干后问。</div>
+
+<h2>八、90 天动作清单</h2>
+<ul class="chk">
+<li>向科研处 / 人事处确认：横向课题路径、个人劳务路径、持股与合作办学边界。</li>
+<li>确立一个对外统一名号与一句话定位，用于所有对外材料。</li>
+<li>搭一套可演示的角色一致性工作流——这既是课程原型，也是后续产品原型。</li>
+<li>产出三份对外物料：课程大纲一页纸、三种报价模板、一段 3 分钟的 before / after 演示视频。</li>
+<li>列出本地 20 家目标客户（院校 10 家、企业 10 家），逐个触达。</li>
+<li>拿下第一单，可以是免费或半价，唯一条件是换取可授权的案例与推荐。</li>
+<li>把第一单的完整交付过程文档化，直接转成可授权的课程包初版。</li>
+<li>90 天末复盘：若询盘可稳定产生，再决定是否投入课程包标准化。</li>
+</ul>
+
+<p style="margin-top:40px; font-size:12.5px; color:#6E6E68; border-top:1px solid var(--line); padding-top:16px;">
+数据来源包括：2026 年 AIGC 技能培训行业公开整理、2025 年第四季度消费者协会统计、2026 年企业 AI 内训讲师市场报价、职业教育教师转型培训公开信息、2026 年教培行业灵活用工合规指引。市场规模与增速数据来自行业机构预测，存在口径差异；讲师报价为机构渠道挂牌价，实际到手需扣除分成。
+</p>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>三级火箭 · 培训内容与能力清单（执行手册）</title>
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;padding:40px 20px 80px;background:#FFFFFF;color:#1F2328;
+    font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif;
+    font-size:15px;line-height:1.85;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:980px;margin:0 auto}
+  .kicker{font-size:12.5px;letter-spacing:.14em;color:#0C447C;font-weight:600;margin-bottom:14px}
+  h1{font-size:29px;line-height:1.4;margin:0 0 14px;font-weight:700;letter-spacing:-.01em}
+  .sub{font-size:16px;color:#57606A;margin:0 0 10px;line-height:1.7}
+  .meta{font-size:12.5px;color:#8A919A;border-top:1px solid #EAECEF;border-bottom:1px solid #EAECEF;padding:12px 0;margin:22px 0 34px}
+  h2{font-size:21px;margin:54px 0 16px;padding-left:13px;border-left:4px solid #0C447C;font-weight:700;line-height:1.5}
+  h3{font-size:16.5px;margin:34px 0 12px;font-weight:600;color:#0C447C}
+  h4{font-size:15px;margin:24px 0 8px;font-weight:600;color:#24292F}
+  p{margin:0 0 15px}
+  ul,ol{margin:0 0 16px;padding-left:22px}
+  li{margin-bottom:9px}
+  strong{font-weight:600}
+  em{font-style:normal;background:#FFF6DA;padding:1px 3px;border-radius:3px}
+  code{font-family:'SFMono-Regular',Consolas,'Liberation Mono',monospace;font-size:13px;background:#F2F4F7;padding:1px 5px;border-radius:4px;color:#0C447C}
+  table{width:100%;border-collapse:collapse;margin:18px 0 24px;font-size:13.5px}
+  th{background:#F4F6F8;text-align:left;padding:10px 11px;font-weight:600;color:#24292F;border-bottom:2px solid #DDE1E5;white-space:nowrap}
+  td{padding:10px 11px;border-bottom:1px solid #EAECEF;vertical-align:top;line-height:1.7}
+  tr:hover td{background:#FAFBFC}
+  .ok{color:#0B5B47;font-weight:600}
+  .cut{color:#A32D2D;font-weight:600}
+  .mid{color:#7A4A0A;font-weight:600}
+  .j{color:#3D444D;font-size:12.5px}
+  .tag{display:inline-block;font-family:'SFMono-Regular',Consolas,monospace;font-size:11.5px;font-weight:600;color:#0C447C;background:#E6F1FB;border-radius:4px;padding:1px 6px;margin-right:6px}
+  .key{background:#E6F1FB;border-left:4px solid #0C447C;padding:16px 20px;margin:22px 0;border-radius:0 8px 8px 0}
+  .key p:last-child{margin-bottom:0}
+  .box{background:#F7F8FA;border:1px solid #E6E8EB;padding:16px 20px;border-radius:8px;margin:20px 0}
+  .box p:last-child{margin-bottom:0}
+  .warnbox{background:#FAEEDA;border-left:4px solid #BA7517;padding:16px 20px;margin:20px 0;border-radius:0 8px 8px 0}
+  .warnbox p:last-child{margin-bottom:0}
+  .fixbox{background:#F4F0FB;border-left:4px solid #6E5AC8;padding:16px 20px;margin:20px 0;border-radius:0 8px 8px 0}
+  .fixbox p:last-child{margin-bottom:0}
+  .card{background:#FFFFFF;border:1px solid #DDE1E5;border-radius:8px;padding:16px 20px;margin:18px 0}
+  .card h4{margin-top:0}
+  .fig{margin:26px 0 30px}
+  .fig svg{display:block;width:100%;height:auto}
+  .fig figcaption{font-size:12.5px;color:#57606A;margin-top:10px;line-height:1.65}
+  .foot{margin-top:56px;padding-top:22px;border-top:1px solid #EAECEF;font-size:12.5px;color:#8A919A}
+  .foot ul{padding-left:20px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<p class="kicker">三级火箭 · 执行手册</p>
+<h1>每一级教什么、练什么、验什么</h1>
+<p class="sub">把"底座 · 训练营 · 核心项目组"拆成能力项、训练任务、交付物与判据，可直接照着排课</p>
+<p class="meta">配套：《三级火箭体系设计（底座·训练营·核心项目组）》《Python 课程改造方案（第 3 章起）》《AIGC 训练营执行计划》｜ 学生：大二，距实习约一年 ｜ 2026 秋 ｜ 说明：本册只写"可执行的部分"，结构判断与选赛道理由见体系设计文档</p>
+
+<h2>序：这份手册怎么用</h2>
+
+<p>体系设计那一份解决的是"三级为什么这样分"，这一份解决的是"<strong>每一级具体教哪些东西、学生练完能做什么、怎么算过关</strong>"。</p>
+
+<p>三级共用同一套结构，每一级都按这六件写：</p>
+
+<ol>
+<li><strong>能力清单</strong>——编号的能力项，每条都用"能做什么"而不是"学过什么"来写；</li>
+<li><strong>训练内容与课时</strong>——模块划分与周次落点；</li>
+<li><strong>任务卡</strong>——每个训练任务的目标、输入、产出、判据；</li>
+<li><strong>周表</strong>——每周当堂做什么、交什么；</li>
+<li><strong>验收量表</strong>——不合格 / 合格 / 优秀三档，各档长什么样；</li>
+<li><strong>教师准备与失败纠正</strong>——这一级最容易塌在哪、怎么提前防。</li>
+</ol>
+
+<div class="key">
+<p><strong>贯穿三级的一条原则：能力项必须能用一条可观测的证据来证明。</strong>"掌握 Python 基础"不能验收，"给定 shots.json 前三条，写出状态判定并输出正确"可以。下面所有判据都是后者——这也是期末评分、以及一年后面试时学生能讲出东西的前提。</p>
+</div>
+
+<figure class="fig">
+<svg viewBox="0 0 900 384" width="100%" role="img" aria-label="三级能力递进：一级五项基础能力，二级五项共享工程能力，三级五项工程化能力">
+  <g font-family="-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif">
+    <text x="20" y="30" font-size="12" font-weight="600" fill="#57606A">能力编号</text>
+    <text x="120" y="30" font-size="12" fill="#8A919A">同一列上下贯通 = 同一条能力线被放大三次（A2 调接口 → B1 批量并发 → C1 管线封装）</text>
+
+    <text x="20" y="72" font-size="13" font-weight="600" fill="#1F2328">第三级</text>
+    <text x="20" y="90" font-size="11.5" fill="#6B7379">核心项目组</text>
+    <rect x="120" y="52" width="148" height="58" rx="8" fill="#85B7EB" stroke="#185FA5" stroke-width="0.5"/>
+    <text x="132" y="74" font-size="11.5" font-weight="600" fill="#042C53">C1</text>
+    <text x="132" y="94" font-size="12.5" fill="#042C53">管线封装与断点续跑</text>
+    <rect x="276" y="52" width="148" height="58" rx="8" fill="#85B7EB" stroke="#185FA5" stroke-width="0.5"/>
+    <text x="288" y="74" font-size="11.5" font-weight="600" fill="#042C53">C2</text>
+    <text x="288" y="94" font-size="12.5" fill="#042C53">标准翻译成检查项</text>
+    <rect x="432" y="52" width="148" height="58" rx="8" fill="#85B7EB" stroke="#185FA5" stroke-width="0.5"/>
+    <text x="444" y="74" font-size="11.5" font-weight="600" fill="#042C53">C3</text>
+    <text x="444" y="94" font-size="12.5" fill="#042C53">成本与产能核算</text>
+    <rect x="588" y="52" width="148" height="58" rx="8" fill="#85B7EB" stroke="#185FA5" stroke-width="0.5"/>
+    <text x="600" y="74" font-size="11.5" font-weight="600" fill="#042C53">C4</text>
+    <text x="600" y="94" font-size="12.5" fill="#042C53">分工与责任归属</text>
+    <rect x="744" y="52" width="136" height="58" rx="8" fill="#85B7EB" stroke="#185FA5" stroke-width="0.5"/>
+    <text x="756" y="74" font-size="11.5" font-weight="600" fill="#042C53">C5</text>
+    <text x="756" y="94" font-size="12.5" fill="#042C53">交付与对外沟通</text>
+
+    <text x="20" y="162" font-size="13" font-weight="600" fill="#1F2328">第二级</text>
+    <text x="20" y="180" font-size="11.5" fill="#6B7379">工程训练营</text>
+    <rect x="120" y="142" width="148" height="58" rx="8" fill="#B5D4F4" stroke="#378ADD" stroke-width="0.5"/>
+    <text x="132" y="164" font-size="11.5" font-weight="600" fill="#042C53">B1</text>
+    <text x="132" y="184" font-size="12.5" fill="#042C53">批量与并发</text>
+    <rect x="276" y="142" width="148" height="58" rx="8" fill="#B5D4F4" stroke="#378ADD" stroke-width="0.5"/>
+    <text x="288" y="164" font-size="11.5" font-weight="600" fill="#042C53">B2</text>
+    <text x="288" y="184" font-size="12.5" fill="#042C53">一致性控制</text>
+    <rect x="432" y="142" width="148" height="58" rx="8" fill="#B5D4F4" stroke="#378ADD" stroke-width="0.5"/>
+    <text x="444" y="164" font-size="11.5" font-weight="600" fill="#042C53">B3</text>
+    <text x="444" y="184" font-size="12.5" fill="#042C53">归档与版本</text>
+    <rect x="588" y="142" width="148" height="58" rx="8" fill="#B5D4F4" stroke="#378ADD" stroke-width="0.5"/>
+    <text x="600" y="164" font-size="11.5" font-weight="600" fill="#042C53">B4</text>
+    <text x="600" y="184" font-size="12.5" fill="#042C53">质检与筛选</text>
+    <rect x="744" y="142" width="136" height="58" rx="8" fill="#B5D4F4" stroke="#378ADD" stroke-width="0.5"/>
+    <text x="756" y="164" font-size="11.5" font-weight="600" fill="#042C53">B5</text>
+    <text x="756" y="184" font-size="12.5" fill="#042C53">工作流封装</text>
+
+    <text x="20" y="252" font-size="13" font-weight="600" fill="#1F2328">第一级</text>
+    <text x="20" y="270" font-size="11.5" fill="#6B7379">语言底座（全员）</text>
+    <rect x="120" y="232" width="148" height="58" rx="8" fill="#E6F1FB" stroke="#85B7EB" stroke-width="0.5"/>
+    <text x="132" y="254" font-size="11.5" font-weight="600" fill="#0C447C">A1</text>
+    <text x="132" y="274" font-size="12.5" fill="#0C447C">用代码表达逻辑</text>
+    <rect x="276" y="232" width="148" height="58" rx="8" fill="#E6F1FB" stroke="#85B7EB" stroke-width="0.5"/>
+    <text x="288" y="254" font-size="11.5" font-weight="600" fill="#0C447C">A2</text>
+    <text x="288" y="274" font-size="12.5" fill="#0C447C">调接口与鉴权</text>
+    <rect x="432" y="232" width="148" height="58" rx="8" fill="#E6F1FB" stroke="#85B7EB" stroke-width="0.5"/>
+    <text x="444" y="254" font-size="11.5" font-weight="600" fill="#0C447C">A3</text>
+    <text x="444" y="274" font-size="12.5" fill="#0C447C">文件批处理</text>
+    <rect x="588" y="232" width="148" height="58" rx="8" fill="#E6F1FB" stroke="#85B7EB" stroke-width="0.5"/>
+    <text x="600" y="254" font-size="11.5" font-weight="600" fill="#0C447C">A4</text>
+    <text x="600" y="274" font-size="12.5" fill="#0C447C">版本与可复现</text>
+    <rect x="744" y="232" width="136" height="58" rx="8" fill="#E6F1FB" stroke="#85B7EB" stroke-width="0.5"/>
+    <text x="756" y="254" font-size="11.5" font-weight="600" fill="#0C447C">A5</text>
+    <text x="756" y="274" font-size="12.5" fill="#0C447C">读报错与自愈</text>
+
+    <line x1="196" y1="232" x2="196" y2="222" stroke="#8A919A" stroke-width="1.2"/>
+    <line x1="352" y1="232" x2="352" y2="222" stroke="#8A919A" stroke-width="1.2"/>
+    <line x1="508" y1="232" x2="508" y2="222" stroke="#8A919A" stroke-width="1.2"/>
+    <line x1="664" y1="232" x2="664" y2="222" stroke="#8A919A" stroke-width="1.2"/>
+    <line x1="812" y1="232" x2="812" y2="222" stroke="#8A919A" stroke-width="1.2"/>
+    <line x1="196" y1="142" x2="196" y2="132" stroke="#8A919A" stroke-width="1.2"/>
+    <line x1="352" y1="142" x2="352" y2="132" stroke="#8A919A" stroke-width="1.2"/>
+    <line x1="508" y1="142" x2="508" y2="132" stroke="#8A919A" stroke-width="1.2"/>
+    <line x1="664" y1="142" x2="664" y2="132" stroke="#8A919A" stroke-width="1.2"/>
+    <line x1="812" y1="142" x2="812" y2="132" stroke="#8A919A" stroke-width="1.2"/>
+
+    <text x="120" y="320" font-size="12.5" fill="#57606A">同一列是同一条能力线：A2 调接口 → B1 批量与并发 → C1 管线封装，是同一件事被放大三次。</text>
+    <text x="120" y="342" font-size="12.5" fill="#57606A">纵向是依赖顺序不是时间顺序：第一级必须先有，第二级与第三级在时间上并行推进。</text>
+    <text x="120" y="364" font-size="12.5" fill="#57606A">三级加起来十五个能力项，学生能拿出证据的项数，就是一年后他作品集的厚度。</text>
+  </g>
+</svg>
+<figcaption>图 1 ｜ 十五个能力项。<strong>同一列上下贯通看，才是这套体系的骨架</strong>——第三级不是新东西，是第二级的同一条能力线被放到真实交付里。</figcaption>
+</figure>
+
+<h2>一、任务卡：所有训练任务的统一格式</h2>
+
+<p>三级共用一张卡，任何一次训练任务都按这五项写清楚。<strong>写不出"判据"的任务不要布置</strong>——没有判据的任务，学生交上来你只能凭感觉打分，一周后就变成走过场。</p>
+
+<figure class="fig">
+<svg viewBox="0 0 900 176" width="100%" role="img" aria-label="任务卡五要素：目标、输入、产出、判据、复盘问题">
+  <g font-family="-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif">
+    <rect x="30" y="40" width="150" height="76" rx="8" fill="#E6F1FB" stroke="#85B7EB" stroke-width="0.5"/>
+    <text x="105" y="64" text-anchor="middle" font-size="13" font-weight="600" fill="#0C447C">目标</text>
+    <text x="105" y="86" text-anchor="middle" font-size="11.5" fill="#185FA5">一句话，动词开头</text>
+    <text x="105" y="104" text-anchor="middle" font-size="11.5" fill="#185FA5">不写"了解""掌握"</text>
+
+    <rect x="190" y="40" width="150" height="76" rx="8" fill="#E6F1FB" stroke="#85B7EB" stroke-width="0.5"/>
+    <text x="265" y="64" text-anchor="middle" font-size="13" font-weight="600" fill="#0C447C">输入</text>
+    <text x="265" y="86" text-anchor="middle" font-size="11.5" fill="#185FA5">给他什么文件</text>
+    <text x="265" y="104" text-anchor="middle" font-size="11.5" fill="#185FA5">路径写死，不让学生找</text>
+
+    <rect x="350" y="40" width="150" height="76" rx="8" fill="#CFE2F3" stroke="#378ADD" stroke-width="0.5"/>
+    <text x="425" y="64" text-anchor="middle" font-size="13" font-weight="600" fill="#042C53">产出</text>
+    <text x="425" y="86" text-anchor="middle" font-size="11.5" fill="#0B3A61">交什么，几个文件</text>
+    <text x="425" y="104" text-anchor="middle" font-size="11.5" fill="#0B3A61">命名与位置规定好</text>
+
+    <rect x="510" y="40" width="150" height="76" rx="8" fill="#FAEEDA" stroke="#BA7517" stroke-width="0.5"/>
+    <text x="585" y="64" text-anchor="middle" font-size="13" font-weight="600" fill="#7A4A0A">判据</text>
+    <text x="585" y="86" text-anchor="middle" font-size="11.5" fill="#854F0B">可数、可查、不靠感觉</text>
+    <text x="585" y="104" text-anchor="middle" font-size="11.5" fill="#854F0B">三档：不合格/合格/优秀</text>
+
+    <rect x="670" y="40" width="200" height="76" rx="8" fill="#DFF3EC" stroke="#7FC9AF" stroke-width="0.5"/>
+    <text x="770" y="64" text-anchor="middle" font-size="13" font-weight="600" fill="#0B5B47">复盘三问</text>
+    <text x="770" y="86" text-anchor="middle" font-size="11.5" fill="#0B5B47">哪里最容易坏？</text>
+    <text x="770" y="104" text-anchor="middle" font-size="11.5" fill="#0B5B47">坏了怎么知道？下次改哪？</text>
+
+    <text x="30" y="146" font-size="12.5" fill="#57606A">复盘三问三级通用，每周都问同一组问题——问到第四次，学生自己就会在动手前先想这三件事。</text>
+    <text x="30" y="166" font-size="12.5" fill="#57606A">这也是期末答辩的三个题：脚本哪里最容易坏、坏了怎么知道、废片率多少。</text>
+  </g>
+</svg>
+<figcaption>图 2 ｜ 任务卡五要素。<strong>判据写不出来，说明这个任务的目标还没想清楚</strong>，那就先别布置，回去改目标。</figcaption>
+</figure>
+
+<h2>二、第一级：语言底座（课内 · 全体 · 60 学时）</h2>
+
+<h3>2.1 能力清单 A1–A5</h3>
+
+<table>
+<thead><tr><th style="width:52px">编号</th><th style="width:118px">能力</th><th style="width:250px">行为描述（结课时能做什么）</th><th>验收证据（可观测）</th></tr></thead>
+<tbody>
+<tr><td><span class="tag">A1</span></td><td><strong>用代码表达逻辑</strong></td><td>拿到一个用中文描述清楚的、不超过 60 行能解决的需求，能自己拆成步骤并写出来</td><td><code>manhua.py</code> 十个零件全部交付，且每个零件能单独运行不报错</td></tr>
+<tr><td><span class="tag">A2</span></td><td><strong>调接口与鉴权</strong></td><td>能调用一个 HTTP 接口，解析 JSON 返回值，取到自己要的字段；密钥放在环境变量里而不是写死在代码里</td><td>提交一次真实调用记录：请求参数、返回字段、耗时、失败重试次数</td></tr>
+<tr><td><span class="tag">A3</span></td><td><strong>文件批处理</strong></td><td>对 100 个文件做统一变换（改尺寸 / 加水印 / 重命名 / 转格式），并输出一张处理清单</td><td>输入 100 张，输出 100 张 + <code>manifest.csv</code>，数量对得上</td></tr>
+<tr><td><span class="tag">A4</span></td><td><strong>版本与可复现</strong></td><td>会用 Git 做提交、回退、看历史三件事；能写出让别人跑起来的 README</td><td class="ok">把仓库发给同组另一个人，对方照 README 一次跑通</td></tr>
+<tr><td><span class="tag">A5</span></td><td><strong>读报错与自愈</strong></td><td>看到 traceback 能定位到出错行与原因，能区分"我的错 / 接口的错 / 网络的错"</td><td>给 3 段报错，5 分钟内说出定位与改法</td></tr>
+</tbody>
+</table>
+
+<div class="box">
+<p><strong>A5 不单独排学时，但它是这一级的隐藏主线。</strong>每一次练习都要留 5 分钟做一件事：把今天出现过的报错念一遍，说出最后一行在说什么。<strong>会读报错比会写新代码更优先</strong>——它也是期末卷面最能区分真会假会的题型。</p>
+</div>
+
+<h3>2.2 训练内容：一条主线 + 三块连接器</h3>
+
+<p>整学期只做一个文件 <code>manhua.py</code>，每章给它加一个零件。下面这张表是排课用的主表，<strong>"当堂任务"一列按讲练一体的 20 分钟讲 + 25 分钟做 + 5 分钟收尾来写</strong>。</p>
+
+<table>
+<thead><tr><th style="width:40px">周</th><th style="width:110px">章节 / 模块</th><th style="width:120px">当堂任务（做什么）</th><th style="width:120px">交付</th><th>判据（合格线）</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>第 3 章 流程控制</td><td>先放 30 秒成片；给脚本加"任务状态判定"：读 <code>shots.json</code> 前 3 条，打印待生成 / 已生成 / 失败</td><td>零件 1 · 仓库建好</td><td>3 条状态输出全对；说得出 <code>if</code> 与 <code>while</code> 各用在哪种场合</td></tr>
+<tr><td>2–3</td><td>第 4 章 字符串</td><td>把硬编码的提示词改成模板：角色名、场景、风格三个变量可替换，拼出 5 条不同提示词</td><td>零件 2</td><td>5 条提示词结构一致、只有变量不同；不用连续加号拼接</td></tr>
+<tr><td>4–5</td><td>第 5 章 组合数据</td><td>把参数从散变量搬进列表与字典，做成一张参数表，遍历生成 5 组配置</td><td>零件 3 · 训练营本周启动</td><td>改参数不动代码；能用推导式写出一行筛选</td></tr>
+<tr><td>6</td><td>第 6 章 函数</td><td>把"拼提示词""算文件名""写日志"包成三个函数，主流程只剩调用</td><td>零件 4</td><td>三个函数各有明确返回值；主流程不超过 15 行</td></tr>
+<tr><td>7–8</td><td>第 7 章 文件</td><td>加归档：每次运行建一个 <code>runs/日期_版本号/</code> 目录，图与参数一起落盘</td><td>零件 5</td><td>目录结构规范；参数与图一一对应，删掉一张图能找出它的参数</td></tr>
+<tr><td>9–10</td><td>第 8 章 面向对象</td><td>写 <code>Character</code> 类：基准资产 + 参数表 + 质检标准三个属性，两个方法</td><td>零件 6 · Character v1</td><td>换一个角色只需改实例化参数；<strong>能说出它和电商 <code>Product</code> 类是同一个类的两个实例</strong></td></tr>
+<tr><td>11</td><td>第 9 章 异常</td><td>加重试与超时：接口失败自动重试 3 次，超限写日志跳过，不中断整批</td><td>零件 7</td><td>人为断网一次，脚本不崩，日志里有记录</td></tr>
+<tr><td>12</td><td><strong>模块 A 调接口 4 学时</strong></td><td>接真实接口：先跑 mock，再换成真实调用，出第一张真图</td><td>零件 8 · 真实出图</td><td class="ok">密钥不在代码里；有调用记录（参数 / 耗时 / 重试次数）</td></tr>
+<tr><td>13–14</td><td><strong>模块 B 批量生产 4 学时</strong></td><td>一次跑 30 张，控制并发与限流，失败的单独进重试队列</td><td>零件 9 · 候选集</td><td>30 张全部有结果（成功或记录失败）；不因单张失败中断</td></tr>
+<tr><td>14–15</td><td><strong>模块 C 筛选与记录 2 学时</strong></td><td>定 3 条可判定的筛选标准，人工挑出 10 张，写生产记录</td><td>零件 10 · 30 秒成片 + 生产记录</td><td>筛选标准里没有"好看"这类形容词；废片率是一个数字</td></tr>
+<tr><td>15</td><td><strong>模块 D 期末项目 3 学时</strong></td><td>完整跑通一遍 + 答辩三问</td><td>答辩 + 仓库</td><td>三个问题答得上来：哪里最容易坏、坏了怎么知道、废片率多少</td></tr>
+</tbody>
+</table>
+
+<h4>连接器三块的细化（共 10 学时，含在 60 之内）</h4>
+
+<div class="card">
+<h4><span class="tag">A2</span>调接口 4 学时</h4>
+<ul>
+<li><strong>讲什么</strong>：HTTP 请求与响应的形状、JSON 结构与取值、状态码含义、密钥放环境变量、超时与重试的基本写法。</li>
+<li><strong>练什么</strong>：先给一个 <code>mock_server.py</code>（返回固定 JSON，不联网），学生练请求构造与字段解析；跑通后换真实地址，只改一个常量。</li>
+<li><strong>判据</strong>：真实调用成功一次，提交调用记录；代码里搜不到密钥字符串。</li>
+<li><strong>教师准备</strong>：mock 脚本一份（约 40 行）、两个平台账号与额度、一份"常见状态码对照表"。</li>
+</ul>
+</div>
+
+<div class="card">
+<h4><span class="tag">A3</span>文件批处理 4 学时</h4>
+<ul>
+<li><strong>讲什么</strong>：路径遍历、批量重命名规则、PIL 改尺寸与加水印、调用 ffmpeg 命令行做帧与视频处理。</li>
+<li><strong>练什么</strong>：给 100 张尺寸不一的图，统一成三种平台规格（主图 / 详情 / 封面），输出 <code>manifest.csv</code>。</li>
+<li><strong>判据</strong>：100 进 300 出，行数对得上；清单里有原文件名、新文件名、尺寸、处理时间四列。</li>
+<li><strong>教师准备</strong>：100 张素材（公开图库即可）、三种平台尺寸规范表、ffmpeg 安装包与一条现成命令。</li>
+</ul>
+</div>
+
+<div class="card">
+<h4><span class="tag">A4</span>Git 与虚拟环境 2 学时</h4>
+<ul>
+<li><strong>讲什么</strong>：只讲三件事——提交、回退、看历史。分支模型不教，够用即可。附带 <code>requirements.txt</code> 与虚拟环境。</li>
+<li><strong>练什么</strong>：故意让脚本跑挂一次，用回退找回上一版能跑的代码。</li>
+<li><strong>判据</strong>：提交记录里看得到十个零件的演进；<strong>同桌互相 clone 一次，照 README 跑通</strong>。</li>
+<li><strong>教师准备</strong>：README 模板（含环境、安装、运行、常见报错四段）、一个故意留错的样例仓库。</li>
+</ul>
+</div>
+
+<h3>2.3 第一级的验收量表</h3>
+
+<table>
+<thead><tr><th style="width:150px">维度</th><th style="width:270px">不合格</th><th style="width:250px">合格（给学分）</th><th>优秀</th></tr></thead>
+<tbody>
+<tr><td>跑通</td><td>只能在自己电脑上跑，换机器就报错</td><td>仓库发给别人，照 README 一次跑通</td><td>别人跑通且无需提问</td></tr>
+<tr><td>批量</td><td>一次只能处理一个，手动重复</td><td>一次处理 30 个，有清单</td><td>有失败重试与跳过，30 个全部有结果</td></tr>
+<tr><td>记录</td><td>没有记录，或只写"完成"</td><td>有参数、耗时、废片数</td><td>能算出单位成本并说明瓶颈在哪</td></tr>
+<tr><td>报错</td><td>看到红色就举手</td><td>能定位到行</td><td>能区分三类错误来源并给出改法</td></tr>
+</tbody>
+</table>
+
+<div class="warnbox">
+<p><strong>这一级最大的风险不是学生学不会，是期末倒逼回传统教法。</strong>防线只有一条：<strong>知识点一个不删，只换案例载体</strong>——学生考的仍是 f-string、推导式、try-except，不因载体变化承担任何笔试风险。新增的 16 学时赛道内容不进闭卷，全部挂在"上机 20%"上；<strong>不计分学生就不重视</strong>，这是 16 学时最容易打水漂的地方。</p>
+</div>
+
+<h3>2.4 JS 班在这一级的位置</h3>
+
+<p><strong>注（2026-09-18 修正）：</strong>本节原默认 JS 与 Python 两侧底座一致。实际 JS 两个班的 Python 由其他老师任教、未改造，因此两侧不再咬在"同一套 Python 能力"上，改为咬在<strong>数据契约</strong>上。<span class="mid">本节表格中的接口约定仍然有效，具体协作机制见《JS 两班并入训练营的协作机制》。</span></p>
+
+<p>两个语言底座不是两个专业方向，是同一条生产线的两端：<strong>Python 造引擎，JS 造控制台</strong>。JS 侧对应学时应讲的是：</p>
+
+<table>
+<thead><tr><th style="width:110px">JS 侧内容</th><th style="width:210px">对应能力</th><th>与 Python 侧的接口约定</th></tr></thead>
+<tbody>
+<tr><td>fetch 与异步</td><td>等同于 A2 调接口</td><td class="j">同一套接口地址、同一份 JSON 结构、同一种鉴权方式</td></tr>
+<tr><td>表单与任务队列界面</td><td>把参数表变成人能填的界面</td><td class="j">输入就是 <code>shots.json</code> / <code>sku.csv</code>，字段两边一致</td></tr>
+<tr><td>素材库与审核界面</td><td>把 B4 质检变成可点选的工具</td><td class="j">读取同一个 <code>runs/</code> 目录与 manifest，不做第二套存储</td></tr>
+<tr><td>数据看板</td><td>把 C3 成本产能可视化</td><td class="j">读同一份生产记录 JSON</td></tr>
+</tbody>
+</table>
+
+<p><strong>两边必须讲同一套"连接器"口径</strong>——调接口、JSON、鉴权、错误处理四个词在两门课里含义一致，第二级才有共通语言。至于第 12 周之后的分轨：<strong>Python 班造引擎，JS 班造控制台，大二下合流成一个完整工具。</strong></p>
+
+<h2>三、第二级：AIGC 工程训练营（社团 · 志愿 · 每周 2 小时）</h2>
+
+<h3>3.1 能力清单 B1–B5：共享的那八成</h3>
+
+<table>
+<thead><tr><th style="width:52px">编号</th><th style="width:110px">能力</th><th style="width:270px">行为描述</th><th>验收证据</th></tr></thead>
+<tbody>
+<tr><td><span class="tag">B1</span></td><td><strong>批量与并发</strong></td><td>一次下达 100 个生成任务，控制并发数与间隔，失败自动重试且不中断整批</td><td>100 个任务全部有结果；中断后能从断点继续，不重跑已完成的</td></tr>
+<tr><td><span class="tag">B2</span></td><td><strong>一致性控制</strong></td><td>能让 10 张图中的同一个对象看起来是同一个，并说清自己锁定了哪几个变量</td><td>10 张图 + 一张"锁了什么"的说明；换人照做能得到接近的结果</td></tr>
+<tr><td><span class="tag">B3</span></td><td><strong>归档与版本</strong></td><td>建立目录规范与索引，参数随图落盘，三个月后能找回任意一张的全部参数</td><td>随机抽 3 张，5 分钟内给出它们的完整参数与生成时间</td></tr>
+<tr><td><span class="tag">B4</span></td><td><strong>质检与筛选</strong></td><td>定 3–5 条可判定（非形容词）的筛选标准，按标准筛并统计废片率</td><td>标准条文 + 废片率数字 + 被筛掉的三张及其违反的条款</td></tr>
+<tr><td><span class="tag">B5</span></td><td><strong>工作流封装</strong></td><td>把手动流程写成一条命令，参数化，换素材不改代码</td><td>换一份素材表重跑，只改参数文件，代码零改动</td></tr>
+</tbody>
+</table>
+
+<div class="key">
+<p><strong>B2 和 B4 是这个方向的立身之本，也是工资分水岭所在。</strong>2026 年 9 月在招 JD 里，两份都叫"美术指导"、同在重庆、工具要求几乎相同的岗位，薪资差 6–8K 与 15–25K 三倍；差别就在"建立并维护资产库、推动美术标准体系化、审核他人产出"这半套职责上。<strong>B2 是能产出一致的结果，B4 是能判断什么算合格——这两条合起来，就是那半套职责。</strong></p>
+</div>
+
+<h3>3.2 十二周任务表</h3>
+
+<p>每周 120 分钟固定结构：演示 15 分钟、动手 60 分钟、点评 30 分钟、布置 15 分钟。<strong>前 8 周不写代码</strong>，这是刻意的——先让产出可见，再让代码有意义。</p>
+
+<table>
+<thead><tr><th style="width:34px">周</th><th style="width:96px">主题</th><th style="width:46px">能力</th><th style="width:230px">当堂任务</th><th>交付与判据</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>开营 · 出第一张图</td><td class="j">—</td><td>不装环境，用现成界面，30 分钟内出第一张图；互相看彼此的图说哪张好、为什么</td><td>1 张图 + 一句话 + <strong>基线问卷与前测</strong>（第一周不采，事后补就废了）</td></tr>
+<tr><td>2</td><td>提示词的结构</td><td class="j">B2 前奏</td><td>同一场景写 5 个版本，写出差异在哪一句</td><td>5 个版本 + 差异说明；能指出哪个词导致了最大变化</td></tr>
+<tr><td>3</td><td>角色设定</td><td class="j">B2</td><td>按模板产出一个角色的多角度图 5 张</td><td class="ok">★ 里程碑 1：5 张图 + 角色设定卡（固定字段）</td></tr>
+<tr><td>4</td><td>一致性 A 参考图锁定</td><td class="j">B2</td><td>用参考图锁定角色，出 10 张，自评相似度打分</td><td>10 张 + 打分表；能说出锁定了哪几个变量</td></tr>
+<tr><td>5</td><td>一致性 B 风格与光影</td><td class="j">B2</td><td>同一角色 5 个表情或动作，风格统一</td><td>5 张 + 风格参数对照表；换表情不掉风格</td></tr>
+<tr><td>6</td><td>归档规范</td><td class="j">B3</td><td>把前五周的图按规范重排目录，补一份 JSON 索引</td><td>规范目录 + 索引；<strong>随机抽图能立刻给出参数</strong></td></tr>
+<tr><td>7</td><td><strong>脚本化第一次</strong></td><td class="j">B1</td><td>接课内模块 A：写脚本调接口生成 10 张</td><td>一个能跑的脚本 + 调用记录（接第 12 周课内进度）</td></tr>
+<tr><td>8</td><td>批量与筛选</td><td class="j">B1 B4</td><td>跑 30 张，按自定的 3 条标准人工挑 10 张</td><td>10 张候选 + 标准条文 + 废片率；<strong>标准里不许出现形容词</strong></td></tr>
+<tr><td>9</td><td class="mid"><strong>样品 A：电商</strong></td><td class="j">—</td><td>教师演示一套真实商品素材包：白底图 → 换背景 → 三平台尺寸 → 上架包</td><td>看过后写 100 字："这套东西里哪一步最费人"</td></tr>
+<tr><td>10</td><td class="mid"><strong>样品 B：漫剧</strong></td><td class="j">—</td><td>教师演示 30 秒片段：角色卡 → 分镜表 → 图转视频 → 音画合成</td><td>看过后写 100 字："这条线上哪一步最容易崩"</td></tr>
+<tr><td>11</td><td>自选方向</td><td class="j">—</td><td>不考试、不分配；每人写一句选择理由</td><td class="ok">★ 分叉点：电商管线组 / 漫剧管线组 / 资产与规范组</td></tr>
+<tr><td>12</td><td>验收与展映</td><td class="j">B1–B5</td><td>30 秒成片 + 制作记录（耗时、废片率、成本）</td><td class="ok">★ 里程碑 2：能讲清"这条线我自己跑过一遍"</td></tr>
+</tbody>
+</table>
+
+<div class="warnbox">
+<p><strong>第 9、10 周的两个样品不能只讲，必须做出来给学生看。</strong>看过的选择才是选择，听过的只是名词。这两次课是整学年性价比最高的投入——各约 2 小时准备，但第三级能不能长出人，取决于它。</p>
+<p>电商样品可以用本地商家的真实商品（顺带谈实习），漫剧样品可以用现成 IP 或上一届的片段。<strong>漏掉这两周，第三级会在期末前自然消失——不是没人报名，是没有人知道自己在报什么。</strong></p>
+</div>
+
+<h3>3.3 五项能力的训练任务卡</h3>
+
+<div class="card">
+<h4><span class="tag">B1</span>批量与并发</h4>
+<p><strong>目标</strong>：把"点一百次"变成"跑一次"。<strong>输入</strong>：一张含 100 条提示词的 CSV。<strong>产出</strong>：100 张图 + 一份结果表（成功/失败/耗时/重试次数）。<strong>判据</strong>：合格 = 全部有结果且不中断；优秀 = 中断后能从断点续跑，不重复消耗已成功的任务。</p>
+<p class="j">常见错误：不设间隔被平台限流、失败即崩、把 100 个任务写死在循环里没有队列概念。</p>
+</div>
+
+<div class="card">
+<h4><span class="tag">B2</span>一致性控制</h4>
+<p><strong>目标</strong>：让 10 张图像同一个对象，并说清锁了什么。<strong>输入</strong>：一张基准参考图 + 5 个不同动作描述。<strong>产出</strong>：10 张图 + 锁定变量表（参考图、种子、风格词、光照词、权重）。<strong>判据</strong>：合格 = 外观可辨认为同一对象；优秀 = 换人执行同一份锁定表，结果接近。</p>
+<p class="j">常见错误：只锁参考图不锁风格词；把"像不像"当感觉而不是可对照的参数。</p>
+</div>
+
+<div class="card">
+<h4><span class="tag">B3</span>归档与版本</h4>
+<p><strong>目标</strong>：三个月后还能找回任意一张图的全部参数。<strong>输入</strong>：前八周产出的所有散落文件。<strong>产出</strong>：规范目录 + <code>index.json</code> + 版本号规则。<strong>判据</strong>：合格 = 抽 3 张能给出参数；优秀 = 目录结构换人也能看懂，附一页规范说明。</p>
+<p class="j">常见错误：文件名用中文和空格、图与参数分开放、版本号随手写。</p>
+</div>
+
+<div class="card">
+<h4><span class="tag">B4</span>质检与筛选</h4>
+<p><strong>目标</strong>：把"我觉得不行"变成可执行的判断。<strong>输入</strong>：一批 30 张候选。<strong>产出</strong>：3–5 条标准条文 + 筛选结果 + 废片率。<strong>判据</strong>：合格 = 标准可判定（不出现"好看""有质感"）；优秀 = 标准能被另一个人执行且结论一致。</p>
+<p class="j">常见错误：标准写成审美描述；只挑好的不记录废片，导致废片率永远是未知数。<strong>记住：我们的活不是替美术下判断，是把别人已作出的判断翻译成可执行、可复用、可批量验证的检查项。</strong></p>
+</div>
+
+<div class="card">
+<h4><span class="tag">B5</span>工作流封装</h4>
+<p><strong>目标</strong>：换素材不改代码。<strong>输入</strong>：一份新的素材表。<strong>产出</strong>：一条命令 + 配置文件。<strong>判据</strong>：合格 = 换素材后只改配置；优秀 = 附带一份操作说明，同组人照做能跑出同样结果。</p>
+<p class="j">常见错误：路径写死、参数散落在代码各处、没有说明文档导致只有自己会用。</p>
+</div>
+
+<h3>3.4 寒假与大二下</h3>
+
+<p><strong>寒假三个任务包</strong>（降频，每两周线上检查一次）：</p>
+<ol>
+<li><strong>把一件手动做过的事写成脚本</strong>——参数化、可复现，正好接课内第 8 章；</li>
+<li><strong>建立自己的资产库</strong>——角色、场景、风格整理成目录规范 + JSON 索引，这是做长片的前提，也是简历上能写的一条；</li>
+<li><strong>拆 3 部热门作品的分镜</strong>——交一份拆解表（镜头数、节奏、转折点）。<strong>不消耗算力，但决定下学期选题的眼光。</strong></li>
+</ol>
+
+<p><strong>第二期（大二下）四个阶段：</strong></p>
+
+<table>
+<thead><tr><th style="width:96px">阶段</th><th style="width:56px">时长</th><th style="width:250px">任务</th><th>交付与判据</th></tr></thead>
+<tbody>
+<tr><td>A 选题与剧本</td><td>2 周</td><td>拉文学或视传师生进选题会；按平台规则定形态（<strong>走 2D 漫剧</strong>，成本低、一致性技术成熟）</td><td>10 集剧本 + 分镜表</td></tr>
+<tr><td>B 流水线生产</td><td>4 周</td><td>分组分工：脚本参数、生图、筛选、合成、记录；<strong>每人负责一环，跑通后轮换</strong></td><td>10 集成片 + 每环的责任段说明</td></tr>
+<tr><td>C 投稿与复盘</td><td>3 周</td><td>投稿并跟踪播放、完播、分账数据</td><td>数据复盘报告</td></tr>
+<tr><td>D 接单与作品集</td><td>3 周</td><td>接本地商家素材或电商主图（真实付费方），打包作品集</td><td class="ok">作品集链接 + 实习去向</td></tr>
+</tbody>
+</table>
+
+<h3>3.5 第二级的验收与失败判据</h3>
+
+<div class="fixbox">
+<p><strong>唯一判据：学生能不能独立跑完"需求进来 → 素材出去 → 有记录"这条线。</strong></p>
+<p>能，就进第三级。不能——哪怕学生很积极、氛围很好、作品也好看——说明这级教成了兴趣小组或工具课。<strong>第 8 周必须自查一次，不要等到期末。</strong></p>
+</div>
+
+<table>
+<thead><tr><th style="width:150px">维度</th><th style="width:270px">不合格</th><th style="width:250px">合格</th><th>优秀</th></tr></thead>
+<tbody>
+<tr><td>独立性</td><td>要老师一步步带着才能出图</td><td>给定需求能自己跑完整条线</td><td>能带一个新人跑一遍</td></tr>
+<tr><td>可复现</td><td>只交成品，说不出参数</td><td>有参数记录，能重跑</td><td>换人照记录能跑出接近结果</td></tr>
+<tr><td>一致性</td><td>每张都像不同对象</td><td>10 张可辨认为同一对象</td><td>锁定变量表清晰，换人可执行</td></tr>
+<tr><td>量化</td><td>说不出花了多久、废了多少</td><td>有耗时与废片率</td><td>能算出单位成本并指出瓶颈环节</td></tr>
+</tbody>
+</table>
+
+<h2>四、第三级：核心项目组（10–12 人 · 大二下出作品）</h2>
+
+<h3>4.1 能力清单 C1–C5：分叉的那两成 + 工程化</h3>
+
+<table>
+<thead><tr><th style="width:52px">编号</th><th style="width:118px">能力</th><th style="width:270px">行为描述</th><th>验收证据</th></tr></thead>
+<tbody>
+<tr><td><span class="tag">C1</span></td><td><strong>管线封装与断点续跑</strong></td><td>把多个环节串成一条链，任一环节失败可单独重跑，不推倒重来</td><td>在中间环节人为断电一次，恢复后能从断点继续</td></tr>
+<tr><td><span class="tag">C2</span></td><td><strong>标准翻译成检查项</strong></td><td>把"这个不行"翻译成可自动执行的判定（尺寸、主体占比、相似度阈值、水印、格式）</td><td>一份检查项清单 + 一段自动检查脚本或工具；他人可执行且结论一致</td></tr>
+<tr><td><span class="tag">C3</span></td><td><strong>成本与产能核算</strong></td><td>能报出"100 张要多久、多少钱、几个人、瓶颈在哪"</td><td>成本核算表 + 产能测算；与实际支出误差在 20% 以内</td></tr>
+<tr><td><span class="tag">C4</span></td><td><strong>分工与责任归属</strong></td><td>把一条线拆成可归属的责任段，定义清每段输入输出</td><td>责任分配表 + 接口约定（文件名与格式）；每人能说出自己那段</td></tr>
+<tr><td><span class="tag">C5</span></td><td><strong>交付与对外沟通</strong></td><td>能与需求方确认样品、走验收、留修改记录；能与平台过审要求对表</td><td>需求确认单 + 验收单 + 修改记录；一次通过或有据可查的修改闭环</td></tr>
+</tbody>
+</table>
+
+<h3>4.2 分叉的两成：电商侧与漫剧侧各练什么</h3>
+
+<table>
+<thead><tr><th style="width:92px">环节</th><th style="width:390px">电商素材管线</th><th>漫剧生产管线</th></tr></thead>
+<tbody>
+<tr><td><strong>输入</strong></td><td>SKU 表、白底图、平台尺寸规范</td><td>剧本、角色设定、分镜参数表</td></tr>
+<tr><td><strong>专项内容</strong></td><td>字段映射与批量读取；三平台尺寸与命名规范；去背与换背景；多角度一致性；<strong>平台过审红线</strong>（文字占比、绝对化用语、logo 位置）</td><td>角色卡与参数表 JSON；分镜表字段（镜头号、景别、运镜、时长、提示词）；图转视频的首尾帧控制；音画合成与字幕规范</td></tr>
+<tr><td><strong>一致性对象</strong></td><td>同一件商品十个角度像同一件——材质、色彩、logo 位置</td><td>同一个人五十集像同一个人——脸、服装、色调</td></tr>
+<tr><td><strong>交付结构</strong></td><td>上架包：目录规范 + 命名规则 + 元数据 + 过检自查表</td><td>成片包：分辨率码率规格 + 字幕 + 封面 + 投稿信息表</td></tr>
+<tr><td><strong>质检口径</strong></td><td>可量化：点击率、转化率、平台过审率</td><td>半量化：废片率、一致性达标率、单集耗时</td></tr>
+<tr><td><strong>人均算力</strong></td><td class="ok">约 120 元</td><td class="mid">约 550 元</td></tr>
+<tr><td><strong>出口</strong></td><td>AI 设计师 4–6 千 → 搭工作流 10–12K</td><td>抽卡师 4–6 千 → 管线工程 25–40K</td></tr>
+</tbody>
+</table>
+
+<div class="box">
+<p><strong>两条管线共用同一个脚本的前六个零件</strong>——第 8 章的 <code>Product</code> 类和 <code>Character</code> 类其实是同一个类的两个实例：都是一个"基准资产 + 参数表 + 质检标准"的对象。<strong>讲一个，另一个当作业。</strong>这也是为什么第二级教的是共享的八成——分叉的这两成，真到第三级只需要几周就能补上。</p>
+</div>
+
+<h3>4.3 三个岗位位</h3>
+
+<p>第 11 周自选后，12 人左右会自然分化。两个管线组之外，一定要留第三个位置：</p>
+
+<table>
+<thead><tr><th style="width:130px">位置</th><th style="width:80px">人数</th><th style="width:250px">练什么</th><th>为什么必须有</th></tr></thead>
+<tbody>
+<tr><td><strong>电商管线组</strong></td><td>4–5 人</td><td>SKU 批量、平台适配、上架包交付</td><td>链条短、见效快，是接单与现金流来源</td></tr>
+<tr><td><strong>漫剧管线组</strong></td><td>4–5 人</td><td>角色卡、分镜、图转视频、音画合成</td><td>链条长，是作品集的高度所在</td></tr>
+<tr><td><strong>资产与规范组</strong></td><td>2–3 人</td><td>资产库维护、归档规范、成本台账、质检清单</td><td class="ok">真实团队里这个位置存在且重要；也接住了"两边都不选但一直在交付"的那批人</td></tr>
+</tbody>
+</table>
+
+<h3>4.4 大二下四阶段任务表</h3>
+
+<table>
+<thead><tr><th style="width:78px">阶段</th><th style="width:56px">时长</th><th style="width:230px">任务</th><th>交付与判据</th></tr></thead>
+<tbody>
+<tr><td>P1 管线成型</td><td>3 周</td><td>把手动流程串成一条链，加断点续跑与日志</td><td>链条脚本 + 一次人为中断恢复演示</td></tr>
+<tr><td>P2 标准落地</td><td>2 周</td><td>请视传/数媒老师给判断，学生把它翻译成检查项并自动执行</td><td>检查项清单 + 自动检查；两人执行结论一致</td></tr>
+<tr><td>P3 批量生产</td><td>4 周</td><td>按责任段分工生产，跑通后轮换；全程记台账</td><td>10 集成片 / 一套完整素材包 + 责任段说明</td></tr>
+<tr><td>P4 交付与复盘</td><td>3 周</td><td>投稿或交甲方，跟踪数据，做成本核算</td><td class="ok">作品 + 生产记录 + 成本核算表 + 个人作品集</td></tr>
+</tbody>
+</table>
+
+<div class="fixbox">
+<p><strong>第三级要交的不是作品，是"生产记录"。</strong>成片当然要交，但真正体现工程能力、也真正能在面试里讲的东西是另外一份：<strong>工作流版本号、废片率、单集（单 SKU）耗时、成本核算、遇到的问题与改法。</strong></p>
+<p>顺德那条 10–12K 的 JD 问的是"这条线能不能自己跑"，不是"这张图好不好看"。<strong>能拿出这份记录的学生，已经能和只会出图的应聘者区分开了。</strong></p>
+</div>
+
+<h3>4.5 第三级的验收量表</h3>
+
+<table>
+<thead><tr><th style="width:150px">维度</th><th style="width:270px">不合格</th><th style="width:250px">合格</th><th>优秀</th></tr></thead>
+<tbody>
+<tr><td>管线</td><td>环节之间靠手动搬运</td><td>串成链，可一次跑通</td><td>有断点续跑、日志与失败清单</td></tr>
+<tr><td>标准</td><td>靠老师/甲方逐张看</td><td>有检查项清单，人工可执行</td><td>检查项自动执行且结论可复现</td></tr>
+<tr><td>成本</td><td>不知道花了多少</td><td>有核算表</td><td>测算与实际误差 20% 以内，能指出瓶颈</td></tr>
+<tr><td>归属</td><td>只有小组署名</td><td>有责任分配表</td><td class="ok">每人有可展示的个人段 + 个人作品集链接</td></tr>
+</tbody>
+</table>
+
+<h2>五、三级对齐：同一条能力线的三次放大</h2>
+
+<table>
+<thead><tr><th style="width:110px">能力线</th><th style="width:270px">一级（会做一次）</th><th style="width:250px">二级（能做一百次）</th><th>三级（能让别人做一万次）</th></tr></thead>
+<tbody>
+<tr><td><strong>调接口</strong></td><td>调通一次，拿到字段</td><td>批量调用，控制并发与重试</td><td>封装成服务，有队列、日志、断点</td></tr>
+<tr><td><strong>批处理</strong></td><td>处理 100 个文件，出清单</td><td>处理一整批素材，参数化</td><td>整线自动化，换素材只改配置</td></tr>
+<tr><td><strong>一致性</strong></td><td>知道有参考图这回事</td><td>10 张像同一个，说清锁了什么</td><td>写进资产库与规范，换人执行结果一致</td></tr>
+<tr><td><strong>质检</strong></td><td>能看出这张不行</td><td>能写出 3 条可判定标准</td><td>把别人的判断翻译成自动检查项</td></tr>
+<tr><td><strong>记录</strong></td><td>README 让别人跑通</td><td>有耗时与废片率</td><td>有成本核算与产能测算</td></tr>
+</tbody>
+</table>
+
+<figure class="fig">
+<svg viewBox="0 0 900 330" width="100%" role="img" aria-label="三级验收量表分档：不合格、合格、优秀在三个级别上的具体表现">
+  <g font-family="-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif">
+    <rect x="20" y="20" width="90" height="36" rx="6" fill="#F4F6F8" stroke="#DDE1E5" stroke-width="0.5"/>
+    <text x="65" y="43" text-anchor="middle" font-size="12.5" font-weight="600" fill="#24292F">级别</text>
+    <rect x="110" y="20" width="270" height="36" rx="6" fill="#FBDDDD" stroke="#E08B8B" stroke-width="0.5"/>
+    <text x="245" y="43" text-anchor="middle" font-size="12.5" font-weight="600" fill="#A32D2D">不合格</text>
+    <rect x="380" y="20" width="270" height="36" rx="6" fill="#FAEEDA" stroke="#EF9F27" stroke-width="0.5"/>
+    <text x="515" y="43" text-anchor="middle" font-size="12.5" font-weight="600" fill="#854F0B">合格</text>
+    <rect x="650" y="20" width="230" height="36" rx="6" fill="#DFF3EC" stroke="#7FC9AF" stroke-width="0.5"/>
+    <text x="765" y="43" text-anchor="middle" font-size="12.5" font-weight="600" fill="#0B5B47">优秀</text>
+
+    <rect x="20" y="60" width="90" height="74" rx="6" fill="#FFFFFF" stroke="#EAECEF" stroke-width="0.5"/>
+    <text x="65" y="88" text-anchor="middle" font-size="12.5" font-weight="600" fill="#1F2328">一级</text>
+    <text x="65" y="108" text-anchor="middle" font-size="11.5" fill="#6B7379">全体</text>
+    <text x="65" y="126" text-anchor="middle" font-size="11.5" fill="#6B7379">不淘汰</text>
+    <rect x="110" y="60" width="270" height="74" rx="6" fill="#FFFFFF" stroke="#EAECEF" stroke-width="0.5"/>
+    <text x="124" y="86" font-size="12.5" fill="#A32D2D">换台机器就跑不起来</text>
+    <text x="124" y="108" font-size="12.5" fill="#A32D2D">一次只能处理一个</text>
+    <text x="124" y="126" font-size="12.5" fill="#A32D2D">看到红色就举手</text>
+    <rect x="380" y="60" width="270" height="74" rx="6" fill="#FFFFFF" stroke="#EAECEF" stroke-width="0.5"/>
+    <text x="394" y="86" font-size="12.5" fill="#7A4A0A">照 README 别人能跑通</text>
+    <text x="394" y="108" font-size="12.5" fill="#7A4A0A">一次处理 30 个有清单</text>
+    <text x="394" y="126" font-size="12.5" fill="#7A4A0A">能定位报错到行</text>
+    <rect x="650" y="60" width="230" height="74" rx="6" fill="#FFFFFF" stroke="#EAECEF" stroke-width="0.5"/>
+    <text x="664" y="86" font-size="12.5" fill="#0B5B47">别人跑通且不提问</text>
+    <text x="664" y="108" font-size="12.5" fill="#0B5B47">有重试与跳过机制</text>
+    <text x="664" y="126" font-size="12.5" fill="#0B5B47">能区分三类错误来源</text>
+
+    <rect x="20" y="140" width="90" height="74" rx="6" fill="#FFFFFF" stroke="#EAECEF" stroke-width="0.5"/>
+    <text x="65" y="168" text-anchor="middle" font-size="12.5" font-weight="600" fill="#1F2328">二级</text>
+    <text x="65" y="188" text-anchor="middle" font-size="11.5" fill="#6B7379">招 30</text>
+    <text x="65" y="206" text-anchor="middle" font-size="11.5" fill="#6B7379">留 12</text>
+    <rect x="110" y="140" width="270" height="74" rx="6" fill="#FFFFFF" stroke="#EAECEF" stroke-width="0.5"/>
+    <text x="124" y="166" font-size="12.5" fill="#A32D2D">要老师带着才出图</text>
+    <text x="124" y="188" font-size="12.5" fill="#A32D2D">只交成品说不出参数</text>
+    <text x="124" y="206" font-size="12.5" fill="#A32D2D">每张都像不同对象</text>
+    <rect x="380" y="140" width="270" height="74" rx="6" fill="#FFFFFF" stroke="#EAECEF" stroke-width="0.5"/>
+    <text x="394" y="166" font-size="12.5" fill="#7A4A0A">给定需求自己跑完整线</text>
+    <text x="394" y="188" font-size="12.5" fill="#7A4A0A">有参数记录能重跑</text>
+    <text x="394" y="206" font-size="12.5" fill="#7A4A0A">10 张可辨认为同一对象</text>
+    <rect x="650" y="140" width="230" height="74" rx="6" fill="#FFFFFF" stroke="#EAECEF" stroke-width="0.5"/>
+    <text x="664" y="166" font-size="12.5" fill="#0B5B47">能带一个新人跑一遍</text>
+    <text x="664" y="188" font-size="12.5" fill="#0B5B47">换人照做结果接近</text>
+    <text x="664" y="206" font-size="12.5" fill="#0B5B47">能指出瓶颈环节</text>
+
+    <rect x="20" y="220" width="90" height="74" rx="6" fill="#FFFFFF" stroke="#EAECEF" stroke-width="0.5"/>
+    <text x="65" y="248" text-anchor="middle" font-size="12.5" font-weight="600" fill="#1F2328">三级</text>
+    <text x="65" y="268" text-anchor="middle" font-size="11.5" fill="#6B7379">10–12 人</text>
+    <text x="65" y="286" text-anchor="middle" font-size="11.5" fill="#6B7379">真实交付</text>
+    <rect x="110" y="220" width="270" height="74" rx="6" fill="#FFFFFF" stroke="#EAECEF" stroke-width="0.5"/>
+    <text x="124" y="246" font-size="12.5" fill="#A32D2D">环节之间靠手动搬运</text>
+    <text x="124" y="268" font-size="12.5" fill="#A32D2D">靠老师逐张看</text>
+    <text x="124" y="286" font-size="12.5" fill="#A32D2D">只有小组署名</text>
+    <rect x="380" y="220" width="270" height="74" rx="6" fill="#FFFFFF" stroke="#EAECEF" stroke-width="0.5"/>
+    <text x="394" y="246" font-size="12.5" fill="#7A4A0A">串成链可一次跑通</text>
+    <text x="394" y="268" font-size="12.5" fill="#7A4A0A">有检查项清单可执行</text>
+    <text x="394" y="286" font-size="12.5" fill="#7A4A0A">有责任分配表</text>
+    <rect x="650" y="220" width="230" height="74" rx="6" fill="#FFFFFF" stroke="#EAECEF" stroke-width="0.5"/>
+    <text x="664" y="246" font-size="12.5" fill="#0B5B47">断点续跑 + 日志</text>
+    <text x="664" y="268" font-size="12.5" fill="#0B5B47">检查项自动执行</text>
+    <text x="664" y="286" font-size="12.5" fill="#0B5B47">个人责任段可展示</text>
+
+    <text x="20" y="318" font-size="12.5" fill="#57606A">合格的线就是学分线，优秀的线就是作品集线。两条线都要写给学生看，他自己会往右走。</text>
+  </g>
+</svg>
+<figcaption>图 3 ｜ 三级统一的验收量表。<strong>把这张表贴在工作群里，比任何动员都有效</strong>——学生知道"合格"和"优秀"长什么样，才会自己往右走。</figcaption>
+</figure>
+
+<h2>六、教师每周准备清单</h2>
+
+<table>
+<thead><tr><th style="width:96px">时间</th><th style="width:250px">要准备的东西</th><th>说明</th></tr></thead>
+<tbody>
+<tr><td>第 1 周前</td><td>30 秒成片一段、mock 服务一份、素材包 100 张</td><td>成片是整学期的锚，可以从公开平台找一段 2D 漫剧，但要能说清"这是几个人用脚本批量做出来的"</td></tr>
+<tr><td>第 4 周前</td><td>招募通知、基线问卷、前测 10 题、算力额度</td><td>通知里写死三条门槛；<strong>基线数据第一周采，事后补就废</strong></td></tr>
+<tr><td>第 9 周前</td><td class="mid">电商样品一套</td><td>用本地商家真实商品，顺带谈实习；含白底图、换背景、三平台尺寸、上架包</td></tr>
+<tr><td>第 10 周前</td><td class="mid">漫剧样品一段</td><td>30 秒成片 + 角色卡 + 分镜表，全部摊开给学生看</td></tr>
+<tr><td>第 11 周</td><td>方向自选表、三个岗位位说明</td><td>不考试不分配；留出"资产与规范组"这个位置</td></tr>
+<tr><td>全学期</td><td>每周一句复盘三问</td><td>哪里最容易坏、坏了怎么知道、下次改哪——问到第四次学生自己会先想</td></tr>
+</tbody>
+</table>
+
+<h2>七、三级各自的失败方式与纠正动作</h2>
+
+<table>
+<thead><tr><th style="width:70px">级别</th><th style="width:230px">最可能的失败方式</th><th>纠正动作</th></tr></thead>
+<tbody>
+<tr><td rowspan="2"><strong>一级</strong></td><td>期末闭卷倒逼回传统教法，改造半途而废</td><td>知识点一个不删、只换载体；赛道内容不进闭卷；<strong>先确认是不是教考分离</strong>，这条不问清方案就悬着</td></tr>
+<tr><td>新增 16 学时学生不重视</td><td>挂到"上机 20%"上计分；零件交付折算进平时分，不计分等于没做</td></tr>
+<tr><td rowspan="3"><strong>二级</strong></td><td class="cut">滑成工具课或兴趣小组</td><td>第 8 周自查一次："能不能独立跑完需求进来→素材出去→有记录"；不能就砍掉花哨内容，回到批量与归档</td></tr>
+<tr><td>人数流失到个位数</td><td>按招 30 留 12 设计，30%–40% 留存是正常水平；门槛前置比事后掉人好得多</td></tr>
+<tr><td>算力不到位第一周就停摆</td><td>四条路同时走：平台教育扶持、本地商家预付款、社团经费、企业共建</td></tr>
+<tr><td rowspan="2"><strong>三级</strong></td><td>拖到期末才开，来不及出作品</td><td>第 11 周必须定人，寒假远程做脚本化；大二上末不完成这一步，大二下必然赶工</td></tr>
+<tr><td>只有小组署名，个人作品集空</td><td>每人另交一份"我负责的环节 + 生产记录"；漫剧按组组织时务必拆到可归属的责任段</td></tr>
+</tbody>
+</table>
+
+<div class="key">
+<p><strong>最后一句：三级加起来十五个能力项，学生能拿出证据的项数，就是一年后他作品集的厚度。</strong>面试时掏出来的是一个链接和一份能讲清废片率与成本的生产记录，不是一张成绩单。这一年窗口里所有的时间分配，都该按这个标准排序。</p>
+</div>
+
+<div class="foot">
+<p>本文件的判断依据：</p>
+<ul>
+<li>三级结构与边界来自《三级火箭体系设计（底座·训练营·核心项目组）》，本册是其执行层展开，结构判断与选赛道理由见该文件。</li>
+<li>一级课时、十零件主线与模块 A–D 来自《Python 课程改造方案（第 3 章起）》（72 学时，已上 12，剩余 60）；二级周表与寒假任务包来自《AIGC 训练营执行计划（从出图到投稿）》。</li>
+<li>薪资与岗位要求来自 2026 年 7–9 月在招 JD（含重庆两份"美术指导"6–8K 与 15–25K 的对比、顺德 10–12K 工作流岗），具有时效性，正式引用前建议复核原文。</li>
+<li>算力单价为 2026 年 9 月公开价格推算（图片 0.03–0.08 元/张，图生视频 0.3–1.0 元/秒），人均电商约 120 元、漫剧约 550 元，建议按 1.5 倍冗余申请。</li>
+<li>三级经费量级：3–5 千可支撑"电商全员 + 漫剧一个核心组"；两条并重需 1.5 万以上。</li>
+</ul>
+</div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AIGC 视觉资产架构者 · 12 个月学习路线图</title>
+<style>
+:root{--ink:#1B1B19;--sub:#5A5A55;--line:#DCE3EC;--bg:#F7F9FC;--card:#FFFFFF;--accent:#2A6399;--warn:#8A4B12;}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--bg);color:var(--ink);
+font-family:"PingFang SC","Microsoft YaHei","Hiragino Sans GB",system-ui,sans-serif;
+line-height:1.75;font-size:15px;}
+.wrap{max-width:1080px;margin:0 auto;padding:40px 24px 80px;}
+header{border-bottom:3px solid var(--accent);padding-bottom:20px;margin-bottom:36px;}
+h1{font-size:27px;margin:0 0 10px;letter-spacing:.5px;}
+.sub{color:var(--sub);font-size:14px;}
+h2{font-size:20px;margin:52px 0 8px;padding-left:12px;border-left:5px solid var(--accent);}
+h3{font-size:16px;margin:28px 0 10px;color:#244A70;}
+h4{font-size:14.5px;margin:18px 0 6px;color:#33332F;}
+p{margin:12px 0;}
+.lead{background:#EEF4FB;border:1px solid var(--line);border-radius:10px;padding:18px 22px;margin:18px 0;}
+.lead strong{color:#24486F;}
+.callout{background:#FFF8EE;border:1px solid #E8D5B7;border-left:5px solid #C98A2E;border-radius:8px;padding:16px 20px;margin:20px 0;}
+.callout .t{font-weight:700;color:#8A5A12;margin-bottom:6px;}
+.danger{background:#FDF1F1;border:1px solid #E8C9C9;border-left:5px solid #B44B4B;}
+.danger .t{color:#8E2E2E;}
+.ok{background:#F0F7EF;border:1px solid #C9E0C7;border-left:5px solid #4E8A46;}
+.ok .t{color:#2F5C2C;}
+.fig{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px 16px;margin:22px 0;overflow-x:auto;}
+.fig .cap{font-size:13px;color:var(--sub);text-align:center;margin-top:10px;}
+table{width:100%;border-collapse:collapse;margin:18px 0;font-size:13.5px;background:#fff;}
+th,td{border:1px solid var(--line);padding:10px 12px;text-align:left;vertical-align:top;}
+th{background:#E9F0F8;font-weight:700;color:#22486F;}
+td.c{text-align:center;}
+.tag{display:inline-block;padding:2px 9px;border-radius:11px;font-size:12px;font-weight:600;}
+.t1{background:#D9E8F7;color:#1F4E7A;}
+.t2{background:#E4EEE3;color:#2F5C2C;}
+.t3{background:#F5E7DA;color:#7A4A1C;}
+.t4{background:#FBE3E3;color:#8E2E2E;}
+.hi{background:#FFF3D6;padding:1px 5px;border-radius:4px;font-weight:600;}
+ul{padding-left:22px;margin:10px 0;}li{margin:6px 0;}
+ol{padding-left:22px;margin:10px 0;}ol li{margin:8px 0;}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:18px 0;}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin:18px 0;}
+@media(max-width:760px){.grid2,.grid3{grid-template-columns:1fr;}}
+.card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:16px 18px;}
+.card h4{margin:0 0 8px;font-size:15px;color:#24486F;}
+.card p{font-size:13.5px;margin:6px 0;color:#33332F;}
+.quote{background:#F4F7FA;border-left:4px solid #9BB4CC;padding:10px 16px;margin:12px 0;font-size:13.5px;color:#3A4A5C;}
+.quote .src{display:block;margin-top:6px;font-size:12px;color:#7A8794;}
+.mono{font-family:ui-monospace,Consolas,monospace;font-size:13px;background:#F2F5F9;padding:1px 6px;border-radius:4px;}
+.phase{background:#fff;border:1px solid var(--line);border-radius:12px;padding:0;margin:22px 0;overflow:hidden;}
+.phase .hd{background:#E9F0F8;padding:12px 20px;border-bottom:1px solid var(--line);}
+.phase .hd h3{margin:0;color:#1F4E7A;font-size:17px;}
+.phase .hd .meta{font-size:13px;color:#5A6B7C;margin-top:2px;}
+.phase .bd{padding:16px 20px 20px;}
+.kv{font-size:13.5px;}
+.kv dt{font-weight:700;color:#244A70;margin-top:10px;}
+.kv dd{margin:4px 0 0 0;color:#33332F;}
+footer{margin-top:60px;padding-top:20px;border-top:1px solid var(--line);font-size:12.5px;color:var(--sub);}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+<h1>董老师 · AIGC 应用路线 · 详细技能树与路线图</h1>
+<div class="sub">AI 培训体系三核心文档之二 ｜ 基于 2026 年 9 月实抓的 22 份在招 JD 逐条拆解 ｜ 定位：AIGC 应用路线负责人（电商+短剧视觉标准层），与张（FDE/技术底座）主副配合</div>
+</header>
+
+<div class="lead">
+<strong>这份路线图不是按"知识重要不重要"排的，是按招聘 JD 里写没写、以及写了之后给多少钱排的。</strong>
+下面所有优先级判断都能回溯到具体岗位原文。方法论只有一条：<strong>频次决定要不要学，位置（写在职责里还是写在加分项里）决定学到什么程度</strong>。
+写在"岗位职责"里的，是必须讲的;<span class="hi">写在"优先/加分"里的，是拉开薪资的，但不必人人都补</span>。
+</div>
+
+<div class="callout" style="border-left-color:#0F6E56;background:#F4FBF8">
+<div class="t" style="color:#0A4A39">在 AI 培训体系中的位置（主副配合）</div>
+<p style="margin:6px 0 0">本文是「AI 培训体系」三份核心文档之一，专门承载<strong>董老师（AIGC 应用路线）</strong>这一侧。体系为三版块：AI 应用与交付(FDE，张主导) / AIGC 电商(视觉标准由董老师定、管线由张做) / AIGC 短剧(董老师主导)。董老师覆盖<strong>电商+短剧两条线的视觉标准层</strong>，<strong>不碰 FDE</strong>（那是张的主场）。</p>
+<p style="margin:6px 0 0"><b>分工红线</b>：张管"怎么批量跑、怎么交付"；董老师管"什么算合格"。两人接口 = manhua.py 的 <code>meta.json</code>（status 三态 + score）与资产包规范文档。<span class="hi">董老师须能独立对甲方说清理由，不能只说"张说好"——否则内核废。</span></p>
+</div>
+
+<h2>一、样本与口径</h2>
+
+<p>本次抓取 2026 年 9 月在招岗位 22 份，覆盖四类主体：<strong>AI 短剧/漫剧制作公司</strong>（南京、重庆 ×3、南昌、深圳、杭州、永川、台北）、<strong>需要 AIGC 能力的传统企业岗</strong>（广州 ×2、长沙、成都、合肥）、<strong>AI 培训/教育公司</strong>（郑州、广州、苏州、贵阳）、<strong>AI 应用工程岗</strong>（龙岩、威海、南通、重庆）。地域跨越一线到三四线，薪资从 3K 到 25K。</p>
+
+<table>
+<thead><tr><th style="width:20%">类型</th><th>代表性样本</th><th style="width:26%">薪资实据</th></tr></thead>
+<tbody>
+<tr><td>制作执行岗</td><td>AIGC 资产生成师（合肥，智联）、AI 视觉设计师（长沙）、AIGC 影视内容制作者（重庆，异类 Outliers）</td><td>3–6K / 招 <strong>100 人</strong>；4–6K 应届可投</td></tr>
+<tr><td>内容产出岗</td><td>AI 生图师（国企）、AIGC 设计师（广州）、AI 漫剧美术（南昌）、AI 视觉影音设计师（台北）</td><td>6.5K；6–10K；6–15K；4 万台币起</td></tr>
+<tr><td>美术统筹岗</td><td>美术指导（南京）、AI 短剧美术指导（重庆）、美术指导·AI 短剧资产师（深圳）、AIGC 美术总监（重庆）</td><td>≈12.5K（15 万/年）；<strong>15–25K</strong>；5–10K；6–8K</td></tr>
+<tr><td>培训讲师岗</td><td>AIGC 培训讲师（郑州、广州）、培训讲师（苏州）、AIGC 培训师（贵阳）</td><td>8–15K；13–20K；12–22K；8–9K</td></tr>
+</tbody>
+</table>
+
+<div class="callout">
+<div class="t">口径说明</div>
+<p style="margin:6px 0 0">22 份不是抽样调查，是本次检索能拿到的在招 JD 全量，用来<strong>定性判断技能结构</strong>足够，用来算"平均薪资"不够——样本有地域和平台偏差。凡本文档出现的频次均为"在这 22 份里出现了几次"，不代表全市场比例。另外，媒体转述的"AI 视频岗位平均月薪 3 万"这类数字我一律没用，只用 JD 上写的实际区间。</p>
+</div>
+
+<h2>二、JD 技能频次：市场到底在要什么</h2>
+
+<p>把 22 份 JD 逐条拆成 16 个技能项后，得到下面这张表。注意最后一列"<strong>写在职责里还是写在加分里</strong>"——这一列比频次更重要。</p>
+
+<table>
+<thead><tr><th style="width:26%">技能项</th><th class="c" style="width:12%">频次</th><th class="c" style="width:10%">占比</th><th class="c" style="width:14%">JD 位置</th><th>原话摘录（岗位 - 城市）</th></tr></thead>
+<tbody>
+<tr><td>提示词工程 / 撰写与优化</td><td class="c">17</td><td class="c">77%</td><td class="c"><span class="tag t1">职责</span></td><td>"编写、调试并优化 AI 生成提示词，沉淀<strong>可复用的 Prompt 模板库</strong>"（AIGC 资产生成师 - 合肥）</td></tr>
+<tr><td>PS 修图 / 合成 / 统一调色</td><td class="c">15</td><td class="c">68%</td><td class="c"><span class="tag t1">职责</span></td><td>"AI 瑕疵精修、统一调色、人物修复"（AI 短剧美术指导 - 重庆）</td></tr>
+<tr><td>AI 图像生成工具 ≥2 款</td><td class="c">15</td><td class="c">68%</td><td class="c"><span class="tag t1">职责</span></td><td>"图像生成工具必精通 2 款以上：MJ、SD、即梦、Nano Banana、Flux"（美术指导 - 重庆）</td></tr>
+<tr><td>AI 视频工具 ≥1 款</td><td class="c">11</td><td class="c">50%</td><td class="c"><span class="tag t1">职责</span></td><td>"熟练 seedance、可灵、Runway、Pika、Sora 等至少一款"（AI 视觉生成师 - 广州）</td></tr>
+<tr><td><strong>角色 / 场景一致性控制</strong></td><td class="c">12</td><td class="c">55%</td><td class="c"><span class="tag t3">职责+加分</span></td><td>"有解决 AI <strong>角色一致性、画面闪烁、手部崩坏</strong>实战经验者优先"（美术指导 - 重庆）</td></tr>
+<tr><td><strong>ComfyUI 工作流搭建</strong></td><td class="c">10</td><td class="c">45%</td><td class="c"><span class="tag t3">加分居多</span></td><td>"能使用 ComfyUI 搭建<strong>批量化生产工作流</strong>，了解开源与闭源模型的差异与经济性选型"（AIGC 视觉设计师 - 重庆）</td></tr>
+<tr><td>分镜 / 镜头语言</td><td class="c">9</td><td class="c">41%</td><td class="c"><span class="tag t1">职责</span></td><td>"具备影视镜头语言认知，懂景别、光影叙事、电影感调色逻辑"（美术指导 - 重庆）</td></tr>
+<tr><td><strong>LoRA 训练与调用</strong></td><td class="c">9</td><td class="c">41%</td><td class="c"><span class="tag t3">加分居多</span></td><td>"参考图控图、<strong>LoRA 训练/调用</strong>、种子锁定、图生图一致性控制"（美术指导 - 重庆）</td></tr>
+<tr><td><strong>资产库 / 可复用流程沉淀</strong></td><td class="c">8</td><td class="c">36%</td><td class="c"><span class="tag t2">统筹岗专属</span></td><td>"建立并维护公司内部美术资产库：角色库、场景库、风格模板库、色板库"（AI 短剧美术指导 - 重庆）</td></tr>
+<tr><td>剪辑 / 后期（PR/AE/剪映/达芬奇）</td><td class="c">7</td><td class="c">32%</td><td class="c"><span class="tag t3">加分</span></td><td>"会使用剪映、AE、PR 等视频剪辑软件者优先"（AI 生图师 - 国企）</td></tr>
+<tr><td><strong>制定视觉规范 / 审核他人产出</strong></td><td class="c">6</td><td class="c">27%</td><td class="c"><span class="tag t2">统筹岗专属</span></td><td>"<strong>制定统一的视觉审美标准与资产设计规范</strong>……审核所有美术资产产出"（美术指导·资产师 - 深圳）</td></tr>
+<tr><td>美术功底 / 手绘</td><td class="c">6</td><td class="c">27%</td><td class="c"><span class="tag t1">统筹岗职责</span></td><td>"扎实人体、透视、色彩、构图功底，能独立完成人设、场景原画"（美术指导 - 重庆）</td></tr>
+<tr><td>Blender / UE5 等 3D</td><td class="c">5</td><td class="c">23%</td><td class="c"><span class="tag t3">几乎全为加分</span></td><td>"熟悉 UE5、Blender 等主流三维软件，可结合三维技术辅助美术创作"（美术总监 - 重庆）</td></tr>
+<tr><td><strong>团队统筹 / 带人</strong></td><td class="c">4</td><td class="c">18%</td><td class="c"><span class="tag t2">统筹岗专属</span></td><td>"管理和培养助理画师或 AI 美术师，<strong>统一美术标准</strong>"（美术指导 - 南京）</td></tr>
+<tr><td><strong>Vibe Coding / 自动化工作流</strong></td><td class="c">4</td><td class="c">18%</td><td class="c"><span class="tag t4">2026 新增</span></td><td>"具备 <strong>Vibe Coding（AI 辅助编程）能力</strong>，了解飞书等自动化工作流的搭建"（AIGC 视觉设计师 - 重庆）</td></tr>
+<tr><td>能讲课 / 培训他人</td><td class="c">4</td><td class="c">18%</td><td class="c"><span class="tag t3">加分</span></td><td>"普通话标准，具备良好的语言表达能力，<strong>能讲课者优先考虑</strong>"（AIGC 设计师 - 广州）</td></tr>
+</tbody>
+</table>
+
+<div class="fig">
+<svg viewBox="0 0 680 470" width="100%" role="img" xmlns="http://www.w3.org/2000/svg">
+<title>JD 技能项频次与价值分层</title>
+<desc>按在 22 份 JD 中出现次数排序的技能条形图，并按「门槛 / 分水岭 / 加分」着色</desc>
+<text x="20" y="24" font-family="system-ui,sans-serif" font-size="14" font-weight="600" fill="#1B1B19">JD 技能频次：22 份在招岗位原文统计</text>
+
+<text x="20" y="48" font-family="system-ui,sans-serif" font-size="11.5" fill="#6A6A64">门槛项</text>
+<rect x="70" y="52" width="300" height="15" rx="3" fill="#C9D9EA"/>
+<text x="378" y="64" font-family="system-ui,sans-serif" font-size="11.5" fill="#4A4A45">17 次</text>
+<text x="86" y="64" font-family="system-ui,sans-serif" font-size="11.5" fill="#1F4E7A">提示词工程</text>
+
+<rect x="70" y="74" width="265" height="15" rx="3" fill="#C9D9EA"/>
+<text x="343" y="86" font-family="system-ui,sans-serif" font-size="11.5" fill="#4A4A45">15 次</text>
+<text x="86" y="86" font-family="system-ui,sans-serif" font-size="11.5" fill="#1F4E7A">PS 精修合成</text>
+
+<rect x="70" y="96" width="265" height="15" rx="3" fill="#C9D9EA"/>
+<text x="343" y="108" font-family="system-ui,sans-serif" font-size="11.5" fill="#4A4A45">15 次</text>
+<text x="86" y="108" font-family="system-ui,sans-serif" font-size="11.5" fill="#1F4E7A">AI 图像工具 2 款以上</text>
+
+<rect x="70" y="118" width="194" height="15" rx="3" fill="#C9D9EA"/>
+<text x="272" y="130" font-family="system-ui,sans-serif" font-size="11.5" fill="#4A4A45">11 次</text>
+<text x="86" y="130" font-family="system-ui,sans-serif" font-size="11.5" fill="#1F4E7A">AI 视频工具</text>
+
+<rect x="70" y="140" width="159" height="15" rx="3" fill="#C9D9EA"/>
+<text x="237" y="152" font-family="system-ui,sans-serif" font-size="11.5" fill="#4A4A45">9 次</text>
+<text x="86" y="152" font-family="system-ui,sans-serif" font-size="11.5" fill="#1F4E7A">分镜与镜头语言</text>
+
+<rect x="70" y="162" width="106" height="15" rx="3" fill="#C9D9EA"/>
+<text x="184" y="174" font-family="system-ui,sans-serif" font-size="11.5" fill="#4A4A45">6 次</text>
+<text x="86" y="174" font-family="system-ui,sans-serif" font-size="11.5" fill="#1F4E7A">手绘功底</text>
+
+<text x="20" y="200" font-family="system-ui,sans-serif" font-size="11.5" fill="#6A6A64">分水岭</text>
+<rect x="70" y="204" width="212" height="15" rx="3" fill="#E9B96B"/>
+<text x="290" y="216" font-family="system-ui,sans-serif" font-size="11.5" fill="#4A4A45">12 次</text>
+<text x="86" y="216" font-family="system-ui,sans-serif" font-size="11.5" fill="#7A4A1C">角色 / 场景一致性控制</text>
+
+<rect x="70" y="226" width="176" height="15" rx="3" fill="#E9B96B"/>
+<text x="254" y="238" font-family="system-ui,sans-serif" font-size="11.5" fill="#4A4A45">10 次</text>
+<text x="86" y="238" font-family="system-ui,sans-serif" font-size="11.5" fill="#7A4A1C">ComfyUI 工作流</text>
+
+<rect x="70" y="248" width="159" height="15" rx="3" fill="#E9B96B"/>
+<text x="237" y="260" font-family="system-ui,sans-serif" font-size="11.5" fill="#4A4A45">9 次</text>
+<text x="86" y="260" font-family="system-ui,sans-serif" font-size="11.5" fill="#7A4A1C">LoRA 训练与调用</text>
+
+<rect x="70" y="270" width="141" height="15" rx="3" fill="#E9B96B"/>
+<text x="219" y="282" font-family="system-ui,sans-serif" font-size="11.5" fill="#4A4A45">8 次</text>
+<text x="86" y="282" font-family="system-ui,sans-serif" font-size="11.5" fill="#7A4A1C">资产库与流程沉淀</text>
+
+<rect x="70" y="292" width="106" height="15" rx="3" fill="#E9B96B"/>
+<text x="184" y="304" font-family="system-ui,sans-serif" font-size="11.5" fill="#4A4A45">6 次</text>
+<text x="86" y="304" font-family="system-ui,sans-serif" font-size="11.5" fill="#7A4A1C">制定规范 / 审核他人</text>
+
+<rect x="70" y="314" width="70" height="15" rx="3" fill="#E9B96B"/>
+<text x="148" y="326" font-family="system-ui,sans-serif" font-size="11.5" fill="#4A4A45">4 次</text>
+<text x="86" y="326" font-family="system-ui,sans-serif" font-size="11.5" fill="#7A4A1C">团队统筹与带人</text>
+
+<text x="20" y="352" font-family="system-ui,sans-serif" font-size="11.5" fill="#6A6A64">加分项</text>
+<rect x="70" y="356" width="123" height="15" rx="3" fill="#D6DFCB"/>
+<text x="201" y="368" font-family="system-ui,sans-serif" font-size="11.5" fill="#4A4A45">7 次</text>
+<text x="86" y="368" font-family="system-ui,sans-serif" font-size="11.5" fill="#2F5C2C">剪辑与后期</text>
+
+<rect x="70" y="378" width="88" height="15" rx="3" fill="#D6DFCB"/>
+<text x="166" y="390" font-family="system-ui,sans-serif" font-size="11.5" fill="#4A4A45">5 次</text>
+<text x="86" y="390" font-family="system-ui,sans-serif" font-size="11.5" fill="#2F5C2C">Blender / 3D</text>
+
+<rect x="70" y="400" width="70" height="15" rx="3" fill="#E6B8B8"/>
+<text x="148" y="412" font-family="system-ui,sans-serif" font-size="11.5" fill="#4A4A45">4 次</text>
+<text x="86" y="412" font-family="system-ui,sans-serif" font-size="11.5" fill="#8E2E2E">Vibe Coding / 自动化</text>
+
+<rect x="70" y="422" width="70" height="15" rx="3" fill="#D6DFCB"/>
+<text x="148" y="434" font-family="system-ui,sans-serif" font-size="11.5" fill="#4A4A45">4 次</text>
+<text x="86" y="434" font-family="system-ui,sans-serif" font-size="11.5" fill="#2F5C2C">能讲课 / 培训他人</text>
+
+<line x1="70" y1="436" x2="370" y2="436" stroke="#DCE3EC" stroke-width="1"/>
+<text x="70" y="455" font-family="system-ui,sans-serif" font-size="11" fill="#6A6A64">频次只说明「要不要会」，不说明「值多少钱」。</text>
+<text x="70" y="468" font-family="system-ui,sans-serif" font-size="11" fill="#6A6A64">提示词 17 次但练到够用即可；资产库仅 8 次，却是薪资分水岭。</text>
+</svg>
+<div class="cap">图 1　技能频次与价值分层（<span style="color:#1F4E7A">蓝</span>=门槛 / <span style="color:#7A4A1C">橙</span>=薪资分水岭 / <span style="color:#2F5C2C">绿</span>=加分 / <span style="color:#8E2E2E">红</span>=2026 新增）</div>
+</div>
+
+<h2>三、四条从 JD 里读出来、会改变路线的证据</h2>
+
+<h3>发现一：工具操作层不是稀缺岗位，是被批量招聘的劳动力池</h3>
+
+<p>合肥一家公司的"<strong>AIGC 资产生成师</strong>"，岗位职责写得并不低级——"建立并维护角色库与场景库""沉淀可复用的 Prompt 模板库"，但标价是 <strong>3–6K，招 100 人</strong>。长沙"<strong>AI 视觉设计师</strong>"明确写"应届生可投、大专、4–6K×13 薪"。重庆异类 Outliers 的"<strong>AIGC 影视内容制作者</strong>"一次性招 20 人、薪资 4–6K，配套的实习生岗位 100–120 元/日。</p>
+
+<p>同时这些 JD 的技能清单几乎一样：会用工具 + 会写提示词 + 会用 PS。<strong>当供给可以被一次性批量补齐时，这一层的价格就会被定死。</strong></p>
+
+<div class="callout danger">
+<div class="t">对路线图的直接影响</div>
+<p style="margin:6px 0 0">阶段 0 的工具学习必须<strong>设上限</strong>。目标不是"精通所有工具"，而是"拿到任意一款新工具，能在两天内判断出它适合什么、不如现有方案的哪里"。这条判据一旦达成，立刻切换到阶段 1。<span class="hi">在工具层停留超过 8 周，是把时间投在一个正在批量供给的市场上。</span></p>
+</div>
+
+<h3>发现二：同一个岗位名称，薪资差 3 倍，分水岭只有一条</h3>
+
+<p>两份都叫"<strong>美术指导</strong>"、都在重庆，薪资分别是 <strong>6–8K</strong> 和 <strong>15–25K</strong>。把两份 JD 并排看，工具要求几乎相同（MJ/SD/即梦/PS/LoRA/ComfyUI/剪映），真正的差别在职责措辞：</p>
+
+<div class="grid2">
+<div class="card" style="border-color:#DCC8C8">
+<h4 style="color:#8E2E2E">6–8K 那份</h4>
+<p>"独立完成人设、场景原画"<br>"
+
+
+"能高效出图并优化生成质量"<br>"岗位硬性工作要求（专业 + 工具 + 经验）"</p>
+<p><strong>关键词：自己产出。</strong>所有要求都指向"这个人手下出来的东西要好"。</p>
+</div>
+<div class="card" style="border-color:#C9E0C7">
+<h4 style="color:#2F5C2C">15–25K 那份</h4>
+<p>"建立并维护公司内部美术资产库：角色库、场景库、风格模板库、色板库，<strong>推动美术标准的体系化</strong>"<br>"审核并优化 AI 生成素材……<strong>对不符合美术标准的素材提出修改方案</strong>"<br>"参与学生/新人的美术培训，提升团队整体的审美判断力"</p>
+<p><strong>关键词：让别人的产出合格。</strong>要求里出现了"别人的东西她说了算"。</p>
+</div>
+</div>
+
+<div class="callout ok">
+<div class="t">这条是整个路线图的定价逻辑</div>
+<p style="margin:6px 0 0">市场对"定标准"的付费远高于"会工具"，而两者常藏在同一个岗位名称下。<strong>唯一可靠的判别方法是看 JD 里有没有这四项</strong>：① 制定视觉规范 ② 审核他人产出 ③ 管理可复用资产库 ④ 带人或培训。四项齐全的才叫标准层，否则名字再好听也是执行岗。<br><br>顺带一个反证：深圳"<strong>美术指导·AI 短剧资产师</strong>"虽然名字里有"指导"，职责 1 也写了"制定统一的视觉审美标准与资产设计规范"，但后面 6 条全是执行性描述（"主导资产创作""具体实现 LoRA 训练与调用""统筹 AI 艺术字 - 人物一致性"），薪资落在 <strong>5–10K</strong>——介于两者之间。<span class="hi">这说明"半个标准层"只能拿到半个价格。</span></p>
+</div>
+
+<h3>发现三：讲师岗要的不是某一项很深，而是"广度 + 落地 + 更新机制"</h3>
+
+<p>把四份讲师 JD（郑州 8–15K、广州 13–20K、苏州 12–22K、贵阳 8–9K）的技能项并起来，要求横跨：大模型对话工具、提示词工程、MJ/SD/ComfyUI、LoRA/ControlNet、AI 视频（Pika/数字人）、RAG 知识库、AI Agent、<strong>Python 与本地部署/微调/向量数据库（优先）</strong>。注意苏州那份还要求"<strong>学员代码 Review 与项目答辩指导</strong>"。</p>
+
+<p>更关键的是这一句，猎聘郑州 JD 原文：</p>
+
+<div class="quote">
+"持续跟进 AIGC 新技术、新模型、新工具，<strong>定期更新课程体系，保证课程前沿性与实用性</strong>。"
+<span class="src">—— AIGC 培训讲师，郑州，8–15K·13 薪</span>
+</div>
+
+<p>广州 13–20K 那份则把门槛写得更直白："<strong>个人 AIGC 作品案例丰富</strong>，或在特定行业有 AIGC 应用经验者优先"。换言之：<span class="hi">当讲师不是"学完再去讲"，市场要求你同时具备企业级项目经历和把项目讲清楚的能力。</span></p>
+
+<div class="callout danger">
+<div class="t">对路线图的直接影响</div>
+<p style="margin:6px 0 0">路线图每一个阶段都必须产出<strong>两件东西</strong>：一件<strong>项目作品</strong>（证明你能做），一件<strong>教学模块</strong>（证明你能讲）。只做不讲，攒的是作品集;只讲不做，做成的是没有内核的课，两年归零。这个"双产出"机制是后面路线图的主干，不是附加要求。</p>
+</div>
+
+<h3>发现四：2026 年的新门槛是"会用 AI 写代码 / 搭自动化"，但她的目标不是自己写</h3>
+
+<p>重庆 AIGC 视觉设计师 JD 里第一次出现了这种措辞：</p>
+
+<div class="quote">
+"能使用 ComfyUI 搭建<strong>批量化生产工作流</strong>，了解开源与闭源模型的差异与<strong>经济性选型</strong>……具备 <strong>Vibe Coding（AI 辅助编程）能力</strong>，了解飞书等自动化工作流的搭建。"
+<span class="src">—— AIGC 视觉设计师，重庆</span>
+</div>
+
+<p>同期抓到的纯工程岗也在印证这条线在形成价格：n8n 智能体应用工程师（南通）18–25K、AI 智能体开发工程师（龙岩）8–15K、IT 与 AI 应用工程师（重庆）8–12K——后者要求"基于钉钉 AI 表格或飞书多维表格搭建公司核心运营管理系统""设计多 Agent 协作工作流"。</p>
+
+<div class="callout">
+<div class="t">这条怎么放进她的路线图（分工边界必须写清楚）</div>
+<p style="margin:6px 0 0">她需要的是<strong>能演示、能讲清原理、能说清楚它解决什么问题</strong>，不是自己能写出工作流。<br>
+具体要求：能当众演示一次"AI 生成 → 自动命名归档 → 批量出图"的完整链路；能解释为什么这个环节需要自动化。<strong>脚本本身由你（计算机侧）实现。</strong><br><br>
+<span class="hi">这条边界如果不写死，会出现两种失败</span>：她花三个月去学 Python，错过阶段 1 的核心窗口；或者她在培训市场上完全答不出这个问题，被判定为"只会画图"。前者更危险。</p>
+</div>
+
+<h2>四、她的缺口：需求矩阵</h2>
+
+<p>把上面的技能表和她现有基础交叉，得到四象限。判断原则是：<strong>象限决定了投入方式，而不是投入时间多少</strong>。</p>
+
+<div class="fig">
+<svg viewBox="0 0 680 430" width="100%" role="img" xmlns="http://www.w3.org/2000/svg">
+<title>技能缺口四象限</title>
+<desc>按市场需求强度与现有基础，把技能划分为四个象限并给出投入策略</desc>
+<text x="20" y="24" font-family="system-ui,sans-serif" font-size="14" font-weight="600" fill="#1B1B19">缺口矩阵：需求强度 vs 现有基础</text>
+
+<line x1="200" y1="45" x2="200" y2="380" stroke="#DCE3EC" stroke-width="1"/>
+<line x1="200" y1="380" x2="650" y2="380" stroke="#DCE3EC" stroke-width="1"/>
+<text x="205" y="398" font-family="system-ui,sans-serif" font-size="11.5" fill="#6A6A64">现有基础：弱</text>
+<text x="560" y="398" font-family="system-ui,sans-serif" font-size="11.5" fill="#6A6A64">强</text>
+<text x="60" y="60" font-family="system-ui,sans-serif" font-size="11.5" fill="#6A6A64">市场需求</text>
+<text x="60" y="76" font-family="system-ui,sans-serif" font-size="11.5" fill="#6A6A64">强</text>
+<text x="60" y="360" font-family="system-ui,sans-serif" font-size="11.5" fill="#6A6A64">弱</text>
+
+<rect x="215" y="50" width="200" height="150" rx="10" fill="#FBE9D7" stroke="#C98A2E" stroke-width="0.5"/>
+<text x="228" y="72" font-family="system-ui,sans-serif" font-size="12.5" font-weight="600" fill="#8A5A12">① 主战场（重投入）</text>
+<text x="228" y="95" font-family="system-ui,sans-serif" font-size="12" fill="#33332F">角色 / 场景一致性控制</text>
+<text x="228" y="115" font-family="system-ui,sans-serif" font-size="12" fill="#33332F">资产库与工作流沉淀</text>
+<text x="228" y="135" font-family="system-ui,sans-serif" font-size="12" fill="#33332F">制定视觉规范 / 验收清单</text>
+<text x="228" y="155" font-family="system-ui,sans-serif" font-size="12" fill="#33332F">ComfyUI 工作流搭建</text>
+<text x="228" y="180" font-family="system-ui,sans-serif" font-size="11.5" fill="#6A6A64">→ 系统化学习，做项目</text>
+
+<rect x="430" y="50" width="205" height="150" rx="10" fill="#E2EEE1" stroke="#4E8A46" stroke-width="0.5"/>
+<text x="443" y="72" font-family="system-ui,sans-serif" font-size="12.5" font-weight="600" fill="#2F5C2C">② 现金牛（翻译即可）</text>
+<text x="443" y="95" font-family="system-ui,sans-serif" font-size="12" fill="#33332F">视觉判断力 / 审美</text>
+<text x="443" y="115" font-family="system-ui,sans-serif" font-size="12" fill="#33332F">规范思维（Design System）</text>
+<text x="443" y="135" font-family="system-ui,sans-serif" font-size="12" fill="#33332F">PS 精修 / 合成</text>
+<text x="443" y="155" font-family="system-ui,sans-serif" font-size="12" fill="#33332F">授课与表达能力</text>
+<text x="443" y="180" font-family="system-ui,sans-serif" font-size="11.5" fill="#6A6A64">→ 不用学，重新命名</text>
+
+<rect x="215" y="215" width="200" height="150" rx="10" fill="#FAECE7" stroke="#993C1D" stroke-width="0.5"/>
+<text x="228" y="237" font-family="system-ui,sans-serif" font-size="12.5" font-weight="600" fill="#712B13">③ 必补短板（定向练）</text>
+<text x="228" y="260" font-family="system-ui,sans-serif" font-size="12" fill="#33332F">分镜与镜头语言</text>
+<text x="228" y="280" font-family="system-ui,sans-serif" font-size="12" fill="#33332F">景别 / 机位 / 轴线 / 连续性</text>
+<text x="228" y="300" font-family="system-ui,sans-serif" font-size="12" fill="#33332F">图生视频首尾帧衔接</text>
+<text x="228" y="320" font-family="system-ui,sans-serif" font-size="12" fill="#33332F">AI 视频工具实操</text>
+<text x="228" y="345" font-family="system-ui,sans-serif" font-size="11.5" fill="#6A6A64">→ 练到能答辩，不必创作级</text>
+
+<rect x="430" y="215" width="205" height="150" rx="10" fill="#F1EFE8" stroke="#888780" stroke-width="0.5"/>
+<text x="443" y="237" font-family="system-ui,sans-serif" font-size="12.5" font-weight="600" fill="#444441">④ 保持关注（不投入）</text>
+<text x="443" y="260" font-family="system-ui,sans-serif" font-size="12" fill="#33332F">Blender / UE5 深度 3D</text>
+<text x="443" y="280" font-family="system-ui,sans-serif" font-size="12" fill="#33332F">扩散模型原理 / 从零训练</text>
+<text x="443" y="300" font-family="system-ui,sans-serif" font-size="12" fill="#33332F">Python / 本地部署细节</text>
+<text x="443" y="320" font-family="system-ui,sans-serif" font-size="12" fill="#33332F">纯 AI 艺术创作</text>
+<text x="443" y="345" font-family="system-ui,sans-serif" font-size="11.5" fill="#6A6A64">→ 只需要知道存在 + 边界</text>
+
+<text x="20" y="420" font-family="system-ui,sans-serif" font-size="11.5" fill="#6A6A64">象限 ② 是她二十年 UI 生涯的存量，不需要学习，需要的是「换一套词汇把它讲给 AI 内容行业听」。</text>
+</svg>
+<div class="cap">图 2　缺口四象限与投入策略</div>
+</div>
+
+<h2>五、12 个月路线图</h2>
+
+<p>按每周 10 小时、全年 500 小时安排，五个阶段有并行。<strong>阶段 1 是主轴，其他都可以让位给它。</strong>如果某个月只能做一件事，做阶段 1。</p>
+
+<div class="fig">
+<svg viewBox="0 0 680 400" width="100%" role="img" xmlns="http://www.w3.org/2000/svg">
+<title>12 个月路线图时间轴</title>
+<desc>五个阶段在 12 个月上的分布，含并行关系与关键里程碑</desc>
+<text x="20" y="24" font-family="system-ui,sans-serif" font-size="14" font-weight="600" fill="#1B1B19">路线图：五阶段 × 12 个月</text>
+
+<g font-family="system-ui,sans-serif" font-size="11" fill="#6A6A64">
+<text x="150" y="48">M1</text><text x="200" y="48">M2</text><text x="250" y="48">M3</text><text x="300" y="48">M4</text><text x="350" y="48">M5</text><text x="400" y="48">M6</text><text x="450" y="48">M7</text><text x="500" y="48">M8</text><text x="550" y="48">M9</text><text x="600" y="48">M10-12</text>
+</g>
+<line x1="150" y1="54" x2="640" y2="54" stroke="#DCE3EC" stroke-width="1"/>
+
+<text x="20" y="82" font-family="system-ui,sans-serif" font-size="12" fill="#33332F">阶段 0</text>
+<rect x="150" y="70" width="100" height="22" rx="5" fill="#D3D1C7"/>
+<text x="360" y="85" font-family="system-ui,sans-serif" font-size="11" fill="#6A6A64">工具地平线 · 40h · 停止点：拿到任意新工具 2 天能判断定位</text>
+
+<text x="20" y="122" font-family="system-ui,sans-serif" font-size="12.5" font-weight="600" fill="#7A4A1C">阶段 1</text>
+<rect x="200" y="110" width="250" height="26" rx="5" fill="#EF9F27"/>
+<text x="215" y="127" font-family="system-ui,sans-serif" font-size="11.5" fill="#412402">一致性主线 · 130h · 主轴，其他让位</text>
+<text x="470" y="127" font-family="system-ui,sans-serif" font-size="11" fill="#6A6A64">里程碑：第一个完整资产包交付</text>
+
+<text x="20" y="162" font-family="system-ui,sans-serif" font-size="12" fill="#33332F">阶段 2</text>
+<rect x="250" y="150" width="200" height="22" rx="5" fill="#F0997B"/>
+<text x="265" y="165" font-family="system-ui,sans-serif" font-size="11" fill="#4A1B0C">镜头语言 · 60h · 弱项补齐</text>
+
+<text x="20" y="202" font-family="system-ui,sans-serif" font-size="12" fill="#33332F">阶段 3</text>
+<rect x="350" y="190" width="140" height="22" rx="5" fill="#B5D4F4"/>
+<text x="365" y="205" font-family="system-ui,sans-serif" font-size="11" fill="#042C53">工作流与工程接口 · 50h</text>
+<text x="500" y="205" font-family="system-ui,sans-serif" font-size="11" fill="#6A6A64">演示能力，不自己写</text>
+
+<text x="20" y="242" font-family="system-ui,sans-serif" font-size="12" fill="#33332F">阶段 4</text>
+<rect x="450" y="230" width="190" height="22" rx="5" fill="#97C459"/>
+<text x="465" y="245" font-family="system-ui,sans-serif" font-size="11" fill="#173404">外部验证与课程化 · 120h</text>
+
+<line x1="300" y1="70" x2="300" y2="252" stroke="#C98A2E" stroke-width="1" stroke-dasharray="3 3"/>
+<circle cx="300" cy="65" r="4" fill="#C98A2E"/>
+<text x="262" y="278" font-family="system-ui,sans-serif" font-size="11" fill="#8A5A12">↑ 第 5 周：可以开始接外部商单</text>
+
+<line x1="590" y1="110" x2="590" y2="252" stroke="#4E8A46" stroke-width="1" stroke-dasharray="3 3"/>
+<circle cx="590" cy="252" r="4" fill="#4E8A46"/>
+<text x="470" y="278" font-family="system-ui,sans-serif" font-size="11" fill="#2F5C2C">↑ 第 9 月：第一个付费培训案例</text>
+
+<rect x="20" y="300" width="640" height="80" rx="8" fill="#F4F7FA" stroke="#DCE3EC" stroke-width="0.5"/>
+<text x="36" y="322" font-family="system-ui,sans-serif" font-size="12" font-weight="600" fill="#24486F">贯穿全程：每阶段的双产出</text>
+<text x="36" y="344" font-family="system-ui,sans-serif" font-size="11.5" fill="#33332F">① 项目作品 —— 证明她做得出来（对应象限 ①③）</text>
+<text x="36" y="364" font-family="system-ui,sans-serif" font-size="11.5" fill="#33332F">② 教学模块 —— 证明她讲得清楚（对应象限 ②）</text>
+</svg>
+<div class="cap">图 3　五阶段时间轴与里程碑</div>
+</div>
+
+<h3>阶段 0｜工具地平线（第 1–4 周，约 40 小时）</h3>
+
+<div class="phase">
+<div class="hd"><h3>阶段 0 · 工具地平线</h3><div class="meta">第 1–4 周 ｜ 约 40 小时 ｜ 目标：建立"工具判断力"，不是操作熟练度</div></div>
+<div class="bd">
+<dl class="kv">
+<dt>学什么</dt>
+<dd><strong>闭源侧</strong>：即梦 / Nano Banana / GPT-Image 各自擅长什么，成本怎么算（每张单价、失败率折算后的真实成本）。<strong>开源侧</strong>：ComfyUI 基础节点、WebUI 基本调用。<strong>PS 侧</strong>：AI 素材精修四件套——修手、去伪影、统一调色、图层拆分。<strong>AI 视频侧</strong>：可灵 / 即梦 / Runway 至少一款，走通文生视频与图生视频全流程。</dd>
+<dt>重要的是</dt>
+<dd>从<strong>第一天</strong>就建立个人命名规范（项目/角色/版本/日期/参数）。这不是形式主义——阶段 1 的资产包能不能被别人复现，全看这个习惯在不在。这一步几乎零成本，但事后补要花三倍时间。</dd>
+<dt>停止判据（三条全达即停）</dt>
+<dd>① 拿到任意一款没用过的 AI 工具，<strong>两天内能说清</strong>它适合什么、比现有方案好在哪差在哪；② 能在 ComfyUI 里复现一个指定风格并导出工作流；③ 能用 PS 修掉一处崩坏，放大看不出痕迹。</dd>
+<dt>产出 A（作品）</dt>
+<dd>一份"工具对照笔记"：同一视觉需求分别在闭源与开源下的实现路径、耗时、成本对照。</dd>
+<dt>产出 B（教学）</dt>
+<dd>讲成一个 45 分钟公开课模块《AI 出图的两条路：闭源与开源怎么选》——这是最容易讲的入门课，也是最好用的一块敲门砖。</dd>
+</dl>
+</div>
+</div>
+
+<h3>阶段 1｜一致性主线（第 5–16 周，约 130 小时 · 核心）</h3>
+
+<p>这是整个路线图的价值中枢。目标是<strong>把"一致性"从玄学变成有参数、有判据、可以交付给别人复现的东西</strong>。</p>
+
+<div class="phase">
+<div class="hd"><h3>阶段 1 · 一致性主线</h3><div class="meta">第 5–16 周 ｜ 约 130 小时 ｜ 这条不过关，后面三个阶段都不成立</div></div>
+<div class="bd">
+<dl class="kv">
+<dt>1.1 角色卡（Character Bible）体系</dt>
+<dd>采用七段式分层：<span class="mono">Identity → Wardrobe → Scene → Camera → Light → Style → Negative</span>。核心规则：<strong>身份段一旦锁定永不重写</strong>，变更只能通过新增变量。这条规则等价于 UI 里"组件基础样式不可改、只能覆盖"——她应该立刻能理解为什么。</dd>
+<dt>1.2 三条技术路径的适用边界（必须背下来）</dt>
+<dd><table style="margin:8px 0">
+<thead><tr><th>路径</th><th class="c">一致性</th><th class="c">数据量</th><th>适用</th></tr></thead>
+<tbody>
+<tr><td>LoRA 微调</td><td class="c">90–95%</td><td class="c">15–30 张</td><td>主角、长期 IP、跨平台复用</td></tr>
+<tr><td>IP-Adapter</td><td class="c">75–85%</td><td class="c">1 张参考图</td><td>临时角色、快速打样</td></tr>
+<tr><td>Reference-Only</td><td class="c">≈70%</td><td class="c">0</td><td>草稿、氛围参考</td></tr>
+</tbody></table>
+同时关注免训练方案（如字节开源的 HyperLoRA 一类）——这类东西出现的信号是：<strong>训练本身越来越不值钱，"定义训练什么"越来越值钱</strong>。这正好是她的位置。</dd>
+<dt>1.3 多角度参考图规格</dt>
+<dd>三视图 / 转面表的标准怎么定：角度间隔、光照条件、表情范围、服饰细节。这是"资产"和"一堆图"的分界线。</dd>
+<dt>1.4 验收清单</dt>
+<dd>把"看着对不对"翻译成可勾选的 8–10 项判据：五官比例偏差、发色色值范围、服饰细节一致性、手部结构、光照方向一致性、色温偏差、背景透视、画质劣化。<strong>这份清单是她未来所有变现产品的核心部件</strong>，也是她能理直气壮说"我能保证交付质量"的唯一凭据。</dd>
+<dt>产出 A（里程碑作品）</dt>
+<dd><strong>第一个完整资产包</strong>：一个原创 IP = 角色卡文档 + 三视图规格参考图 + 训练好的 LoRA + ComfyUI 工作流 JSON + 验收清单 + 复现说明。<br><span class="hi">这份东西同时是三样东西：她的作品集、未来可售产品的原型、以及你（管线侧）的上下游接口定义。</span></dd>
+<dt>产出 B（教学）</dt>
+<dd>讲成一门 3 小时实操课《AI 角色一致性：从崩脸到可交付》。这门课的演示素材就是上面的资产包，不用另做。</dd>
+<dt>验收判据（必须外部验证）</dt>
+<dd>① 随机抽 20 个镜头，让一个不知道内情的人看，挑不出穿帮；② <strong>把工作流 JSON 和说明文档给一个没学过的人，他能按文档复现出来</strong>。第二条比第一条重要——第一条只证明她手艺好，第二条证明她建的是标准。</dd>
+</dl>
+</div>
+</div>
+
+<h3>阶段 2｜镜头语言补齐（第 9–24 周，约 60 小时，与阶段 1 后半并行）</h3>
+
+<p>这是她相对影视/动画背景候选人<strong>最实的短板</strong>，JD 里 41% 明确写了要求。注意目标设定：<span class="hi">练到"能答辩、能把活交给懂行的人时不丢人"，不必练到"能独立指导拍摄"。</span>后者需要的时间是前者的五倍，而她的变现场景用不到。</p>
+
+<div class="phase">
+<div class="hd"><h3>阶段 2 · 镜头语言</h3><div class="meta">第 9–24 周 ｜ 约 60 小时 ｜ 弱项定向补齐，不追求创作级</div></div>
+<div class="bd">
+<dl class="kv">
+<dt>学什么</dt>
+<dd>景别（特写 / 近景 / 中景 / 全景 / 远景）与各自叙事功能；机位与角度的情绪含义；<strong>轴线原则与 180 度规则</strong>（最容易露怯的一条）；连续性剪辑的基本逻辑；首尾帧与图生视频的衔接原理——这一条直接决定了她出的静态素材"容不容易生成高质量视频"，是在 50% 的 JD 里都会体现的隐性能力。</dd>
+<dt>怎么练</dt>
+<dd>不要看教程学，<strong>拆解</strong>：选 3 部 AI 短剧，逐镜记录景别/机位/时长/转场，做成表格。然后反向做——给定一段剧本，独立写分镜表。<br><br>另外一条捷径：<span class="hi">这一步如果能争取到校内动漫/影视专业老师参与，成本会大幅下降</span>。参照之前定的协作原则：让合作方"<strong>定标准不做内容</strong>"——请他给分镜评审意见（约 6 小时），不要请他做分镜（可达 40 小时）。</dd>
+<dt>产出 A（作品）</dt>
+<dd>一个 30 镜以上的完整分镜表 + 对应的成片片段（5 分钟内）。</dd>
+<dt>产出 B（教学）</dt>
+<dd>一个 90 分钟模块《给 AI 出来的图排镜头：设计师要补的四件事》。面向和她一样非影视背景的设计类教师，这个模块会比任何通用 AI 课都稀缺。</dd>
+</dl>
+</div>
+</div>
+
+<h3>阶段 3｜工作流与工程接口（第 17–32 周，约 50 小时）</h3>
+
+<div class="phase">
+<div class="hd"><h3>阶段 3 · 工作流与工程接口</h3><div class="meta">第 17–32 周 ｜ 约 50 小时 ｜ 目标：能演示、能讲清，不自己写</div></div>
+<div class="bd">
+<dl class="kv">
+<dt>要掌握到什么程度</dt>
+<dd>能当众完整演示一次"<strong>AI 生成 → 自动命名归档 → 批量出图 → 版本号管理</strong>"的链路；能解释每个环节为什么必须自动化；能算出一次批量任务的人力节省。<br><br><strong>明确边界：脚本实现由计算机侧（你）负责。</strong>她的目标是成为这条管线的"需求定义者"和"验收者"——这也正是阶段 1 资产包能成为你们接口文档的原因。</dd>
+<dt>具体三项</dt>
+<dd>① ComfyUI API 批处理的概念与演示；② 素材命名与版本管理规范（把她阶段 0 建立的个人习惯升级成团队级规范）；③ 了解 Coze / 飞书多维表 / n8n 这类自动化平台能做什么——<strong>知道能力边界就够了</strong>。</dd>
+<dt>为什么必须碰这一块</dt>
+<dd>重庆那份 JD 已经把"Vibe Coding + 自动化工作流"写进必备要求。培训市场上，能答出"怎么让一万张图稳定出完"的讲师，和只会讲"怎么出一张好图"的讲师，是两个价格档。</dd>
+<dt>产出 A / B</dt>
+<dd><strong>A</strong>：一套能让新手按 SOP 产出合格初稿的工作流（含失败处理分支）。<strong>B</strong>：一个 45 分钟演示型课时《批量不等于把同一件事做一百遍》。</dd>
+</dl>
+</div>
+</div>
+
+<h3>阶段 4｜外部验证与课程化（第 29–48 周，约 120 小时）</h3>
+
+<div class="phase">
+<div class="hd"><h3>阶段 4 · 外部验证与课程化</h3><div class="meta">第 29–48 周 ｜ 约 120 小时 ｜ 内部自嗨与外部验证的分界线</div></div>
+<div class="bd">
+<dl class="kv">
+<dt>核心动作：3–5 个外部真实项目</dt>
+<dd>不是模拟题，是别人付钱或者至少愿意署名的项目。作用是把阶段 1 建立的规范<strong>放到不认识的人手里验证</strong>——只有这一步能回答"我的标准是通用标准，还是只有我自己跑得通"。</dd>
+<dt>建立季度更新机制</dt>
+<dd>讲师 JD 明写"定期更新课程体系"。这意味着工具层内容必然要重写。<strong>建议做法：把课程分成"不变内核"和"季度外壳"两层</strong>——内核是审判断据、资产结构、验收逻辑（这些三年不过期）；外壳是具体工具截图与操作（每季度换一次）。这样每次工具迭代只需要重做 20% 的内容，而不是全部返工。</dd>
+<dt>产出 A / B</dt>
+<dd><strong>A</strong>：3 个可署名的商业案例 + 1 份对外作品集。<strong>B</strong>：一门完整的 6 小时标准课（含大纲、课件、实操素材、考核表、讲师手册），并至少交付一个班次。</dd>
+<dt>走到这一步才谈产品化</dt>
+<dd>资产包、工作流模板、线上课——这些都建立在前面四个阶段的产物上。顺序反了会变成"先做产品再找内核"，做出来的东西卖不动，也讲不深。</dd>
+</dl>
+</div>
+</div>
+
+<h2>六、每一步都能变成钱：三重身份的兑现路径</h2>
+
+<p>这条路线图的一个特点是：<strong>没有一步是"纯投入"</strong>。每个阶段的产出都能在三种角色上同时起作用。</p>
+
+<table>
+<thead><tr><th style="width:16%">阶段</th><th style="width:28%">交付物</th><th style="width:26%">① 作为从业者</th><th style="width:30%">② 作为培训师 / 讲师</th></tr></thead>
+<tbody>
+<tr><td>阶段 0</td><td>工具对照笔记</td><td>接单价低的执行单，摸行情</td><td>45 分钟公开课模块</td></tr>
+<tr><td>阶段 1</td><td><strong>完整资产包</strong></td><td>接一致性质检/资产构建类活</td><td>3 小时实操课的核心 Demo</td></tr>
+<tr><td>阶段 2</td><td>分镜表 + 成片片段</td><td>能参与完整项目而不只是出图</td><td>面向非影视背景教师的稀缺模块</td></tr>
+<tr><td>阶段 3</td><td>批处理工作流 + SOP</td><td>团队/管线协作者位置</td><td>差异化课时（多数讲师讲不了）</td></tr>
+<tr><td>阶段 4</td><td>3 个案例 + 一门标准课</td><td>定价权的来源</td><td>完整可售产品</td></tr>
+</tbody>
+</table>
+
+<div class="callout">
+<div class="t">她的客户是谁：政策已经把答案写好了</div>
+<p style="margin:6px 0 0">2026 年的三份文件构成了确定性的需求侧：<br>
+① <strong>T/JSCS 0009-2026《人工智能双师标准》</strong>（2026-02-10 实施）：七个维度 × 初/中/高三级，其中高级条件之一是"<strong>开发面向教师的人工智能教育慕课/在线精品课程/微证书课程，或累计培训教师不少于 500 人</strong>"——这是官方给"给老师讲课"这条路径刻的刻度。<br>
+② <strong>《职业院校人工智能应用指引（2026 版）》</strong>（教育部职教信息化教指委）：教师分层为普及层（用 AI 工具）/ 深化层（融合 AI 教学）/ 研发层（参与企业项目）。<br>
+③ <strong>广东省技工院校人工智能教育指引</strong>（2026-08-06）：教师 AI 教学能力分初/中/高三级，高级要求"<strong>能绘制本专业岗位数智化转型能力图谱，明确 AI 替代、AI 增强与 AI 新生岗位的技能边界</strong>"。<br><br>
+而清华大学团队在《中国教育报》的调研直接点出了短板："职业院校教师 AI 素养……面临<strong>知识体系不完备、应用和创造能力不足</strong>"，建议"<strong>减少普及型讲座，推广项目式、场景化培训</strong>"。<br><br>
+<span class="hi">把这几条合起来：她的客户是被政策要求提升 AI 素养的全国职校教师，而政策文件自己写明市场缺的是"项目式、场景化培训"而不是工具讲座。</span>这既是产品定位，也是这条路线图为什么每一步都要有真实项目产出。</p>
+</div>
+
+<h2>七、明确不学清单（按 JD 频次倒推）</h2>
+
+<table>
+<thead><tr><th style="width:24%">不学</th><th class="c" style="width:12%">JD 频次</th><th>为什么可以不学</th></tr></thead>
+<tbody>
+<tr><td><strong>Blender / UE5 深度 3D</strong></td><td class="c">5 / 23%</td><td>全部出现在"加分项"，且集中在古装/科幻题材的具体公司。<strong>例外条款</strong>：如果未来接历史正剧或玄幻题材项目——广州那份"AI 视觉生成师"要求"深入研究目标朝代服饰、建筑、兵器、器物"——那时再补 3D 辅助构图，不必提前。</td></tr>
+<tr><td><strong>扩散模型原理 / 从零训练</strong></td><td class="c">0</td><td>22 份 JD <strong>没有一份</strong>要求模型原理。工程岗 JD（南通"n8n 智能体应用工程师"18–25K）要求的是 Java/Python 全栈 + YOLO 训练，那是完全不同的赛道，不是她该去的地方。</td></tr>
+<tr><td><strong>Python / 向量数据库 / 本地微调</strong></td><td class="c">仅讲师岗"优先"</td><td>出现在郑州讲师 JD 的第 3 条优先条件里，同岗还有"{ } 至少 3 项"的其他优先。<span class="hi">注意区分"优先"和"必须"</span>——这一项的边际收益远低于把阶段 1 做深。清楚边界：她要懂到能讲，不能写。</td></tr>
+<tr><td><strong>纯 AI 艺术创作</strong></td><td class="c">0</td><td>JD 里没有买单方。所有提到的地方都是"作品集丰富"意义上的，不是岗位职能。</td></tr>
+<tr><td>提示词技巧（作为主业）</td><td class="c">17 / 77%</td><td>频次最高但<strong>饱和最快</strong>：阶段 0 练到够用就停。它值钱的形式是"沉淀成模板库"（JD 原话），不是"背更多技巧"。</td></tr>
+</tbody>
+</table>
+
+<h2>八、季度自检与纠偏</h2>
+
+<p>每季度做一次，对照下面六条。<strong>前三条任一不过关，说明路线偏了，往后退一个阶段重做，不要继续往前。</strong></p>
+
+<ol>
+<li><strong>外部性检查</strong>：这个季度有没有至少一件东西被<strong>不认识的人</strong>使用或评价过？没有 → 正停在自嗨的边缘，立刻补一个外部验证。</li>
+<li><strong>复现检查</strong>：把你的工作流和规范文档给一个人按着做，他能做到吗？不能 → 你交付的是手艺，不是标准，薪资会被锁在 L2。</li>
+<li><strong>不可替代性检查</strong>：这个季度学的东西，一个刚毕业的视传学生三个月能不能追上？能 → 这项投入是白费的，砍掉。</li>
+<li><strong>双产出检查</strong>：每个阶段的"项目作品"和"教学模块"是不是都产出了？只有一边 → 半年后会出现要么没作品、要么没内核。</li>
+<li><strong>JD 对照检查</strong>：重新抓 10 份当地最新的 JD，看你正在学的东西是不是还在里面。工具类内容一旦消失，立刻降优先级。</li>
+<li><strong>定价检查</strong>：你的产出是在"你自己干"（拿 4–6K 的执行价），还是在"让别人干"（拿标准层的价格）？一直在自己干 → 阶段 3 没有真正过关。</li>
+</ol>
+
+<h2>九、最需要警惕的两条路径</h2>
+
+<div class="callout danger">
+<div class="t">失败路径 A：停在工具层做"全能 AI 讲师"</div>
+<p style="margin:6px 0 0">表现：什么工具都会用，课也讲得热闹，但回答不了"怎么保证一百个镜头不崩"。<br>
+为什么会失败：这个位置的市场上有海量供给，价格被批量招聘压死（见发现一）。而且强 AI 工具三个月一代，每年重做，积累归零。</p>
+</div>
+
+<div class="callout danger">
+<div class="t">失败路径 B：追了一圈时髦名词, 但没有一个可复现的资产包</div>
+<p style="margin:6px 0 0">表现：知识量很大，讲什么都头头是道，但拿不出一个别人能照着做出来的完整资产包。<br>
+为什么会失败：阶段 1 的第二个验收判据（<strong>别人能不能复现</strong>）没过。这一条不过，她交付的永远是手艺不是标准，而手艺在 AI 时代的价格正在快速下跌。<br><br>
+<span class="hi">纠偏：现在就停掉手上的学习任务，回到阶段 1，把那个资产包做完做完做完。</span></p>
+</div>
+
+<footer>
+<p><strong>数据来源</strong>：2026 年 9 月 18 日检索所得在招岗位 JD 共 22 份，来源包括全职招聘网、汇博招聘、猎聘、智联招聘、91job 江苏智慧就业平台、南昌市人才招聘网、牛客网、梧桐果、LinkedIn、BeBee 等公开渠道。政策依据为 T/JSCS 0009-2026《人工智能双师标准》、教育部职教信息化教指委《职业院校人工智能应用指引（2026 版）》、广东省技工院校人工智能教育指引（2026-08-06）、《中国教育报》2026-01-27 刊发的清华大学团队调研。</p>
+<p><strong>可信度声明</strong>：JD 薪资为岗位原文所标区间，未做加权平均。技能频次为上述 22 份样本的统计结果，用于判断技能结构而非市场占比。媒体转述的"AI 岗位均价 3 万""人才缺口数百万"一类数据未予采用。</p>
+<p style="margin-top:16px"><strong>分工边界重申（与张主副配合）</strong>：张管管线（怎么批量跑），董老师管规范（什么算合格）。<span class="hi">张不替董老师定义视觉标准</span>——一旦她变成"张说怎么做好就怎么做"，内核就废了，那是她唯一不可替代的东西。两人接口 = manhua.py 的 <code>meta.json</code>（status 三态 + score）与资产包规范文档。本文是 AI 培训体系三份核心文档之一，另见《AI培训体系总纲》《张 AI应用与交付(FDE) 详细技能树与路线图》。</p>
+</footer>
+
+</div>
+</body>
+</html>

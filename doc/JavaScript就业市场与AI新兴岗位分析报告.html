@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JavaScript 就业市场分析（收缩版）· AI 落地层</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{
+    --ink:#16181d;--ink-2:#3d424d;--ink-3:#6b7280;--ink-4:#9aa1ac;
+    --line:#e3e6eb;--line-2:#f0f2f5;--paper:#fff;--paper-2:#f7f8fa;
+    --brand:#2f4a7c;--brand-soft:#eef2f9;
+    --warn:#a8442e;--warn-soft:#fdf1ee;
+    --ok:#2c6b52;--ok-soft:#edf6f2;
+    --gold:#8a6d1f;--gold-soft:#fdf8ec;
+  }
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;background:#eceef1;color:var(--ink);line-height:1.75;-webkit-font-smoothing:antialiased}
+  .page{max-width:1080px;margin:0 auto;background:var(--paper);box-shadow:0 1px 3px rgba(0,0,0,.06)}
+  .inner{padding:0 64px}
+  header{background:linear-gradient(160deg,#1e2230 0%,#2f4a7c 100%);color:#fff;padding:56px 0 48px}
+  header .inner{padding:0 64px}
+  .kicker{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:#9fb4d8;margin-bottom:18px}
+  h1{font-size:33px;line-height:1.35;font-weight:700;letter-spacing:-.01em}
+  .sub{margin-top:14px;font-size:15px;color:#c3d0e6;max-width:760px;line-height:1.7}
+  .meta-row{margin-top:28px;display:flex;gap:32px;flex-wrap:wrap;font-size:12.5px;color:#9fb4d8;border-top:1px solid rgba(255,255,255,.15);padding-top:18px}
+  .meta-row b{color:#e8eef8;font-weight:600}
+  section{padding:52px 0;border-bottom:1px solid var(--line-2)}
+  section:last-child{border-bottom:none}
+  h2{font-size:23px;font-weight:700;letter-spacing:-.01em;margin-bottom:8px;display:flex;align-items:baseline;gap:14px}
+  .num{font-size:12px;font-weight:700;color:var(--brand);background:var(--brand-soft);padding:4px 10px;border-radius:4px;letter-spacing:.08em;flex-shrink:0;transform:translateY(-3px)}
+  .lead{color:var(--ink-3);font-size:14.5px;margin-bottom:28px;padding-left:44px}
+  h3{font-size:17px;font-weight:650;margin:34px 0 14px;display:flex;align-items:center;gap:10px}
+  h3::before{content:"";width:3px;height:15px;background:var(--brand);border-radius:2px}
+  h4{font-size:15px;font-weight:650;margin:24px 0 10px;color:var(--ink-2)}
+  p{font-size:14.5px;color:var(--ink-2);margin-bottom:14px}
+  strong{color:var(--ink);font-weight:650}
+  .concl{background:var(--brand-soft);border-left:3px solid var(--brand);padding:22px 26px;margin:22px 0;border-radius:0 6px 6px 0}
+  .concl .lb{font-size:11.5px;font-weight:700;color:var(--brand);letter-spacing:.12em;margin-bottom:8px}
+  .concl p{margin:0;font-size:15px;color:#1f2a3d;line-height:1.8}
+  .concl p+p{margin-top:10px}
+  .warn-box{background:var(--warn-soft);border:1px solid #f0d9d2;border-radius:8px;padding:20px 24px;margin:22px 0}
+  .warn-box .lb{font-size:11.5px;font-weight:700;color:var(--warn);letter-spacing:.1em;margin-bottom:10px}
+  .warn-box p{font-size:14px;margin-bottom:8px}
+  .warn-box p:last-child{margin-bottom:0}
+  .ok-box{background:var(--ok-soft);border:1px solid #d5e9df;border-radius:8px;padding:20px 24px;margin:22px 0}
+  .ok-box .lb{font-size:11.5px;font-weight:700;color:var(--ok);letter-spacing:.1em;margin-bottom:10px}
+  .ok-box p{font-size:14px;margin-bottom:8px}
+  .ok-box p:last-child{margin-bottom:0}
+  .fix-box{background:var(--gold-soft);border:1px solid #ecdcb4;border-radius:8px;padding:20px 24px;margin:22px 0}
+  .fix-box .lb{font-size:11.5px;font-weight:700;color:var(--gold);letter-spacing:.1em;margin-bottom:10px}
+  .fix-box p{font-size:14px;margin-bottom:8px}
+  .fix-box p:last-child{margin-bottom:0}
+  table{width:100%;border-collapse:collapse;margin:18px 0;font-size:13.5px}
+  th{background:var(--paper-2);text-align:left;padding:11px 14px;font-weight:650;color:var(--ink-2);border-bottom:1.5px solid var(--line);font-size:12.5px}
+  td{padding:11px 14px;border-bottom:1px solid var(--line-2);color:var(--ink-2);vertical-align:top}
+  tr:last-child td{border-bottom:none}
+  td.n{font-variant-numeric:tabular-nums;white-space:nowrap}
+  td.pay{font-variant-numeric:tabular-nums;white-space:nowrap;font-weight:650;color:var(--ink)}
+  .tag{display:inline-block;font-size:11px;padding:2px 7px;border-radius:3px;font-weight:600;white-space:nowrap}
+  .t-lo{background:var(--warn-soft);color:var(--warn)}
+  .t-mid{background:var(--gold-soft);color:var(--gold)}
+  .t-hi{background:var(--ok-soft);color:var(--ok)}
+  .t-n{background:var(--paper-2);color:var(--ink-3)}
+  .jd{border:1px solid var(--line);border-radius:8px;margin:16px 0;overflow:hidden}
+  .jd-h{background:var(--paper-2);padding:13px 18px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;border-bottom:1px solid var(--line)}
+  .jd-t{font-size:14.5px;font-weight:650;color:var(--ink)}
+  .jd-m{font-size:12.5px;color:var(--ink-3);display:flex;gap:10px;flex-wrap:wrap;margin-top:3px}
+  .jd-p{font-size:13.5px;font-weight:700;color:var(--brand);white-space:nowrap;font-variant-numeric:tabular-nums}
+  .jd-b{padding:16px 18px}
+  .jd-b p{font-size:13.5px;margin-bottom:9px;line-height:1.72}
+  .jd-b p:last-child{margin-bottom:0}
+  .jd-l{font-size:11.5px;font-weight:700;color:var(--ink-3);letter-spacing:.06em;display:block;margin:12px 0 5px}
+  .jd-l:first-child{margin-top:0}
+  .skills{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+  .sk{font-size:11.5px;background:var(--paper-2);border:1px solid var(--line);padding:3px 8px;border-radius:3px;color:var(--ink-2)}
+  .metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:24px 0}
+  .m{background:var(--paper-2);border:1px solid var(--line);border-radius:8px;padding:18px 16px}
+  .m-v{font-size:26px;font-weight:700;letter-spacing:-.02em;font-variant-numeric:tabular-nums;line-height:1.2}
+  .m-l{font-size:12px;color:var(--ink-3);margin-top:7px;line-height:1.5}
+  .m-s{font-size:11px;color:var(--ink-3);margin-top:5px;opacity:.85}
+  .m.red .m-v{color:var(--warn)}
+  .m.green .m-v{color:var(--ok)}
+  .m.blue .m-v{color:var(--brand)}
+  ul.li{list-style:none;margin:12px 0}
+  ul.li li{font-size:14px;color:var(--ink-2);padding-left:20px;position:relative;margin-bottom:9px;line-height:1.7}
+  ul.li li::before{content:"";position:absolute;left:4px;top:10px;width:5px;height:5px;border-radius:50%;background:var(--brand)}
+  ul.li li b{color:var(--ink)}
+  .q{border-left:2px solid var(--line);padding:2px 0 2px 18px;margin:14px 0;font-size:13.5px;color:var(--ink-3)}
+  .q p{font-size:13.5px;color:var(--ink-3);margin-bottom:8px}
+  .q .src{font-size:12px;color:var(--ink-3);opacity:.85;margin-top:6px}
+  .dir{border:1px solid var(--line);border-radius:8px;margin:18px 0;overflow:hidden}
+  .dir-h{padding:15px 20px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;border-bottom:1px solid var(--line)}
+  .dir-h.green{background:var(--ok-soft)}
+  .dir-h.gold{background:var(--gold-soft)}
+  .dir-h.blue{background:var(--brand-soft)}
+  .dir-h.grey{background:var(--paper-2)}
+  .dir-t{font-size:15.5px;font-weight:650;color:var(--ink)}
+  .dir-d{font-size:13px;color:var(--ink-3);margin-top:3px}
+  .dir-n{font-size:13px;font-weight:700;text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+  .dir-b{padding:18px 20px}
+  .dir-b p{font-size:13.5px;margin-bottom:10px}
+  .dir-b p:last-child{margin-bottom:0}
+  .cut{border:1px dashed #cfd5de;border-radius:8px;padding:18px 22px;margin:18px 0;background:#fcfcfd}
+  .cut-h{font-size:14.5px;font-weight:650;color:var(--ink-3);margin-bottom:8px;display:flex;align-items:center;gap:9px}
+  .cut-h::before{content:"×";display:inline-flex;align-items:center;justify-content:center;width:19px;height:19px;border-radius:50%;background:#cfd5de;color:#fff;font-size:13px;font-weight:700;flex-shrink:0}
+  .cut p{font-size:13.5px;color:var(--ink-3);margin-bottom:8px}
+  .cut p:last-child{margin-bottom:0}
+  footer{background:var(--paper-2);padding:36px 0;font-size:12.5px;color:var(--ink-3)}
+  footer .inner{padding:0 64px}
+  footer h4{font-size:13px;color:var(--ink-2);margin:0 0 12px}
+  footer p{margin-bottom:10px;line-height:1.7}
+  .src-list{font-size:12px;line-height:1.85}
+  .src-list b{color:var(--ink-2)}
+  @media(max-width:820px){
+    .inner,header .inner,footer .inner{padding:0 24px}
+    .metrics{grid-template-columns:repeat(2,1fr)}
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+<header>
+  <div class="inner">
+    <div class="kicker">国内就业市场分析 · 收缩版 · 2026 Q3</div>
+    <h1>JavaScript 就业分析：收缩到 AI 落地层</h1>
+    <div class="sub">砍掉三维可视化与"精通技术栈"型纯前端，把分析面收窄到 AI 带来的增量岗位。筛选口径：国内在招、大专层次够得着。JS 按"前端体系"整体看待（含 TypeScript / Node / 小程序）。</div>
+    <div class="meta-row">
+      <div>抓取日期 · <b>2026-09-18</b></div>
+      <div>本轮新增样本 · <b>18 条 AI 落地层 JD</b></div>
+      <div>筛选口径 · <b>大专可投 / 应届可投</b></div>
+      <div>分析主体 · <b>AI 交付实施、智能体与工作流、企业 AI 落地岗</b></div>
+    </div>
+  </div>
+</header>
+
+<!-- 00 -->
+<section>
+  <div class="inner">
+    <h2><span class="num">00</span>结论先行</h2>
+    <p class="lead">四条结论。第一条是本次收缩的核心判断，后面三条是可执行的推论。</p>
+
+    <div class="concl">
+      <div class="lb">结论一 · 核心判断</div>
+      <p><strong>蓝海不在"前端岗位 + AI"，而在"AI 落地需要、但没人愿意干的工作"。</strong>本轮抓到的大专可投岗位里，真正密集、且明确接受应届的一批，不在互联网公司的研发序列里，而在<b>AI 交付实施、智能体与工作流搭建、企业内部 AI 落地</b>这三处。它们的共同点是：<b>不要求技术深度，要求能把 AI 在别人的业务里跑起来。</b></p>
+      <p>判别依据很直白——泉州石狮一条 JD 写着"具备基础编程认知，了解软件开发基本流程，<strong>无需深度开发</strong>"；长春二道一条写着"能够<strong>阅读和修改简单代码</strong>"；大连旅顺口一条写着"<strong>不要求精通所有技术栈</strong>"。这些不是个别情况，是这批岗位的普遍写法。</p>
+    </div>
+
+    <div class="concl">
+      <div class="lb">结论二 · 买方变了</div>
+      <p><strong>招这些人的不是互联网公司，是传统企业。</strong>本轮 18 条岗位里，雇主方包括：肉制品厂（福建台宏食品，泉州石狮）、家具配件五金厂（宁波汇德隆，余姚）、原材料加工企业（珠海华凯工贸）、日化工厂（湖州）、金属企业（沈阳博宇）、通信工程公司（广西千万里，南宁）、数控机床/注塑企业（宁波集团研究院）。</p>
+      <p>这件事的意义在于：<strong>它们不在"985 本科 / 大厂履历"这套筛选体系里，因为它们本来也招不到那样的人。</strong>它们写的是"专业不限""我们更关注你的实践能力"。学历歧视发生在供应过剩的地方，而这批岗位目前供应不足。</p>
+    </div>
+
+    <div class="concl">
+      <div class="lb">结论三 · 台阶很密</div>
+      <p>这批岗位从 <strong>3 千到 2 万以上</strong>，中间至少有七个可辨认的台阶，且<b>最低一级明确接受应届</b>——沈阳博宇"智能体方向"3000–4000 招在读应届生；苏州 FDE 3–6 千应届/可实习；厦门 FDE 5–8 千应届生可投；湖州工厂 AI 项目专员 6–7 千只招 2025–2028 届毕业生。</p>
+      <p>对比被砍掉的两个方向：三维可视化虽然能到 11–16K，但最低一级就要"熟练掌握 WebGL/Three.js"；企业系统前端普遍要求"精通 Vue/React 全家桶"且 1–3 年起。<strong>前者台阶密但入口低，后者入口本身就是一道墙。</strong></p>
+    </div>
+
+    <div class="fix-box">
+      <div class="lb">结论四 · JavaScript 在这批 JD 里的真实位置（重要）</div>
+      <p>必须说清楚：<strong>在这批岗位里，JS 是入场券，不是定价权。</strong></p>
+      <p>被明确写进 JD 的形态是这样的——厦门思明那条 FDE 岗的技能标签并列写着 <strong>Java / Python / JavaScript</strong>；安庆那条要求"熟悉 <strong>Python 或 JS 脚本</strong>，能独立<strong>调试 API</strong>"；或直接写"具备基础编程认知""能读能改简单代码"。</p>
+      <p><strong>不是"精通 Vue 全家桶"那种强度，是"能读懂、能改、能接接口"那种强度。</strong>这正是大专生够得着的强度，也是 JS 课应当对准的目标水位——但也意味着：<strong>定价权在别的地方</strong>（工作流搭建、知识库、交付表达、业务流程理解）。只教 JS 不够，不教 JS 不行。</p>
+    </div>
+  </div>
+</section>
+
+<!-- 01 -->
+<section>
+  <div class="inner">
+    <h2><span class="num">01</span>为什么砍掉那两个方向</h2>
+    <p class="lead">不是因为方向不好，是因为它们在"成功率 × 投入产出"上不划算。下面把依据摆出来。</p>
+
+    <div class="cut">
+      <div class="cut-h">砍掉 · 三维可视化 / WebGIS（three.js / Cesium / WebGL）</div>
+      <p><b>理由：学历门槛不高，但技能门槛很高，且向扩展到该水位所需的时间跨度超出专科三年的可用课时。</b></p>
+      <p>具体表现是它在 JD 里的要求形态——郑州中原"熟悉 <b>WebGL 底层原理、海量数据渲染优化</b>"；郑州另一条要求"态势推演项目经验"；成都温江虽然"经验不限、学历不限"，但硬条件是"熟练掌握 three.js / WebGL"；天津西青要"基于 Cesium/threejs 的三维 GIS <b>引擎设计与研发</b>"。</p>
+      <p>也就是说，这个方向的"不看学历"是用<b>更高的技能门槛</b>换来的，不是用更低的整体要求换来的。对一个生源普通的大专班，把"规模化掌握 WebGL / Cesium"作为培养目标，风险太高。</p>
+      <p style="color:var(--warn)"><b>保留一份：不作为培养目标，但可作为尖子生的选修 / 竞赛方向。</b>这个方向的定价能力是真实的（石家庄"Cesium 熟练就行"8–9K；北京海淀 11–16K），适合头部 5–10 人，不适合全体。</p>
+    </div>
+
+    <div class="cut">
+      <div class="cut-h">砍掉 · 要求"精通技术栈"的纯前端</div>
+      <p><b>理由：供给过剩，雇主端已经切换到"筛人模式"，性价比对大专生最差。</b></p>
+      <p>三个数据点：<b>0–3 年初级前端岗位招聘量同比 −62%</b>（拉勾 2026 Q1，单岗平均投递 127:1）；<b>要求 3 年以上经验的岗位占比 &gt;70%</b>（脉脉《2026 春招求职行为洞察》，被概括为"去初级化"）；它要求的强度从珠海香洲一条可见——"精通 AJAX/JQuery/Angular/Vue/<b>nodejs</b>"，这只是 1–3 年、8–11K 的岗位。</p>
+      <p>这类岗位的特点是<b>它不仅要求你达到某个水位，还在要求水位的同时要求年限</b>。大专生即使达到了技能水位，也会卡在年限上，而这个年限又恰恰是 AI 工具压缩掉的那一段（同样的工作现在需要的工时变少了，但 JD 上的年限不会跟着减）。</p>
+      <p style="color:var(--warn)"><b>保留一份：企业系统前端（MES/ERP/WMS）仍是最大的存量池，作为兜底出口保留，不作为主攻。</b></p>
+    </div>
+
+    <div class="ok-box">
+      <div class="lb">收缩后的判据（后面所有分析都按这条走）</div>
+      <p><strong>一个方向值不值得作为培养目标，看三件事：① 增量是否来自 AI，而不是岗位名称里有没有"AI"两个字；② 最低一级台阶应届生能不能进；③ 要求的技能深度是不是大专三年能真的达到，而不是"理论上可以"。</strong></p>
+      <p>按这三条筛下来，"AI 落地层"是全样本里唯一三条都过的。</p>
+    </div>
+  </div>
+</section>
+
+<!-- 02 -->
+<section>
+  <div class="inner">
+    <h2><span class="num">02</span>为什么这就是蓝海：一次定价权的迁移</h2>
+    <p class="lead">不是推测，是从这批 JD 的任职要求里直接读出来的。</p>
+
+    <h3>被降级的和被引进的</h3>
+    <p>把这批 JD 的要求拆开，会发现它做了一件很整齐的事：<strong>把一类要求降下去，把另一类要求提上来。</strong></p>
+
+    <table>
+      <thead><tr><th style="width:26%">被降级的要求</th><th style="width:32%">JD 原文</th><th>出处</th></tr></thead>
+      <tbody>
+        <tr><td>技术栈深度</td><td>"不要求精通所有技术栈"</td><td>大连旅顺口 · AI 全栈开发工程师，7 千–1.2 万</td></tr>
+        <tr><td>开发深度</td><td>"具备基础编程认知，了解软件开发基本流程，<strong>无需深度开发</strong>"</td><td>泉州石狮 · AI 项目对接专员，7 千–1 万，大专</td></tr>
+        <tr><td>编码深度</td><td>"了解 Python 或 Java 基础语法，能够<strong>阅读和修改简单代码</strong>"</td><td>长春二道 · 智能体应用开发工程师，6 千–1 万，大专</td></tr>
+        <tr><td>学历与专业</td><td>"学历专业不限，我们更关注你的<strong>实践能力</strong>、学习能力和创造热情"</td><td>成都高新 · 智能体应用工程师，6–9K</td></tr>
+        <tr><td>年限门槛</td><td>"有实际使用经验者优先（<strong>个人项目、课程作业均可</strong>）"</td><td>长春二道 · 同上</td></tr>
+      </tbody>
+    </table>
+
+    <table>
+      <thead><tr><th style="width:26%">被引进的要求</th><th style="width:32%">JD 原文</th><th>出处</th></tr></thead>
+      <tbody>
+        <tr><td>面客与沟通</td><td>"<strong>能面客</strong>：表达能力强，能把复杂的 AI 逻辑翻译成老板听得懂的生意经"</td><td>安庆宜秀 · AI 实施工程师，8000–12000</td></tr>
+        <tr><td>培训能力</td><td>"为客户提供上门/远程使用培训，制定<strong>分层培训计划</strong>，输出<strong>标准化操作手册</strong>"</td><td>厦门思明 · AI 交付实施工程师（FDE），5–8 千</td></tr>
+        <tr><td>流程理解</td><td>"切忌只做技术实现——具备以技术驱动业务增长的意识，而不仅仅是技术实现"</td><td>成都高新 · 智能体应用工程师</td></tr>
+        <tr><td>沉淀标准化</td><td>"沉淀<strong>交付标准 SOP、行业解决方案模板与常见问题库</strong>，持续优化交付效率"</td><td>厦门思明 · 同上</td></tr>
+        <tr><td>API 与集成</td><td>"调优 AI 工作流，处理 <strong>API 连接与本地工具链配置</strong>（如 RPA、自动化任务）"</td><td>安庆宜秀 · 同上</td></tr>
+        <tr><td>内部赋能</td><td>"负责新流程、飞书应用与 AI 工具在全员的推广落地……开展<strong>实操培训</strong>"</td><td>宁波余姚 · AI 项目助理，6–9 千×13 薪</td></tr>
+      </tbody>
+    </table>
+
+    <div class="concl">
+      <div class="lb">这张表说明了什么</div>
+      <p><strong>AI 把"把东西写出来"的稀缺性打没了，于是稀缺性整体迁移到了"让它在别人的业务里真正跑起来"这一侧。</strong></p>
+      <p>培训、演示、写手册、理流程、调通接口、把老板的话翻译成配置——这些事在 2023 年的前端 JD 里基本不会出现。<strong>现在它们独立成岗，而且明码标价。</strong></p>
+      <p>关键的一点：<strong>这些能力不在计算机科学的学科知识体系里，它们属于工程实践。</strong>本科教育不教，也不屑教；而高职实训恰恰能覆盖。<b>这是结构性的错位机会，不是时间差红利。</b></p>
+    </div>
+
+    <h3>链路上它在哪一格</h3>
+    <p>把这批岗位放在 AI 项目的完整链条上看，位置很清楚：</p>
+    <table>
+      <thead><tr><th style="width:18%">环节</th><th style="width:30%">做什么</th><th style="width:16%">谁在做</th><th>大专可投</th></tr></thead>
+      <tbody>
+        <tr><td>模型层</td><td>训练、微调、算法</td><td>硕士以上 / 算法团队</td><td><span class="tag t-lo">够不着</span></td></tr>
+        <tr><td>平台层</td><td>Coze、Dify、飞书 Aily、阿里云百炼等</td><td>大厂</td><td><span class="tag t-lo">不招</span></td></tr>
+        <tr style="background:var(--ok-soft)"><td><b>交付层</b></td><td><b>把平台能力装进客户的具体业务里</b></td><td><b>代理商 / 服务商 / 企业内部</b></td><td><span class="tag t-hi">本轮主战场</span></td></tr>
+        <tr style="background:var(--ok-soft)"><td><b>运营层</b></td><td><b>知识库维护、效果评估、流程迭代</b></td><td><b>客户方 IT / 数字化岗</b></td><td><span class="tag t-hi">本轮主战场</span></td></tr>
+        <tr><td>数据层</td><td>标注、清洗、格式转换</td><td>外包 / 众包</td><td><span class="tag t-mid">能进，但价格低</span></td></tr>
+      </tbody>
+    </table>
+    <p><strong>被 AI 创造出来的大量工作落在交付层和运营层，而这两层恰恰是学历筛选最弱的地方。</strong>模型层和平台层的招聘，学历门槛会一路往上；交付层和运营层筛的是"能不能干活"。</p>
+  </div>
+</section>
+
+<!-- 03 -->
+<section>
+  <div class="inner">
+    <h2><span class="num">03</span>三条通道：台阶地图</h2>
+    <p class="lead">全部为本轮抓到的国内在招岗位。横轴为月薪，条形长度越长薪资越高，深色段为该通道的上限位置。</p>
+
+    <svg viewBox="0 0 680 508" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;margin:20px 0 6px;display:block" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif">
+      <!-- axis labels -->
+      <g font-size="11" fill="#6b7280" text-anchor="middle">
+        <text x="170" y="16">0</text>
+        <text x="267.5" y="16">5K</text>
+        <text x="365" y="16">10K</text>
+        <text x="462.5" y="16">15K</text>
+        <text x="560" y="16">20K</text>
+      </g>
+      <g stroke="#f0f2f5" stroke-width="1">
+        <line x1="170" y1="24" x2="170" y2="486"/>
+        <line x1="267.5" y1="24" x2="267.5" y2="486"/>
+        <line x1="365" y1="24" x2="365" y2="486"/>
+        <line x1="462.5" y1="24" x2="462.5" y2="486"/>
+        <line x1="560" y1="24" x2="560" y2="486"/>
+      </g>
+
+      <!-- ===== Group A ===== -->
+      <rect x="0" y="30" width="4" height="130" rx="2" fill="#2c6b52"/>
+      <text x="10" y="44" font-size="12.5" font-weight="650" fill="#2c6b52">通道 A · AI 交付实施 / FDE</text>
+      <text x="10" y="59" font-size="10.5" fill="#6b7280">技能性最强的一条 · 明确提及 JavaScript</text>
+
+      <text x="165" y="72" font-size="11.5" fill="#3d424d" text-anchor="end">苏州工业园 · FDE 前端部署</text>
+      <rect x="228.5" y="62" width="58.5" height="15" rx="3" fill="#2c6b52" opacity=".55"/>
+      <text x="295" y="73" font-size="10.5" fill="#6b7280">3–6K</text>
+      <text x="165" y="85" font-size="9.5" fill="#9aa1ac" text-anchor="end">大专 · 应届 / 可实习</text>
+
+      <text x="165" y="106" font-size="11.5" fill="#3d424d" text-anchor="end">厦门思明 · AI 交付实施 FDE</text>
+      <rect x="267.5" y="96" width="58.5" height="15" rx="3" fill="#2c6b52" opacity=".7"/>
+      <text x="334" y="107" font-size="10.5" fill="#6b7280">5–8K</text>
+      <text x="165" y="119" font-size="9.5" fill="#9aa1ac" text-anchor="end">大专 · 1 年 · 应届可投</text>
+
+      <text x="165" y="140" font-size="11.5" fill="#3d424d" text-anchor="end">安庆宜秀 · AI 实施（跨境）</text>
+      <rect x="326" y="130" width="78" height="15" rx="3" fill="#2c6b52" opacity=".8"/>
+      <text x="412" y="141" font-size="10.5" fill="#6b7280">8–12K</text>
+      <text x="165" y="153" font-size="9.5" fill="#9aa1ac" text-anchor="end">大专 · 标应届毕业生</text>
+
+      <text x="165" y="174" font-size="11.5" fill="#3d424d" text-anchor="end">广州 · 飞书 AI 交付 FDE</text>
+      <rect x="462.5" y="164" width="97.5" height="15" rx="3" fill="#2c6b52"/>
+      <text x="568" y="175" font-size="10.5" fill="#6b7280">15–20K</text>
+      <text x="165" y="187" font-size="9.5" fill="#9aa1ac" text-anchor="end">1–3 年 · 学历可放宽</text>
+
+      <text x="165" y="208" font-size="11.5" fill="#3d424d" text-anchor="end">宁波 · AI 产品交付工程师</text>
+      <rect x="470" y="198" width="123" height="15" rx="3" fill="#2c6b52"/>
+      <text x="601" y="209" font-size="10.5" fill="#6b7280">15.8–21.7K</text>
+      <text x="165" y="221" font-size="9.5" fill="#9aa1ac" text-anchor="end">大专及以上 · 3 年 +</text>
+
+      <!-- ===== Group B ===== -->
+      <rect x="0" y="240" width="4" height="130" rx="2" fill="#8a6d1f"/>
+      <text x="10" y="254" font-size="12.5" font-weight="650" fill="#8a6d1f">通道 B · 智能体与工作流搭建</text>
+      <text x="10" y="269" font-size="10.5" fill="#6b7280">最像为应届生准备的一条 · 允许课程作业</text>
+
+      <text x="165" y="282" font-size="11.5" fill="#3d424d" text-anchor="end">沈阳 · 智能体方向</text>
+      <rect x="228.5" y="272" width="19.5" height="15" rx="3" fill="#8a6d1f" opacity=".45"/>
+      <text x="256" y="283" font-size="10.5" fill="#6b7280">3–4K</text>
+      <text x="165" y="295" font-size="9.5" fill="#9aa1ac" text-anchor="end">大专在读 · 应届毕业生</text>
+
+      <text x="165" y="316" font-size="11.5" fill="#3d424d" text-anchor="end">郑州 · AI 数据工程师（校招）</text>
+      <rect x="248" y="306" width="39" height="15" rx="3" fill="#8a6d1f" opacity=".5"/>
+      <text x="295" y="317" font-size="10.5" fill="#6b7280">4–6K</text>
+      <text x="165" y="329" font-size="9.5" fill="#9aa1ac" text-anchor="end">专科 · 招 150 人 · 标注为主</text>
+
+      <text x="165" y="350" font-size="11.5" fill="#3d424d" text-anchor="end">成都 · 智能体应用工程师</text>
+      <rect x="287" y="340" width="58.5" height="15" rx="3" fill="#8a6d1f" opacity=".7"/>
+      <text x="353.5" y="351" font-size="10.5" fill="#6b7280">6–9K</text>
+      <text x="165" y="363" font-size="9.5" fill="#9aa1ac" text-anchor="end">学历专业不限 · 1–3 年</text>
+
+      <text x="165" y="384" font-size="11.5" fill="#3d424d" text-anchor="end">长春二道 · 智能体应用开发</text>
+      <rect x="287" y="374" width="78" height="15" rx="3" fill="#8a6d1f" opacity=".85"/>
+      <text x="373" y="385" font-size="10.5" fill="#6b7280">6–10K</text>
+      <text x="165" y="397" font-size="9.5" fill="#9aa1ac" text-anchor="end">大专 · 课程作业可算经验</text>
+
+      <text x="165" y="418" font-size="11.5" fill="#3d424d" text-anchor="end">广州荔湾 · AI 知识库训练师</text>
+      <rect x="365" y="408" width="97.5" height="15" rx="3" fill="#8a6d1f"/>
+      <text x="470" y="419" font-size="10.5" fill="#6b7280">10–15K</text>
+      <text x="165" y="431" font-size="9.5" fill="#9aa1ac" text-anchor="end">大专及以上 · 2–3 年</text>
+
+      <!-- ===== Group C ===== -->
+      <rect x="0" y="450" width="4" height="46" rx="2" fill="#2f4a7c"/>
+      <text x="10" y="464" font-size="12.5" font-weight="650" fill="#2f4a7c">通道 C · 企业内部 AI 落地岗</text>
+      <text x="10" y="479" font-size="10.5" fill="#6b7280">最隐蔽的一条 · 买家是传统行业企业</text>
+
+      <text x="0" y="500" font-size="10" fill="#9aa1ac">注：安庆一条 JD 内部自相矛盾（岗位标注"应届毕业生"，职责里又写"3–6 年 SaaS 实施经验"），列表中按前者的口径放置。</text>
+    </svg>
+
+    <!-- C group rendered as table to avoid very tall svg -->
+    <table style="margin-top:0">
+      <thead><tr><th style="width:26%">岗位 / 城市</th><th style="width:13%">薪资</th><th style="width:14%">门槛</th><th>雇主性质与关键内容</th></tr></thead>
+      <tbody>
+        <tr><td>AI 项目专员 · 湖州</td><td class="pay">6–7K</td><td class="n">经验不限 · 大专</td><td><b>日化工厂</b>。"2025 年 12 月–2028 年 9 月毕业的应届生/实习生，<b>专业不限</b>"；"了解 AI 基础概念，会使用主流 AI 工具，有 <b>Prompt 编写经验</b>"；"愿意扎根工厂一线"</td></tr>
+        <tr><td>AI 项目对接专员 · 泉州石狮</td><td class="pay">7 千–1 万</td><td class="n">大专</td><td><b>肉制品企业</b>（福建台宏食品）。对接第三方 AI 服务商、需求传递、进度跟进；"具备基础编程认知，了解软件开发基本流程，<b>无需深度开发</b>"</td></tr>
+        <tr><td>AI 项目助理 · 宁波余姚</td><td class="pay">6–9 千×13薪</td><td class="n">1–3 年 · 大专</td><td><b>家具配件五金厂</b>。飞书多维表格+自动化+仪表盘；用 <b>Coze / Dify / 影刀 RPA</b> 搭业务专属 AI 工作流；<b>企业知识库规划运营</b>；AI 驱动产品视频；<b>数字化技能培训与赋能</b></td></tr>
+        <tr><td>AI 应用专员 · 成都武侯</td><td class="pay">8 千–1.5 万</td><td class="n">1 年 · 大专</td><td>服务行业。<b>搭建公司 AI 应用体系</b>；智能客服/智能文案/数据处理/流程自动化等工具的"调试、使用、<b>培训与迭代优化</b>"；"定期向公司团队<b>普及 AI 知识</b>"</td></tr>
+        <tr><td>AI 数字化专员 · 珠海金湾</td><td class="pay">0.8–2 万</td><td class="n">3 年 + · 大专</td><td><b>原材料加工企业</b>（50–150 人）。<b>AI 工具推广落地</b>（飞书/企微智能助手）；推动纸质/Excel/口头流程数字化；协助金蝶 ERP、HR 系统运维与数据对接；<b>员工培训赋能</b>；数据报表可视化</td></tr>
+      </tbody>
+    </table>
+
+    <div class="ok-box">
+      <div class="lb">最值得单独拎出来的一条</div>
+      <p><strong>宁波余姚的「AI 项目助理」，雇主是做家具塑料配件的五金厂。</strong>JD 要求：飞书多维表格（熟悉关联表、高级公式、自动化流、仪表盘配置）、熟练掌握 Coze/Dify/影刀 RPA 或 Webhook 接口联动中的至少一种、能独立设计逻辑清晰的 AI 工作流、搭建企业智能问答知识库、会用 AI 音视频工具批量做产品演示视频、负责全员推广落地与实操培训。</p>
+      <p><strong>一家县城里的家具配件厂，愿意为这六件事付 6–9 千×13 薪。</strong>这就是"AI 下沉"最直接的证据——需求方已经不是互联网公司了，是每一个想降本的传统企业。这类雇主<b>不会按 985/211 筛简历，因为它们从来就没打算进那个市场。</b></p>
+    </div>
+  </div>
+</section>
+
+<!-- 04 -->
+<section>
+  <div class="inner">
+    <h2><span class="num">04</span>逐条 JD：三条通道到底要什么</h2>
+    <p class="lead">引文为 JD 原文。这一节是全报告最可直接用于课程设计的部分。</p>
+
+    <!-- A -->
+    <div class="dir">
+      <div class="dir-h green">
+        <div>
+          <div class="dir-t">通道 A · AI 交付实施 / FDE（前向部署工程师）</div>
+          <div class="dir-d">把 AI 平台能力装进客户业务里 · 本通道明确提及 JavaScript · 天花板最高</div>
+        </div>
+        <div class="dir-n" style="color:var(--ok)">3–22K<br><span style="font-size:11px;color:#6b7280;font-weight:400">大专 · 应届可投</span></div>
+      </div>
+      <div class="dir-b">
+        <p>这是三条通道里<b>技能性最强、天花板最高、也最明确提到 JavaScript</b> 的一条。它的岗位数量正在随 AI 平台的分销体系一起扩张——几乎每一家 AI 平台的代理商、服务商都在招人做同样的事。</p>
+
+        <div class="jd">
+          <div class="jd-h">
+            <div>
+              <div class="jd-t">AI 交付实施工程师（飞书 / 豆包 FDE 方向）</div>
+              <div class="jd-m"><span>厦门思明</span><span>1 年</span><span class="tag t-hi">大专</span><span class="tag t-mid">应届生可投</span></div>
+            </div>
+            <div class="jd-p">5–8 千</div>
+          </div>
+          <div class="jd-b">
+            <span class="jd-l">岗位职责原文</span>
+            <p>"本岗位为飞书 + 豆包企业版核心技术交付岗……负责飞书全系产品、飞书 AI 包、豆包企业版的<b>落地实施、客户培训与技术支持</b>工作，同时配合会销沙龙、大客户攻坚提供售前技术支撑，保障 AI 项目从 <b>PoC 验证到生产落地</b>的全流程价值交付。"</p>
+            <p>"负责飞书标准版/专业版、飞书 AI 包、豆包企业版（<b>私有知识库/智能体</b>）的全流程交付实施，包含组织架构搭建、账号权限配置、<b>知识库初始化</b>、行业场景化功能调试。"</p>
+            <p>"为客户提供上门/远程使用培训，制定<b>分层培训计划</b>，输出<b>标准化操作手册</b>，保障客户团队快速上手。"</p>
+            <p>"结合客户业务场景，<b>基于扣子（Coze）平台搭建行业专属智能体与自动化工作流</b>，将大模型能力落地到客户实际业务流程（如客服、运营、生产巡检等）。"</p>
+            <span class="jd-l">任职要求原文</span>
+            <p>"大专以上学历，有 SaaS 产品实施、客户成功、IT 运维相关经验者优先；沟通表达、谈判及抗压能力强。"</p>
+            <span class="jd-l">技能标签（JD 原文列出）</span>
+            <div class="skills"><span class="sk">Java</span><span class="sk">Python</span><span class="sk">Javascript</span><span class="sk">数据分析</span><span class="sk">需求调研</span><span class="sk">客户跟进</span></div>
+          </div>
+        </div>
+
+        <div class="jd">
+          <div class="jd-h">
+            <div>
+              <div class="jd-t">AI 实施工程师（跨境 / 电商）</div>
+              <div class="jd-m"><span>安庆宜秀</span><span class="tag t-hi">大专</span><span class="tag t-mid">标应届毕业生</span><span class="tag t-n">阿里官方 FDE 证书机会</span></div>
+            </div>
+            <div class="jd-p">8000–12000</div>
+          </div>
+          <div class="jd-b">
+            <span class="jd-l">岗位职责原文</span>
+            <p>"深入外贸企业，用 Accio Work 的 <b>AI 技能（Skill）和 Agent</b> 解决老板'选品难、发品慢、没时间做营销'的痛点。"</p>
+            <p>"负责 AWB 在客户侧的<b>部署与打通</b>（Shopify / 国际站 / Gmail 等），在 5 分钟内让客户亲眼看到 AI 自动操作的价值。"</p>
+            <p>"<b>调优 AI 工作流</b>，处理 <b>API 连接与本地工具链配置</b>（如 RPA、自动化任务）。"</p>
+            <span class="jd-l">任职要求原文</span>
+            <p>"懂技术（硬门槛）：<b>熟悉 Python 或 JS 脚本，能独立调试 API</b>。"</p>
+            <p>"能面客：表达能力强，能把复杂的 AI 逻辑翻译成老板听得懂的'生意经'。"</p>
+          </div>
+        </div>
+
+        <div class="jd">
+          <div class="jd-h">
+            <div>
+              <div class="jd-t">AI 产品交付工程师（集团研究院）</div>
+              <div class="jd-m"><span>宁波</span><span>3 年以上</span><span class="tag t-hi">大专、本科</span></div>
+            </div>
+            <div class="jd-p">1.58–2.17 万</div>
+          </div>
+          <div class="jd-b">
+            <span class="jd-l">岗位职责原文</span>
+            <p>"负责 AI 产品软硬件实施、SaaS 或本地化环境搭建、系统安装调试及运维支持；负责客户现场<b>网络调试</b>、系统异常排查与基础故障处理；组织客户现场培训，输出<b>实施文档、培训手册</b>等交付资料；制定实施计划，推进项目节点，协调现场问题并完成项目验收。"</p>
+            <span class="jd-l">任职要求原文</span>
+            <p>"<b>大专及以上学历</b>，计算机、自动化、工业工程、软件工程等相关专业优先；熟悉 <b>Linux、Java 运行环境、数据库/中间件部署</b>，具备<b>网络调试和日志排错</b>能力。"</p>
+          </div>
+        </div>
+
+        <table>
+          <thead><tr><th style="width:22%">城市</th><th style="width:13%">薪资</th><th style="width:13%">门槛</th><th>关键内容</th></tr></thead>
+          <tbody>
+            <tr><td>苏州工业园区</td><td class="pay">3–6 千</td><td class="n">应届/实习</td><td><b>FDE 前端部署工程师</b>。现场部署、环境调试、数据清洗、写部署文档、客户培训；技能标签 CSS/JavaScript/Vue/React/Node.js/Echarts/WebGL</td></tr>
+            <tr><td>广州</td><td class="pay">15–20K</td><td class="n">1–3 年</td><td><b>飞书 AI 交付工程师（FDE）</b>。用飞书多维表格、Aily 智能体、机器人、自动化完成 <b>Demo 配置和轻度 POC</b>；加分项原文："用过 Claude Code、Coze、Dify、飞书 Aily 这类 AI 工具，<b>做过能跑的 AI 项目（最好能展示作品）</b>"<br><span style="font-size:12px;color:var(--warn)">注：列表页标大专，JD 内写"本科以上，优秀者放宽学历、工作经验、年龄"</span></td></tr>
+          </tbody>
+        </table>
+
+        <div class="concl" style="margin-bottom:0">
+          <div class="lb">通道 A 的定价规律</div>
+          <p>这条通道的薪资跨度是 3K → 22K，差 7 倍，但<b>技术栈几乎没有变化</b>（都是"能写点脚本、能调 API、能搭平台"）。拉开差距的是三件事：<b>① 要不要面客（广州那条要"能跟企业老板平等对话"）；② 要不要负责结果（宁波那条要"推进项目验收"）；③ 要不要承担部署运维的宽度（宁波那条要 Linux + 数据库中间件 + 网络排错）。</b></p>
+          <p>注意第三点：<strong>往上走要的不是更深的前端，是更宽的部署运维。</strong>装环境、配数据库、看日志、排网络故障——这些东西比"精通 React 原理"好教得多，而且正是高职实训的传统强项。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- B -->
+    <div class="dir">
+      <div class="dir-h gold">
+        <div>
+          <div class="dir-t">通道 B · 智能体与工作流搭建</div>
+          <div class="dir-d">Coze / Dify / FastGPT / 飞书多维表格 · 明确接受课程作业作为经验</div>
+        </div>
+        <div class="dir-n" style="color:var(--gold)">3–15K<br><span style="font-size:11px;color:#6b7280;font-weight:400">大专 · 多条专业不限</span></div>
+      </div>
+      <div class="dir-b">
+        <p>这条通道<b>最贴近应届生的实际处境</b>。它的显著特征是：JD 愿意把"个人项目、课程作业"算作经验，这在任何其他方向上都不常见。</p>
+
+        <div class="jd">
+          <div class="jd-h">
+            <div>
+              <div class="jd-t">智能体应用开发工程师</div>
+              <div class="jd-m"><span>长春二道</span><span class="tag t-hi">大专</span><span class="tag t-n">招 1 人</span></div>
+            </div>
+            <div class="jd-p">6 千–1 万</div>
+          </div>
+          <div class="jd-b">
+            <span class="jd-l">岗位职责原文</span>
+            <p>"在团队指导下，使用低代码/Agent 开发平台（如 <b>Dify、Coze、FastGPT</b> 等）完成智能体的基础搭建与简单工作流配置；协助完成<b>知识库的创建与基础配置</b>，参与 Agent 的测试、调试与发布上线。"</p>
+            <p>"负责常见格式文档（PDF、Word、TXT、Markdown 等）的<b>基础预处理与内容清洗</b>；参与简单对话流程的设计与调试，了解<b>变量传递、条件分支、上下文拼装</b>等基本概念；配合团队完成数据标注、格式转化等基础数据处理工作；参与技术文档的撰写与知识沉淀。"</p>
+            <span class="jd-l">任职要求原文</span>
+            <p>"了解至少一个低代码/Agent 开发平台（Dify、Coze、FastGPT、扣子等），有实际使用经验者优先（<b>个人项目、课程作业均可</b>）。"</p>
+            <p>"了解 Python 或 Java 基础语法，能够<b>阅读和修改简单代码</b>，了解基本的数据结构概念。"</p>
+            <span class="jd-l">加分项（JD 原文）</span>
+            <div class="skills"><span class="sk">Prompt Engineering</span><span class="sk">RAG 基本概念</span><span class="sk">Cursor / Copilot / 通义灵码</span><span class="sk">API 调用（RESTful、JSON）</span></div>
+          </div>
+        </div>
+
+        <div class="jd">
+          <div class="jd-h">
+            <div>
+              <div class="jd-t">智能体应用工程师</div>
+              <div class="jd-m"><span>成都高新 / 武侯</span><span>1–3 年</span><span class="tag t-hi">大专</span><span class="tag t-mid">专业不限</span></div>
+            </div>
+            <div class="jd-p">6–9K</div>
+          </div>
+          <div class="jd-b">
+            <span class="jd-l">岗位职责原文</span>
+            <p>"深入理解公司各部门（运营、客服、市场、销售等）<b>业务流程与痛点</b>，挖掘 AI 智能化机会点；基于 <b>Coze 平台</b>，独立完成 AI 智能体的构思、设计、搭建、调试、测试与部署上线全流程。"</p>
+            <p>"为不同业务场景设计和配置高效的 <b>Workflow（工作流）</b>，集成所需插件、知识库及外部 API；编写清晰的技术文档和使用手册，并<b>赋能团队成员</b>，推广 AI 智能体的应用。"</p>
+            <span class="jd-l">任职要求原文</span>
+            <p>"有 Coze、GPTs、Dify、LangChain 等任一 AI 智能体/低代码平台的实际使用和搭建经验，<b>有成功作品者优先</b>。"</p>
+            <p>"<b>切忌只做技术实现</b>——需要具备以技术驱动业务增长的意识，而不仅仅是技术实现。"</p>
+            <p>"学历专业不限，我们更关注你的<b>实践能力、学习能力和创造热情</b>。"</p>
+          </div>
+        </div>
+
+        <table>
+          <thead><tr><th style="width:20%">城市</th><th style="width:13%">薪资</th><th style="width:14%">门槛</th><th>关键内容</th></tr></thead>
+          <tbody>
+            <tr><td>沈阳</td><td class="pay">3000–4000</td><td class="n">应届毕业生</td><td><b>金属企业</b>（博宇金属）。"构建智能体与外部系统、工具的集成方案"；"熟悉 Coze、Dify 等低代码智能体搭建平台者优先"。试用期 2400/月</td></tr>
+            <tr><td>苏州虎丘</td><td class="pay">120–150/天</td><td class="n">应届可投 · 大专</td><td><b>AI 智能体搭建实习生</b>。Coze/Dify/FastGPT 或原生 API 搭建 Agent；工作流编排；Prompt 工程；工具集成</td></tr>
+            <tr><td>广州荔湾</td><td class="pay">10–15K</td><td class="n">2–3 年</td><td><b>AI 知识库训练师</b>。"精通 <b>Prompt 设计、知识切片、数据清洗、标签体系搭建</b>等知识库训练核心工作"；"掌握 AI 问答效果评测方法，能通过数据复盘精准定位模型问题"。<b>核心能力不是编程</b></td></tr>
+          </tbody>
+        </table>
+
+        <div class="warn-box" style="margin-bottom:0">
+          <div class="lb">通道 B 里要区分的一层：数据侧</div>
+          <p>郑州两条校招 JD 值得单独看：智标星（河南）招 <b>150 人</b>、郑州当之招 <b>15 人</b>，都是专科、4–6K，工作内容是数据标注、清洗去重、格式转换、质检抽审。</p>
+          <p>这层<b>能进、量大、但定价已经塌陷</b>（参考文化产业里的同类论证：工具层是被批量招聘的劳动力池）。<strong>判断：可以作为实训环节和第一份工作的落脚点，不能作为培养目标。</strong>它的价值是让学生进入 AI 项目现场，而不是在这儿长期停留。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- C -->
+    <div class="dir">
+      <div class="dir-h blue">
+        <div>
+          <div class="dir-t">通道 C · 企业内部 AI 落地岗</div>
+          <div class="dir-d">AI 专员 / AI 项目专员 / 数字化专员 · 买家是传统行业企业，最隐蔽</div>
+        </div>
+        <div class="dir-n" style="color:var(--brand)">6–20K<br><span style="font-size:11px;color:#6b7280;font-weight:400">大专 · 多条经验不限</span></div>
+      </div>
+      <div class="dir-b">
+        <p>这条通道<b>最不容易被找到</b>，因为它大量出现在非科技企业的招聘里，岗位名称也不统一（AI 专员、AI 项目对接专员、AI 数字化专员、AI 项目助理……）。但它的条件往往最宽松。</p>
+
+        <div class="jd">
+          <div class="jd-h">
+            <div>
+              <div class="jd-t">AI 数字化专员</div>
+              <div class="jd-m"><span>珠海金湾</span><span>3 年 +</span><span class="tag t-hi">大专</span><span class="tag t-n">制造业 50–150 人</span></div>
+            </div>
+            <div class="jd-p">0.8–2 万</div>
+          </div>
+          <div class="jd-b">
+            <span class="jd-l">岗位职责原文</span>
+            <p>"<b>AI 工具推广落地</b>——在公司内部推广 AI 助手（飞书/企微智能助手）、自动化工具，帮助各部门用 AI 提升工作效率；<b>数字化流程优化</b>——梳理各部门业务流程痛点，推动纸质/Excel/口头流程向数字化转变；协助金蝶 ERP、HR 系统等内部系统的日常运维和<b>数据对接</b>。"</p>
+            <p>"<b>员工培训赋能</b>——编写操作手册、组织培训，帮助同事用好数字化工具；<b>数据报表支持</b>——提取和分析业务数据，制作可视化报表。"</p>
+            <span class="jd-l">加分项（JD 原文）</span>
+            <div class="skills"><span class="sk">了解制造业流程或 ERP</span><span class="sk">用飞书/企微搭过自动化流程</span><span class="sk">做过企业内部培训或系统推广</span></div>
+          </div>
+        </div>
+
+        <div class="jd">
+          <div class="jd-h">
+            <div>
+              <div class="jd-t">AI 应用专员</div>
+              <div class="jd-m"><span>成都武侯</span><span>1 年</span><span class="tag t-hi">大专</span></div>
+            </div>
+            <div class="jd-p">8 千–1.5 万</div>
+          </div>
+          <div class="jd-b">
+            <span class="jd-l">岗位职责原文</span>
+            <p>"助力公司全面学习、了解、掌握 AI 前沿技术与实用工具……<b>搭建公司 AI 应用体系</b>，推动公司数字化、智能化运营升级。"</p>
+            <p>"<b>搭建并运营公司 AI 应用体系</b>，负责智能客服、智能文案、数据处理、流程自动化、客户管理等 AI 工具的<b>调试、使用、培训与迭代优化</b>。对接公司各业务部门，讲解 AI 技术应用逻辑，<b>手把手指导员工使用 AI 工具</b>。"</p>
+            <p>"跟踪 AI 工具应用效果，统计<b>运营效率、服务质量、人力成本优化数据</b>，形成分析报告。"</p>
+            <span class="jd-l">任职要求原文</span>
+            <p>"大专及以上学历……熟悉主流 AI 办公、AI 服务、AI 数据分析工具；善于沟通表达，有耐心，擅长<b>团队培训、知识分享</b>。"</p>
+          </div>
+        </div>
+
+        <div class="ok-box" style="margin-bottom:0">
+          <div class="lb">为什么这条通道对高职最友好</div>
+          <p>因为它<b>考核的不是技术上限，而是能不能把一件事在组织里推行下去</b>。珠海那条 JD 的加分项写得很清楚："做过企业内部培训或系统推广"——这是<b>教师岗的技能迁移到企业场景</b>，不是编程能力。</p>
+          <p><strong>它的 JD 里常常没有"3 年经验"这道墙。</strong>湖州那条只要求"2025 年 12 月–2028 年 9 月毕业的大专及以上应届生/实习生，专业不限"。这不是雇主降低标准，是<b>这个岗位本来就不存在大量有经验的人</b>——它是新岗位，所有人都是新的。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 -->
+<section>
+  <div class="inner">
+    <h2><span class="num">05</span>对 JS 课的直接含义</h2>
+    <p class="lead">只列由上面 JD 直接推出的部分。课程细节在另一条线推进，这里只给方向与课时权重的依据。</p>
+
+    <h3>一、目标水位重定义：从"写复杂前端"到"读懂、能改、能接"</h3>
+    <p>这是本次收缩最重要的一条推论，也是 JS 课仍然必须存在、但教法和终点都要变的理由。</p>
+    <table>
+      <thead><tr><th style="width:30%">JD 要求的 JS 强度</th><th style="width:26%">典型出处</th><th>课程含义</th></tr></thead>
+      <tbody>
+        <tr><td>技能标签里并列 Java / Python / JavaScript</td><td>厦门 FDE</td><td>JS 是"会一门脚本"，不是"精通某框架"</td></tr>
+        <tr><td>"熟悉 Python 或 <b>JS 脚本</b>，能独立<b>调试 API</b>"</td><td>安庆 AI 实施</td><td>重心从"写页面"移到"接接口"</td></tr>
+        <tr><td>"能够<b>阅读和修改简单代码</b>"</td><td>长春智能体岗</td><td>读懂他人代码 &gt; 从零写出项目</td></tr>
+        <tr><td>"具备基础编程认知，了解软件开发基本流程，<b>无需深度开发</b>"</td><td>泉州 AI 项目对接</td><td>流程认知比框架深度重要</td></tr>
+        <tr><td>"了解 API 调用基本概念（<b>RESTful、JSON 格式</b>）"</td><td>长春智能体岗（加分）</td><td>HTTP / JSON 应当成为核心课时，而不是附带</td></tr>
+      </tbody>
+    </table>
+    <div class="concl">
+      <div class="lb">一句话版本</div>
+      <p><strong>JS 课的目标从"培养前端工程师"改为"培养能读懂代码、能改代码、能调试 API 的 AI 落地执行者"。</strong>这是把目标拉低了吗？不是——是把目标从<b>供给过剩的位置</b>挪到了<b>供给不足的位置</b>。前者要求更高水位的技能却给出更低的价格，后者相反。</p>
+    </div>
+
+    <h3>二、按半衰期切分该教什么</h3>
+    <p>这批岗位有一个共同的麻烦：<b>具体平台和工具半年就换一茬</b>。Coze、Dify、FastGPT、飞书 Aily、Accio Work——JD 里这些名字不会稳定超过一年。所以课程要教的是不会随平台变的部分。</p>
+    <table>
+      <thead><tr><th style="width:16%">半衰期</th><th style="width:34%">内容</th><th style="width:14%">课时建议</th><th>依据</th></tr></thead>
+      <tbody>
+        <tr><td><span class="tag t-hi">长</span></td><td>HTTP / API / JSON、数据结构与格式转换、读懂他人代码、流程图与逻辑分解（变量传递、条件分支、上下文拼装）、技术文档写作、当众演示与讲解</td><td class="n">加大</td><td>长春 JD 的"变量传递、条件分支、上下文拼装"是通用概念，不绑定任何平台；多条 JD 要求"输出操作手册/培训手册"</td></tr>
+        <tr><td><span class="tag t-mid">中</span></td><td>知识库的数据侧：文档预处理、清洗、切片、标签体系；Prompt 结构与迭代方法；效果评估的基本做法</td><td class="n">新增</td><td>广州知识库训练师 10–15K；南宁 AI 数据工程师 6–8K 的核心职责就是这几项</td></tr>
+        <tr><td><span class="tag t-lo">短</span></td><td>具体平台的按钮在哪、某个模型的参数面板怎么调</td><td class="n">点到为止</td><td>—</td></tr>
+        <tr><td><span class="tag t-n">压缩</span></td><td>框架深度：全家桶、状态管理、工程化配置</td><td class="n">压缩</td><td>被砍掉的方向 E quadrant；这批 JD 里没有一条要求"精通 xxx 框架"</td></tr>
+      </tbody>
+    </table>
+
+    <h3>三、必须新增的一块：交付表达</h3>
+    <p>这是本报告<b>最反直觉但对就业回报最直接</b>的一条。这批 JD 反复出现同一类动作：</p>
+    <ul class="li">
+      <li>厦门 FDE："制定<b>分层培训计划</b>，输出<b>标准化操作手册</b>"</li>
+      <li>宁波交付："组织客户现场培训，输出<b>实施文档、培训手册</b>"</li>
+      <li>珠海数字化专员："<b>编写操作手册、组织培训</b>"</li>
+      <li>成都 AI 应用专员："擅长<b>团队培训、知识分享</b>，能快速向管理层、员工普及 AI 知识与操作技能"</li>
+      <li>宁波 AI 项目助理："输出<b>标准化操作指南</b>与开展实操培训"</li>
+      <li>广州 FDE 加分项："做过能跑的 AI 项目（<b>最好能展示作品</b>）"</li>
+    </ul>
+    <p><strong>六条 JD，六次要求同一件事。</strong>它不是软技能，是这批岗位的<b>硬交付物</b>——因为这些岗位的产出本来就包含了"让客户/同事会用"。</p>
+    <div class="ok-box">
+      <div class="lb">落到课程里最省力的做法</div>
+      <p>不需要单独开课。<b>把现有项目的验收方式改掉即可</b>：每个项目除了交代码，还必须交三样东西——一份给别人看的操作手册、一段 5 分钟的演示录屏、一次面向非技术同学的讲解。<b>这三样加起来，正好对应上面六条 JD 的要求，也是面试时能直接展示的材料。</b></p>
+    </div>
+
+    <h3>四、一块要保持清醒的地方：不要走极端</h3>
+    <p>这批 JD 降低了技术深度的要求，但<b>没有降低全部要求</b>。天花板仍是技术性的：</p>
+    <ul class="li">
+      <li>宁波 AI 产品交付工程师 1.58–2.17 万，要求 Linux、Java 运行环境、<b>数据库/中间件部署</b>、网络调试与日志排错，3 年 +</li>
+      <li>珠海 AI 数字化专员上限 2 万，要求 ERP/HR 系统<b>运维与数据对接</b>、SQL 或 Python、3 年 +</li>
+      <li>广州 FDE 15–20K，要求"有技术底子（<b>脚本编写、SQL、API 对接</b>），能独立完成 Demo 搭建和轻度开发"</li>
+    </ul>
+    <p><strong>规律：入门靠"浅但有手感"，上升靠"宽而不深"。</strong>要在 AI 交付层往上走，需要的是装环境、配服务、看日志、排网络、对接数据——<b>横向的工程宽度，不是纵向的框架深度</b>。这恰好是高职实训能练、而本科课堂不练的东西。</p>
+    <p style="font-size:13.5px;color:var(--ink-3)">因此建议：不要把课时从"框架深度"腾出来后全部给 AI 平台，至少留一部分给<b>部署与运维宽度</b>（Linux 基础命令、服务部署、日志查看、数据库连接、网络故障定位）。这是通道 A 从 8K 走到 20K 的实际路径。</p>
+  </div>
+</section>
+
+<!-- 06 -->
+<section>
+  <div class="inner">
+    <h2><span class="num">06</span>数据说明与局限</h2>
+    <p class="lead">口径、可信度分层，以及这份报告明确没做的事。</p>
+
+    <h3>抓取口径</h3>
+    <ul class="li">
+      <li><b>范围：国内在招岗位。</b>海外数据未纳入本轮分析（上一轮的海外对照已删除）。</li>
+      <li><b>筛选：大专可投或明确标注应届可投。</b>只要求本科的岗位未纳入分析主体。</li>
+      <li><b>体系口径：</b>TypeScript / Node / 小程序 / Electron 视为 JavaScript 前端体系内的一部分，不单独切分。TS 的具体处理方式不再单列（详见上一版第 01 节变化三）。</li>
+      <li><b>分析重心：</b>AI 带来的增量岗位。三维可视化、纯前端、企业系统前端均已从分析主体中移除，仅保留作为对照。</li>
+    </ul>
+
+    <h3>可信度分层</h3>
+    <table>
+      <thead><tr><th style="width:16%">可信度</th><th style="width:30%">来源</th><th>使用方式</th></tr></thead>
+      <tbody>
+        <tr><td><span class="tag t-hi">高</span></td><td>全职招聘网、南方人才网、前程无忧、猎聘、广西高校毕业生就业服务平台、河南高校就业信息网、湖北 24365 就业平台、机电之家</td><td>带公司名、城市、薪资、JD 原文。本报告全部引文与薪资来自此层</td></tr>
+        <tr><td><span class="tag t-mid">中</span></td><td>拉勾、脉脉季度就业报告；高校就业平台上的批量校招岗</td><td>用于判断趋势与批量招聘规模，不用于精确定价</td></tr>
+        <tr><td><span class="tag t-lo">已剔除</span></td><td>IT 培训机构就业薪资报告、各类转型软文</td><td><b>判别法：凡不附公司名 + 城市 + JD 原文的薪资数字，一律不采信</b></td></tr>
+      </tbody>
+    </table>
+
+    <h3>本轮发现的数据质量问题（如实标注）</h3>
+    <ul class="li">
+      <li><b>安庆「AI 实施工程师」JD 内部自相矛盾</b>：标签写"应届毕业生、大专"，职责里写"3–6 年 SaaS 实施/技术交付经验"。图上按前者放置，实际投递需确认。</li>
+      <li><b>广州「飞书 AI 交付工程师 FDE」学历口径不一致</b>：列表页标"大专、1–3 年"，JD 内写"本科以上学历（优秀者放宽学历、工作经验、年龄）"。</li>
+      <li><b>智联/猎聘上存在批量雷同岗位</b>：此前发现的"12–15K / 1–3 年 / 大专"在全国八地高度一致，疑似同一人力机构发布，本轮未采用。</li>
+    </ul>
+
+    <h3>局限</h3>
+    <ul class="li">
+      <li><b>样本非随机。</b>18 条足以刻画岗位形态与能力要求，不足以做岗位计数。涉及规模一律标注来源。</li>
+      <li><b>三条通道的样本数偏少</b>（A 组 5 条、B 组 5 条、C 组 5 条 + 3 条数据侧），每条通道内部的价格带宽是估测区间，不是精确分布。</li>
+      <li><b>未做本地定向抓取。</b>缺少本校所在城市的全量数据，围绕这三条通道是否存在尚待验证。</li>
+      <li><b>这三条通道都很新</b>，没有跨年度数据可以确认它们的薪资走向和稳定性。</li>
+    </ul>
+
+    <h3>建议补充</h3>
+    <ul class="li">
+      <li><b>本地全量抓取</b>——确认这三条通道在本校学生的主要就业地是否存在、有几家、价位多少。这是决定要不要据此改课的<b>前置验证</b>。</li>
+      <li><b>通道 A 单独深挖</b>——它是唯一明确提及 JavaScript 的一条，且薪资跨度最大（3K→22K）。值得确认向上走第二个台阶具体要补什么。</li>
+      <li><b>季度复查</b>——这批岗位很新，建议按季度看薪资带宽是否在收窄（如果收窄，说明正在被供应填满，要及时撤）。</li>
+    </ul>
+  </div>
+</section>
+
+<footer>
+  <div class="inner">
+    <h4>本轮 JD 来源</h4>
+    <div class="src-list">
+      <b>通道 A：</b>全职招聘网（厦门思明 AI 交付实施工程师 5–8 千、宁波 AI 产品交付工程师 1.58–2.17 万、苏州工业园区 FDE 前端部署工程师 3–6 千）· 机电之家招聘网（安庆宜秀 AI 实施工程师 8000–12000）· 职坐标 IT 招聘网（广州 飞书 AI 交付工程师 FDE 15–20K）<br>
+      <b>通道 B：</b>全职招聘网（长春二道 智能体应用开发工程师 6 千–1 万、苏州虎丘 AI 智能体搭建实习生 120–150/天、宁波余姚 AI 项目助理 6–9 千×13 薪、成都武侯 AI 应用专员 8 千–1.5 万）· 鱼泡直聘（成都高新 智能体应用工程师 6–9K）· 南方人才网（广州荔湾 AI 知识库训练师 10–15K）· 机电之家（沈阳 智能体方向 3000–4000）· 广西高校毕业生就业服务平台（南宁青秀 AI 数据工程师 6–8K）· 河南高校就业信息网（郑州 4–6K 校招标注岗）<br>
+      <b>通道 C：</b>猎聘（湖州 AI 项目专员 6–7k）· 全职招聘网（泉州石狮 AI 项目对接专员 7 千–1 万）· 前程无忧（珠海金湾 AI 数字化专员 0.8–2 万）· 湖北 24365 大学生就业服务平台（武汉 AI 项目专员 4500–5499）<br>
+      <b>趋势数据：</b>拉勾《2026 Q1 互联网前端人才就业报告》· 脉脉《2026 春招求职行为洞察》
+    </div>
+    <p style="margin-top:14px;font-size:11.5px;opacity:.8">生成于 2026-09-18 · 岗位数据具有时效性，建议在下次课程调整前重新抓取验证</p>
+  </div>
+</footer>
+
+</div>
+</body>
+</html>

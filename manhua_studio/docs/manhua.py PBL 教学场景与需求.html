@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>manhua.py PBL 教学场景与需求</title>
+<style>
+  :root{
+    --bg:#FBFCFE; --card:#FFFFFF; --ink:#1F2733; --sub:#5A6573; --line:#E6EAF0;
+    --blue:#155E8F; --blue2:#B8D4EC; --indigo:#0B3A61; --amber:#9A6A00; --amber2:#FBE9C7;
+    --green:#1E7A46; --green2:#D6F0DF; --grey:#57606A; --red:#B23B3B; --red2:#F6DEDE;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;
+    line-height:1.62;font-size:15px}
+  .wrap{max-width:960px;margin:0 auto;padding:40px 28px 90px}
+  .kicker{color:var(--sub);font-size:12px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px}
+  h1{font-size:25px;margin:0 0 6px}
+  .sub{color:var(--sub);margin:0 0 26px}
+  h2{font-size:18px;margin:36px 0 12px;padding-left:11px;border-left:4px solid var(--blue)}
+  h3{font-size:15px;margin:18px 0 8px;color:var(--indigo)}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 20px;margin:12px 0;box-shadow:0 1px 2px rgba(20,40,80,.04)}
+  table{width:100%;border-collapse:collapse;font-size:13.5px}
+  th,td{text-align:left;padding:9px 11px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{color:var(--sub);font-weight:600;background:#F6F8FB}
+  tr:last-child td{border-bottom:none}
+  code{background:#F1F4F8;padding:1px 6px;border-radius:5px;font-size:13px;color:#0B3A61}
+  .p{display:inline-block;min-width:20px;font-weight:700;color:#fff;background:var(--blue);border-radius:5px;padding:0 6px;text-align:center;font-size:12px}
+  .tag{display:inline-block;font-size:12px;font-weight:700;padding:2px 9px;border-radius:20px}
+  .b{background:var(--amber2);color:var(--amber)}
+  .g{background:var(--green2);color:var(--green)}
+  .r{background:var(--red2);color:var(--red)}
+  .hl{background:#FFF7E0;padding:1px 5px;border-radius:4px}
+  .note{color:var(--sub);font-size:13px;margin-top:6px}
+  pre{background:#0E1B2A;color:#E6EEF6;border-radius:10px;padding:14px 16px;overflow:auto;font-size:12.5px;line-height:1.5;font-family:"SF Mono",Menlo,Consolas,monospace}
+  .flow{display:flex;align-items:center;flex-wrap:wrap;gap:6px;margin:10px 0}
+  .node{background:#F2F8FD;border:1px solid var(--blue2);border-radius:8px;padding:6px 10px;font-size:12.5px}
+  .node.alt{background:#FBF4EF;border-color:#F0D9C2}
+  .arrow{color:var(--grey);font-size:14px}
+  .two{display:flex;gap:14px;flex-wrap:wrap}
+  .two .col{flex:1;min-width:280px}
+  .footer{color:var(--sub);font-size:12px;margin-top:40px;border-top:1px solid var(--line);padding-top:14px}
+  blockquote{margin:10px 0;padding:10px 14px;background:#F6F8FB;border-left:3px solid var(--blue2);color:var(--sub);font-size:13.5px;border-radius:0 8px 8px 0}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="kicker">Python 课程改造 · 一级语言底座 · PBL 场景层</div>
+  <h1>manhua.py PBL 教学场景与需求说明书</h1>
+  <p class="sub">一级底座的"真实感"来源。学生只有先看懂"这是在干嘛、为谁干、图算不算合格"，构件（component）才不是老师的玩具。本文是 manhua.py 的教学 wrapper：场景设定 / 角色 / 需求 brief / 验收标准 / 分章任务 / 反馈环。</p>
+
+  <div class="card" style="border:1px solid var(--amber2);background:#FBFAF0">
+    <h3 style="margin-top:2px;color:var(--amber)">为什么必须有这份场景说明书</h3>
+    <p>PBL（项目式学习）成立的前提是<strong>学生能指认"我写的代码对应真实世界的哪一步"</strong>。manhua.py 十个构件讲清楚了"怎么写"，但没讲"为什么世界长这样"。如果只发代码，学生会把 <code>parse_brief</code>、<code>consistency_score</code> 当成无意义的练习函数。本文补上"业务上下文"，让每个构件都有一句"在真实电商素材生产里，这一步是……"。</p>
+    <p class="note">真实感分级见第八节：一级课内只到 <span class="tag g">L1 脱敏真实口径</span>，不碰真店、不占算力。真店是三级可选，不是一级前提。</p>
+  </div>
+
+  <h2>一、场景设定（学生看到的"世界"）</h2>
+  <div class="card">
+    <p><b>背景故事（脱敏改写自真实类目，非真实客户）。</b> 「青瓷小铺」是一家做陶瓷文创的小店，主理人阿琳（店主）要在<strong>双11</strong>前把一批新品上架到淘宝、拼多多、抖音、小红书四个平台。阿琳懂设计和文案，但不懂 AI、不会写程序，也不清楚每个平台对主图的要求。她找到你们（学生团队）说："帮我出一套能直接上架的素材。"</p>
+    <p>你们做的事：把阿琳的口述需求，<strong>翻译成机器能跑的参数</strong>，批量生成素材，按平台规范质检、筛掉废片，最后交付"每个 SKU 一套合格素材 + 一份生产记录"。这正是 manhua.py 整条管线的业务原型。</p>
+    <div class="flow">
+      <span class="node alt">阿琳口述需求</span><span class="arrow">→</span>
+      <span class="node">parse_brief 翻译成结构化</span><span class="arrow">→</span>
+      <span class="node">展开生成任务</span><span class="arrow">→</span>
+      <span class="node">出图(构0-8)</span><span class="arrow">→</span>
+      <span class="node">质检筛废片(构6-7)</span><span class="arrow">→</span>
+      <span class="node alt">交付合格素材包</span>
+    </div>
+    <p class="note">伏笔：清单里有一个 SKU「阿瓷」是漫剧角色（<code>Character(Product)</code> 子类）。学生期末会发现"原来漫剧角色就是电商商品换了个子类"——同一套管线换一个类就能做漫剧，这正是选 A 决策的工程依据。</p>
+  </div>
+
+  <h2>二、角色与分工（谁是谁，谁不干什么）</h2>
+  <table>
+    <thead><tr><th>角色</th><th>真实身份</th><th>在场景里的职责</th><th>与体系的关系</th></tr></thead>
+    <tbody>
+      <tr><td><b>阿琳（店主）</b></td><td>外部客户（脱敏）</td><td>提需求、定卖点、最终验收"图算不算合格"</td><td>一级的"客户"原型；二级/三级可换成真实商家</td></tr>
+      <tr><td><b>你（张老师）</b></td><td>技术底座 + 全局设计</td><td>搭管线、教连接器/批处理/OOP、定文件契约</td><td>一级主讲 + 全局；精力侧重 FDE 方向</td></tr>
+      <tr><td><b>董老师（UI 老师）</b></td><td>视觉资产架构者</td><td>定"图算合格"的视觉标准与质检清单（B2/B4）</td><td>主副配合：她侧重 AIGC 应用层验收，你不替她定标准</td></tr>
+      <tr><td><b>学生（交付方）</b></td><td>Python 班 7-8 人核心</td><td>写构件、跑管线、按清单自检</td><td>课内全体打底，高质量核心自组织进二级</td></tr>
+      <tr><td><b>平台规则</b></td><td>淘宝/拼多多/抖音/小红书</td><td>白底、尺寸、文字占比、禁用语等硬约束</td><td>验收标准的来源，是"标准化翻译成检查项"的教材</td></tr>
+    </tbody>
+  </table>
+  <p class="note">关键边界：<strong>一级里学生不碰经营、不碰真店、不碰客服</strong>。他们只做"需求→参数→图→质检→交付"这一段，经营是客户/董老师的事。这既保护精力，也守住"非校方、社团自愿"的红线。</p>
+
+  <h2>三、业务流：一个商品上架到底要哪些图</h2>
+  <div class="card">
+    <p>学生常以为"出张图就行"。真实上架是<strong>多平台 × 多图型</strong>：</p>
+    <table>
+      <thead><tr><th>图型</th><th>作用</th><th>平台共性要求</th></tr></thead>
+      <tbody>
+        <tr><td><b>白底主图</b></td><td>搜索结果首图，决定点不点</td><td>纯白底（RGB 255,255,255）、主体占图 70%–80%、无边框无水印</td></tr>
+        <tr><td><b>场景图</b></td><td>使用情境，促进想象</td><td>可带背景，但文字占比 ≤20%、禁用"最/第一"等绝对化用语</td></tr>
+        <tr><td><b>细节图</b></td><td>材质/工艺特写，建信任</td><td>清晰度高、对焦准确，漫剧角色需人脸完整</td></tr>
+        <tr><td><b>视频主图</b></td><td>抖音/拼多多强要求</td><td>通常 15–30 秒、不得含二维码/外链（属二级 B2 进阶）</td></tr>
+      </tbody>
+    </table>
+    <p class="note">这就是为什么一个 SKU 会展开成多条生成任务：4 个 SKU × 3 图型 × 跨平台 ≈ 29 条（manhua.py 实测即 29 条）。学生从"一张图"到"29 条任务"的认知跃迁，就是批处理（B1）要解决的真实问题。</p>
+  </div>
+
+  <h2>四、需求 brief（人话 → 结构化）</h2>
+  <div class="card">
+    <p>阿琳给的是口述/半结构化文字，学生要翻译成 manhua.py 能跑的参数。下面是「 brief 原文」与「 parse_brief 解析出的字段」对照——<strong>这一步本身就是就业框架里最值钱的"需求翻译"能力</strong>。</p>
+    <h3>① 原始 brief（学生读到的样子）</h3>
+    <pre>【双11 上新 brief】
+1. 青瓷茶杯 | 类目:陶瓷 | 材质:釉面哑光 | 卖点:好看/耐用/手作 | 平台:淘宝,拼多多 | 主图:白底主图,场景图
+2. 茶壶套装 | 类目:陶瓷 | 材质:粗陶 | 卖点:送礼体面 | 平台:抖音,小红书 | 主图:白底主图,细节图,场景图
+3. 釉下彩盘 | 类目:陶瓷 | 材质:釉下彩 | 卖点:吃饭也有仪式感 | 平台:淘宝 | 主图:白底主图
+4. 阿瓷(原创IP) | 类目:漫剧角色 | 材质:虚拟形象 | 卖点:人设吸粉 | 平台:抖音,小红书 | 主图:场景图,细节图</pre>
+    <h3>② parse_brief 解析出的结构化字段（构件 0 产出）</h3>
+    <table>
+      <thead><tr><th>字段</th><th>含义</th><th>缺省处理</th></tr></thead>
+      <tbody>
+        <tr><td><code>sku_code</code></td><td>SKU 编码（自动生成 TC-001…）</td><td>顺序编号</td></tr>
+        <tr><td><code>name / category</code></td><td>名称 / 类目（漫剧角色走 Character 子类）</td><td>必填，缺则跳过并记入日志</td></tr>
+        <tr><td><code>material / selling_point</code></td><td>材质 / 卖点（进提示词）</td><td>空串</td></tr>
+        <tr><td><code>platforms</code></td><td>目标平台列表</td><td>默认 ["淘宝"]</td></tr>
+        <tr><td><code>shot_types</code></td><td>图型列表（白底/场景/细节）</td><td>默认 ["白底主图"]</td></tr>
+      </tbody>
+    </table>
+    <p class="note">真实感来源：字段全部贴 2025-2026 各平台商家后台公开规范（白底、文字占比、禁用语、视频主图时长）。brief 是脱敏改写，不冒充真实客户，但每个字段都经得起运营较真。</p>
+  </div>
+
+  <h2>五、验收标准（图算不算合格）</h2>
+  <div class="card">
+    <p>这是"标准化翻译成检查项"的教科书实例，也是二级 B2（一致性）/ B4（质检）的雏形。<strong>验收权归董老师（视觉标准），不归你（技术底座）</strong>——主副配合在一级就咬合。</p>
+    <table>
+      <thead><tr><th>检查项</th><th>判定（可机器化部分）</th><th>谁定标准</th></tr></thead>
+      <tbody>
+        <tr><td>白底纯度</td><td>背景 RGB 接近 255,255,255 的比例 ≥95%</td><td>平台规则（客观）</td></tr>
+        <tr><td>构图占比</td><td>主体占图 70%–80%</td><td>平台规则（客观）</td></tr>
+        <tr><td>清晰度</td><td>高频细节可辨、无模糊</td><td>董老师（视觉）</td></tr>
+        <tr><td>文字占比</td><td>图内文字面积 ≤20%、无禁用语</td><td>平台规则 + 董老师</td></tr>
+        <tr><td>人脸完整（漫剧）</td><td>阿瓷类必须人脸完整、无畸变</td><td>董老师（重写 score）</td></tr>
+      </tbody>
+    </table>
+    <p class="note">manhua.py 里 <code>consistency_score</code> 目前已用前四项算出可判定分；<code>Character.score()</code> 重写了人脸项，所以阿瓷 0 合格/2 废片——学生能从"为什么同一管线两种结果"反推 OOP 继承/重写不是装饰。</p>
+  </div>
+
+  <h2>六、学生分章任务（PBL 任务卡 = 原课程每章上机实验）</h2>
+  <p>核心原则：<strong>原课本语法内核 100% 保留</strong>，改造只发生在"上机实验"层——把每章孤立习题换成"给同一项目加一个构件"。理论不变、实验换载体 = 无缝、不增课时。</p>
+  <table>
+    <thead><tr><th>原章</th><th>知识点</th><th>PBL 任务（本构件）</th><th>学生能指认</th></tr></thead>
+    <tbody>
+      <tr><td>第3章 流程控制</td><td>if/for/计数</td><td><span class="p">1</span> 状态判定：统计任务成功/失败/待重试</td><td>"我在算生产进度"</td></tr>
+      <tr><td>第4章 字符串</td><td>分割/正则/dict</td><td><span class="p">0</span> 需求解析：brief 人话→结构化</td><td>"我把客户需求翻成参数"</td></tr>
+      <tr><td>第5章 函数</td><td>def/参数/返回</td><td><span class="p">2</span> 提示词组装：卖点+图型→prompt</td><td>"我在拼 AI 的指令"</td></tr>
+      <tr><td>第6章 文件</td><td>读写/路径/CSV</td><td><span class="p">3</span> 展开任务；<span class="p">9</span> 写生产记录 CSV</td><td>"我在落生产日志"</td></tr>
+      <tr><td>第7章 异常处理</td><td>try/raise</td><td><span class="p">8</span> 出图失败重试与降级</td><td>"我在处理接口报错"</td></tr>
+      <tr><td>第8章 OOP</td><td>类/继承/重写</td><td><span class="p">6</span> Product 类；阿瓷=Character 子类</td><td>"电商和漫剧是同一个类的两个实例"</td></tr>
+      <tr><td>第9章 标准库</td><td>datetime/统计</td><td><span class="p">7</span> 筛选与废片率统计</td><td>"我在算良品率"</td></tr>
+      <tr><td>第10/11章</td><td>—</td><td>取消（期末自主命题可控）</td><td>—</td></tr>
+      <tr><td>模块A 调接口</td><td>HTTP/JSON/密钥</td><td><span class="p">8</span> 真实出图（Seedream，W12）</td><td>"我在调真实 AI 接口"</td></tr>
+    </tbody>
+  </table>
+  <p class="note">已讲章节（第1-2章 环境/基础）作前置，嫁接从第3章起，与《Python课程改造方案（第3章起）》对齐。期末仍按原知识点自主命题，示例：新增 <code>Book(Product)</code> 子类出书封，既考继承又考整合。</p>
+
+  <h2>七、反馈环：学生怎么知道"干得对不对"</h2>
+  <div class="two">
+    <div class="col"><div class="card">
+      <h3 style="color:var(--green)">一级课内（L1，现在就做）</h3>
+      <p>反馈来自<strong>规则自检</strong>：跑完管线，生产记录里每张图有 status（ok/fail/rework）和 score。学生对照验收清单自己判"废片率为啥高"。无需真实客户、零算力、离线 mock 即可。</p>
+      <p class="note">真实感到此足够：场景像真的、规则是真的、质检逻辑是真的。</p>
+    </div></div>
+    <div class="col"><div class="card">
+      <h3 style="color:var(--amber)">二级/三级（L2/L3，后续）</h3>
+      <p>反馈来自<strong>真实客户</strong>：阿琳（或真实商家/董老师的店）说"这张卖了/那张没过审"。这时 manhua.py 的 status 字段天然对接文件契约，学生出的图直接进入真实交付流。</p>
+      <p class="note">L2/L3 才需要真图、真算力、真客户，与一级解耦。</p>
+    </div></div>
+  </div>
+
+  <h2>八、真实感分级（明确一级到哪、真店在哪）</h2>
+  <table>
+    <thead><tr><th>等级</th><th>含义</th><th>算力</th><th>客户</th><th>落在哪一级</th></tr></thead>
+    <tbody>
+      <tr><td><span class="tag b">L0</span></td><td>纯假习题（传统课本）</td><td>0</td><td>无</td><td>改造前</td></tr>
+      <tr><td><span class="tag g">L1</span></td><td>脱敏真实口径 brief + 真规则自检</td><td>0（mock）</td><td>虚构阿琳</td><td><b>一级课内（本文目标）</b></td></tr>
+      <tr><td><span class="tag b">L2</span></td><td>真实商家当客户给 brief+反馈</td><td>二级 1.5-2千</td><td>真实商家/校友</td><td>二级训练营</td></tr>
+      <tr><td><span class="tag r">L3</span></td><td>真开店（微店/抖店）自运营</td><td>三级另计</td><td>自有店</td><td>三级核心组（可选）</td></tr>
+    </tbody>
+  </table>
+  <div class="card" style="border:1px solid var(--red2);background:#FCF5F5">
+    <h3 style="margin-top:2px;color:var(--red)">关于"自己真开店"——结论</h3>
+    <p>一级 PBL 真实感到 <b>L1</b> 就够，<strong>不需要自己开店</strong>。开店带三类成本，与体系命门（精力分配）冲突：</p>
+    <p>① <b>钱</b>：保证金/押金/类目资质；店不卖即 PPT 项目，踩逆向判据（无真实结果的"真实项目"=假真实）。<br>② <b>精力</b>：客服/物流/退换货，和"精力倾斜 FDE"直接冲突。<br>③ <b>主体红线</b>：已定非校方、社团自愿；学生开店涉经营资质与收益归属，个人开占家人精力。</p>
+    <p><b>更划算的三条路（按性价比）：</b><br>1. <b>找真实商家当客户，不自己开店（最推荐）</b>——本地小老板/校友/家人朋友小店给真实 brief+反馈，学生当交付方。80% 真实感、20% 成本，且与 FDE"真实客户"同逻辑；还能把"电商素材客户"与"FDE 校内客户"分开找、互不依赖，缓解客户源待定项。<br>2. <b>董老师开自己店当测试床（OPC 视角）</b>——她定位视觉资产架构者，微店/抖店是她的副业试验田；学生出图、她验收+上架。店是她的，学生不碰经营，家属线与真实交付合流。<br>3. <b>真开店放三级/下学期</b>——仅当二级跑通、核心组自组织成型、有真成交预期才做；一级永远不碰真店。</p>
+    <p class="note">一句话：一级现在建 L1 场景；真店从"必需"降级为"三级可选"，优先走"真实商家当客户"或"董老师开自己店当验收方"。</p>
+  </div>
+
+  <h2>九、与二级/三级的接口（一级不止是"写作业"）</h2>
+  <div class="card">
+    <p>一级产出的 <code>results/meta.json</code>（每个任务 status 三态 + score）天然是未来与 JS 工具组、与真实客户之间的<strong>文件契约雏形</strong>。一级学生毕业时交的不是"一个 py 文件"，而是"一套合格素材包 + 生产记录 + 一份能对接真客户的字段说明"——这正是二级 B1-B5、F1-F6 要放大的那八成主干的起点。</p>
+    <blockquote>课内教"分叉之前的那段"（连接器 + 单件脚本），二级把八成主干放大成工程能力。课内不必在电商/漫剧间二选一——它们共享同一个 Product 基类。</blockquote>
+  </div>
+
+  <div class="footer">生成于 2026-09-20 · 配套《manhua.py 细化与训练营衔接》《Python课程改造方案（第3章起）》《三级火箭体系设计》《执行基线 v1》· 载体按 9-19「选 A 电商素材管线」· 真实感分级 L1（一级）/L2-L3（二三级）· 已于 Python 3.13 实测跑通 29 条任务</div>
+</div>
+</body>
+</html>

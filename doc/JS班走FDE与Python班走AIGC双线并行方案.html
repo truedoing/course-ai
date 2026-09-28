@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JS 班走 FDE、Python 班走 AIGC：双线并行方案评估</title>
+<style>
+  :root{
+    --ink:#1F2328; --sub:#57606A; --hint:#8A919A;
+    --bg:#FFFFFF; --card:#F6F8FA; --line:#D0D7DE; --line2:#E4E8ED;
+    --aigc:#0B5FA5; --aigc-bg:#E8F1FA; --aigc-line:#9FC6E8;
+    --fde:#9A5B00; --fde-bg:#FDF1E3; --fde-line:#E5BE86;
+    --join:#1A6B3C; --join-bg:#E6F4EC; --join-line:#A8D5BA;
+    --warn:#A32D2D; --warn-bg:#FCEBEB;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; padding:0 20px 80px;
+    background:var(--bg); color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif;
+    font-size:16px; line-height:1.75;
+  }
+  .wrap{max-width:960px; margin:0 auto;}
+  header{padding:44px 0 26px; border-bottom:2px solid var(--ink); margin-bottom:34px;}
+  h1{font-size:27px; font-weight:700; margin:0 0 12px; line-height:1.4;}
+  .meta{font-size:14px; color:var(--sub);}
+  h2{
+    font-size:21px; font-weight:700; margin:52px 0 16px;
+    padding-left:12px; border-left:5px solid var(--ink); line-height:1.5;
+  }
+  h3{font-size:17px; font-weight:700; margin:30px 0 10px; color:var(--ink);}
+  h4{font-size:15px; font-weight:700; margin:20px 0 8px; color:var(--ink);}
+  p{margin:0 0 14px;}
+  ul,ol{margin:0 0 14px; padding-left:24px;}
+  li{margin-bottom:7px;}
+  strong{font-weight:700;}
+  .mid{color:var(--sub);}
+  .lead{font-size:17px; line-height:1.8;}
+  code{
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    font-size:13.5px; background:var(--card); padding:1px 5px;
+    border:1px solid var(--line2); border-radius:3px;
+  }
+  figure{margin:26px 0 30px;}
+  figcaption{font-size:13.5px; color:#57606A; margin-top:10px; line-height:1.6;}
+  .box{
+    background:var(--card); border:1px solid var(--line);
+    border-radius:8px; padding:18px 20px; margin:20px 0;
+  }
+  .box-t{font-weight:700; font-size:15px; margin-bottom:10px;}
+  .aigc{background:var(--aigc-bg); border:1px solid var(--aigc-line); border-left:5px solid var(--aigc);}
+  .fde{background:var(--fde-bg); border:1px solid var(--fde-line); border-left:5px solid var(--fde);}
+  .join{background:var(--join-bg); border:1px solid var(--join-line); border-left:5px solid var(--join);}
+  .warn{background:var(--warn-bg); border:1px solid #F0BDBD; border-left:5px solid var(--warn);}
+  table{
+    width:100%; border-collapse:collapse; margin:18px 0 22px; font-size:14.5px;
+  }
+  th,td{border:1px solid var(--line); padding:9px 11px; text-align:left; vertical-align:top; line-height:1.6;}
+  th{background:var(--card); font-weight:700; font-size:14px;}
+  td.num{white-space:nowrap;}
+  .tag{
+    display:inline-block; font-size:12.5px; font-weight:700; padding:1px 8px;
+    border-radius:10px; border:1px solid var(--line); background:#fff; color:var(--sub);
+  }
+  .tag.a{color:var(--aigc); border-color:var(--aigc-line); background:var(--aigc-bg);}
+  .tag.f{color:var(--fde); border-color:var(--fde-line); background:var(--fde-bg);}
+  .tag.j{color:var(--join); border-color:var(--join-line); background:var(--join-bg);}
+  .split{display:flex; gap:16px; flex-wrap:wrap;}
+  .split>div{flex:1 1 300px;}
+  .kv{margin:0 0 10px;}
+  .kv b{display:block; font-size:14px; margin-bottom:2px;}
+  .kv span{font-size:14.5px; color:var(--ink);}
+  hr{border:0; border-top:1px solid var(--line2); margin:38px 0;}
+  .small{font-size:14px; color:var(--sub);}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>JS 班走 FDE、Python 班走 AIGC：双线并行方案评估</h1>
+  <div class="meta">2026-09-19 · 面向 1 个 Python 班 + 2 个 JS 班的实际编制 · 配套《三级火箭体系设计》《JS 两班并入训练营的协作机制》</div>
+</header>
+
+<p class="lead">这个思路我赞成，但理由和你说的不完全一样。<strong>"不掺和、管理复杂度低"只对了一半</strong>——掺和的代价确实省掉了，但两个营的教师工作量不是 1+1，是 1+1.6。真正支持拆开的，是另外三条更硬的理由。而有一个坑如果不先解决，这条线会在第 6 周无声无息地退化成一次普通的课程设计。下面按"证据 → 判断 → 落地 → 风险"展开。</p>
+
+<h2>一、先核对一件事：FDE 这个岗位，专科生够不够得着</h2>
+
+<p>这条必须先查，因为它决定训练营<strong>对外叫什么名字</strong>。实抓 2026 年在招 JD，结论分成两截。</p>
+
+<h3>1.1 挂着"FDE"名头的岗位：本科门槛，够不着</h3>
+
+<table>
+  <tr><th style="width:26%">岗位</th><th style="width:16%">薪资</th><th style="width:14%">学历</th><th>关键要求（JD 原话）</th></tr>
+  <tr>
+    <td>FDE / 前向部署工程师<br><span class="small">苏州高新区</span></td>
+    <td class="num">7 千 – 1.4 万</td>
+    <td class="num"><strong>本科及以上</strong></td>
+    <td>"计算机科学、人工智能、软件工程等相关专业，<strong>本科及以上</strong>学历"；1–3 年 AI 应用工程／模型部署／系统集成经验，"优秀应届毕业生亦可，由资深工程师带教培养"；技术栈含 vLLM／TensorRT-LLM／Docker／K8s／LangChain</td>
+  </tr>
+  <tr>
+    <td>FDE（向前部署工程师）<br><span class="small">苏州，招 5 人</span></td>
+    <td class="num">10 – 15k</td>
+    <td class="num"><strong>本科及以上</strong></td>
+    <td>职责覆盖"市场与客户需求闭环""交付版产品定义与快速迭代""交付落地与客户成功""产品反哺与升级驱动"四大板块；要求输出标准化《客户需求画像》、维护客户需求池</td>
+  </tr>
+</table>
+
+<p><strong>结论：不能拿"FDE"这三个字去招生、去写简历。</strong>这两份都明写本科，且技术栈里有 K8s、vLLM、模型微调——一年社团时间塞不进去，塞进去也只是听过名词。</p>
+
+<h3>1.2 但同一批能力，挂别的名字时大专能投，而且薪资不差</h3>
+
+<table>
+  <tr><th style="width:26%">岗位</th><th style="width:16%">薪资</th><th style="width:14%">学历</th><th>关键要求（JD 原话）</th></tr>
+  <tr>
+    <td>AI 应用工程师<br>（智能化推进组）<br><span class="small">深圳宝安</span></td>
+    <td class="num">8 – 18k</td>
+    <td class="num"><strong>大专</strong></td>
+    <td>"计算机／软件／数据相关专业，<strong>大专及以上</strong>""熟悉 Python，有数据处理和 API 开发经验""良好的跨部门沟通和业务理解能力""了解 RAG、向量数据库、Prompt Engineering""<strong>有从 0 到 1 独立交付 AI 工具的经历</strong>"</td>
+  </tr>
+  <tr>
+    <td>AI 应用开发工程师<br><span class="small">绍兴上虞</span></td>
+    <td class="num">8 千 – 1.2 万</td>
+    <td class="num"><strong>大专</strong><br>应届可投</td>
+    <td>"掌握至少一种主流前端技术栈（React、Vue 等）<strong>和</strong>后端技术（Node.js…）""精通 MySQL 数据库设计""熟悉版本控制工具（Git）""参与产品前后端的开发与维护"</td>
+  </tr>
+  <tr>
+    <td>AI 视觉项目交付工程师<br><span class="small">苏州昆山，14 薪</span></td>
+    <td class="num">7 – 9 千</td>
+    <td class="num"><strong>大专</strong></td>
+    <td>"<strong>大专及以上</strong>学历""负责 AI 视觉检测系统的现场实施和交付""为客户提供系统操作培训和技术指导""<strong>编写安装报告、验收文档等交付文件</strong>""优秀的客户沟通能力"</td>
+  </tr>
+  <tr>
+    <td>AIGC 应用工程师<br><span class="small">连云港</span></td>
+    <td class="num">4 – 7 千</td>
+    <td class="num"><strong>大专及以上</strong></td>
+    <td>"独立完成智能体搭建与维护""整理 AI 应用成果与操作文档，<strong>协助团队同事学习 AI 工具使用</strong>，推动公司 AI 应用普及""能快速理解业务流程"</td>
+  </tr>
+</table>
+
+<p><strong>读法：</strong>四份大专可投 JD 里，反复出现的不是编程语言，而是三件事——<strong>交付到别人手上能用</strong>（从 0 到 1 独立交付／现场实施）、<strong>写交付文档与验收</strong>（安装报告、验收文档）、<strong>教会别人用</strong>（操作培训、推动普及）。这三件事恰好是传统前端课完全不训练的。</p>
+
+<div class="box join">
+  <div class="box-t">口径决定：内部用 FDE 的方法论，对外用市场认的岗位名</div>
+  <p style="margin:0">训练营对外名称建议叫<strong>"AI 应用与交付"</strong>（不叫 FDE 营）。学生简历上写"独立完成 XX 系统从需求到验收的交付"，对应的是深圳 8–18k、绍兴 8–12k 那一档；写"FDE"，对应的是两份本科门槛 JD，会被直接筛掉。<strong>方法论是先进的，名字必须是市场认的。</strong></p>
+</div>
+
+<h2>二、为什么这次"共享八成"不成立</h2>
+
+<p>之前论证电商与漫剧时用的是同一条判据：两条赛道共享六项工程能力，分叉只在最后 20%。用同一把尺子量 AIGC 与 FDE，结论相反。</p>
+
+<figure>
+  <svg viewBox="0 0 900 300" width="100%" role="img" xmlns="http://www.w3.org/2000/svg">
+    <title>共享度对比</title>
+    <desc>电商与漫剧共享约八成工程能力，AIGC 与 FDE 仅共享约三成底座能力</desc>
+    <text x="20" y="24" font-size="13" font-weight="700" fill="#1F2328">同一把尺子量两组赛道，结论相反</text>
+    <text x="20" y="112" font-size="14" font-weight="700" fill="#0B5FA5">电商 视觉 vs 漫剧</text>
+    <rect x="20" y="124" width="640" height="42" fill="#E8F1FA" stroke="#9FC6E8" stroke-width="1"/>
+    <rect x="660" y="124" width="160" height="42" fill="#FDF1E3" stroke="#E5BE86" stroke-width="1"/>
+    <text x="350" y="147" font-size="14" font-weight="700" fill="#0B5FA5" text-anchor="middle" dominant-baseline="central">共享 80%：调接口 · 批量并发 · 一致性 · 归档版本 · 质检筛选 · 工作流封装</text>
+    <text x="740" y="147" font-size="13" fill="#9A5B00" text-anchor="middle" dominant-baseline="central">分叉 20%</text>
+    <text x="20" y="196" font-size="13" fill="#57606A">分叉只在最后一个环节（电商 SKU 表与平台规格 / 漫剧角色参考与分镜）→ 不该分赛道</text>
+    <text x="20" y="240" font-size="14" font-weight="700" fill="#9A5B00">AIGC 内容 vs FDE 交付</text>
+    <rect x="20" y="252" width="240" height="42" fill="#E6F4EC" stroke="#A8D5BA" stroke-width="1"/>
+    <rect x="260" y="252" width="560" height="42" fill="#FDF1E3" stroke="#E5BE86" stroke-width="1"/>
+    <text x="140" y="275" font-size="14" font-weight="700" fill="#1A6B3C" text-anchor="middle" dominant-baseline="central">共享 30%：Git · 调接口 · 读报错</text>
+    <text x="540" y="275" font-size="14" font-weight="700" fill="#9A5B00" text-anchor="middle" dominant-baseline="central">分叉 70%：对手方完全不同</text>
+  </svg>
+  <figcaption>图 1 · 电商与漫剧是可以合的（共享八成），AIGC 与 FDE 是必须分的（只共享底座三件套）。</figcaption>
+</figure>
+
+<h3>2.1 分叉的根源：对手方不是同一个东西</h3>
+
+<div class="split">
+  <div class="box aigc">
+    <div class="box-t"><span class="tag a">AIGC</span> 对手方 = 机器的不确定性</div>
+    <p style="margin:0">同一句提示词，跑十次出十种结果。你要做的是<strong>在不确定的输出里筛出可用的，并让一千张图看起来像同一个东西</strong>。判断对象是<strong>产物</strong>。</p>
+  </div>
+  <div class="box fde">
+    <div class="box-t"><span class="tag f">FDE</span> 对手方 = 人的需求不明确</div>
+    <p style="margin:0">客户说"我要一个能管 XX 的系统"，他自己也不知道要什么。你要做的是<strong>把一句含糊的话变成可验收的条目，并在他改主意时活下来</strong>。判断对象是<strong>人的意图</strong>。</p>
+  </div>
+</div>
+
+<p>由此派生出的能力几乎不重叠：AIGC 练的是<strong>废片率、一致性、批量重试、成本核算</strong>；FDE 练的是<strong>需求澄清、原型、验收签字、培训、沉淀复用</strong>。共用的只有调接口、Git、读报错这三件底座——而这三件本来就在第一级语言底座里，两个营各自用各自的语法做一遍即可，不需要协同。</p>
+
+<h2>三、管理复杂度：把"一次性成本"和"持续性成本"分开算</h2>
+
+<p>你说"不掺和，管理复杂度低"。我把账拆开，因为省下的和增加的<strong>不是同一种成本</strong>。</p>
+
+<table>
+  <tr><th style="width:44%">拆开后确实省掉的（持续性成本）</th><th style="width:56%">拆开后新增的（一次性成本）</th></tr>
+  <tr>
+    <td>
+      · 不用每周开契约会<br>
+      · 不用维护 CONTRACT.md 与字段版本<br>
+      · 不用调和两边进度（一边卡住另一边空转）<br>
+      · 不用等对方交付才能开始下一步<br>
+      · 不用为"他为什么不配合"做思想工作
+    </td>
+    <td>
+      · 两套内容（十二周表要写两份）<br>
+      · 两套判据（验收量表要定两次）<br>
+      · 两份样品（AIGC 的成片 / FDE 的需求卡样例）<br>
+      · 两次招募、两份报名表<br>
+      · <strong>两个客户源（FDE 线需要真实客户，这是新增的最大一项）</strong>
+    </td>
+  </tr>
+</table>
+
+<div class="box">
+  <div class="box-t">净判断</div>
+  <p style="margin:0">掺和的代价是<strong>每周都要为对方让路</strong>（持续性），拆开的代价是<strong>开学前多备一套材料</strong>（一次性）。<strong>一次性成本和持续性成本之间，永远选一次性。</strong>所以拆是对的——但把它说成"更省事"会误导后面一年的排期，实际是要多备一套东西的。</p>
+</div>
+
+<h3>3.1 一个能省回一半工作量的结构</h3>
+
+<p>FDE 线不需要算力。AIGC 线一学期算力账 1.5–2 千元、每次跑批都要盯着额度和失败重试；FDE 线的成本是<strong>客户沟通时间</strong>，服务器用免费额度即可。这意味着两条线消耗的是两种不同资源，不会互相挤占。</p>
+
+<p>更关键的是：<strong>FDE 线的四项能力（需求澄清 F1、原型 F2、培训验收 F5、沉淀 F6）可以直接放进 JS 课内的项目载体</strong>，社团只承接与客户直接打交道的部分。上一份文档已论证 JS 课换载体的可行性（同样受"是否教考分离"约束）。课内 + 社团双通道，增量工作量可控。</p>
+
+<h2>四、JS 班做 FDE 的三条天然优势</h2>
+
+<div class="box fde">
+  <div class="box-t">优势一：JS 是 FDE 的母语，不是短板</div>
+  <p style="margin:0">FDE 交付出去的东西长什么样？一个能点的界面、一套接进来的数据、一份能跑在客户机器上的东西。绍兴那份 JD 直接写"掌握至少一种主流前端技术栈（React、Vue）<strong>和</strong>后端技术"。让 JS 班去补 Python 批处理管线，等于<strong>用短板去打别人的主场</strong>；让他们做交付，是把"会做页面"升级为"能让客户把业务跑起来"。</p>
+</div>
+
+<div class="box fde">
+  <div class="box-t">优势二：不需要再解释"为什么不用 Python"</div>
+  <p style="margin:0">上一份方案里最别扭的一条是——那两个班的 Python 由其他老师按传统教法教，所以社团里只能"只用 JS，不碰 Python"，还要专门跟同事打招呼。改成 FDE 线之后<strong>这个矛盾消失了</strong>：我们本来就用 JS 做交付，跟他们的 Python 课毫无关系，连解释都不用。</p>
+</div>
+
+<div class="box fde">
+  <div class="box-t">优势三：FDE 自带最真实的对手方，而且比文件契约更真</div>
+  <p style="margin:0">上一份方案里，为了让"契约有代价"，我设计了一套文件契约（queue/ 与 results/）来制造对手方。那是<strong>人造的</strong>。FDE 线不需要制造——客户就是对手方，他说"这不对"的时候你不能改字段，你得改理解。<strong>三级火箭里最难练的 C4（分工与责任归属）和 C5（交付与对外沟通），在真实客户面前是自动发生的。</strong></p>
+</div>
+
+<h2>五、最大的坑：客户从哪来</h2>
+
+<div class="box warn">
+  <div class="box-t">这是决定 FDE 线成败的唯一变量</div>
+  <p style="margin:0 0 10px">AIGC 线的样品老师自己能做——100 张素材、一条 30 秒成片，花钱花时间就有。<strong>FDE 线的客户必须是真人。</strong>没有真人客户，三次迭代之后就会退化成"做一个图书管理系统"，和十年前的课程设计毫无区别，学生自己都知道是在演戏，第 6 周开始掉人。</p>
+  <p style="margin:0"><strong>判据：找不到 ≥2 个真实客户，就不要开这条线。</strong>推迟一学期，比开一个假营强。</p>
+</div>
+
+<h3>5.1 校内行政就是最好的练兵场</h3>
+
+<p>FDE 的正牌岗位要出差、要驻场、要面对合规。这些学生都做不了。但 FDE 的核心动作——<strong>听懂需求、做出能用的东西、教会人用、拿到验收</strong>——在校内完全可以真做，而且客户质量比想象中高：</p>
+
+<table>
+  <tr><th style="width:22%">客户（校内）</th><th style="width:38%">可交付的东西</th><th style="width:40%">为什么适合练</th></tr>
+  <tr><td>教务处</td><td>实习台账汇总、毕业设计选题与导师分配、教材征订统计</td><td>数据真实、规则明确、每年重复（能验证"下次更省事"）</td></tr>
+  <tr><td>学工／辅导员</td><td>请假审批流转、资助材料齐套检查、宿舍报修登记</td><td>使用者多、需求含糊、一定会改主意——正是要练的</td></tr>
+  <tr><td>招生就业处</td><td>招聘信息采集与去重、企业对接记录、校友信息维护</td><td>和就业直接相关，学生有代入感</td></tr>
+  <tr><td>实训中心</td><td>设备借用与耗材领用、实训室排期冲突检查</td><td>规则可判定，容易写出检查项</td></tr>
+  <tr><td>各系部</td><td>作品提交与归档、毕业展物料清单</td><td>工美院校特有，量大且杂</td></tr>
+  <tr><td>图书馆／后勤</td><td>研修间预约、报修工单流转</td><td>有明确使用者，能拿到验收</td></tr>
+  <tr><td>教师个人</td><td>成绩录入前的数据清洗、课程素材管理</td><td>客户就在办公室隔壁，随时能问</td></tr>
+</table>
+
+<h4>客户筛选三条（满足前两条即可）</h4>
+<ol>
+  <li><strong>人在校内，能见面</strong>——不接受"线上提需求"；</li>
+  <li><strong>数据能给</strong>——一份 Excel 导出就够，不需要开数据库权限；</li>
+  <li><strong>使用者 ≥5 人</strong>——否则验收没有意义。</li>
+</ol>
+
+<h4>第一期只做 2 个客户，且启动会要锁死三件事</h4>
+<ul>
+  <li>需求人本人<strong>到场 3 次</strong>：启动会（说清楚场景）、中期（看原型）、验收（签单）。三次时间当场写进需求卡，写在纸上的才算约定；</li>
+  <li>需求人指定<strong>一个对接人</strong>，不通过第三人传话；</li>
+  <li>明确<strong>"这次不做什么"</strong>——这条比"做什么"更能保护学生。</li>
+</ul>
+
+<h2>六、FDE 线六个能力项（F1–F6）</h2>
+
+<p>与 AIGC 线的 B1–B5 同一套写法：每项写"能做什么 + 可观测证据"，判据分合格／优秀两档。</p>
+
+<h3><span class="tag f">F1</span> 需求澄清</h3>
+<div class="kv"><b>能做什么</b><span>把"我要一个能管 XX 的系统"翻译成 5 条可验收条目 + 3 条"明确不做"。</span></div>
+<div class="kv"><b>训练任务</b><span>给一段 3 分钟真实对话记录（第一二次由老师扮演客户，第三次起用真客户），20 分钟内写出需求卡。</span></div>
+<div class="kv"><b>交付物</b><span>需求卡：场景 / 使用者 / 输入 / 输出 / 验收条目 ×5 / 不做清单 ×3。</span></div>
+<div class="kv"><b>判据</b><span>合格 = 5 条里至少 4 条可数可查（"能导出 Excel""10 秒内出结果"），不出现形容词；优秀 = 客户看完说"就是这个"，且没有追问。</span></div>
+<div class="kv"><b>最常见的错</b><span>把客户说的解决方案当成需求。客户说"我要一个下拉框"，真实需求是"别让我填错"。<strong>每次复盘都要问一句：他真正想要的是什么。</strong></span></div>
+
+<h3><span class="tag f">F2</span> 原型与 Demo</h3>
+<div class="kv"><b>能做什么</b><span>48 小时内做出能点通的界面，让客户在真实数据之前先看见东西。</span></div>
+<div class="kv"><b>训练任务</b><span>需求卡 → 静态原型（HTML + 假 JSON）→ 当场给客户点。</span></div>
+<div class="kv"><b>铁律</b><span><strong>原型不许接真数据库。</strong>先用假 JSON，为的是能一天改三版。接了真数据就舍不得改，这正是课程设计的通病。</span></div>
+<div class="kv"><b>判据</b><span>合格 = 客户自己点完主流程、没提问；优秀 = 客户当场提出 ≥2 条真实修改（说明他真把它当回事了）。</span></div>
+
+<h3><span class="tag f">F3</span> 系统对接与数据接入</h3>
+<div class="kv"><b>能做什么</b><span>读接口文档、把外部数据（表单、表格、公开 API、知识库）变成本地可查的 JSON。</span></div>
+<div class="kv"><b>交付物</b><span>data.json + 字段说明表（每个字段：从哪来 / 是否可能为空 / 什么含义 / 谁在用）。</span></div>
+<div class="kv"><b>判据</b><span>合格 = 字段说明齐全；优秀 = 对空值与异常值有明确处理，且能被下一个人照着接第二个数据源。</span></div>
+<div class="kv"><b>对上 JD</b><span>深圳岗"了解 RAG、向量数据库、Prompt Engineering"——第一年做到"能接一个真实数据源并说清字段"，第二年再碰 RAG。</span></div>
+
+<h3><span class="tag f">F4</span> 部署与交付</h3>
+<div class="kv"><b>能做什么</b><span>让它在别人的机器上跑起来，有安装说明、有回滚办法。</span></div>
+<div class="kv"><b>训练任务</b><span>把项目交给另一组，对方只准看 README，不准提问。</span></div>
+<div class="kv"><b>判据</b><span>合格 = 对方按 README 装起来能跑；优秀 = 装失败时对方能说出失败原因，且 README 当场改好后第二个人一次通过。</span></div>
+<div class="kv"><b>对上 JD</b><span>昆山岗"现场实施和交付""编写安装报告、验收文档"。</span></div>
+
+<h3><span class="tag f">F5</span> 培训与验收</h3>
+<div class="kv"><b>能做什么</b><span>教会非技术用户使用，并拿到书面验收。</span></div>
+<div class="kv"><b>训练任务</b><span>给真实用户做 15 分钟培训 + 一页纸使用说明 + 验收单。</span></div>
+<div class="kv"><b>铁律</b><span><strong>验收单必须由对方写，不能自己写。</strong>自己写的验收单等于没验收。</span></div>
+<div class="kv"><b>判据</b><span>合格 = 用户独立完成一次真实任务并在验收单上签字；优秀 = 用户能教会下一个人（说明说明书写得对）。</span></div>
+
+<h3><span class="tag f">F6</span> 沉淀与复用 <span class="tag j">最关键</span></h3>
+<div class="kv"><b>能做什么</b><span>把这次做过的东西变成下次能直接用的组件、模板、检查项。</span></div>
+<div class="kv"><b>交付物</b><span>《下次同类项目清单》三件套：可复用组件清单 + 踩坑记录 + 需求澄清问题库。</span></div>
+<div class="kv"><b>判据</b><span>合格 = 下一个项目里至少 3 个东西被直接复用；优秀 = 下一个同类项目交付时间缩短 30%。</span></div>
+<div class="kv"><b>为什么它是分界线</b><span>腾讯研究院《FDE 模式行业观察与实践》（2026-08）给了四层判据：<strong>只留给客户一个系统 = 外包；带回经验但无法复用 = 项目制；沉淀为 Skill／模板／测试集 = FDE；显著降低下一次同类交付成本 = 可规模化的 FDE。</strong>前五项是"做完"，F6 才是"做成"。</span></div>
+
+<h2>七、两条线在最高层汇合（这是本次最重要的发现）</h2>
+
+<p>拆到底之后回头看，两条线并不是完全无关——它们在最高一层汇合，而且汇合点恰好是价值最高的那一层。</p>
+
+<figure>
+  <svg viewBox="0 0 900 360" width="100%" role="img" xmlns="http://www.w3.org/2000/svg">
+    <title>两条线的分叉与汇合</title>
+    <desc>AIGC 与 FDE 在底座分叉，在沉淀层汇合</desc>
+    <rect x="300" y="20" width="300" height="46" rx="8" fill="#F6F8FA" stroke="#D0D7DE" stroke-width="1"/>
+    <text x="450" y="43" font-size="14" font-weight="700" fill="#1F2328" text-anchor="middle" dominant-baseline="central">一级底座：调接口 · Git · 读报错</text>
+    <path d="M450 66 L450 92" fill="none" stroke="#8A919A" stroke-width="1.5"/>
+    <path d="M450 92 L230 122 L230 146" fill="none" stroke="#0B5FA5" stroke-width="2"/>
+    <path d="M450 92 L670 122 L670 146" fill="none" stroke="#9A5B00" stroke-width="2"/>
+    <rect x="70" y="146" width="320" height="52" rx="8" fill="#E8F1FA" stroke="#9FC6E8" stroke-width="1"/>
+    <text x="230" y="165" font-size="14" font-weight="700" fill="#0B5FA5" text-anchor="middle" dominant-baseline="central">AIGC 线（Python 班）</text>
+    <text x="230" y="185" font-size="12.5" fill="#57606A" text-anchor="middle" dominant-baseline="central">筛掉废片 · 锁住一致性 · 批量跑 · 算成本</text>
+    <rect x="510" y="146" width="320" height="52" rx="8" fill="#FDF1E3" stroke="#E5BE86" stroke-width="1"/>
+    <text x="670" y="165" font-size="14" font-weight="700" fill="#9A5B00" text-anchor="middle" dominant-baseline="central">FDE 线（JS 两个班）</text>
+    <text x="670" y="185" font-size="12.5" fill="#57606A" text-anchor="middle" dominant-baseline="central">澄清需求 · 出原型 · 培训验收 · 沉淀复用</text>
+    <path d="M230 198 L230 290" fill="none" stroke="#0B5FA5" stroke-width="2"/>
+    <path d="M670 198 L670 290" fill="none" stroke="#9A5B00" stroke-width="2"/>
+    <rect x="40" y="226" width="180" height="48" rx="8" fill="#FFFFFF" stroke="#9FC6E8" stroke-width="1"/>
+    <text x="130" y="243" font-size="13" font-weight="700" fill="#0B5FA5" text-anchor="middle" dominant-baseline="central">这张图行不行</text>
+    <text x="130" y="262" font-size="12" fill="#57606A" text-anchor="middle" dominant-baseline="central">一次性的判断</text>
+    <rect x="690" y="226" width="200" height="48" rx="8" fill="#FFFFFF" stroke="#E5BE86" stroke-width="1"/>
+    <text x="790" y="243" font-size="13" font-weight="700" fill="#9A5B00" text-anchor="middle" dominant-baseline="central">这个客户要什么</text>
+    <text x="790" y="262" font-size="12" fill="#57606A" text-anchor="middle" dominant-baseline="central">一次性的判断</text>
+    <rect x="180" y="290" width="540" height="52" rx="8" fill="#E6F4EC" stroke="#A8D5BA" stroke-width="1"/>
+    <text x="450" y="309" font-size="14" font-weight="700" fill="#1A6B3C" text-anchor="middle" dominant-baseline="central">汇合点：把一次性的判断，沉淀成可复用的资产</text>
+    <text x="450" y="328" font-size="12.5" fill="#57606A" text-anchor="middle" dominant-baseline="central">AIGC：判断 → 质检检查项　|　FDE：判断 → 模板与 Skill</text>
+  </svg>
+  <figcaption>图 2 · 底座共享、中层分叉、顶层汇合。汇合点就是腾讯研究院定义 FDE 的第四层判据，也是重庆那两份"美术指导"差三倍薪资的同一件事。</figcaption>
+</figure>
+
+<div class="box join">
+  <div class="box-t">这个汇合点可以复用，而且必须复用</div>
+  <p style="margin:0 0 10px">AIGC 侧把"这张图行不行"变成检查项，FDE 侧把"这个客户要什么"变成模板——<strong>是同一个动作：把一次性的判断翻译成可复用、可交给别人的东西。</strong></p>
+  <p style="margin:0">所以两条线<strong>可以在这一层共用一节联合课</strong>（一学期一次即可）：讲"什么叫沉淀"，AIGC 组展示检查项清单，FDE 组展示模板库，互相挑毛病。这节课同时是两条线的最高价值输出，也是唯一值得两边坐在一起的时间。</p>
+</div>
+
+<h2>八、最小共享接口：不掺和，但留四个共用件</h2>
+
+<p>完全不往来会失去一样东西——上一份方案里我论证过，"并 JS 进来真正的收益是让工程第一次有了真实对手方"。拆开之后这个收益要找回来一点，但成本必须极低。<strong>不共享代码，只共享格式：</strong></p>
+
+<table>
+  <tr><th style="width:20%">共用件</th><th style="width:40%">内容</th><th style="width:40%">为什么值得共用</th></tr>
+  <tr><td>Git 规范与 README 模板</td><td>一份模板，两边各自填</td><td>教师只用记一套要求；学生跨线流动时零成本</td></tr>
+  <tr><td>任务卡五要素格式</td><td>目标／输入／产出／判据／复盘三问</td><td>写不出判据的任务不布置——这条铁律两边通用</td></tr>
+  <tr><td>复盘三问</td><td>哪里最容易坏？坏了怎么知道？下次改哪？</td><td>期末答辩三题两边相同，评分尺度一致</td></tr>
+  <tr><td>失败案例库</td><td>一个仓库两个目录：aigc/ 与 fde/</td><td>AIGC 记废片原因，FDE 记需求变更原因——<strong>翻对方的目录常有意外收获</strong></td></tr>
+</table>
+
+<h3>8.1 联合答辩：把"真实对手方"找回来</h3>
+
+<p>每学期一次，半天，规则极简：</p>
+<ul>
+  <li><strong>AIGC 组</strong>展示工具与产线，FDE 组作为真实用户试用，提 3 条修改；</li>
+  <li><strong>FDE 组</strong>展示交付的系统，AIGC 组作为真实用户试用，提 3 条修改；</li>
+  <li>提的修改<strong>必须是可判定的</strong>（不许"不好看"，要"这一步点了没反应"）；</li>
+  <li>被提方必须在 <strong>48 小时内回应</strong>：接受 / 不接受 + 理由。</li>
+</ul>
+
+<p>这一条同时练了 AIGC 侧的 C5（交付与对外沟通）和 FDE 侧的 F5（培训与验收），而且<strong>互相是对方最苛刻的用户</strong>——因为他们恰好是对对方领域一无所知的人，这是最接近真实客户的评审。</p>
+
+<h2>九、FDE 线十二周表（与 AIGC 线并行）</h2>
+
+<figure>
+  <svg viewBox="0 0 900 300" width="100%" role="img" xmlns="http://www.w3.org/2000/svg">
+    <title>双线并行时间表</title>
+    <desc>AIGC 线与 FDE 线并行周表及联合节点</desc>
+    <text x="20" y="24" font-size="13" font-weight="700" fill="#1F2328">一学期并行节奏（同一天招募，两次联合节点）</text>
+    <text x="150" y="52" font-size="12.5" fill="#8A919A" text-anchor="middle">W1</text>
+    <text x="250" y="52" font-size="12.5" fill="#8A919A" text-anchor="middle">W4</text>
+    <text x="350" y="52" font-size="12.5" fill="#8A919A" text-anchor="middle">W8</text>
+    <text x="450" y="52" font-size="12.5" fill="#8A919A" text-anchor="middle">W11</text>
+    <text x="580" y="52" font-size="12.5" fill="#8A919A" text-anchor="middle">W14</text>
+    <text x="710" y="52" font-size="12.5" fill="#8A919A" text-anchor="middle">W16</text>
+    <text x="20" y="96" font-size="13" font-weight="700" fill="#0B5FA5" dominant-baseline="central">AIGC</text>
+    <rect x="100" y="78" width="130" height="36" rx="6" fill="#E8F1FA" stroke="#9FC6E8" stroke-width="1"/>
+    <text x="165" y="96" font-size="12.5" fill="#0B5FA5" text-anchor="middle" dominant-baseline="central">出图与筛选</text>
+    <rect x="230" y="78" width="130" height="36" rx="6" fill="#E8F1FA" stroke="#9FC6E8" stroke-width="1"/>
+    <text x="295" y="96" font-size="12.5" fill="#0B5FA5" text-anchor="middle" dominant-baseline="central">一致性与分镜</text>
+    <rect x="360" y="78" width="130" height="36" rx="6" fill="#E8F1FA" stroke="#9FC6E8" stroke-width="1"/>
+    <text x="425" y="96" font-size="12.5" fill="#0B5FA5" text-anchor="middle" dominant-baseline="central">归档周</text>
+    <rect x="490" y="78" width="130" height="36" rx="6" fill="#E8F1FA" stroke="#9FC6E8" stroke-width="1"/>
+    <text x="555" y="96" font-size="12.5" fill="#0B5FA5" text-anchor="middle" dominant-baseline="central">定方向</text>
+    <rect x="620" y="78" width="130" height="36" rx="6" fill="#E8F1FA" stroke="#9FC6E8" stroke-width="1"/>
+    <text x="685" y="96" font-size="12.5" fill="#0B5FA5" text-anchor="middle" dominant-baseline="central">批量与成本</text>
+    <rect x="750" y="78" width="130" height="36" rx="6" fill="#E8F1FA" stroke="#9FC6E8" stroke-width="1"/>
+    <text x="815" y="96" font-size="12.5" fill="#0B5FA5" text-anchor="middle" dominant-baseline="central">出作品</text>
+    <text x="20" y="166" font-size="13" font-weight="700" fill="#9A5B00" dominant-baseline="central">FDE</text>
+    <rect x="100" y="148" width="130" height="36" rx="6" fill="#FDF1E3" stroke="#E5BE86" stroke-width="1"/>
+    <text x="165" y="166" font-size="12.5" fill="#9A5B00" text-anchor="middle" dominant-baseline="central">需求澄清 F1</text>
+    <rect x="230" y="148" width="130" height="36" rx="6" fill="#FDF1E3" stroke="#E5BE86" stroke-width="1"/>
+    <text x="295" y="166" font-size="12.5" fill="#9A5B00" text-anchor="middle" dominant-baseline="central">原型冲刺 F2</text>
+    <rect x="360" y="148" width="130" height="36" rx="6" fill="#FDF1E3" stroke="#E5BE86" stroke-width="1"/>
+    <text x="425" y="166" font-size="12.5" fill="#9A5B00" text-anchor="middle" dominant-baseline="central">数据接入 F3</text>
+    <rect x="490" y="148" width="130" height="36" rx="6" fill="#FDF1E3" stroke="#E5BE86" stroke-width="1"/>
+    <text x="555" y="166" font-size="12.5" fill="#9A5B00" text-anchor="middle" dominant-baseline="central">部署交付 F4</text>
+    <rect x="620" y="148" width="130" height="36" rx="6" fill="#FDF1E3" stroke="#E5BE86" stroke-width="1"/>
+    <text x="685" y="166" font-size="12.5" fill="#9A5B00" text-anchor="middle" dominant-baseline="central">培训验收 F5</text>
+    <rect x="750" y="148" width="130" height="36" rx="6" fill="#FDF1E3" stroke="#E5BE86" stroke-width="1"/>
+    <text x="815" y="166" font-size="12.5" fill="#9A5B00" text-anchor="middle" dominant-baseline="central">沉淀复用 F6</text>
+    <rect x="100" y="212" width="120" height="40" rx="6" fill="#E6F4EC" stroke="#A8D5BA" stroke-width="1"/>
+    <text x="160" y="232" font-size="12.5" font-weight="700" fill="#1A6B3C" text-anchor="middle" dominant-baseline="central">W4 同一天招募</text>
+    <rect x="230" y="212" width="120" height="40" rx="6" fill="#FFFFFF" stroke="#D0D7DE" stroke-width="1"/>
+    <text x="290" y="232" font-size="12.5" fill="#57606A" text-anchor="middle" dominant-baseline="central">各自推进</text>
+    <rect x="480" y="212" width="120" height="40" rx="6" fill="#FFFFFF" stroke="#D0D7DE" stroke-width="1"/>
+    <text x="540" y="232" font-size="12.5" fill="#57606A" text-anchor="middle" dominant-baseline="central">各自推进</text>
+    <rect x="700" y="212" width="190" height="40" rx="6" fill="#E6F4EC" stroke="#A8D5BA" stroke-width="1"/>
+    <text x="795" y="232" font-size="12.5" font-weight="700" fill="#1A6B3C" text-anchor="middle" dominant-baseline="central">W16 联合答辩（半天）</text>
+    <text x="20" y="278" font-size="12.5" fill="#57606A">W4 招募分两张表，同一次宣讲；W16 是两条线唯一必须坐在一起的时间</text>
+  </svg>
+  <figcaption>图 3 · 两条线周次各自独立，只在招募日与答辩日交汇。中间十周互不依赖，一边掉队不影响另一边。</figcaption>
+</figure>
+
+<h3>9.1 招募与规模</h3>
+<ul>
+  <li><strong>JS 两个班约 60–80 人</strong>，FDE 营招 30–40、留 12–15；与 AIGC 营（招 30 留 12）人数相当；</li>
+  <li><strong>算力几乎为零</strong>：FDE 线不用生图生视频，全部走免费额度或本地假数据，一学期账单可忽略；</li>
+  <li><strong>退出机制同 AIGC 线</strong>：连续两周不交退出，每周必须有交付；FDE 线的"交付"从第二周起就是需求卡和原型，不需要写代码也能交。</li>
+</ul>
+
+<h3>9.2 分组（4 个岗位位）</h3>
+<table>
+  <tr><th style="width:22%">岗位位</th><th style="width:14%">人数</th><th style="width:32%">负责</th><th style="width:32%">判据（写死）</th></tr>
+  <tr><td>客户与需求</td><td class="num">2–3</td><td>对接客户、写需求卡、组织验收会</td><td>拿到客户签字的验收单</td></tr>
+  <tr><td>界面与交互</td><td class="num">4–5</td><td>原型与正式界面</td><td>客户独立点完主流程不提问</td></tr>
+  <tr><td>数据与接口</td><td class="num">3–4</td><td>数据源接入、字段说明、异常处理</td><td>字段说明齐全，第二人能照着接第二个源</td></tr>
+  <tr><td>交付与沉淀</td><td class="num">2–3</td><td>README、安装说明、培训、模板库</td><td>跨组安装一次通过；模板库 ≥3 项被复用</td></tr>
+</table>
+
+<p class="small">"交付与沉淀"这一位对应 AIGC 侧的"资产与规范组"，都是接住"不写代码但一直在交付"的那批人。<strong>两个营都留这个位置，不是巧合——它就是汇合点的人形。</strong></p>
+
+<h2>十、风险与失败预案</h2>
+
+<table>
+  <tr><th style="width:30%">失败方式</th><th style="width:26%">早期信号</th><th style="width:44%">纠正动作</th></tr>
+  <tr>
+    <td><strong>客户谈不下来</strong>（最高危）</td>
+    <td>第 2 周还没拿到任何部门口头答应</td>
+    <td><strong>FDE 线推迟一学期，不要硬开。</strong>没有客户的 FDE 营必然退化成课程设计，还会拉低社团口碑，影响明年招募</td>
+  </tr>
+  <tr>
+    <td>做成老套管理系统</td>
+    <td>项目里没有任何 AI 环节</td>
+    <td>判据里写死：<strong>每个项目必须有一个 AI 环节</strong>（表单识别／自动摘要／RAG 问答／批量生成），否则不算完成</td>
+  </tr>
+  <tr>
+    <td>客户中途失联</td>
+    <td>中期看原型时对接人没来</td>
+    <td>启动会就把三次到场时间写进需求卡；第二次缺席即降级为"模拟客户"，并在复盘里记一条</td>
+  </tr>
+  <tr>
+    <td>需求无限膨胀</td>
+    <td>验收条目超过 5 条还在加</td>
+    <td>需求卡上的"不做清单 ×3"是硬约束；新增需求必须换掉一条旧的，不许只加不减</td>
+  </tr>
+  <tr>
+    <td>两条线互相看不上</td>
+    <td>联合答辩时互评只有客套话</td>
+    <td>答辩只评"对方能不能用"，不评技术高低；每人必须提 3 条可判定的修改，提不出视为未参加</td>
+  </tr>
+  <tr>
+    <td>教师时间爆掉</td>
+    <td>连续两周备课超过预期</td>
+    <td>把 F3／F4 移进 JS 课内项目载体（前提是教考分离），社团只保留 F1／F2／F5／F6</td>
+  </tr>
+</table>
+
+<h2>十一、这条线对课程体系的意义（超出社团本身）</h2>
+
+<p>两句话值得单独记下来：</p>
+
+<div class="box">
+  <div class="box-t">第一句：FDE 线给前端课找到了 AI 时代的落点</div>
+  <p style="margin:0">前端岗位收缩这件事你早就判断过了。FDE 线给出的答案不是"前端转后端"，而是<strong>前端从"写页面"升级为"把 AI 能力交付到业务里"</strong>——绍兴那份 8–12k 应届可投的 JD 要的就是"前端 + 后端 + MySQL + Git"的组合，这正好是 JS 课 + 一点拓展就能覆盖的范围。同一批课时，出口换了一个。</p>
+</div>
+
+<div class="box">
+  <div class="box-t">第二句：两条线产出两种不同资产</div>
+  <p style="margin:0 0 10px">AIGC 线产出<strong>作品与产线</strong>——可展示、可参赛、可对外讲"AI 内容工业化"。FDE 线产出<strong>方法论与案例</strong>——真实客户、真实验收、可复用的模板库，对应的是"AI 落地最后一公里"这条叙事。</p>
+  <p style="margin:0">顺带一个参照：腾讯云在教育行业的 FDE 实践用的是<strong>"工作营陪跑"</strong>模式——围绕教师真实任务设计闭环，交付的不是培训，而是<strong>可运行的应用和可复用的 Skill</strong>。你要做的这件事，结构上是同一件事，只是发生在校内。</p>
+</div>
+
+<h2>十二、需要你定的四件事</h2>
+
+<ol>
+  <li><strong>客户源：本学期能不能谈到 ≥2 个校内部门？</strong>这是开不开这条线的唯一硬前提。建议开学第一周就去教务处、学工、实训中心各谈 30 分钟，只问三件事：有没有一个重复性的表格活、愿不愿意让学生做、能不能来三次会。</li>
+  <li><strong>对外名称是否定为"AI 应用与交付"。</strong>不建议用 FDE（两份实抓 JD 均要求本科）。</li>
+  <li><strong>JS 课能否换项目载体</strong>（承接 F3 数据接入、F4 部署）——同样取决于是否教考分离。若能换，社团工作量减半。</li>
+  <li><strong>是否本期就开 FDE 线，还是先跑一学期 AIGC 线、下学期再开。</strong>若第 1 条谈不下来，选后者。</li>
+</ol>
+
+<hr>
+<p class="small">证据来源：全职招聘网与安徽省大学生就业服务平台两份 FDE 岗位（2026-08 在招）；企查查在招 JD「AI 应用工程师（智能化推进组）」深圳宝安 8–18k 大专；猎聘「AI 应用开发工程师」绍兴上虞 8 千–1.2 万 大专应届可投；全职招聘网「AI 视觉项目交付工程师」昆山 7–9 千×14 薪 大专；鱼泡直聘「AIGC 应用工程师」连云港 4–7 千 大专及以上。腾讯研究院《前线共创，双向赋能：FDE 模式行业观察与实践》（2026-08）四层判据与"工作营陪跑"案例；Indeed 全球 FDE 职位 2025.4 的 643 条增至 2026.4 的 5330 条。</p>
+<p class="small">与本工作区其他文档的关系：《三级火箭体系设计》定结构；《三级火箭培训内容与能力清单（执行手册）》写 A 级与 B 级任务卡，本文件新增 F 级；《JS 两班并入训练营的协作机制》为合并方案，本文件为拆分方案，两者互斥，以本文件为准。</p>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>电商视觉与漫剧两条赛道平行对比评估</title>
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;padding:40px 20px 80px;background:#FFFFFF;color:#1F2328;
+    font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif;
+    font-size:15px;line-height:1.85;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:920px;margin:0 auto}
+  .kicker{font-size:12.5px;letter-spacing:.14em;color:#0C447C;font-weight:600;margin-bottom:14px}
+  h1{font-size:29px;line-height:1.4;margin:0 0 14px;font-weight:700;letter-spacing:-.01em}
+  .sub{font-size:16px;color:#57606A;margin:0 0 10px;line-height:1.7}
+  .meta{font-size:12.5px;color:#8A919A;border-top:1px solid #EAECEF;border-bottom:1px solid #EAECEF;padding:12px 0;margin:22px 0 34px}
+  h2{font-size:21px;margin:52px 0 16px;padding-left:13px;border-left:4px solid #0C447C;font-weight:700;line-height:1.5}
+  h3{font-size:16.5px;margin:32px 0 12px;font-weight:600;color:#0C447C}
+  h4{font-size:15px;margin:24px 0 8px;font-weight:600;color:#24292F}
+  p{margin:0 0 15px}
+  ul,ol{margin:0 0 16px;padding-left:22px}
+  li{margin-bottom:9px}
+  strong{font-weight:600}
+  em{font-style:normal;background:#FFF6DA;padding:1px 3px;border-radius:3px}
+  code{font-family:'SFMono-Regular',Consolas,'Liberation Mono',monospace;font-size:13px;background:#F2F4F7;padding:1px 5px;border-radius:4px;color:#0C447C}
+  table{width:100%;border-collapse:collapse;margin:18px 0 24px;font-size:13.5px}
+  th{background:#F4F6F8;text-align:left;padding:10px 11px;font-weight:600;color:#24292F;border-bottom:2px solid #DDE1E5;white-space:nowrap}
+  td{padding:10px 11px;border-bottom:1px solid #EAECEF;vertical-align:top;line-height:1.7}
+  tr:hover td{background:#FAFBFC}
+  .num{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+  .ok{color:#0B5B47;font-weight:600}
+  .cut{color:#A32D2D;font-weight:600}
+  .mid{color:#7A4A0A;font-weight:600}
+  .j{color:#3D444D;font-size:13px}
+  .key{background:#E6F1FB;border-left:4px solid #0C447C;padding:16px 20px;margin:22px 0;border-radius:0 8px 8px 0}
+  .key p:last-child{margin-bottom:0}
+  .box{background:#F7F8FA;border:1px solid #E6E8EB;padding:16px 20px;border-radius:8px;margin:20px 0}
+  .box p:last-child{margin-bottom:0}
+  .warnbox{background:#FAEEDA;border-left:4px solid #BA7517;padding:16px 20px;margin:20px 0;border-radius:0 8px 8px 0}
+  .warnbox p:last-child{margin-bottom:0}
+  .fixbox{background:#F4F0FB;border-left:4px solid:#6E5AC8;padding:16px 20px;margin:20px 0;border-radius:0 8px 8px 0}
+  .fixbox p:last-child{margin-bottom:0}
+  .fig{margin:26px 0 30px}
+  .fig svg{display:block;width:100%;height:auto}
+  .fig figcaption{font-size:12.5px;color:#57606A;margin-top:10px;line-height:1.65}
+  .foot{margin-top:56px;padding-top:22px;border-top:1px solid #EAECEF;font-size:12.5px;color:#8A919A}
+  .foot ul{padding-left:20px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<p class="kicker">AIGC 赛道收窄 · 平行赛道对比评估</p>
+<h1>电商视觉与漫剧：两条平行赛道，共享八成，分叉两成</h1>
+<p class="sub">不替你选主线——把两条赛道的规模、算力账单、台阶密度、定价与风险摆平，给出分配资源的判断依据</p>
+<p class="meta">评估时间：2026 年 9 月 ｜ 口径：两条赛道作为<strong>平行选项</strong>对比，非二选一 ｜ 数据来源：2026 年 7–9 月在招 JD、ECdataway / 艾瑞 / 船长 BI 行业调研（转引）、2026-09 主流生图与视频模型公开单价 ｜ 配套：《AIGC 赛道收窄分析与 AI 剧集方向落点》《Python 课程改造方案（第 3 章起）》</p>
+
+<h2>一、先说结论</h2>
+
+<div class="key">
+<p><strong>这两条不是竞争关系，是同一套能力在两个不同链条上的两种卖法。</strong>真正要评估的不是"选哪条"，而是"一条能喂饱多少人、另一条能撑多高"。</p>
+<p>先看共享的部分——这是最容易被忽略的：<strong>调接口、批量与并发、一致性控制、归档与版本、质检与筛选、工作流封装，这六件事在两条赛道里一字不差。</strong>分叉只发生在最后：电商侧是 SKU 表、平台尺寸规范、去背换背景、上架交付；漫剧侧是角色参考图、分镜参数表、图转视频、音画合成。</p>
+<p>所以课内那 60 学时几乎不需要在两条之间做选择，<strong>它教的是分叉之前的那一段</strong>。真正需要你决定的是：有限的课余资源（一个志愿训练营、一年窗口、一笔算力预算）往哪边倾斜。</p>
+</div>
+
+<p>三条判断依据，按重要性排：</p>
+
+<ol>
+<li><strong>看预算能覆盖多少人产出"完整作品"。</strong>这是两条赛道最硬的差异，下一节把它算成钱。电商能让全班 30 人各交一件完整作品，漫剧做不到——它的产出单元是小组，不是个人。</li>
+<li><strong>看你的学生构成。</strong>自驱强、肯投入课余时间的核心组（10–12 人），漫剧的回报更高：上限 25–40K，作品带播放数据，招生时最抓人。其余学生走电商：台阶密，学得慢也有 3.5–7.5K 的入口。</li>
+<li><strong>看你能承受多大的波动。</strong>电商侧渗透率已过 63%，岗位结构重构完成，需求稳定；漫剧侧 2026 Q1 承制方从 1216 家掉到 698 家（-42%），仅约 4% 盈利，平台政策半年一变。它更适合做"项目"而不是"锚点"。</li>
+</ol>
+
+<h2>二、第一道分水岭：规模</h2>
+
+<p>这一条两条赛道都过，但形态不同。</p>
+
+<table>
+<thead><tr><th style="width:150px">维度</th><th style="width:290px">电商视觉</th><th>2D 漫剧</th></tr></thead>
+<tbody>
+<tr><td>单次需求规模</td><td class="ok">中型零售商平均 12000 个 SKU，每个至少 10 张图</td><td class="ok">一部 10 集约 300–400 个镜头</td></tr>
+<tr><td>年需求量级</td><td class="ok">十万张级，且随上新滚动</td><td class="ok">一个工作室月产能可达百部</td></tr>
+<tr><td>人工工时</td><td class="ok">1000 个 SKU 需 40–60 小时</td><td class="ok">精品"手搓"单部 20 天</td></tr>
+<tr><td>自动化后</td><td class="ok">压到 4 小时以内</td><td class="ok">流水线 5–7 人一周一部</td></tr>
+<tr><td>是否必须工程化</td><td class="ok">必须，且已发生</td><td class="ok">必须，正在发生</td></tr>
+</tbody>
+</table>
+
+<p>两条都成立，差别在于<strong>规模由一个雇主承担，还是分散在许多个项目上</strong>。电商的规模集中在一个商家内部（一万张图是同一个老板的账），所以它能养一个全职岗位；漫剧的规模分散在一部部作品上，所以它的工程岗更多长在承制公司和工作室里，随项目波动。</p>
+
+<h2>三、第二道分水岭：把算力算成钱</h2>
+
+<p>这是两份报告里一直没算清、但最能决定执行的一笔账。先把单价摆出来（2026 年 9 月公开价格）：</p>
+
+<table>
+<thead><tr><th style="width:150px">项目</th><th style="width:200px">单价</th><th>说明</th></tr></thead>
+<tbody>
+<tr><td>图片生成（云 API）</td><td class="ok">约 0.03 – 0.08 元 / 张</td><td class="j">SD / Flux 类 API 约 0.003–0.01 美元；国内自建 4×3090 月租约 7000 元、日均 500 张，单张不到 5 分钱</td></tr>
+<tr><td>图生视频（国产闭源）</td><td class="mid">约 0.3 – 1.0 元 / 秒</td><td class="j">Wan 3.0 官方 480P 0.3 / 720P 0.6 / 1080P 1.2 元每秒；可灵图生约 0.4、文生 0.9；Seedance 2.5 约 0.5；Vidu 约 0.4–0.5</td></tr>
+<tr><td>行业折算</td><td class="mid">一分钟成片约 25 – 60 元</td><td class="j">国产闭源 API、全 AI 生成画面、720P 口径；抽卡损耗另算</td></tr>
+</tbody>
+</table>
+
+<p>把这个单价落到"一个学生交出一件完整可展示的作品"上，差距才显出来：</p>
+
+<figure class="fig">
+<svg viewBox="0 0 900 336" width="100%" role="img" aria-label="同样让每个学生交出一件完整作品：电商素材管线约 120 元每人，2D 漫剧约 550 元每人">
+  <g font-family="-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif">
+    <rect x="30" y="20" width="400" height="196" rx="10" fill="#DFF3EC" stroke="#7FC9AF" stroke-width="0.5"/>
+    <text x="52" y="50" font-size="14" font-weight="700" fill="#0B5B47">电商素材管线</text>
+    <text x="52" y="82" font-size="26" font-weight="700" fill="#0B5B47">≈ 120 元</text>
+    <text x="392" y="82" text-anchor="end" font-size="12.5" fill="#0B5B47">/ 人 · 一件完整作品</text>
+    <text x="52" y="112" font-size="12.5" fill="#0B5B47">一个学生做 100 个 SKU × 8 张成品图</text>
+    <text x="52" y="134" font-size="12.5" fill="#0B5B47">按 3 倍抽卡损耗 ≈ 2400 次生成 × 0.05 元</text>
+    <text x="52" y="162" font-size="12.5" fill="#0B5B47">产出单元是<tspan font-weight="700">个人</tspan>：人人各有一套完整素材包</text>
+    <text x="52" y="190" font-size="12" fill="#0B5B47">作品可拆开单张展示，也能整包交付</text>
+
+    <rect x="470" y="20" width="400" height="196" rx="10" fill="#E4EFFB" stroke="#9CC3E8" stroke-width="0.5"/>
+    <text x="492" y="50" font-size="14" font-weight="700" fill="#0C447C">2D 漫剧（10 集）</text>
+    <text x="492" y="82" font-size="26" font-weight="700" fill="#0C447C">≈ 550 元</text>
+    <text x="832" y="82" text-anchor="end" font-size="12.5" fill="#0C447C">/ 人 · 若要人人各有一部</text>
+    <text x="492" y="112" font-size="12.5" fill="#0C447C">600 秒成片 × 0.3 元/秒，视频抽卡 2–3 倍</text>
+    <text x="492" y="134" font-size="12.5" fill="#0C447C">加前置出图 300–400 镜头 × 4 次抽卡</text>
+    <text x="492" y="162" font-size="12.5" fill="#0C447C">产出单元是<tspan font-weight="700">小组</tspan>：一部作品 3–4 人分摊署名</text>
+    <text x="492" y="190" font-size="12" fill="#0C447C">废片率高，时序崩坏率主流模型 4%–10%</text>
+
+    <line x1="30" y1="238" x2="870" y2="238" stroke="#DDE1E5" stroke-width="1"/>
+    <text x="30" y="266" font-size="13" font-weight="600" fill="#1F2328">同样 30 人，让每个人都有一件完整作品</text>
+
+    <text x="30" y="296" font-size="12.5" fill="#57606A">电商</text>
+    <rect x="110" y="282" width="120" height="20" rx="5" fill="#7FC9AF"/>
+    <text x="242" y="297" font-size="12.5" font-weight="700" fill="#0B5B47">约 3.6 千元</text>
+
+    <text x="470" y="296" font-size="12.5" fill="#57606A">漫剧</text>
+    <rect x="550" y="282" width="300" height="20" rx="5" fill="#9CC3E8"/>
+    <text x="844" y="297" text-anchor="end" font-size="12.5" font-weight="700" fill="#082F52">约 1.6 万元</text>
+
+    <text x="30" y="326" font-size="11.5" fill="#6B7379">按 2026-09 公开单价估算，实际随模型降价与抽卡策略浮动；漫剧若按"8 个小组各出一部"组织，总支出约 4–6 千，但每人只有四分之一部作品</text>
+  </g>
+</svg>
+<figcaption>图 1 ｜ 算力账单。真正拉开差距的不是"视频比图片贵"——按单张单秒算，差距不到十倍——而是<strong>产出单元不同</strong>：电商的产出单元是个人，漫剧是小组。同样一笔预算，电商能让全班 30 人各交一件完整作品；漫剧要让人人各有一部，成本是四倍多。</figcaption>
+</figure>
+
+<div class="box">
+<p><strong>这一条直接影响教学组织。</strong>如果目标是"学期末每个学生都有一件能放进作品集的东西"，电商侧的算力结构天然支持，漫剧侧不支持。</p>
+<p>漫剧不是不能做，是要换组织方式：<strong>按小组做，一部作品 4 人署名，全班的算力预算压在 4–6 千。</strong>代价是每个人的作品集里只有四分之一部——但这一部的说服力（成片、播放数据、完整署名）远高于一套素材包。</p>
+</div>
+
+<h2>四、第三道分水岭：大专能踩的台阶</h2>
+
+<p>看阶梯不能只看最高一级，要看从下往上台阶密不密、最下面一级应届生能不能进。</p>
+
+<figure class="fig">
+<svg viewBox="0 0 900 396" width="100%" role="img" aria-label="两条赛道的大专岗位阶梯对比：电商四级台阶，漫剧三级台阶">
+  <g font-family="-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif">
+    <text x="230" y="24" text-anchor="middle" font-size="14" font-weight="700" fill="#0B5B47">电商视觉</text>
+    <text x="670" y="24" text-anchor="middle" font-size="14" font-weight="700" fill="#443BA8">2D 漫剧</text>
+
+    <rect x="40" y="40" width="380" height="56" rx="8" fill="#EEF1F4" stroke="#D3D1C7" stroke-width="0.5"/>
+    <text x="56" y="63" font-size="12.5" fill="#4E565D">L4 · Python 图像处理 / 视觉算法工程师</text>
+    <text x="56" y="83" font-size="12" fill="#6B7379">本科 · 1–3 年 · OpenCV、LoRA 微调 · 厦门麦芽科技</text>
+
+    <rect x="40" y="108" width="380" height="56" rx="8" fill="#CFE2F3" stroke="#9BC4E4" stroke-width="0.5"/>
+    <text x="56" y="131" font-size="13" font-weight="600" fill="#0E4470">L3 · AIGC 平面设计师（搭工作流）</text>
+    <text x="56" y="151" font-size="12" fill="#12507F">大专 · 1 年 · <tspan font-weight="700">10–12K</tspan> · Coze / Dify 智能体 · Python 加分</text>
+
+    <rect x="40" y="176" width="380" height="56" rx="8" fill="#B8D4EC" stroke="#7EB2DA" stroke-width="0.5"/>
+    <text x="56" y="199" font-size="13" font-weight="600" fill="#0B3A61">L2 · 跨境美工（AI 方向）/ AI 设计师</text>
+    <text x="56" y="219" font-size="12" fill="#0B3A61">大专 · 4–6K 起，有作品集者 1.2–1.5 万</text>
+
+    <rect x="40" y="244" width="380" height="56" rx="8" fill="#9BC4E4" stroke="#7EB2DA" stroke-width="0.5"/>
+    <text x="56" y="267" font-size="13" font-weight="600" fill="#082F52">L1 · 电商数据标注 / AI 训练师 / 内容审核</text>
+    <text x="56" y="287" font-size="12" fill="#082F52">大专 · 专业不限 · <tspan font-weight="700">应届可投</tspan> · 3.5–7.5K</text>
+
+    <text x="230" y="330" text-anchor="middle" font-size="12.5" font-weight="600" fill="#0B5B47">四级台阶，大专可投三级，最下一级应届可投</text>
+    <text x="230" y="352" text-anchor="middle" font-size="12" fill="#57606A">渗透率 63%–83%，岗位结构已重构完成</text>
+
+    <rect x="480" y="40" width="380" height="56" rx="8" fill="#EEF1F4" stroke="#D3D1C7" stroke-width="0.5"/>
+    <text x="496" y="63" font-size="12.5" fill="#4E565D">L4 · AI 漫剧负责人 / 平台方向研发</text>
+    <text x="496" y="83" font-size="12" fill="#6B7379">本科 · 多年经验 · <tspan font-weight="700">25–40K ×16 薪 / 40–70K</tspan></text>
+
+    <rect x="480" y="108" width="380" height="56" rx="8" fill="#CFC4F4" stroke="#B39DEC" stroke-width="0.5"/>
+    <text x="496" y="131" font-size="13" font-weight="600" fill="#443BA8">L3 · AI 漫剧编辑（懂流程 + 会调）</text>
+    <text x="496" y="151" font-size="12" fill="#443BA8">经验优先 · <tspan font-weight="700">7–15K</tspan>，资深 20K+ · 要求能带小组跑通一条线</text>
+
+    <rect x="480" y="176" width="380" height="56" rx="8" fill="#E0DAFA" stroke="#B39DEC" stroke-width="0.5"/>
+    <text x="496" y="199" font-size="13" font-weight="600" fill="#443BA8">L2 · AI 漫剧制作师</text>
+    <text x="496" y="219" font-size="12" fill="#443BA8">大专可投 · <tspan font-weight="700">5–8K</tspan> · 会用工具出成片、能控一致性</text>
+
+    <rect x="480" y="244" width="380" height="56" rx="8" fill="#EFEDFD" stroke="#B39DEC" stroke-width="0.5"/>
+    <text x="496" y="267" font-size="13" font-weight="600" fill="#443BA8">L1 · 漫剧抽卡师 / AI 漫画师</text>
+    <text x="496" y="287" font-size="12" fill="#443BA8">大专 · 零基础可教 · <tspan font-weight="700">4–6K</tspan> · 素材筛选、规范归档</text>
+
+    <text x="670" y="330" text-anchor="middle" font-size="12.5" font-weight="600" fill="#443BA8">三级台阶，大专可投两级，但 L3 起卡作品与经验</text>
+    <text x="670" y="352" text-anchor="middle" font-size="12" fill="#57606A">上限高，但入口窄、随平台政策波动</text>
+
+    <line x1="440" y1="40" x2="440" y2="360" stroke="#EAECEF" stroke-width="1"/>
+  </g>
+</svg>
+<figcaption>图 2 ｜ 两条赛道的岗位阶梯。<strong>电商的台阶更密、入口更低</strong>——最下面一级专业不限、应届可投，而且和我们已经规划的数据族是同一批岗位；<strong>漫剧的上限更高</strong>——顶部能到 25–40K，但 L3 以上开始卡作品与经验，且这一层的岗位数随平台政策大幅波动。</figcaption>
+</figure>
+
+<h2>五、同一个规律的两次实证：链条长度决定定价</h2>
+
+<p>两条赛道里都出现了同一个现象，而且结构一模一样：<strong>同样会调工具、同样要熟悉 Midjourney / SD / ComfyUI，定价差一到两倍，差别只在"会不会把流程搭成能自己跑的东西"。</strong></p>
+
+<table>
+<thead><tr><th style="width:130px">赛道</th><th style="width:180px">执行岗</th><th style="width:180px">工程岗</th><th>差别</th></tr></thead>
+<tbody>
+<tr><td><strong>电商</strong><br><span class="j">顺德，同月</span></td><td>AI 设计师<br><strong>4 – 6 千</strong><br><span class="j">考"这张图好不好看"</span></td><td>AIGC 平面设计师<br><strong class="ok">10 – 12 K</strong><br><span class="j">大专 · 1 年</span></td><td class="j">用 Coze / Dify 封装智能体，实现需求到出图的自动化闭环；加分项写"掌握 Python 等辅助工具"。<strong>差 2 倍</strong></td></tr>
+<tr><td><strong>漫剧</strong><br><span class="j">多地，同期</span></td><td>漫剧抽卡师 / AI 漫画师<br><strong>4 – 6 千</strong><br><span class="j">考"这张图能不能用"</span></td><td>AI 漫剧平台方向研发<br><strong class="ok">25 – 40 K</strong><br><span class="j">×16 薪</span></td><td class="j">要求"搭建 AI 漫剧<strong>工业化生产管线</strong>，建立完善的提示词库与质量控制标准"。<strong>差 5–6 倍</strong></td></tr>
+</tbody>
+</table>
+
+<div class="key">
+<p><strong>两条赛道都验证了同一句话：能力没变，是它服务的链条长度改变了它的价格。</strong></p>
+<p>漫剧的倍差更大（5–6 倍 vs 2 倍），因为它的链条更长、协同的人更多。这既是它上限更高的原因，也是它入口更窄的原因——<strong>长链条意味着工程岗必须等团队规模上来才出现</strong>，而短链条的工程岗在一家几百人的工厂里就能存在。</p>
+</div>
+
+<h2>六、八维度平行对比</h2>
+
+<figure class="fig">
+<svg viewBox="0 0 900 512" width="100%" role="img" aria-label="电商与漫剧在八个维度上的平行对比">
+  <g font-family="-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif">
+    <text x="40" y="28" font-size="12.5" font-weight="600" fill="#57606A">维度</text>
+    <text x="325" y="28" text-anchor="middle" font-size="12.5" font-weight="600" fill="#0B5B47">电商视觉</text>
+    <text x="590" y="28" text-anchor="middle" font-size="12.5" font-weight="600" fill="#443BA8">2D 漫剧</text>
+    <text x="800" y="28" text-anchor="middle" font-size="12.5" font-weight="600" fill="#57606A">对教学的含义</text>
+
+    <text x="40" y="62" font-size="13" font-weight="600" fill="#1F2328">规模</text>
+    <rect x="200" y="46" width="250" height="34" rx="7" fill="#DFF3EC"/>
+    <text x="325" y="68" text-anchor="middle" font-size="12.5" font-weight="600" fill="#0B5B47">10 万张 / 年级</text>
+    <rect x="465" y="46" width="250" height="34" rx="7" fill="#E4EFFB"/>
+    <text x="590" y="68" text-anchor="middle" font-size="12.5" fill="#0C447C">数百镜头 / 部 × 多部</text>
+    <text x="800" y="68" text-anchor="middle" font-size="12" fill="#57606A">都成立</text>
+
+    <text x="40" y="114" font-size="13" font-weight="600" fill="#1F2328">算力</text>
+    <text x="40" y="130" font-size="11" fill="#6B7379">人人一件完整作品</text>
+    <rect x="200" y="98" width="250" height="34" rx="7" fill="#DFF3EC"/>
+    <text x="325" y="120" text-anchor="middle" font-size="12.5" font-weight="600" fill="#0B5B47">约 120 元 / 人</text>
+    <rect x="465" y="98" width="250" height="34" rx="7" fill="#FBEEDA"/>
+    <text x="590" y="120" text-anchor="middle" font-size="12.5" fill="#7A4A0A">约 550 元 / 人</text>
+    <text x="800" y="120" text-anchor="middle" font-size="12" fill="#57606A">电商可全员</text>
+
+    <text x="40" y="166" font-size="13" font-weight="600" fill="#1F2328">链条长度</text>
+    <rect x="200" y="150" width="250" height="34" rx="7" fill="#DFF3EC"/>
+    <text x="325" y="172" text-anchor="middle" font-size="12.5" font-weight="600" fill="#0B5B47">八环节，含数据回流</text>
+    <rect x="465" y="150" width="250" height="34" rx="7" fill="#DFF3EC"/>
+    <text x="590" y="172" text-anchor="middle" font-size="12.5" font-weight="600" fill="#0B5B47">六环节，最长</text>
+    <text x="800" y="172" text-anchor="middle" font-size="12" fill="#57606A">都产生串联价值</text>
+
+    <text x="40" y="218" font-size="13" font-weight="600" fill="#1F2328">效果可量化</text>
+    <rect x="200" y="202" width="250" height="34" rx="7" fill="#DFF3EC"/>
+    <text x="325" y="224" text-anchor="middle" font-size="12.5" font-weight="600" fill="#0B5B47">点击率 / 转化率可 A/B</text>
+    <rect x="465" y="202" width="250" height="34" rx="7" fill="#FBEEDA"/>
+    <text x="590" y="224" text-anchor="middle" font-size="12.5" fill="#7A4A0A">播放 / 完播，爆款不可控</text>
+    <text x="800" y="224" text-anchor="middle" font-size="12" fill="#57606A">电商可客观验收</text>
+
+    <text x="40" y="270" font-size="13" font-weight="600" fill="#1F2328">台阶密度</text>
+    <rect x="200" y="254" width="250" height="34" rx="7" fill="#DFF3EC"/>
+    <text x="325" y="276" text-anchor="middle" font-size="12.5" font-weight="600" fill="#0B5B47">四级，应届有入口</text>
+    <rect x="465" y="254" width="250" height="34" rx="7" fill="#FBEEDA"/>
+    <text x="590" y="276" text-anchor="middle" font-size="12.5" fill="#7A4A0A">三级，入口较窄</text>
+    <text x="800" y="276" text-anchor="middle" font-size="12" fill="#57606A">电商兜底更好</text>
+
+    <text x="40" y="322" font-size="13" font-weight="600" fill="#1F2328">定价上限</text>
+    <rect x="200" y="306" width="250" height="34" rx="7" fill="#E4EFFB"/>
+    <text x="325" y="328" text-anchor="middle" font-size="12.5" fill="#0C447C">10 – 12 K（大专层）</text>
+    <rect x="465" y="306" width="250" height="34" rx="7" fill="#DFF3EC"/>
+    <text x="590" y="328" text-anchor="middle" font-size="12.5" font-weight="600" fill="#0B5B47">25 – 40 K</text>
+    <text x="800" y="328" text-anchor="middle" font-size="12" fill="#57606A">漫剧上限更高</text>
+
+    <text x="40" y="374" font-size="13" font-weight="600" fill="#1F2328">需求稳定性</text>
+    <rect x="200" y="358" width="250" height="34" rx="7" fill="#DFF3EC"/>
+    <text x="325" y="380" text-anchor="middle" font-size="12.5" font-weight="600" fill="#0B5B47">渗透率 63%–83%，已重构</text>
+    <rect x="465" y="358" width="250" height="34" rx="7" fill="#FBEEDA"/>
+    <text x="590" y="380" text-anchor="middle" font-size="12.5" fill="#7A4A0A">承制方 -42%，仅 4% 盈利</text>
+    <text x="800" y="380" text-anchor="middle" font-size="12" fill="#57606A">电商更稳</text>
+
+    <text x="40" y="426" font-size="13" font-weight="600" fill="#1F2328">同校专业关系</text>
+    <rect x="200" y="410" width="250" height="34" rx="7" fill="#FBEEDA"/>
+    <text x="325" y="432" text-anchor="middle" font-size="12.5" fill="#7A4A0A">视传近：会做单张不会批量</text>
+    <rect x="465" y="410" width="250" height="34" rx="7" fill="#FBEEDA"/>
+    <text x="590" y="432" text-anchor="middle" font-size="12.5" fill="#7A4A0A">数媒近：会分镜不做管线</text>
+    <text x="800" y="432" text-anchor="middle" font-size="12" fill="#57606A">两边都要协作</text>
+
+    <line x1="40" y1="462" x2="860" y2="462" stroke="#DDE1E5" stroke-width="1"/>
+    <text x="40" y="490" font-size="12.5" fill="#1F2328">电商在<tspan font-weight="700">规模、算力、可量化、台阶、稳定性</tspan>五项占优</text>
+    <text x="465" y="490" font-size="12.5" fill="#1F2328">漫剧在<tspan font-weight="700">定价上限、作品说服力</tspan>两项占优</text>
+  </g>
+</svg>
+<figcaption>图 3 ｜ 八维度平行对比。<strong>没有一条赛道全胜</strong>——电商赢在"能覆盖多少人、能不能客观验收、稳不稳"，漫剧赢在"上限多高、作品多抓人"。这张表的用法不是挑出赢家，是看清两条各自承担什么角色。</figcaption>
+</figure>
+
+<h2>七、怎么用这张表分配资源</h2>
+
+<p>既然是平行赛道，问题就变成"<strong>各自该占多少</strong>"。三种配置方式，按你的实际约束选：</p>
+
+<table>
+<thead><tr><th style="width:140px">配置</th><th style="width:230px">电商</th><th style="width:230px">漫剧</th><th>适用条件</th></tr></thead>
+<tbody>
+<tr><td><strong>A · 电商为主，漫剧做尖子项目</strong><br><span class="j">推荐</span></td><td>课内主线 + 训练营第一档主力<br><span class="j">全班覆盖</span></td><td>核心组 10–12 人，课余做一部<br><span class="j">全班的算力预算 ≈ 4–6 千</span></td><td class="j">算力预算有限、需要人人有作品、需要客观验收标准。这是与"一年窗口 + 志愿训练营"最匹配的一种</td></tr>
+<tr><td><strong>B · 两条并重</strong></td><td>课内主线 + 训练营第二档</td><td>训练营第三档，与电商并列</td><td class="j">师资有两人以上、算力预算 1.5 万以上、学生自驱比例高。风险是两边都做不深</td></tr>
+<tr><td><strong>C · 漫剧为主</strong></td><td>仅作为练手素材与保底出口</td><td>课内主线 + 训练营全部档位</td><td class="j">已锁定承制公司或工作室合作、有稳定算力来源、能接受大部分学生最终只有小组署名。<strong>不建议在只有一年窗口时选这种</strong></td></tr>
+</tbody>
+</table>
+
+<div class="box">
+<p><strong>如果让我只给一条建议：选 A，并且让两条共用同一个项目骨架。</strong></p>
+<p>具体做法是——课内脚本主线做电商素材管线（人人一份完整作品，客观可验收），训练营核心组在这个脚本之上加一层"图转视频 + 音画合成"模块，产出一部漫剧。<strong>对核心组来说，漫剧不是另一条路，是同一个脚本多跑两个零件。</strong>这样两条赛道的实际边际成本都很低，而且核心组的学生能同时讲出两套作品。</p>
+</div>
+
+<h2>八、共享什么、分叉在哪</h2>
+
+<p>把两条赛道的能力拆开看，重合度比想象中高。这张图直接对应课内 60 学时的模块划分：</p>
+
+<figure class="fig">
+<svg viewBox="0 0 900 300" width="100%" role="img" aria-label="两条赛道共享的主干能力与最后的分叉">
+  <g font-family="-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif">
+    <text x="450" y="24" text-anchor="middle" font-size="13" font-weight="600" fill="#1F2328">共享主干（约占八成，课内 60 学时教的就是这一段）</text>
+
+    <rect x="40" y="38" width="130" height="46" rx="8" fill="#B8D4EC" stroke="#7EB2DA" stroke-width="0.5"/>
+    <text x="105" y="66" text-anchor="middle" font-size="12.5" font-weight="600" fill="#0B3A61">调接口</text>
+
+    <rect x="182" y="38" width="130" height="46" rx="8" fill="#B8D4EC" stroke="#7EB2DA" stroke-width="0.5"/>
+    <text x="247" y="66" text-anchor="middle" font-size="12.5" font-weight="600" fill="#0B3A61">批量与并发</text>
+
+    <rect x="324" y="38" width="130" height="46" rx="8" fill="#B8D4EC" stroke="#7EB2DA" stroke-width="0.5"/>
+    <text x="389" y="66" text-anchor="middle" font-size="12.5" font-weight="600" fill="#0B3A61">一致性控制</text>
+
+    <rect x="466" y="38" width="130" height="46" rx="8" fill="#B8D4EC" stroke="#7EB2DA" stroke-width="0.5"/>
+    <text x="531" y="66" text-anchor="middle" font-size="12.5" font-weight="600" fill="#0B3A61">归档与版本</text>
+
+    <rect x="608" y="38" width="130" height="46" rx="8" fill="#B8D4EC" stroke="#7EB2DA" stroke-width="0.5"/>
+    <text x="673" y="66" text-anchor="middle" font-size="12.5" font-weight="600" fill="#0B3A61">质检与筛选</text>
+
+    <rect x="750" y="38" width="110" height="46" rx="8" fill="#B8D4EC" stroke="#7EB2DA" stroke-width="0.5"/>
+    <text x="805" y="66" text-anchor="middle" font-size="12.5" font-weight="600" fill="#0B3A61">工作流封装</text>
+
+    <line x1="230" y1="92" x2="230" y2="128" stroke="#AEBDCB" stroke-width="1.6"/>
+    <line x1="670" y1="92" x2="670" y2="128" stroke="#AEBDCB" stroke-width="1.6"/>
+    <path d="M228 123 L236 128 L228 133 Z" fill="#AEBDCB"/>
+    <path d="M668 123 L676 128 L668 133 Z" fill="#AEBDCB"/>
+
+    <rect x="40" y="134" width="380" height="132" rx="10" fill="#DFF3EC" stroke="#7FC9AF" stroke-width="0.5"/>
+    <text x="230" y="160" text-anchor="middle" font-size="13" font-weight="700" fill="#0B5B47">电商侧分叉</text>
+    <text x="60" y="188" font-size="12.5" fill="#0B5B47">SKU 参数表（商品 × 角度 × 场景）</text>
+    <text x="60" y="210" font-size="12.5" fill="#0B5B47">平台尺寸规范库与批量适配</text>
+    <text x="60" y="232" font-size="12.5" fill="#0B5B47">去背 / 换背景 / 材质与色彩还原</text>
+    <text x="60" y="254" font-size="12.5" fill="#0B5B47">上架交付与素材台账（合规溯源）</text>
+
+    <rect x="480" y="134" width="380" height="132" rx="10" fill="#EFEDFD" stroke="#B39DEC" stroke-width="0.5"/>
+    <text x="670" y="160" text-anchor="middle" font-size="13" font-weight="700" fill="#443BA8">漫剧侧分叉</text>
+    <text x="500" y="188" font-size="12.5" fill="#443BA8">角色参考图与基准资产</text>
+    <text x="500" y="210" font-size="12.5" fill="#443BA8">分镜参数表（景别 / 角度 / 运镜 / 表情）</text>
+    <text x="500" y="232" font-size="12.5" fill="#443BA8">图转视频、音画合成与字幕</text>
+    <text x="500" y="254" font-size="12.5" fill="#443BA8">平台分账规则与备案标注</text>
+
+    <text x="450" y="292" text-anchor="middle" font-size="12" fill="#57606A">分叉部分都不需要单独占课内学时——它们是同一个脚本换一批参数与后置模块</text>
+  </g>
+</svg>
+<figcaption>图 4 ｜ 共享主干与分叉。<strong>课内那 60 学时教的是上面一格那一排，两条赛道通用</strong>。这也意味着：现在不必在两条之间做决定，先教完主干，分叉留到训练营按学生能力分配。</figcaption>
+</figure>
+
+<p>落到第 8 章那个核心案例上：电商侧是 <code>Product</code> 类（白底图 + 材质与色彩规范 + 多角度参数 + 质检标准），漫剧侧是 <code>Character</code> 类（参考图 + 风格参数 + 一致性检查）。<strong>两者是同一个类的两个实例</strong>——属性、封装、方法、构造、继承、重写、多态七个知识点，用哪个都能落满。课上讲一个，另一个当作业。</p>
+
+<h2>九、两条赛道各自的风险</h2>
+
+<table>
+<thead><tr><th style="width:130px">赛道</th><th style="width:220px">风险</th><th>对冲</th></tr></thead>
+<tbody>
+<tr><td><strong>电商</strong></td><td>渗透率 83% 的双刃剑：4–6 千的基础出图岗正在消失</td><td class="j">课程目标必须定在"会搭工作流"那一层，不能定在"会出图"。顺德那条 4–6 千的岗只能作为起点参照，不能作为培养目标</td></tr>
+<tr><td><strong>电商</strong></td><td>招转培比例同样不低，"零基础可教""包教会"类信息常见</td><td class="j">判别方法一致：看交付物是项目成果还是"培训后考核"，收入是固定薪资还是派单提成</td></tr>
+<tr><td><strong>电商</strong></td><td>合规硬约束：AI 商品图版权归属模糊；跨境涉及平台标注与海外知产</td><td class="j">直接转成课程内容——素材溯源、生成记录、版本台账，既是工程活，也是进企业立刻用得上的东西</td></tr>
+<tr><td><strong>漫剧</strong></td><td>平台政策半年一变：红果砍掉九成真人项目、2026 Q1 承制方 -42%、仅约 4% 盈利</td><td class="j">只做"项目"不做"锚点"：课程能力挂在主干上，平台退了换一个投放对象即可，能力不作废</td></tr>
+<tr><td><strong>漫剧</strong></td><td>爆款率极低：2026 上半年破亿率 0.73%，每 140 部才 1 部</td><td class="j">评价体系不能只看播放量，要加工程指标——废片率、单集耗时、一致性达标率、成本核算</td></tr>
+<tr><td><strong>漫剧</strong></td><td>2026-09-01 起 AI 生成微短剧需单独标注，并额外提交模型来源与数字资产确权材料</td><td class="j">这是加分项不是负担——素材台账、版本、生成记录本来就是主干能力，可以当作课程的合规依据</td></tr>
+</tbody>
+</table>
+
+<h2>十、修正上一版的一个判断</h2>
+
+<div class="fixbox">
+<p><strong>上一版我写过一句话："工艺与材质的知识，是我们定义 AI 生图质检标准的依据。"这句话推过头了，这里收回。</strong></p>
+<p>你指出得对——材料相关的内容在视传专业，跟计算机专业没有太多关系。<strong>釉色窑变对不对、金属反射准不准，判断权不在我们这里，我们也不该去学。</strong>这和之前定下的原则是一致的：让合作专业定标准，我们做执行。如果我反过来替他们定义视觉标准，前面整套定位就作废了。</p>
+<p>修正后的说法是：<strong>我们的活是把别人已经作出的判断，翻译成可执行、可复用、可批量验证的检查项。</strong>判断一张陶瓷主图的釉色还原对不对，是他们的能力；让这个判断在三千张图上自动跑一遍，并且每一张都留下记录，是我们的能力。这两件事不重叠，也不需要互相渗透。</p>
+<p><strong>产业带的价值也要相应降级</strong>：它不构成"我们懂材质"的差异化优势，只提供三样实际便利——练手素材是真实商品、实习单位离得近、老板算得清账愿意为降本付钱。这三条仍然有价值，但它是资源便利，不是能力壁垒，不要写进方案的核心论证里。</p>
+</div>
+
+<h2>十一、关于文旅：为什么它不进这张表</h2>
+
+<p>文旅没有进平行对比，因为它连第一道分水岭都过不去，跟电商、漫剧不在同一个评估层级上。四条理由留档：</p>
+
+<ol>
+<li><strong>没有规模问题。</strong>一个景区、一个展览，一年需要的主视觉是几十张。一年只要 60 张图，最优解就是找人手工做——不需要流水线、不需要脚本、不需要质检标准、不需要归档规范，而这几样恰恰是我们能提供的全部价值。<em>没有规模，就没有工程岗位。</em></li>
+<li><strong>需求方是政府、景区、国企。</strong>项目制、招标制、回款周期长、关系导向，应届生没有入口，也不是一学年训练营能触达的客户。</li>
+<li><strong>效果不可量化。</strong>文旅内容的效果是曝光与口碑，没有转化闭环。对教学的直接后果是学生的作品无法被客观评价，课程验收只能靠主观判断。</li>
+<li><strong>门槛不在我们这边。</strong>技术岗要地信、遥感、测绘、三维扫描且本科起；视觉岗第一条要求是美术功底（深圳某文旅公司 AI 视觉生成师 23–28 万/年，任职要求第一条原文即"具备扎实的美术功底与良好的审美能力"）。<strong>唯一写着大专可投的那条（文物数字化专员 6.5–10K），JD 里有身高区间与"容貌端庄、气质优雅"要求，岗位性质存疑，不能作为锚点。</strong></li>
+</ol>
+
+<p>最后留一句收口：<em>文旅不是一条独立赛道，是电商里的一个品类。</em>文创产品最终要靠电商卖出去，上架时面对的是和任何商品一样的问题——主图、详情页、多平台尺寸、SKU 变体、换季上新。做电商等于覆盖文旅，反过来不成立。</p>
+
+<h2>十二、需要你定三件事</h2>
+
+<ol>
+<li><strong>选哪种资源配置（A / B / C）。</strong>我建议 A：电商做课内主线和训练营主力，漫剧做核心组课余项目，两者共用同一个脚本。这一条定了，我按第 3 章起逐章重写零件表和验收标准。</li>
+<li><strong>算力预算的量级。</strong>3–5 千能支撑"电商全员 + 漫剧一个核心组"；1.5 万以上才谈得上两条并重。这一条比选赛道更硬，预算不到位，配置 A 之外的选项都是纸上谈兵。</li>
+<li><strong>学校所在地有没有工艺美术或轻工产业带。</strong>注意这一条的权重已经按上一节降过级了——有产业带，好处是练手素材真实、实习单位近、接单方便；没有，退回通用电商（跨境、白牌商品）同样成立，只是少一层便利，不影响方案成立。</li>
+</ol>
+
+<div class="foot">
+<p><strong>数据来源与说明</strong></p>
+<ul>
+<li>算力单价（2026 年 9 月公开价格）：图片生成——SD / Flux 类 API 约 0.003–0.01 美元/张，国内自建 4×RTX 3090 月租约 7000 元、日均 500 张时单张不到 5 分钱（1×3090 约 0.08 元/张）；视频生成——Wan 3.0 官方 480P 0.3 / 720P 0.6 / 1080P 1.2 元每秒，可灵图生约 0.4、文生 0.9 元每秒，Seedance 2.5 约 0.5 元每秒，Vidu 约 0.4–0.5 元每秒；行业折算一分钟全 AI 生成成片约 25–60 元。图 1 的人均账单为按上述单价与常见抽卡损耗（图片 3 倍、视频 2–3 倍）所作的<strong>推算</strong>，非引用数据，实际随模型降价浮动。</li>
+<li>电商侧渗透率与成本：艾瑞（电商 AI 生图渗透率 65%、中小卖家 72%、多 SKU 与跨境 90%+）、ECdataway 2026-07（电商设计领域 2025 年底 28% → 2026-06 63%）、船长 BI 2026-06 抽样 3000 家卖家（83% 已整合 AI 生图，月均素材支出由 1.2 万降至 3000 以内）。均转引自行业媒体报道，正式引用前建议复核原始报告。</li>
+<li>规模与工时：2026-07 行业基准（平均零售商 12000 SKU，每 SKU 约 10 张图；1000 SKU 人工 40–60 小时，AI 方案 4 小时以内）。漫剧侧：2D 流水线 5–7 人一周一部、单部 1–2 万；精品手搓 8–10 万、20 天。</li>
+<li>漫剧市场数据：2026 上半年抖音端 AI 剧漫剧新剧 22.19 万部，破亿 1055 部、破亿率 0.73%；2026 Q1 承制方由 1216 家降至 698 家，仅约 4% 盈利；2026-04 起强制备案与 AI 标注，2026-09-01《微短剧发展管理办法》要求 AI 生成微短剧单独标注并提交模型来源与数字资产确权材料。</li>
+<li>招聘信息（2026 年 7–9 月在招）：顺德人才网、猎聘（广东伟经集团）、全职招聘网、智联招聘、前程无忧、鱼泡直聘、BOSS 直聘。薪资与学历要求均照录 JD 原文，未做调整。</li>
+<li>本稿替换此前的《电商与文旅两条赛道对比评估》，文旅部分压缩为第十一节的排除说明；同时修正上一版关于"工艺与材质知识"的定位判断，见第十节。</li>
+</ul>
+</div>
+
+</div>
+</body>
+</html>

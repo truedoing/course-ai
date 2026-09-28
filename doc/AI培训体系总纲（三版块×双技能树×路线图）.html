@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 培训体系总纲 · 三版块 × 双技能树 × 路线图</title>
+<style>
+  :root{
+    --bg:#FBFCFE; --card:#FFFFFF; --ink:#1F2733; --sub:#5A6573; --line:#E6EAF0;
+    --blue:#155E8F; --blue2:#B8D4EC; --indigo:#0B3A61; --amber:#9A6A00; --amber2:#FBE9C7;
+    --green:#1E7A46; --green2:#D6F0DF; --grey:#57606A; --red:#B23B3B; --red2:#F6DEDE; --teal:#0F6E56; --teal2:#E1F5EE;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;
+    line-height:1.62;font-size:15px}
+  .wrap{max-width:1000px;margin:0 auto;padding:40px 28px 90px}
+  .kicker{color:var(--sub);font-size:12px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px}
+  h1{font-size:25px;margin:0 0 6px}
+  .sub{color:var(--sub);margin:0 0 26px}
+  h2{font-size:19px;margin:38px 0 12px;padding-left:11px;border-left:4px solid var(--blue)}
+  h3{font-size:15px;margin:18px 0 8px;color:var(--indigo)}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 20px;margin:12px 0;box-shadow:0 1px 2px rgba(20,40,80,.04)}
+  table{width:100%;border-collapse:collapse;font-size:13.5px}
+  th,td{text-align:left;padding:9px 11px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{color:var(--sub);font-weight:600;background:#F6F8FB}
+  tr:last-child td{border-bottom:none}
+  code{background:#F1F4F8;padding:1px 6px;border-radius:5px;font-size:13px;color:#0B3A61}
+  .p{display:inline-block;min-width:20px;font-weight:700;color:#fff;background:var(--blue);border-radius:5px;padding:0 6px;text-align:center;font-size:12px}
+  .tag{display:inline-block;font-size:12px;font-weight:700;padding:2px 9px;border-radius:20px}
+  .b{background:var(--amber2);color:var(--amber)}
+  .g{background:var(--green2);color:var(--green)}
+  .r{background:var(--red2);color:var(--red)}
+  .t{background:var(--teal2);color:var(--teal)}
+  .hl{background:#FFF7E0;padding:1px 5px;border-radius:4px}
+  .note{color:var(--sub);font-size:13px;margin-top:6px}
+  .fig{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 14px 8px;margin:18px 0}
+  .fig .cap{font-size:12.5px;color:var(--sub);text-align:center;margin:6px 0 8px}
+  .two{display:flex;gap:14px;flex-wrap:wrap}
+  .two .col{flex:1;min-width:280px}
+  .footer{color:var(--sub);font-size:12px;margin-top:40px;border-top:1px solid var(--line);padding-top:14px}
+  .owner-z{color:var(--blue);font-weight:700}
+  .owner-a{color:var(--teal);font-weight:700}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="kicker">AI 培训体系 · 总纲（收口文档）</div>
+  <h1>AI 培训体系总纲：三版块 × 双技能树 × 路线图</h1>
+  <p class="sub">把"三级火箭"交付机制与"三版块"课程内容收口成一套体系；明确张（技术底座+AI 交付）与董老师（AIGC 应用路线）各自的定位、技能树、路线图；学生按发展分轨训练。所有技能项均回溯到真实 JD。</p>
+
+  <div class="card" style="border:1px solid var(--amber2);background:#FBFAF0">
+    <h3 style="margin-top:2px;color:var(--amber)">体系一句话</h3>
+    <p>三版块 = <span class="owner-z">AI 应用与交付（FDE，张主导）</span> + <span class="owner-a">AIGC 电商（董老师视觉标准+张管线）</span> + <span class="owner-a">AIGC 短剧（董老师主导）</span>。三级火箭 = 一级语言底座（课内全体必修）→ 二级训练营（社团志愿，分三轨）→ 三级核心项目组（真实交付，7-8 人自组织）。<strong>课内教"分叉之前的那段"，二级把八成主干放大成工程能力，三级放真实交付——同一条线被放大三次，不是教两遍。</strong></p>
+  </div>
+
+  <h2>一、体系架构：三版块 × 三级火箭</h2>
+  <div class="fig">
+    <svg viewBox="0 0 960 360" width="100%" role="img" aria-label="三版块与三级火箭矩阵">
+      <rect x="0" y="0" width="960" height="360" fill="#FBFCFE"/>
+      <g font-family="system-ui,sans-serif">
+        <!-- 列头：三版块 -->
+        <text x="250" y="30" font-size="13.5" font-weight="700" fill="#1F2733" text-anchor="middle">一级 · 语言底座（课内必修）</text>
+        <text x="505" y="30" font-size="13.5" font-weight="700" fill="#1F2733" text-anchor="middle">二级 · AIGC 训练营（社团志愿·分轨）</text>
+        <text x="780" y="30" font-size="13.5" font-weight="700" fill="#1F2733" text-anchor="middle">三级 · 核心项目组</text>
+
+        <!-- 行头：三版块 -->
+        <text x="20" y="92" font-size="13.5" font-weight="700" fill="#155E8F" text-anchor="start">FDE</text>
+        <text x="20" y="112" font-size="11" fill="#5A6573">AI应用与交付</text>
+        <text x="20" y="192" font-size="13.5" font-weight="700" fill="#0F6E56" text-anchor="start">AIGC电商</text>
+        <text x="20" y="212" font-size="11" fill="#5A6573">素材管线</text>
+        <text x="20" y="292" font-size="13.5" font-weight="700" fill="#0F6E56" text-anchor="start">AIGC短剧</text>
+        <text x="20" y="312" font-size="11" fill="#5A6573">漫剧</text>
+
+        <!-- FDE 行 -->
+        <rect x="250" y="60" width="240" height="80" rx="9" fill="#E6F1FB" stroke="#155E8F"/>
+        <text x="370" y="92" font-size="12" fill="#1F2733" text-anchor="middle">连接器打底（调API/读报错）</text>
+        <text x="370" y="112" font-size="11" fill="#5A6573" text-anchor="middle">manhua.py 案例共用底座</text>
+        <rect x="505" y="60" width="270" height="80" rx="9" fill="#D2E6F7" stroke="#155E8F"/>
+        <text x="640" y="90" font-size="12" font-weight="700" fill="#0B3A61" text-anchor="middle">轨A · FDE（张主导）</text>
+        <text x="640" y="110" font-size="11" fill="#1F2733" text-anchor="middle">部署配置·智能体·交付文档</text>
+        <rect x="780" y="60" width="160" height="80" rx="9" fill="#B8D4EC" stroke="#0B3A61"/>
+        <text x="860" y="92" font-size="11.5" fill="#0B3A61" text-anchor="middle">真实客户出现</text>
+        <text x="860" y="112" font-size="11" fill="#0B3A61" text-anchor="middle">才启动</text>
+
+        <!-- 电商 行 -->
+        <rect x="250" y="160" width="240" height="80" rx="9" fill="#E6F1FB" stroke="#155E8F"/>
+        <text x="370" y="192" font-size="12" fill="#1F2733" text-anchor="middle">连接器+批处理+质检</text>
+        <text x="370" y="212" font-size="11" fill="#5A6573" text-anchor="middle">三版块共享</text>
+        <rect x="505" y="160" width="270" height="80" rx="9" fill="#D6F0DF" stroke="#0F6E56"/>
+        <text x="640" y="190" font-size="12" font-weight="700" fill="#0F5132" text-anchor="middle">轨B · AIGC电商（董老师视觉+张管线）</text>
+        <text x="640" y="210" font-size="11" fill="#1F2733" text-anchor="middle">素材生产·一致性·质检清单</text>
+        <rect x="780" y="160" width="160" height="80" rx="9" fill="#B7E6CC" stroke="#0F6E56"/>
+        <text x="860" y="192" font-size="11.5" fill="#0F5132" text-anchor="middle">样品/真实商家</text>
+        <text x="860" y="212" font-size="11" fill="#0F5132" text-anchor="middle">可先跑</text>
+
+        <!-- 短剧 行 -->
+        <rect x="250" y="260" width="240" height="80" rx="9" fill="#E6F1FB" stroke="#155E8F"/>
+        <text x="370" y="292" font-size="12" fill="#1F2733" text-anchor="middle">角色卡=Product子类</text>
+        <text x="370" y="312" font-size="11" fill="#5A6573" text-anchor="middle">伏笔兑现</text>
+        <rect x="505" y="260" width="270" height="80" rx="9" fill="#D6F0DF" stroke="#0F6E56"/>
+        <text x="640" y="290" font-size="12" font-weight="700" fill="#0F5132" text-anchor="middle">轨C · AIGC短剧（董老师主导）</text>
+        <text x="640" y="310" font-size="11" fill="#1F2733" text-anchor="middle">角色一致性·分镜·视频</text>
+        <rect x="780" y="260" width="160" height="80" rx="9" fill="#B7E6CC" stroke="#0F6E56"/>
+        <text x="860" y="292" font-size="11.5" fill="#0F5132" text-anchor="middle">30秒样品</text>
+        <text x="860" y="312" font-size="11" fill="#0F5132" text-anchor="middle">第9-10周</text>
+      </g>
+    </svg>
+    <div class="cap">图 1　三版块沿三级火箭层层放大；FDE 唯一硬前提=真实客户出现，电商/短剧可先出样品</div>
+  </div>
+  <p class="note">主副分工：<span class="owner-z">张</span> = 全局设计 + 技术底座 + 版块侧重 FDE（应用侧"AI 交付与实施"）；<span class="owner-a">董老师</span> = AIGC 应用路线（电商+短剧的视觉标准层）。张把精力倾斜 FDE，AIGC 应用层交给董老师配合。</p>
+
+  <h2>二、张的技能树与路线图（技术底座 + AI 交付实施）</h2>
+  <div class="card">
+    <h3 style="margin-top:2px">定位：AI 落地架构者 / 交付框架搭建者（国内岗名=AI 应用交付工程师 / FDE）</h3>
+    <p>不是"写模型的人"，是<strong>把一次性判断翻译成可复用、可交付东西的人</strong>（腾讯研究院第四层判据）。市场侧证据：FDE 是国内真实、大专够得着、且正在爆发的岗位（见第六节）。张的护城河 = <span class="hl">真实交付 × 教学转化</span>——市场绝大多数 AI 课讲师没做过真实企业项目。</p>
+  </div>
+
+  <div class="fig">
+    <svg viewBox="0 0 960 510" width="100%" role="img" aria-label="张的AI交付技能树">
+      <rect x="0" y="0" width="960" height="510" fill="#FFFFFF"/>
+      <g font-family="system-ui,sans-serif">
+        <text x="20" y="26" font-size="12.5" font-weight="700" fill="#5A6573">半衰期长 ↓（越下越值钱）</text>
+        <!-- 根 -->
+        <rect x="20" y="330" width="210" height="64" rx="9" fill="#155E8F" stroke="#0B3A61"/>
+        <text x="38" y="356" font-size="13" font-weight="700" fill="#fff">工程化素养</text>
+        <text x="38" y="378" font-size="11" fill="#D2E6F7">部署/容错/日志/文档</text>
+        <rect x="20" y="410" width="210" height="64" rx="9" fill="#155E8F" stroke="#0B3A61"/>
+        <text x="38" y="436" font-size="13" font-weight="700" fill="#fff">需求翻译思维</text>
+        <text x="38" y="458" font-size="11" fill="#D2E6F7">业务↔技术双向转译</text>
+        <!-- 主干 -->
+        <rect x="262" y="350" width="180" height="106" rx="9" fill="#2E7CB8" stroke="#0B3A61" stroke-width="1.5"/>
+        <text x="352" y="392" font-size="14.5" font-weight="700" fill="#fff" text-anchor="middle">AI 应用</text>
+        <text x="352" y="414" font-size="14.5" font-weight="700" fill="#fff" text-anchor="middle">与交付</text>
+        <text x="352" y="440" font-size="11" fill="#E6F1FB" text-anchor="middle">FDE 主线</text>
+        <!-- 四枝 -->
+        <rect x="470" y="70" width="230" height="92" rx="9" fill="#E6F1FB" stroke="#2E7CB8" stroke-width="1.5"/>
+        <text x="488" y="96" font-size="13.5" font-weight="700" fill="#0B3A61">A 连接器技术</text>
+        <text x="488" y="120" font-size="11" fill="#1F2733">Python/JS 调API·读报错</text>
+        <text x="488" y="140" font-size="11" fill="#1F2733">脚本自动化·部署配置</text>
+        <text x="488" y="158" font-size="11" fill="#1F2733">Linux/SaaS/无影云</text>
+        <rect x="470" y="178" width="230" height="92" rx="9" fill="#D2E6F7" stroke="#2E7CB8" stroke-width="1.5"/>
+        <text x="488" y="204" font-size="13.5" font-weight="700" fill="#0B3A61">B 管线与工程</text>
+        <text x="488" y="228" font-size="11" fill="#1F2733">批处理/并发·一致性</text>
+        <text x="488" y="248" font-size="11" fill="#1F2733">质检筛选·文件契约</text>
+        <text x="488" y="266" font-size="11" fill="#1F2733">工作流编排(Coze/n8n)</text>
+        <rect x="470" y="286" width="230" height="92" rx="9" fill="#D2E6F7" stroke="#2E7CB8" stroke-width="1.5"/>
+        <text x="488" y="312" font-size="13.5" font-weight="700" fill="#0B3A61">C 智能体与知识库</text>
+        <text x="488" y="336" font-size="11" fill="#1F2733">RAG检索增强·向量库</text>
+        <text x="488" y="356" font-size="11" fill="#1F2733">Agent搭建·MCP/Tool</text>
+        <text x="488" y="374" font-size="11" fill="#1F2733">记忆系统·上下文引擎</text>
+        <rect x="470" y="394" width="230" height="92" rx="9" fill="#E6F1FB" stroke="#2E7CB8" stroke-width="1.5"/>
+        <text x="488" y="420" font-size="13.5" font-weight="700" fill="#0B3A61">D 交付与实施</text>
+        <text x="488" y="444" font-size="11" fill="#1F2733">需求调研·实施方案</text>
+        <text x="488" y="464" font-size="11" fill="#1F2733">培训手册·验收报告·客户沟通</text>
+        <!-- 叶 -->
+        <rect x="730" y="70" width="210" height="92" rx="9" fill="#F2F5F9" stroke="#B9C6D6"/>
+        <text x="748" y="94" font-size="11" font-weight="700" fill="#5A6573">承载 A/B 的工具</text>
+        <text x="748" y="116" font-size="11" fill="#3F3F3A">Claude Code/Cursor</text>
+        <text x="748" y="134" font-size="11" fill="#3F3F3A">火山方舟/Seedream</text>
+        <text x="748" y="152" font-size="11" fill="#3F3F3A">Linux·无影云</text>
+        <rect x="730" y="178" width="210" height="92" rx="9" fill="#F2F5F9" stroke="#B9C6D6"/>
+        <text x="748" y="202" font-size="11" font-weight="700" fill="#5A6573">承载 C 的工具</text>
+        <text x="748" y="224" font-size="11" fill="#3F3F3A">Coze/扣子·Dify</text>
+        <text x="748" y="242" font-size="11" fill="#3F3F3A">LangChain·n8n</text>
+        <text x="748" y="260" font-size="11" fill="#3F3F3A">Chroma/Milvus</text>
+        <rect x="730" y="286" width="210" height="92" rx="9" fill="#F2F5F9" stroke="#B9C6D6"/>
+        <text x="748" y="310" font-size="11" font-weight="700" fill="#5A6573">承载 D 的产物</text>
+        <text x="748" y="332" font-size="11" fill="#3F3F3A">操作手册·演示录屏</text>
+        <text x="748" y="350" font-size="11" fill="#3F3F3A">验收报告·客户培训</text>
+        <text x="748" y="368" font-size="11" fill="#3F3F3A">话术库</text>
+        <rect x="730" y="394" width="210" height="92" rx="9" fill="#F2F5F9" stroke="#B9C6D6"/>
+        <text x="748" y="418" font-size="11" font-weight="700" fill="#5A6573">叶 = 保持"会用"</text>
+        <text x="748" y="440" font-size="11" fill="#3F3F3A">3–10 周一代</text>
+        <text x="748" y="458" font-size="11" fill="#3F3F3A">不恋战·不深挖</text>
+      </g>
+      <g stroke="#7FADD9" stroke-width="2" fill="none">
+        <path d="M230 362 L262 400"/><path d="M230 442 L262 410"/>
+        <path d="M442 400 L470 116"/><path d="M442 405 L470 224"/>
+        <path d="M442 410 L470 332"/><path d="M442 415 L470 440"/>
+        <path d="M700 116 L730 116"/><path d="M700 224 L730 224"/>
+        <path d="M700 332 L730 332"/><path d="M700 440 L730 440"/>
+      </g>
+    </svg>
+    <div class="cap">图 2　张的技能树：根（工程化+需求翻译）不过期；干是 AI 应用与交付；四枝对应 FDE 真实 JD；叶只保持会用</div>
+  </div>
+
+  <h3>张的路线图（与三级火箭同构）</h3>
+  <table>
+    <thead><tr><th>阶段</th><th>对应体系层</th><th>核心动作（来自 JD）</th><th>完成标志</th></tr></thead>
+    <tbody>
+      <tr><td><b>阶段1</b><br>连接器立住</td><td>一级底座</td><td>Python/JS 调 API、读报错、写自动化脚本（安庆/厦门 JD 硬门槛）；manhua.py 案例跑通</td><td>能独立调试 API、出第一张真图</td></tr>
+      <tr><td><b>阶段2</b><br>管线放大</td><td>二级训练营</td><td>批处理/并发、一致性、质检、文件契约；Coze/n8n 工作流编排（厦门 JD：搭行业智能体）</td><td>一条批量管线+可复用 SOP</td></tr>
+      <tr><td><b>阶段3</b><br>交付实施</td><td>二级→三级</td><td>部署配置、知识库初始化、实施方案、培训手册、验收报告（南宁/宁波 JD）；需求翻译</td><td>交付一份真实客户能用的文档包</td></tr>
+      <tr><td><b>阶段4</b><br>框架与课程化</td><td>三级+对外</td><td>把交付框架沉淀成 CourseOS 模板与培训课程（课程方）；客户源出现才启动 FDE 真项目</td><td>可授权的 FDE 课程包 + 真实案例</td></tr>
+    </tbody>
+  </table>
+  <p class="note">边界：张做"怎么批量跑、怎么交付"，<strong>不替董老师定视觉标准</strong>。阶段4 的 FDE 真项目触发条件=真实客户源出现（见执行基线 v1），否则作为下学期预研。</p>
+
+  <div class="card" style="border:1px solid var(--blue2);background:#F2F8FD">
+    <h3 style="margin-top:2px;color:var(--blue)">真实交付锚点：金博电梯 MVP（170h Gap 实证，锚定技能树 C/D 枝）</h3>
+    <p>张的资料库里有一份基于真实企业的《金博 AI 落地-MVP 方案与技能 Gap 分析》：目标企业是<span class="hl">石家庄本地电梯厂（83 人）</span>的真实 AI 落地需求（技术支持问答 RAG），给了 8 周 MVP、170h 技能缺口（70h 前置可学 + 100h 共生习得）。这正是 FDE 路线"做过一次"的实体样本，且就在本地——也是 FDE 真实客户源的高优候选（见执行基线 v1 客户源待定项）。</p>
+    <p><b>技术栈 ↔ 技能树映射：</b></p>
+    <ul>
+      <li><b>枝A 连接器</b>：企微机器人接入、Dify API 扩展、Docker Compose 部署（张的 Linux/Docker 老家底直接接上）</li>
+      <li><b>枝B 管线与工程</b>：Dify 工作流编排（与 Coze/n8n 同层，"能托管不自研"原则）——补了原树只列 Coze/n8n 的盲区</li>
+      <li><b>枝C 智能体与知识库</b>：RAG 全栈 = bge-m3 向量化 + pgvector + bge-reranker + RAGAS 评测 + MinerU 文档解析——把原树"RAG/向量库/Agent"从名词落成具体选型</li>
+      <li><b>枝D 交付与实施</b>：MVP 边界写进合同、Phase 0 单独立项 + 里程碑结算（30%/40%/30%）、验收报告含准确率/节省工时——"交付表达"的真实范本</li>
+    </ul>
+    <p class="note">关键判断（来自该文档）：MVP 阶段只需 JD 描述技术面的 <span class="hl">≈35%</span>；决定性因素是<b>技术选型</b>（选对，80% 工作量从"写代码"降级为"做配置"）。这印证张的护城河="真实交付 × 教学转化"——而 100h 的 RAG 调优直觉<b>只能靠真实项目喂出来，无法提前学</b>。另：该案例的评测集/脱敏数据可直接变成期刊实证素材（产教融合数据），是 OPC 双重收益的体现。</p>
+  </div>
+
+  <h2>三、董老师的技能树与路线图（AIGC 应用路线）</h2>
+  <div class="card" style="border:1px solid var(--teal2);background:#F4FBF8">
+    <h3 style="margin-top:2px;color:var(--teal)">定位：AI 内容的视觉资产架构者（AIGC 应用路线负责人）</h3>
+    <p>她不是做内容的人，是<strong>定义内容如何被生产</strong>的人——定义标准、验收质量、传递标准（对应 UI 规范力、设计师判断力、教师身份三块存量）。在三版块里，她覆盖 <span class="owner-a">AIGC 电商（素材视觉标准）</span> 与 <span class="owner-a">AIGC 短剧（角色一致性+分镜）</span> 两条线的视觉标准层，<strong>不碰 FDE</strong>（那是张的主场）。以下技能树来自 2026-09 实抓的 22 份 JD 逐条拆解。</p>
+  </div>
+
+  <div class="fig">
+    <svg viewBox="0 0 960 510" width="100%" role="img" aria-label="董老师的AIGC应用路线技能树">
+      <rect x="0" y="0" width="960" height="510" fill="#FFFFFF"/>
+      <g font-family="system-ui,sans-serif">
+        <text x="20" y="26" font-size="12.5" font-weight="700" fill="#5A6573">半衰期长 ↓</text>
+        <rect x="20" y="330" width="210" height="64" rx="9" fill="#0F6E56" stroke="#0A4A39"/>
+        <text x="38" y="356" font-size="13" font-weight="700" fill="#fff">视觉判断力</text>
+        <text x="38" y="378" font-size="11" fill="#CDEFE4">一眼看出哪里不对</text>
+        <rect x="20" y="410" width="210" height="64" rx="9" fill="#0F6E56" stroke="#0A4A39"/>
+        <text x="38" y="436" font-size="13" font-weight="700" fill="#fff">规范思维</text>
+        <text x="38" y="458" font-size="11" fill="#CDEFE4">感觉→可复用规则</text>
+        <rect x="262" y="350" width="180" height="106" rx="9" fill="#1C8C6E" stroke="#0A4A39" stroke-width="1.5"/>
+        <text x="352" y="392" font-size="14.5" font-weight="700" fill="#fff" text-anchor="middle">AI 内容</text>
+        <text x="352" y="414" font-size="14.5" font-weight="700" fill="#fff" text-anchor="middle">视觉架构</text>
+        <text x="352" y="440" font-size="11" fill="#D6F5EC" text-anchor="middle">AIGC 应用路线</text>
+        <rect x="470" y="70" width="230" height="92" rx="9" fill="#E1F5EE" stroke="#1C8C6E" stroke-width="1.5"/>
+        <text x="488" y="96" font-size="13.5" font-weight="700" fill="#0A4A39">A 视觉规范工程</text>
+        <text x="488" y="120" font-size="11" fill="#1F2733">角色卡七段式·三视图</text>
+        <text x="488" y="140" font-size="11" fill="#1F2733">资产命名·版本管理</text>
+        <text x="488" y="158" font-size="11" fill="#1F2733">→ 电商+短剧共用</text>
+        <rect x="470" y="178" width="230" height="92" rx="9" fill="#CDEFE4" stroke="#1C8C6E" stroke-width="1.5"/>
+        <text x="488" y="204" font-size="13.5" font-weight="700" fill="#0A4A39">B 生成技术栈</text>
+        <text x="488" y="228" font-size="11" fill="#1F2733">一致性三件套与选型</text>
+        <text x="488" y="248" font-size="11" fill="#1F2733">LoRA训练·ComfyUI</text>
+        <text x="488" y="266" font-size="11" fill="#1F2733">视频模型(可灵/即梦)</text>
+        <rect x="470" y="286" width="230" height="92" rx="9" fill="#CDEFE4" stroke="#1C8C6E" stroke-width="1.5"/>
+        <text x="488" y="312" font-size="13.5" font-weight="700" fill="#0A4A39">C 影像语言</text>
+        <text x="488" y="336" font-size="11" fill="#1F2733">景别/机位/轴线</text>
+        <text x="488" y="356" font-size="11" fill="#1F2733">镜头衔接·剪辑调色</text>
+        <text x="488" y="374" font-size="11" fill="#1F2733">→ 短剧线为主</text>
+        <rect x="470" y="394" width="230" height="92" rx="9" fill="#E1F5EE" stroke="#1C8C6E" stroke-width="1.5"/>
+        <text x="488" y="420" font-size="13.5" font-weight="700" fill="#0A4A39">D 交付与商业</text>
+        <text x="488" y="444" font-size="11" fill="#1F2733">需求翻译·报价合同</text>
+        <text x="488" y="464" font-size="11" fill="#1F2733">作品集·个人表达</text>
+        <rect x="730" y="70" width="210" height="92" rx="9" fill="#F2F5F9" stroke="#B9C6D6"/>
+        <text x="748" y="94" font-size="11" font-weight="700" fill="#5A6573">承载 A 的产物</text>
+        <text x="748" y="116" font-size="11" fill="#3F3F3A">角色卡模板·验收清单</text>
+        <text x="748" y="134" font-size="11" fill="#3F3F3A">资产目录·命名规范</text>
+        <text x="748" y="152" font-size="11" fill="#3F3F3A">风格锚点表</text>
+        <rect x="730" y="178" width="210" height="92" rx="9" fill="#F2F5F9" stroke="#B9C6D6"/>
+        <text x="748" y="202" font-size="11" font-weight="700" fill="#5A6573">承载 B 的工具</text>
+        <text x="748" y="224" font-size="11" fill="#3F3F3A">即梦/Seedream</text>
+        <text x="748" y="242" font-size="11" fill="#3F3F3A">ComfyUI·LoRA</text>
+        <text x="748" y="260" font-size="11" fill="#3F3F3A">可灵/ControlNet</text>
+        <rect x="730" y="286" width="210" height="92" rx="9" fill="#F2F5F9" stroke="#B9C6D6"/>
+        <text x="748" y="310" font-size="11" font-weight="700" fill="#5A6573">承载 C 的工具</text>
+        <text x="748" y="332" font-size="11" fill="#3F3F3A">分镜表·剪映/PR</text>
+        <text x="748" y="350" font-size="11" fill="#3F3F3A">PS精修·达芬奇</text>
+        <text x="748" y="368" font-size="11" fill="#3F3F3A">调色统一链</text>
+        <rect x="730" y="394" width="210" height="92" rx="9" fill="#F2F5F9" stroke="#B9C6D6"/>
+        <text x="748" y="418" font-size="11" font-weight="700" fill="#5A6573">叶=保持会用</text>
+        <text x="748" y="440" font-size="11" fill="#3F3F3A">6–10周一代</text>
+        <text x="748" y="458" font-size="11" fill="#3F3F3A">只订阅不深挖</text>
+      </g>
+      <g stroke="#5FB89C" stroke-width="2" fill="none">
+        <path d="M230 362 L262 400"/><path d="M230 442 L262 410"/>
+        <path d="M442 400 L470 116"/><path d="M442 405 L470 224"/>
+        <path d="M442 410 L470 332"/><path d="M442 415 L470 440"/>
+        <path d="M700 116 L730 116"/><path d="M700 224 L730 224"/>
+        <path d="M700 332 L730 332"/><path d="M700 440 L730 440"/>
+      </g>
+    </svg>
+    <div class="cap">图 3　董老师的技能树（整合自《视觉资产架构者学习路线图》22 份 JD）：枝 A 本行迁移、投入产出比最高；B/C 为短板需补；D 最缺；覆盖电商+短剧两线</div>
+  </div>
+
+  <h3>董老师的路线图（12 个月五阶段，整合原有文档）</h3>
+  <table>
+    <thead><tr><th>阶段</th><th>周</th><th>主轴</th><th>三版块落点</th></tr></thead>
+    <tbody>
+      <tr><td>阶段0 工具地平线</td><td>1–4</td><td>工具判断力（停点：新工具2天能判定位）</td><td>电商/短剧工具认知</td></tr>
+      <tr><td>阶段1 一致性主线</td><td>5–16</td><td><b>核心</b>：角色卡/三视图/验收清单</td><td>电商素材+短剧角色通用</td></tr>
+      <tr><td>阶段2 镜头语言</td><td>9–24</td><td>分镜/轴线/连续性（弱项补齐）</td><td><span class="owner-a">短剧线为主</span></td></tr>
+      <tr><td>阶段3 工作流接口</td><td>17–32</td><td>能演示批量管线，不自己写（张实现）</td><td>电商批量+短剧批产</td></tr>
+      <tr><td>阶段4 验证课程化</td><td>29–48</td><td>3–5 外部真实项目+一门标准课</td><td>电商/短剧培训产品</td></tr>
+    </tbody>
+  </table>
+  <p class="note">双产出机制贯穿全程：每阶段既出<strong>项目作品</strong>（证明能做）又出<strong>教学模块</strong>（证明能讲）。边界：脚本由张实现，她只当"需求定义者+验收者"。详见《AIGC视觉资产架构者_学习路线图》。</p>
+
+  <h2>四、双线主副配合（分工边界写死）</h2>
+  <div class="two">
+    <div class="col"><div class="card">
+      <h3 style="color:var(--blue)">张负责（技术底座+FDE）</h3>
+      <p>全局设计、连接器、批处理/并发、一致性管线、质检脚本、文件契约、智能体/工作流搭建（Coze/n8n/ComfyUI API）、FDE 部署与交付文档。<br><b>判据：</b>"怎么批量跑、怎么交付"归他。</p>
+    </div></div>
+    <div class="col"><div class="card" style="border-color:var(--teal2)">
+      <h3 style="color:var(--teal)">董老师负责（AIGC 应用路线）</h3>
+      <p>电商+短剧的视觉标准：角色卡、验收清单、一致性判据、分镜评审。"什么算合格"归她。<br><b>判据：</b>她能独立对甲方说清理由=她的；只能说"张说好"=越界。</p>
+    </div></div>
+  </div>
+  <div class="card" style="border:1px solid var(--red2);background:#FCF5F5">
+    <h3 style="margin-top:2px;color:var(--red)">红线</h3>
+    <p>张<strong>不替董老师定视觉标准</strong>——她一旦变成"你说怎么做好就怎么做"，内核就废了（那是她唯一不可替代的东西）。董老师<strong>不钻工程实现</strong>——脚本/部署由张承担，她只需"能用、能讲、能验收"。两人之间的接口 = manhua.py 的 <code>meta.json</code>（status 三态 + score）与资产包规范文档。</p>
+  </div>
+
+  <h2>五、学生分岔路径（按发展选不同技能训练）</h2>
+  <div class="fig">
+    <svg viewBox="0 0 960 300" width="100%" role="img" aria-label="学生分岔路径">
+      <rect x="0" y="0" width="960" height="300" fill="#FFFFFF"/>
+      <g font-family="system-ui,sans-serif">
+        <rect x="30" y="120" width="180" height="70" rx="10" fill="#155E8F" stroke="#0B3A61"/>
+        <text x="120" y="148" font-size="13" font-weight="700" fill="#fff" text-anchor="middle">一级 全体必修</text>
+        <text x="120" y="170" font-size="11" fill="#D2E6F7" text-anchor="middle">语言底座·manhua.py</text>
+        <g stroke="#7FADD9" stroke-width="2" fill="none"><path d="M210 155 L270 95"/><path d="M210 155 L270 155"/><path d="M210 155 L270 215"/></g>
+        <rect x="270" y="58" width="200" height="74" rx="10" fill="#D2E6F7" stroke="#155E8F"/>
+        <text x="370" y="84" font-size="13" font-weight="700" fill="#0B3A61" text-anchor="middle">轨A · FDE（张）</text>
+        <text x="370" y="106" font-size="11" fill="#1F2733" text-anchor="middle">连接器→管线→部署→智能体→交付</text>
+        <rect x="270" y="118" width="200" height="74" rx="10" fill="#CDEFE4" stroke="#0F6E56"/>
+        <text x="370" y="144" font-size="13" font-weight="700" fill="#0A4A39" text-anchor="middle">轨B · AIGC电商（董老师+张）</text>
+        <text x="370" y="166" font-size="11" fill="#1F2733" text-anchor="middle">素材生产·一致性·质检</text>
+        <rect x="270" y="178" width="200" height="74" rx="10" fill="#CDEFE4" stroke="#0F6E56"/>
+        <text x="370" y="204" font-size="13" font-weight="700" fill="#0A4A39" text-anchor="middle">轨C · AIGC短剧（董老师）</text>
+        <text x="370" y="226" font-size="11" fill="#1F2733" text-anchor="middle">角色一致性·分镜·视频</text>
+        <g stroke="#7FADD9" stroke-width="2" fill="none"><path d="M470 95 L560 95"/><path d="M470 155 L560 155"/><path d="M470 215 L560 215"/></g>
+        <rect x="560" y="118" width="200" height="74" rx="10" fill="#B8D4EC" stroke="#0B3A61"/>
+        <text x="660" y="144" font-size="13" font-weight="700" fill="#0B3A61" text-anchor="middle">三级 核心项目组</text>
+        <text x="660" y="166" font-size="11" fill="#0B3A61" text-anchor="middle">7-8人自组织·真实交付</text>
+        <g stroke="#7FADD9" stroke-width="2" fill="none"><path d="M760 155 L820 155"/></g>
+        <rect x="820" y="118" width="130" height="74" rx="10" fill="#0F6E56" stroke="#0A4A39"/>
+        <text x="885" y="144" font-size="12" font-weight="700" fill="#fff" text-anchor="middle">真实客户</text>
+        <text x="885" y="166" font-size="11" fill="#D6F5EC" text-anchor="middle">/商家/校内</text>
+      </g>
+      <text x="120" y="280" font-size="11.5" fill="#5A6573" text-anchor="middle">共享底座：一级+二级前半段所有人同练连接器/批处理/一致性/质检/文件契约</text>
+      <text x="660" y="280" font-size="11.5" fill="#5A6573" text-anchor="middle">高质量核心从第9-10周带样品进三级</text>
+    </svg>
+    <div class="cap">图 4　学生路径：一级全体打底 → 二级按发展分三轨 → 三级真实交付；分叉只在应用层</div>
+  </div>
+
+  <table>
+    <thead><tr><th>轨道</th><th>主导</th><th>技能训练重点</th><th>出口岗位（JD 实证）</th><th>薪资实据（大专档）</th></tr></thead>
+    <tbody>
+      <tr><td><b>轨A FDE</b></td><td><span class="owner-z">张</span></td><td>调API/读报错、部署配置、Coze智能体、交付文档、需求翻译</td><td>AI 应用交付工程师 / 实施工程师 / AI实施(跨境)</td><td>5–15K（厦门5-8K/安庆8-12K/联想10-15K，均大专）</td></tr>
+      <tr><td><b>轨B 电商</b></td><td><span class="owner-a">董老师</span>+张</td><td>素材生产管线、白底/场景/细节图、一致性质检、验收清单</td><td>AIGC 资产生成师 / 电商视觉设计师</td><td>执行3-6K（招百人）；标准层更高</td></tr>
+      <tr><td><b>轨C 短剧</b></td><td><span class="owner-a">董老师</span></td><td>角色卡、LoRA、分镜、图生视频、成片终审</td><td>AI 漫剧美术 / 短剧美术指导</td><td>6-15K；标准层(审核他人)15-25K</td></tr>
+    </tbody>
+  </table>
+  <p class="note">分岔逻辑：<strong>共享底座决定"能不能做"，分轨决定"做成哪类交付"</strong>。学生不必一入学定轨——一级+二级前半段同练，中期按兴趣/禀赋自然分层，高质量核心（7-8 人）自组织进三级。逆向判据照旧：不筛经验只要求基础语言能力的岗定价必塌，故三轨出口都落在"带标准/带交付"而非纯执行。</p>
+
+  <h2>六、市场需求证据（技能树来源）</h2>
+  <h3>张侧 · FDE / AI 交付（2026-09-20 检索，附公司+城市+大专）</h3>
+  <table>
+    <thead><tr><th>公司·城市</th><th>岗名</th><th>薪资</th><th>学历/经验</th><th>技能硬门槛（JD 原文）</th></tr></thead>
+    <tbody>
+      <tr><td>飞书/豆包·厦门</td><td>AI 交付实施(FDE)</td><td>5–8K</td><td>大专·应届可投</td><td>"基于扣子搭行业智能体、输出标准化操作手册、售前 Demo"</td></tr>
+      <tr><td>阿里国际站·安庆</td><td>AI 实施(跨境/电商)</td><td>8–12K</td><td>大专·应届</td><td>"熟悉 Python 或 JS 脚本，能独立调试 API"；"把 AI 逻辑翻译成生意经"</td></tr>
+      <tr><td>联想·苏州</td><td>AI 交付工程师(FDE)</td><td>10–15K</td><td>大专·1-3年</td><td>SaaS 实施、客户成功、IT 运维</td></tr>
+      <tr><td>某集团研究院·宁波</td><td>AI 产品交付工程师</td><td>1.58–2.17万</td><td>大专/本科·3年+</td><td>Linux/Java环境、网络调试、日志排错、培训手册</td></tr>
+      <tr><td>七匹狼·厦门</td><td>IT/AI 交付工程师</td><td>8–12K·14薪</td><td>大专·1-3年</td><td>基本脚本(Python/Shell)、客户沟通</td></tr>
+    </tbody>
+  </table>
+  <div class="card" style="border:1px solid var(--line)">
+    <p class="note" style="margin:0">全球趋势佐证（仅作方向参考，非国内定价）：FDE 岗位 2026 同比 +729%，中位数约 $168K；但国内大专够得着档为 5–15K，属"调用方/实施方"而非"原厂研发方"——正好对应张的就业框架"定价随离业务结果距离/调用方vs实现方拉开"。</p>
+  </div>
+
+  <h3>张侧 · 真实企业案例：金博电梯 AI 落地（石家庄·83 人·RAG MVP）</h3>
+  <table>
+    <thead><tr><th>维度</th><th>金博 MVP 实证</th><th>对应技能树</th></tr></thead>
+    <tbody>
+      <tr><td>场景边界</td><td>只做 1 产品线、20 高频问题；合同写明"不做 ERP 对接/全产品线覆盖"</td><td>枝D 交付边界</td></tr>
+      <tr><td>技术选型</td><td>Dify(托管) + pgvector + bge-m3 + MinerU + 企微机器人 + Docker Compose；阶段一先 API 不碰 GPU</td><td>枝A / B / C</td></tr>
+      <tr><td>技能 Gap</td><td>170h = 70h 前置(文档解析25h/GPU30h/Dify15h) + 100h 共生(RAG 调优60h)</td><td>枝C 经验部分</td></tr>
+      <tr><td>交付里程碑</td><td>Phase 0(2周)可行性 → Phase 1 六周 30%/40%/30% 三里程碑 → Phase 2 效果分成</td><td>枝D 结算</td></tr>
+      <tr><td>验收指标</td><td>50 题测试集准确率≥80% + 引用出处 + 节省工时量化</td><td>枝D 验收报告</td></tr>
+    </tbody>
+  </table>
+  <p class="note">这是国内大专档 FDE 之外的<b>真实企业端样本</b>：需求来自真实老板、脏数据来自真实手册、结算按里程碑。它把"AI 应用与交付"从 JD 名词变成可触摸的项目，也是张对外谈 FDE 客户时的底气与模板。完整分析见《金博AI落地-MVP方案与技能Gap分析.md》（2026-09-09）。</p>
+
+  <h3>董老师侧 · AIGC 视觉（来自原《视觉资产架构者路线图》22 份 JD 频次）</h3>
+  <table>
+    <thead><tr><th>技能项</th><th>频次</th><th>JD 位置</th><th>对技能树的判定</th></tr></thead>
+    <tbody>
+      <tr><td>提示词工程</td><td>17/77%</td><td>职责</td><td>练到够用即停（饱和最快）</td></tr>
+      <tr><td>PS 精修 / 图像工具≥2</td><td>15/68%</td><td>职责</td><td>门槛，必须会</td></tr>
+      <tr><td>AI 视频工具≥1</td><td>11/50%</td><td>职责</td><td>短剧线硬门槛</td></tr>
+      <tr><td><b>角色/场景一致性</b></td><td>12/55%</td><td>职责+加分</td><td><b>薪资分水岭（枝B核心）</b></td></tr>
+      <tr><td>ComfyUI 工作流</td><td>10/45%</td><td>加分居多</td><td>分阶段3演示即可</td></tr>
+      <tr><td>分镜/镜头语言</td><td>9/41%</td><td>职责</td><td>短板需补（枝C）</td></tr>
+      <tr><td>资产库/可复用流程</td><td>8/36%</td><td>统筹专属</td><td><b>分水岭（枝A）</b></td></tr>
+      <tr><td>制定规范/审核他人</td><td>6/27%</td><td>统筹专属</td><td><b>标准层定价权（枝D）</b></td></tr>
+    </tbody>
+  </table>
+
+  <h2>七、三版块如何共享底座（避免重复造轮子）</h2>
+  <div class="card">
+    <p><b>共享段（一级+二级前半段，三轨同练）：</b>连接器（调 API/读报错）、批处理与并发、一致性判据、质检筛选、文件契约（<code>meta.json</code> 三态）。这一段就是 manhua.py 长出的能力，与"选 A 电商素材"共用同一 <code>Product</code> 基类——短剧角色是它的子类，FDE 的智能体是它的"批量任务"变体。</p>
+    <p><b>分叉段（应用层，按轨深化）：</b></p>
+    <ul>
+      <li><b>FDE 轨</b>：把"批量任务"接成 Coze 智能体 + 部署配置 + 交付文档（张）</li>
+      <li><b>电商轨</b>：把"批量任务"接成白底/场景/细节图生产 + 平台质检清单（董老师视觉+张管线）</li>
+      <li><b>短剧轨</b>：把"角色"接成 LoRA + 分镜 + 图生视频（董老师）</li>
+    </ul>
+    <p class="note">结论：<strong>不是三个独立课程，是一条主干上长三个应用头</strong>。这既控制精力（张只维护主干+FDE头，董老师维护两个AIGC头），又让学生"换应用不换底层"——这正是体系可规模化的根。</p>
+  </div>
+
+  <div class="footer">生成于 2026-09-20 · 收口文档，整合《manhua.py 细化与训练营衔接》《manhua.py PBL 教学场景与需求》《AIGC视觉资产架构者_学习路线图》《AIGC时代个人定位与能力树》《AIGC培训赛道切入方案》《三级火箭体系设计》《执行基线 v1》· 张侧 FDE 技能树来自 2026-09-20 实抓 5 份 JD（厦门/安庆/联想/宁波/七匹狼，均附城市与大专要求）；董老师侧来自 22 份 JD 频次统计 · 三版块=AI应用与交付(FDE)/AIGC电商/AIGC短剧，沿三级火箭层层放大。张侧另融合《金博AI落地-MVP方案与技能Gap分析.md》真实企业案例（石家庄电梯厂 RAG MVP，170h Gap 实证，锚定枝 C/D）。</div>
+</div>
+</body>
+</html>

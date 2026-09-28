@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>张 · AI 应用与交付（FDE）· 详细技能树与路线图</title>
+<style>
+:root{--ink:#1B1B19;--sub:#5A5A55;--line:#DCE3EC;--bg:#F7F9FC;--card:#FFFFFF;--accent:#2A6399;--warn:#8A4B12;--blue:#155E8F;--blue2:#5AA0D6;--blue3:#E3F0FA;}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--bg);color:var(--ink);
+font-family:"PingFang SC","Microsoft YaHei","Hiragino Sans GB",system-ui,sans-serif;
+line-height:1.75;font-size:15px;}
+.wrap{max-width:1080px;margin:0 auto;padding:40px 24px 80px;}
+header{border-bottom:3px solid var(--accent);padding-bottom:20px;margin-bottom:36px;}
+h1{font-size:27px;margin:0 0 10px;letter-spacing:.5px;}
+.sub{color:var(--sub);font-size:14px;}
+h2{font-size:20px;margin:52px 0 8px;padding-left:12px;border-left:5px solid var(--accent);}
+h3{font-size:16px;margin:28px 0 10px;color:#244A70;}
+h4{font-size:14.5px;margin:18px 0 6px;color:#33332F;}
+p{margin:12px 0;}
+.lead{background:#EEF4FB;border:1px solid var(--line);border-radius:10px;padding:18px 22px;margin:18px 0;}
+.lead strong{color:#24486F;}
+.callout{background:#FFF8EE;border:1px solid #E8D5B7;border-left:5px solid #C98A2E;border-radius:8px;padding:16px 20px;margin:20px 0;}
+.callout .t{font-weight:700;color:#8A5A12;margin-bottom:6px;}
+.danger{background:#FDF1F1;border:1px solid #E8C9C9;border-left:5px solid #B44B4B;}
+.danger .t{color:#8E2E2E;}
+.ok{background:#F0F7EF;border:1px solid #C9E0C7;border-left:5px solid #4E8A46;}
+.ok .t{color:#2F5C2C;}
+.fig{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px 16px;margin:22px 0;overflow-x:auto;}
+.fig .cap{font-size:13px;color:var(--sub);text-align:center;margin-top:10px;}
+table{width:100%;border-collapse:collapse;margin:18px 0;font-size:13.5px;background:#fff;}
+th,td{border:1px solid var(--line);padding:10px 12px;text-align:left;vertical-align:top;}
+th{background:#E9F0F8;font-weight:700;color:#22486F;}
+td.c{text-align:center;}
+.tag{display:inline-block;padding:2px 9px;border-radius:11px;font-size:12px;font-weight:600;}
+.t1{background:#D9E8F7;color:#1F4E7A;}
+.t2{background:#E4EEE3;color:#2F5C2C;}
+.t3{background:#F5E7DA;color:#7A4A1C;}
+.t4{background:#FBE3E3;color:#8E2E2E;}
+.hi{background:#FFF3D6;padding:1px 5px;border-radius:4px;font-weight:600;}
+ul{padding-left:22px;margin:10px 0;}li{margin:6px 0;}
+ol{padding-left:22px;margin:10px 0;}ol li{margin:8px 0;}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:18px 0;}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin:18px 0;}
+@media(max-width:760px){.grid2,.grid3{grid-template-columns:1fr;}}
+.card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:16px 18px;}
+.card h4{margin:0 0 8px;font-size:15px;color:#24486F;}
+.card p{font-size:13.5px;margin:6px 0;color:#33332F;}
+.quote{background:#F4F7FA;border-left:4px solid #9BB4CC;padding:10px 16px;margin:12px 0;font-size:13.5px;color:#3A4A5C;}
+.quote .src{display:block;margin-top:6px;font-size:12px;color:#7A8794;}
+.mono{font-family:ui-monospace,Consolas,monospace;font-size:13px;background:#F2F5F9;padding:1px 6px;border-radius:4px;}
+.phase{background:#fff;border:1px solid var(--line);border-radius:12px;padding:0;margin:22px 0;overflow:hidden;}
+.phase .hd{background:#E9F0F8;padding:12px 20px;border-bottom:1px solid var(--line);}
+.phase .hd h3{margin:0;color:#1F4E7A;font-size:17px;}
+.phase .hd .meta{font-size:13px;color:#5A6B7C;margin-top:2px;}
+.phase .bd{padding:16px 20px 20px;}
+.kv{font-size:13.5px;}
+.kv dt{font-weight:700;color:#244A70;margin-top:10px;}
+.kv dd{margin:4px 0 0 0;color:#33332F;}
+footer{margin-top:60px;padding-top:20px;border-top:1px solid var(--line);font-size:12.5px;color:var(--sub);}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+<h1>张 · AI 应用与交付（FDE）· 详细技能树与路线图</h1>
+<div class="sub">基于 2026 实抓 FDE / AI 交付 JD（飞书系·精灵云·猎聘·安庆·金博真实 MVP）+ 金博 170h Gap 实证 ｜ 面向「AI 落地架构者 / 一人公司(OPC) / 合作模式」</div>
+</header>
+
+<div class="lead">
+<strong>这份路线图不是按"知识重要不重要"排的，是按招聘 JD 写了什么、以及真实交付案例验过什么排的。</strong>
+下面所有优先级判断都能回溯到具体岗位原文或真实企业样本。方法论只有一条：<span class="hi">频次决定要不要学，位置（写在职责里还是加分项里）决定学到什么程度，根（不过期的）决定长期投入</span>。
+张的轨道是<strong>技术底座 + AI 应用与交付</strong>：在 AI 培训体系里他主导 FDE 版块、搭全局框架，应用侧侧重"AI 交付与实施"；董老师（AIGC 应用路线）与他形成主副配合。
+</div>
+
+<h2>一、样本与口径</h2>
+
+<p>本次抓取 2026 年 FDE / AI 交付类在招岗位与真实项目共 <strong>8 份</strong>，覆盖四类主体：<strong>飞书系交付</strong>（厦门·大专应届、广州·大专1-3年）、<strong>原厂/平台交付</strong>（成都精灵云、苏州 FDE 前沿部署）、<strong>高端端到端交付</strong>（北京猎聘 20–40K、北京 Agent 开发实施）、<strong>跨境/行业交付</strong>（安庆阿里国际站 AI 实施·大专应届）、<strong>真实企业 MVP 样本</strong>（石家庄金博电梯·83 人·RAG 技术支持）。地域跨一线到三四线，薪资从 5K 到 40K。</p>
+
+<table>
+<thead><tr><th style="width:20%">类型</th><th>代表性样本</th><th style="width:28%">薪资实据（含学历门槛）</th></tr></thead>
+<tbody>
+<tr><td>飞书系 FDE</td><td>AI 交付实施工程师（飞书/豆包 FDE 方向，厦门）、飞书 AI 交付工程师 FDE（广州）</td><td><span class="hi">5–8K·大专·应届可投</span>；15–20K·大专·1-3年</td></tr>
+<tr><td>原厂/平台交付</td><td>FDE(agent) 成都精灵云、FDE 前沿部署工程师（苏州）</td><td>面议·本科；10–15K·本科·1-3年</td></tr>
+<tr><td>高端端到端</td><td>AI 交付工程师 FDE（北京猎聘）、AI Agent 开发与实施（北京）</td><td><span class="hi">20–40K·本科·3-5年</span>；1.5–3万·本科·1-3年</td></tr>
+<tr><td>跨境/行业交付</td><td>AI 实施工程师（安庆·阿里国际站 Accio Work）</td><td><span class="hi">8–12K·大专·应届</span>·硬门槛：Python 或 JS 脚本独立调试 API</td></tr>
+<tr><td>真实企业 MVP</td><td>金博电梯 AI 落地（石家庄·本地）</td><td>非招聘，是"做过一次"的实体样本：170h Gap、8 周 MVP、RAG 全栈</td></tr>
+</tbody>
+</table>
+
+<div class="callout">
+<div class="t">口径说明</div>
+<p style="margin:6px 0 0">8 份不是抽样调查，是本次检索能拿到的 FDE 在招/真实样本全量，用于<strong>定性判断技能结构</strong>足够，用来算"平均薪资"不够——样本有地域与平台偏差。凡本文出现的频次均为"在这 8 份里出现几次"，不代表全市场比例。全球侧 FDE 岗位 2026 同比 +729%、中位数约 $168K 仅作趋势佐证，国内大专够得着档为 5–15K（调用方/实施方），与 $168K（原厂研发方）是不同市场——正好对应张的就业框架"定价随离业务结果距离/调用方vs实现方拉开"。</p>
+</div>
+
+<h2>二、JD 技能频次：市场到底在要什么</h2>
+
+<p>把 8 份 JD 逐条拆成 10 个技能项后，得到下表。注意最后一列"<strong>写在职责里还是写在加分里</strong>"——这一列比频次更重要。FDE 的价值中枢不在"会不会写代码"，在"能不能把模糊业务翻译成可落地 AI 方案并交付"。</p>
+
+<table>
+<thead><tr><th style="width:26%">技能项</th><th class="c" style="width:10%">频次</th><th class="c" style="width:10%">占比</th><th class="c" style="width:14%">JD 位置</th><th>原话摘录（岗位 - 城市）</th></tr></thead>
+<tbody>
+<tr><td>LLM/RAG/Agent 应用层（Dify/Coze/飞书Aily）</td><td class="c">8</td><td class="c">100%</td><td class="c"><span class="tag t1">职责</span></td><td>"基于扣子(Coze)搭建行业专属智能体与自动化工作流"（AI 交付实施 - 厦门）</td></tr>
+<tr><td>连接器技术（Python/JS/SQL + API 调试/联调）</td><td class="c">7</td><td class="c">88%</td><td class="c"><span class="tag t1">职责</span></td><td>"熟悉 Python 或 JS 脚本，能独立调试 API"（AI 实施 - 安庆）</td></tr>
+<tr><td>Prompt 工程 / 结构化输出</td><td class="c">6</td><td class="c">75%</td><td class="c"><span class="tag t1">职责</span></td><td>"精通 Prompt 工程、Few-shot、思维链，精准调教大模型输出"（Agent 开发 - 北京）</td></tr>
+<tr><td>部署与私有化（Docker/K8s/离线）</td><td class="c">6</td><td class="c">75%</td><td class="c"><span class="tag t1">职责</span></td><td>"掌握 Docker/K8s，能独立输出私有化 Agent 完整部署方案"（智能体部署 - 北京）</td></tr>
+<tr><td>交付文档（操作手册/SOP/验收报告）</td><td class="c">6</td><td class="c">75%</td><td class="c"><span class="tag t1">职责</span></td><td>"制定分层培训计划，输出标准化操作手册"（AI 交付实施 - 厦门）</td></tr>
+<tr><td>售前（方案/POC/Demo/价值传递）</td><td class="c">6</td><td class="c">75%</td><td class="c"><span class="tag t1">职责</span></td><td>"完成 AI 需求调研，产出差异化落地方案，向客户 KDM 完成讲解"（飞书 FDE - 广州）</td></tr>
+<tr><td>业务翻译（AI 逻辑 → 生意经）</td><td class="c">5</td><td class="c">63%</td><td class="c"><span class="tag t2">职责+加分</span></td><td>"把 AI 逻辑翻译成老板听得懂的生意经"（AI 实施 - 安庆）</td></tr>
+<tr><td>客户培训与赋能</td><td class="c">5</td><td class="c">63%</td><td class="c"><span class="tag t2">职责+加分</span></td><td>"负责客户技术培训、售后支撑，沉淀行业解决方案赋能团队"（FDE agent - 成都）</td></tr>
+<tr><td>低代码/工作流编排（Coze/n8n/飞书多维表）</td><td class="c">4</td><td class="c">50%</td><td class="c"><span class="tag t3">加分居多</span></td><td>"了解飞书等自动化工作流搭建"（AIGC 视觉 - 重庆，印证跨线需求）</td></tr>
+<tr><td>垂直行业知识（制造/跨境/客服）</td><td class="c">4</td><td class="c">50%</td><td class="c"><span class="tag t3">加分居多</span></td><td>"在大消费、跨境电商、先进制造任一行业做过 to B 服务"（飞书 FDE - 广州）</td></tr>
+</tbody>
+</table>
+
+<div class="fig">
+<svg viewBox="0 0 680 470" width="100%" role="img" xmlns="http://www.w3.org/2000/svg">
+<title>FDE JD 技能项频次与价值分层</title>
+<desc>按在 8 份 FDE JD 中出现次数排序的技能条形图，按职责/加分/2026新增着色</desc>
+<text x="20" y="24" font-family="system-ui,sans-serif" font-size="14" font-weight="600" fill="#1B1B19">FDE JD 技能频次：8 份在招岗位 + 1 真实 MVP 样本统计</text>
+
+<text x="20" y="48" font-family="system-ui,sans-serif" font-size="11.5" fill="#6A6A64">职责项（必学）</text>
+<rect x="70" y="52" width="340" height="15" rx="3" fill="#C9D9EA"/>
+<text x="418" y="64" font-family="system-ui,sans-serif" font-size="11.5" fill="#4A4A45">8 次</text>
+<text x="86" y="64" font-family="system-ui,sans-serif" font-size="11.5" fill="#1F4E7A">LLM/RAG/Agent 应用层</text>
+
+<rect x="70" y="74" width="297" height="15" rx="3" fill="#C9D9EA"/>
+<text x="375" y="86" font-family="system-ui,sans-serif" font-size="11.5" fill="#4A4A45">7 次</text>
+<text x="86" y="86" font-family="system-ui,sans-serif" font-size="11.5" fill="#1F4E7A">连接器 Python/JS/SQL+API</text>
+
+<rect x="70" y="96" width="255" height="15" rx="3" fill="#C9D9EA"/>
+<text x="333" y="108" font-family="system-ui,sans-serif" font-size="11.5" fill="#4A4A45">6 次</text>
+<text x="86" y="108" font-family="system-ui,sans-serif" font-size="11.5" fill="#1F4E7A">Prompt 工程</text>
+
+<rect x="70" y="118" width="255" height="15" rx="3" fill="#C9D9EA"/>
+<text x="333" y="130" font-family="system-ui,sans-serif" font-size="11.5" fill="#4A4A45">6 次</text>
+<text x="86" y="130" font-family="system-ui,sans-serif" font-size="11.5" fill="#1F4E7A">部署与私有化</text>
+
+<rect x="70" y="140" width="255" height="15" rx="3" fill="#C9D9EA"/>
+<text x="333" y="152" font-family="system-ui,sans-serif" font-size="11.5" fill="#4A4A45">6 次</text>
+<text x="86" y="152" font-family="system-ui,sans-serif" font-size="11.5" fill="#1F4E7A">交付文档</text>
+
+<rect x="70" y="162" width="255" height="15" rx="3" fill="#C9D9EA"/>
+<text x="333" y="174" font-family="system-ui,sans-serif" font-size="11.5" fill="#4A4A45">6 次</text>
+<text x="86" y="174" font-family="system-ui,sans-serif" font-size="11.5" fill="#1F4E7A">售前方案/POC</text>
+
+<text x="20" y="202" font-family="system-ui,sans-serif" font-size="11.5" fill="#6A6A64">分水岭</text>
+<rect x="70" y="206" width="212" height="15" rx="3" fill="#E9B96B"/>
+<text x="290" y="218" font-family="system-ui,sans-serif" font-size="11.5" fill="#4A4A45">5 次</text>
+<text x="86" y="218" font-family="system-ui,sans-serif" font-size="11.5" fill="#7A4A1C">业务翻译(→生意经)</text>
+
+<rect x="70" y="228" width="212" height="15" rx="3" fill="#E9B96B"/>
+<text x="290" y="240" font-family="system-ui,sans-serif" font-size="11.5" fill="#4A4A45">5 次</text>
+<text x="86" y="240" font-family="system-ui,sans-serif" font-size="11.5" fill="#7A4A1C">客户培训与赋能</text>
+
+<text x="20" y="270" font-family="system-ui,sans-serif" font-size="11.5" fill="#6A6A64">加分项</text>
+<rect x="70" y="274" width="170" height="15" rx="3" fill="#D6DFCB"/>
+<text x="248" y="286" font-family="system-ui,sans-serif" font-size="11.5" fill="#4A4A45">4 次</text>
+<text x="86" y="286" font-family="system-ui,sans-serif" font-size="11.5" fill="#2F5C2C">低代码/工作流</text>
+
+<rect x="70" y="296" width="170" height="15" rx="3" fill="#D6DFCB"/>
+<text x="248" y="308" font-family="system-ui,sans-serif" font-size="11.5" fill="#4A4A45">4 次</text>
+<text x="86" y="308" font-family="system-ui,sans-serif" font-size="11.5" fill="#2F5C2C">垂直行业知识</text>
+
+<line x1="70" y1="324" x2="430" y2="324" stroke="#DCE3EC" stroke-width="1"/>
+<text x="70" y="346" font-family="system-ui,sans-serif" font-size="11" fill="#6A6A64">频次只说明「要不要会」，不说明「值多少钱」。</text>
+<text x="70" y="362" font-family="system-ui,sans-serif" font-size="11" fill="#6A6A64">LLM 应用 8 次但练到够用即可；业务翻译仅 5 次，却是薪资分水岭。</text>
+<text x="70" y="392" font-family="system-ui,sans-serif" font-size="12" font-weight="600" fill="#155E8F">定价规律（四次实证）：</text>
+<text x="70" y="412" font-family="system-ui,sans-serif" font-size="11" fill="#6A6A64">5–8K 执行实施 → 15–20K 方案架构 → 20–40K 端到端负责。</text>
+<text x="70" y="430" font-family="system-ui,sans-serif" font-size="11" fill="#6A6A64">链条长度 / 离业务结果距离 / 调用方 vs 实现方 = 拉开档位的三个旋钮。</text>
+<text x="70" y="458" font-family="system-ui,sans-serif" font-size="11" fill="#6A6A64">逆向判据：不筛经验只要求基础语言的岗，定价必塌——FDE 恰恰是筛经验/结果的岗，故不在塌陷区。</text>
+</svg>
+<div class="cap">图 1　FDE 技能频次与价值分层（<span style="color:#1F4E7A">蓝</span>=职责必学 / <span style="color:#7A4A1C">橙</span>=薪资分水岭 / <span style="color:#2F5C2C">绿</span>=加分）</div>
+</div>
+
+<h2>三、四条从 JD 与真实案例里读出来、会改变路线的证据</h2>
+
+<h3>发现一：FDE 在国内真实、大专够得着、正在爆发——这是"对外叫 AI 应用与交付"的 JD 背书</h3>
+
+<p>厦门飞书/豆包 FDE 方向 <strong>5–8K、大专、应届可投</strong>，职责明确写"基于扣子(Coze)搭建行业专属智能体""输出标准化操作手册"；安庆阿里国际站 AI 实施 <strong>8–12K、大专应届</strong>，硬门槛"熟悉 Python 或 JS 脚本，能独立调试 API"且要"把 AI 逻辑翻译成老板听得懂的生意经"；联想苏州 FDE <strong>10–15K、大专</strong>。本科档则跃升至 15–40K（飞书广州 15–20K、猎聘北京 20–40K）。全球侧 FDE 岗位 2026 同比 <strong>+729%</strong>。</p>
+
+<div class="callout ok">
+<div class="t">对路线图的直接影响</div>
+<p style="margin:6px 0 0">张对外叫"AI 应用与交付"不是凭空起名，是落到了真实岗位族（FDE）上。大专档（5–15K）是够得着的入口，且<strong>筛选的是"做过交付、拿过结果"而非"学历/算法深度"</strong>——正好对应张 48 岁、MBA+开发+PM 的复合背景，避开与 25 岁算法工程师的正面竞争。</p>
+</div>
+
+<h3>发现二：定价随"离业务结果距离 / 调用方 vs 实现方"拉开</h3>
+
+<p>同一族岗位，薪资跨度从 5K 到 40K，差别不在技术深浅，在<strong>责任边界</strong>：</p>
+
+<div class="grid2">
+<div class="card" style="border-color:#DCC8C8">
+<h4 style="color:#8E2E2E">5–8K 执行实施（厦门）</h4>
+<p>"全流程交付实施、账号权限配置、知识库初始化、上门培训、输出操作手册"——<strong>关键词：把别人定好的方案跑通</strong>。</p>
+</div>
+<div class="card" style="border-color:#C9E0C7">
+<h4 style="color:#2F5C2C">20–40K 端到端负责（北京）</h4>
+<p>"将模糊业务需求转化为可实现的 AI 技术方案，完成概念到生产端到端交付；设计复杂 Agent 架构与工作流"——<strong>关键词：需求翻译 + 架构 + 兜底结果</strong>。</p>
+</div>
+</div>
+
+<div class="callout">
+<div class="t">这条是整个路线图的定价逻辑</div>
+<p style="margin:6px 0 0">市场对"翻译业务并兜底结果"的付费远高于"执行既定方案"。张的定位应当锚定<strong>中高位（15K+ 档的"方案架构 + 交付"层）</strong>，靠的是 MBA 的业务翻译力 + 开发底子，而非去卷算法。这也是逆向判据的反面证据：<span class="hi">"只要求基础语言、不筛经验"的岗定价塌；FDE 恰恰筛经验与结果，所以是可培养目标，不是陷阱。</span></p>
+</div>
+
+<h3>发现三：真实交付 > PPT 项目（金博 MVP 实证，170h Gap）</h3>
+
+<p>张的资料库里有一份基于<strong>石家庄本地电梯厂（83 人）</strong>真实 AI 落地需求（RAG 技术支持问答）的《金博 AI 落地-MVP 方案与技能 Gap 分析》：8 周 MVP、170h 技能缺口（70h 前置可学 + 100h 共生习得）。</p>
+
+<div class="quote">
+"MVP 阶段只需 JD 描述技术面的 <span class="hi">≈35%</span>；决定性因素是<strong>技术选型</strong>——选对，80% 工作量从『写代码』降级为『做配置』。而 100h 的 RAG 调优直觉只能靠真实项目喂出来，无法提前学。"
+<span class="src">—— 金博电梯 AI 落地 MVP 方案（真实企业样本）</span>
+</div>
+
+<div class="callout danger">
+<div class="t">对路线图的直接影响</div>
+<p style="margin:6px 0 0">阶段设计里<strong>必须嵌一个真实交付样本</strong>（校内行政 / 本地中小企业皆可），否则技能树永远停在"会配 Dify"的 L2 执行层。<span class="hi">真实项目是护城河"真实交付 × 教学转化"的唯一燃料</span>：没有它，教学内容只能是二手转述，稀缺性塌掉。</p>
+</div>
+
+<h3>发现四：2026 新门槛是"Agent 编排 / MCP / 可观测"，但根不变</h3>
+
+<p>北京 Agent 开发 JD 与 2026 行业报告一致显示：Agent 工程师从"写 prompt"升级为"设计规划-执行-反思-人工审批节点""工具 schema 设计""多智能体编排""成本/延迟权衡""Eval 评估管线"。2026 的关键变化是 <strong>MCP（Model Context Protocol）成为连接 Agent 与外部工具/数据的标准接口</strong>，取代大量 bespoke 集成代码——工程师更多在"评估并安全接入第三方 MCP"而非"从零写连接器"。</p>
+
+<div class="callout">
+<div class="t">这条怎么放进张的路线图</div>
+<p style="margin:6px 0 0"><strong>根（工程化素养 + 需求翻译思维）不过期，叶（具体框架/模型）保持会用即可。</strong>选型判断力（选对框架/协议）比背框架 API 值钱——这与金博"选型决定 80%"完全同构。张的优势是 20 年开发 + PM 经验，天然在"根"上，只需把连接器重写为 AI-native（API/结构化输出/MCP），不必追每一个新模型。</p>
+</div>
+
+<h2>四、缺口矩阵：张的现有底座 vs 市场要的</h2>
+
+<p>把技能表与张现有基础（软件开发 + 项目管理 + MBA + 教学课程设计）交叉，得四象限。判据：<strong>象限决定投入方式，不决定投入时间长短</strong>。</p>
+
+<div class="fig">
+<svg viewBox="0 0 680 430" width="100%" role="img" xmlns="http://www.w3.org/2000/svg">
+<title>张的技能缺口四象限</title>
+<desc>按市场需求强度与现有基础，把技能划分为四个象限并给出投入策略</desc>
+<text x="20" y="24" font-family="system-ui,sans-serif" font-size="14" font-weight="600" fill="#1B1B19">缺口矩阵：需求强度 vs 现有基础（张）</text>
+
+<line x1="200" y1="45" x2="200" y2="380" stroke="#DCE3EC" stroke-width="1"/>
+<line x1="200" y1="380" x2="650" y2="380" stroke="#DCE3EC" stroke-width="1"/>
+<text x="205" y="398" font-family="system-ui,sans-serif" font-size="11.5" fill="#6A6A64">现有基础：弱</text>
+<text x="560" y="398" font-family="system-ui,sans-serif" font-size="11.5" fill="#6A6A64">强</text>
+<text x="60" y="60" font-family="system-ui,sans-serif" font-size="11.5" fill="#6A6A64">市场需求</text>
+<text x="60" y="76" font-family="system-ui,sans-serif" font-size="11.5" fill="#6A6A64">强</text>
+<text x="60" y="360" font-family="system-ui,sans-serif" font-size="11.5" fill="#6A6A64">弱</text>
+
+<rect x="215" y="50" width="200" height="150" rx="10" fill="#D7E9F8" stroke="#155E8F" stroke-width="0.5"/>
+<text x="228" y="72" font-family="system-ui,sans-serif" font-size="12.5" font-weight="600" fill="#155E8F">① 主战场（重投入）</text>
+<text x="228" y="95" font-family="system-ui,sans-serif" font-size="12" fill="#33332F">Agent 编排 / 多智能体</text>
+<text x="228" y="115" font-family="system-ui,sans-serif" font-size="12" fill="#33332F">RAG 调优（选型+Eval）</text>
+<text x="228" y="135" font-family="system-ui,sans-serif" font-size="12" fill="#33332F">部署/私有化/运维</text>
+<text x="228" y="155" font-family="system-ui,sans-serif" font-size="12" fill="#33332F">交付文档体系化</text>
+<text x="228" y="180" font-family="system-ui,sans-serif" font-size="11.5" fill="#6A6A64">→ 真实项目喂出来</text>
+
+<rect x="430" y="50" width="205" height="150" rx="10" fill="#E2EEE1" stroke="#4E8A46" stroke-width="0.5"/>
+<text x="443" y="72" font-family="system-ui,sans-serif" font-size="12.5" font-weight="600" fill="#2F5C2C">② 现金牛（翻译即可）</text>
+<text x="443" y="95" font-family="system-ui,sans-serif" font-size="12" fill="#33332F">工程化素养 / 读报错</text>
+<text x="443" y="115" font-family="system-ui,sans-serif" font-size="12" fill="#33332F">项目管理 / 里程碑</text>
+<text x="443" y="135" font-family="system-ui,sans-serif" font-size="12" fill="#33332F">业务翻译（MBA）</text>
+<text x="443" y="155" font-family="system-ui,sans-serif" font-size="12" fill="#33332F">教学转化 / 课程设计</text>
+<text x="443" y="180" font-family="system-ui,sans-serif" font-size="11.5" fill="#6A6A64">→ 不用学，重新命名</text>
+
+<rect x="215" y="215" width="200" height="150" rx="10" fill="#FAECE7" stroke="#993C1D" stroke-width="0.5"/>
+<text x="228" y="237" font-family="system-ui,sans-serif" font-size="12.5" font-weight="600" fill="#712B13">③ 必补短板（定向练）</text>
+<text x="228" y="260" font-family="system-ui,sans-serif" font-size="12" fill="#33332F">售前表达 / 方案讲解</text>
+<text x="228" y="280" font-family="system-ui,sans-serif" font-size="12" fill="#33332F">垂直行业知识</text>
+<text x="228" y="300" font-family="system-ui,sans-serif" font-size="12" fill="#33332F">客户洽谈 / 合同边界</text>
+<text x="228" y="320" font-family="system-ui,sans-serif" font-size="12" fill="#33332F">私有化运维细节</text>
+<text x="228" y="345" font-family="system-ui,sans-serif" font-size="11.5" fill="#6A6A64">→ 练到能答辩，不必专家</text>
+
+<rect x="430" y="215" width="205" height="150" rx="10" fill="#F1EFE8" stroke="#888780" stroke-width="0.5"/>
+<text x="443" y="237" font-family="system-ui,sans-serif" font-size="12.5" font-weight="600" fill="#444441">④ 保持关注（不投入）</text>
+<text x="443" y="260" font-family="system-ui,sans-serif" font-size="12" fill="#33332F">算法科研 / 从零训练</text>
+<text x="443" y="280" font-family="system-ui,sans-serif" font-size="12" fill="#33332F">前端深水 / 重客户端</text>
+<text x="443" y="300" font-family="system-ui,sans-serif" font-size="12" fill="#33332F">单模型原理钻研</text>
+<text x="443" y="320" font-family="system-ui,sans-serif" font-size="12" fill="#33332F">纯售前（无交付）</text>
+<text x="443" y="345" font-family="system-ui,sans-serif" font-size="11.5" fill="#6A6A64">→ 知道存在 + 边界即可</text>
+
+<text x="20" y="420" font-family="system-ui,sans-serif" font-size="11.5" fill="#6A6A64">象限 ② 是张 20 年开发+PM+MBA 的存量，不需学习，需要的是「换一套词汇把它讲给 AI 交付行业听」。</text>
+</svg>
+<div class="cap">图 2　缺口四象限与投入策略</div>
+</div>
+
+<h2>五、技能树（根-干-枝-叶）</h2>
+
+<div class="fig">
+<svg viewBox="0 0 960 470" width="100%" role="img" aria-label="张的FDE技能树">
+<rect x="0" y="0" width="960" height="470" fill="#FFFFFF"/>
+<g font-family="system-ui,sans-serif">
+<text x="20" y="26" font-size="12.5" font-weight="700" fill="#5A6573">半衰期长 ↓</text>
+<rect x="20" y="320" width="220" height="64" rx="9" fill="#155E8F" stroke="#0B3A5C"/>
+<text x="38" y="346" font-size="13" font-weight="700" fill="#fff">工程化素养</text>
+<text x="38" y="368" font-size="11" fill="#CFE6F6">读报错/连接器/部署</text>
+<rect x="20" y="400" width="220" height="64" rx="9" fill="#155E8F" stroke="#0B3A5C"/>
+<text x="38" y="426" font-size="13" font-weight="700" fill="#fff">需求翻译思维</text>
+<text x="38" y="448" font-size="11" fill="#CFE6F6">业务→AI方案(MBA)</text>
+<rect x="268" y="340" width="190" height="104" rx="9" fill="#2E7DB8" stroke="#0B3A5C" stroke-width="1.5"/>
+<text x="363" y="382" font-size="14.5" font-weight="700" fill="#fff" text-anchor="middle">AI 应用</text>
+<text x="363" y="404" font-size="14.5" font-weight="700" fill="#fff" text-anchor="middle">与交付</text>
+<text x="363" y="430" font-size="11" fill="#D6ECFA" text-anchor="middle">张的主场·FDE</text>
+<rect x="490" y="60" width="220" height="92" rx="9" fill="#D7E9F8" stroke="#2E7DB8" stroke-width="1.5"/>
+<text x="508" y="86" font-size="13.5" font-weight="700" fill="#0B3A5C">A 连接器技术</text>
+<text x="508" y="110" font-size="11" fill="#1F2733">Python/JS 调 API</text>
+<text x="508" y="128" font-size="11" fill="#1F2733">结构化输出/MCP</text>
+<text x="508" y="146" font-size="11" fill="#1F2733">→ 底座，manhua.py 长出</text>
+<rect x="490" y="168" width="220" height="92" rx="9" fill="#C7E0F4" stroke="#2E7DB8" stroke-width="1.5"/>
+<text x="508" y="194" font-size="13.5" font-weight="700" fill="#0B3A5C">B 管线与工程</text>
+<text x="508" y="218" font-size="11" fill="#1F2733">批处理/并发</text>
+<text x="508" y="236" font-size="11" fill="#1F2733">一致性/质检/版本</text>
+<text x="508" y="254" font-size="11" fill="#1F2733">Coze/n8n/Dify 编排</text>
+<rect x="490" y="276" width="220" height="92" rx="9" fill="#C7E0F4" stroke="#2E7DB8" stroke-width="1.5"/>
+<text x="508" y="302" font-size="13.5" font-weight="700" fill="#0B3A5C">C 智能体与知识库</text>
+<text x="508" y="326" font-size="11" fill="#1F2733">RAG 全栈(bge-m3+pg)</text>
+<text x="508" y="344" font-size="11" fill="#1F2733">Agent/多智能体</text>
+<text x="508" y="362" font-size="11" fill="#1F2733">Eval(RAGAS)/MCP</text>
+<rect x="490" y="384" width="220" height="92" rx="9" fill="#D7E9F8" stroke="#2E7DB8" stroke-width="1.5"/>
+<text x="508" y="410" font-size="13.5" font-weight="700" fill="#0B3A5C">D 交付与实施</text>
+<text x="508" y="434" font-size="11" fill="#1F2733">方案/POC/演示</text>
+<text x="508" y="452" font-size="11" fill="#1F2733">手册/SOP/验收报告</text>
+<rect x="750" y="60" width="190" height="92" rx="9" fill="#F2F5F9" stroke="#B9C6D6"/>
+<text x="768" y="84" font-size="11" font-weight="700" fill="#5A6573">承载 A 的产物</text>
+<text x="768" y="106" font-size="11" fill="#3F3F3A">manhua.py 构件</text>
+<text x="768" y="124" font-size="11" fill="#3F3F3A">meta.json 契约</text>
+<text x="768" y="142" font-size="11" fill="#3F3F3A">批量脚本库</text>
+<rect x="750" y="168" width="190" height="92" rx="9" fill="#F2F5F9" stroke="#B9C6D6"/>
+<text x="768" y="192" font-size="11" font-weight="700" fill="#5A6573">承载 B 的工具</text>
+<text x="768" y="214" font-size="11" fill="#3F3F3A">Coze/飞书多维表</text>
+<text x="768" y="232" font-size="11" fill="#3F3F3A">n8n/Dify</text>
+<text x="768" y="250" font-size="11" fill="#3F3F3A">本地批处理</text>
+<rect x="750" y="276" width="190" height="92" rx="9" fill="#F2F5F9" stroke="#B9C6D6"/>
+<text x="768" y="300" font-size="11" font-weight="700" fill="#5A6573">承载 C 的工具</text>
+<text x="768" y="322" font-size="11" fill="#3F3F3A">Dify/向量库</text>
+<text x="768" y="340" font-size="11" fill="#3F3F3A">MinerU/RAGAS</text>
+<text x="768" y="358" font-size="11" fill="#3F3F3A">MCP 服务器</text>
+<rect x="750" y="384" width="190" height="92" rx="9" fill="#F2F5F9" stroke="#B9C6D6"/>
+<text x="768" y="408" font-size="11" font-weight="700" fill="#5A6573">叶=保持会用</text>
+<text x="768" y="430" font-size="11" fill="#3F3F3A">框架/模型 6–12月一代</text>
+<text x="768" y="448" font-size="11" fill="#3F3F3A">只订阅不深挖</text>
+</g>
+<g stroke="#5AA0D6" stroke-width="2" fill="none">
+<path d="M240 352 L268 392"/><path d="M240 432 L268 402"/>
+<path d="M458 392 L490 106"/><path d="M458 397 L490 214"/>
+<path d="M458 402 L490 322"/><path d="M458 407 L490 430"/>
+<path d="M710 106 L750 106"/><path d="M710 214 L750 214"/>
+<path d="M710 322 L750 322"/><path d="M710 430 L750 430"/>
+</g>
+</svg>
+<div class="cap">图 3　张的 FDE 技能树：根（工程化+需求翻译）不过期；干是 AI 应用与交付；四枝对应真实 JD；叶只保持会用。枝 C 由金博 MVP 锚定具体选型。</div>
+</div>
+
+<h2>六、路线图（张约 20h/周，OPC 优先，主 FDE 副体系）</h2>
+
+<p>按每周约 20 小时、全年约 1000 小时安排，五个阶段有并行。<strong>阶段 1（管线工程）是主轴，阶段 2（智能体/知识库）由金博 MVP 锚定</strong>。若某月只能做一件事，做阶段 1 与阶段 3（交付文档）。</p>
+
+<div class="fig">
+<svg viewBox="0 0 680 360" width="100%" role="img" xmlns="http://www.w3.org/2000/svg">
+<title>张的 12 个月路线图时间轴</title>
+<desc>五个阶段在 12 个月上的分布，含并行关系与关键里程碑</desc>
+<text x="20" y="24" font-family="system-ui,sans-serif" font-size="14" font-weight="600" fill="#1B1B19">路线图：五阶段 × 12 个月（张）</text>
+<g font-family="system-ui,sans-serif" font-size="11" fill="#6A6A64">
+<text x="150" y="48">M1</text><text x="210" y="48">M2</text><text x="270" y="48">M3</text><text x="330" y="48">M4</text><text x="390" y="48">M5</text><text x="450" y="48">M6</text><text x="510" y="48">M7</text><text x="570" y="48">M8-12</text>
+</g>
+<line x1="150" y1="54" x2="640" y2="54" stroke="#DCE3EC" stroke-width="1"/>
+
+<text x="20" y="82" font-family="system-ui,sans-serif" font-size="12" fill="#33332F">阶段0</text>
+<rect x="150" y="70" width="120" height="22" rx="5" fill="#9FB6CC"/>
+<text x="362" y="85" font-family="system-ui,sans-serif" font-size="11" fill="#6A6A64">连接器重构 · 60h · 停点：新模型API 1天能接</text>
+
+<text x="20" y="122" font-family="system-ui,sans-serif" font-size="12.5" font-weight="600" fill="#155E8F">阶段1</text>
+<rect x="200" y="110" width="280" height="26" rx="5" fill="#2E7DB8"/>
+<text x="215" y="127" font-family="system-ui,sans-serif" font-size="11.5" fill="#fff">管线工程主线 · 200h · 主轴</text>
+<text x="490" y="127" font-family="system-ui,sans-serif" font-size="11" fill="#6A6A64">里程碑：manhua.py 长出批量管线</text>
+
+<text x="20" y="162" font-family="system-ui,sans-serif" font-size="12" fill="#33332F">阶段2</text>
+<rect x="280" y="150" width="230" height="22" rx="5" fill="#5AA0D6"/>
+<text x="295" y="165" font-family="system-ui,sans-serif" font-size="11" fill="#042C53">智能体与知识库 · 250h · 金博锚定</text>
+
+<text x="20" y="202" font-family="system-ui,sans-serif" font-size="12" fill="#33332F">阶段3</text>
+<rect x="360" y="190" width="180" height="22" rx="5" fill="#E0A23C"/>
+<text x="375" y="205" font-family="system-ui,sans-serif" font-size="11" fill="#412402">交付与实施 · 180h</text>
+<text x="548" y="205" font-family="system-ui,sans-serif" font-size="11" fill="#6A6A64">手册/SOP/验收</text>
+
+<text x="20" y="242" font-family="system-ui,sans-serif" font-size="12" fill="#33332F">阶段4</text>
+<rect x="470" y="230" width="170" height="22" rx="5" fill="#4E8A46"/>
+<text x="485" y="245" font-family="system-ui,sans-serif" font-size="11" fill="#fff">验证与产品化 · 240h</text>
+
+<line x1="330" y1="70" x2="330" y2="252" stroke="#155E8F" stroke-width="1" stroke-dasharray="3 3"/>
+<circle cx="330" cy="65" r="4" fill="#155E8F"/>
+<text x="270" y="278" font-family="system-ui,sans-serif" font-size="11" fill="#155E8F">↑ 第 6 周：可接校内轻量交付</text>
+
+<line x1="600" y1="110" x2="600" y2="252" stroke="#4E8A46" stroke-width="1" stroke-dasharray="3 3"/>
+<circle cx="600" cy="252" r="4" fill="#4E8A46"/>
+<text x="470" y="278" font-family="system-ui,sans-serif" font-size="11" fill="#2F5C2C">↑ 第 9 月：第一个付费 FDE 案例+课程方产出</text>
+
+<rect x="20" y="300" width="640" height="48" rx="8" fill="#F4F7FA" stroke="#DCE3EC" stroke-width="0.5"/>
+<text x="36" y="322" font-family="system-ui,sans-serif" font-size="12" font-weight="600" fill="#24486F">贯穿全程：每阶段双产出</text>
+<text x="36" y="340" font-family="system-ui,sans-serif" font-size="11.5" fill="#33332F">① 项目作品（真实交付） —— ② 教学模块（能讲清）</text>
+</svg>
+<div class="cap">图 4　五阶段时间轴与里程碑（张）</div>
+</div>
+
+<h3>阶段 0｜连接器重构（第 1–4 周，约 60 小时）</h3>
+
+<div class="phase">
+<div class="hd"><h3>阶段 0 · 连接器重构</h3><div class="meta">第 1–4 周 ｜ 约 60 小时 ｜ 目标：把"会写 Python"重写为"AI-native 连接器"</div></div>
+<div class="bd">
+<dl class="kv">
+<dt>学什么</dt>
+<dd>不再补语言语法，而是补齐<strong>AI 时代连接器</strong>：大模型 API 调用（含流式/重试/限流）、<strong>结构化输出（JSON Schema/Function Calling）</strong>、<strong>MCP 协议</strong>概念与如何接入第三方 MCP 服务器、向量库基础读写、.env/密钥管理、Docker 基础。本质是把他 20 年开发存量"换成 AI 接口的词汇"。</dd>
+<dt>停止判据（三条全达即停）</dt>
+<dd>① 拿到任意新模型 API，<strong>一天内</strong>能写出可调通的请求+结构化解析；② 能解释 prompt/结构化输出/Function Calling 的区别与适用；③ 能把一个本地脚本包成 Docker 跑起来。</dd>
+<dt>产出 A（作品）</dt>
+<dd>一套"AI 连接器速查"：覆盖 3 类主流模型 API + 1 个 MCP 接入样例的模板库。</dd>
+<dt>产出 B（教学）</dt>
+<dd>一个 60 分钟模块《从 print 到 API：高职生也能接大模型》——直接复用为一级底座"模块 A 调接口"的备课素材。</dd>
+</dl>
+</div>
+</div>
+
+<h3>阶段 1｜管线工程主线（第 5–20 周，约 200 小时 · 核心）</h3>
+
+<p>这是整条路线价值中枢。目标是<strong>把"一次性脚本"长成"可批量、可并发、可质检、可归档"的管线</strong>——manhua.py 的十构件就是这条主线在课内的投影。</p>
+
+<div class="phase">
+<div class="hd"><h3>阶段 1 · 管线工程</h3><div class="meta">第 5–20 周 ｜ 约 200 小时 ｜ 这条不过关，阶段 2/3 不成立</div></div>
+<div class="bd">
+<dl class="kv">
+<dt>1.1 批处理与并发</dt>
+<dd>从"跑一条"到"跑一万条"：任务队列、并发控制、失败重试、成本统计。对应 manhua.py 构件 9（批量出图）。</dd>
+<dt>1.2 一致性与质检</dt>
+<dd>把"看着对不对"翻译成可勾选判据（manhua.py 的 <span class="mono">consistency_score</span> 与 <span class="mono">pick_best</span>）。这一层是张与董老师接口的所在：他出"图"，她定"图算不算合格"，但质检脚本由他实现、验收清单由她定。</dd>
+<dt>1.3 版本与归档</dt>
+<dd>产物命名规范、版本号、生产日志（manhua.py 的 <span class="mono">production_log.csv</span> 与 <span class="mono">meta.json</span> 三态 status）。这套契约是未来与 JS 工具组、与董老师资产包对齐的文件接口。</dd>
+<dt>产出 A（里程碑作品）</dt>
+<dd><strong>一条可复用管线</strong>：输入 SKU 清单/需求 brief → 批量出图 → 自动质检 → 输出合格素材包 + 生产记录。它既是课内教具，也是未来 FDE 交付的雏形。</dd>
+<dt>产出 B（教学）</dt>
+<dd>一门 3 小时课《把一次性脚本变成生产线》——直接对应二级训练营 B1–B5 工程能力。</dd>
+<dt>验收判据</dt>
+<dd>① 丢 100 条任务进去，零人工干预跑完；② 把管线文档给一个没学过的人，他能按文档复现。</dd>
+</dl>
+</div>
+</div>
+
+<h3>阶段 2｜智能体与知识库（第 9–28 周，约 250 小时，金博 MVP 锚定）</h3>
+
+<div class="phase">
+<div class="hd"><h3>阶段 2 · 智能体与知识库</h3><div class="meta">第 9–28 周 ｜ 约 250 小时 ｜ 真实 MVP 样本驱动，不空学</div></div>
+<div class="bd">
+<dl class="kv">
+<dt>技术栈（来自金博 MVP 实证）</dt>
+<dd>RAG 全栈：<span class="mono">bge-m3</span> 向量化 + <span class="mono">pgvector</span> + <span class="mono">bge-reranker</span> + <span class="mono">RAGAS</span> 评测 + <span class="mono">MinerU</span> 文档解析；编排用 <span class="mono">Dify</span>（与 Coze/n8n 同层，"能托管不自研"）；接入用企微机器人 + Docker Compose 部署。</dd>
+<dt>核心判据（金博给了刻度）</dt>
+<dd>MVP 只需 JD 技术面的 <span class="hi">≈35%</span>，决定性是<strong>选型</strong>；100h 的 RAG 调优直觉<strong>只能靠真实项目喂出来</strong>。所以本阶段必须绑定一个真实样本（校内行政问答 / 本地中小企业知识库），否则只是配通 Dify 的 L2 执行层。</dd>
+<dt>Agent 与多智能体</dt>
+<dd>规划-执行-反思-人工审批节点；工具 schema 设计；成本/延迟权衡；<strong>MCP</strong> 接入第三方服务。2026 起 MCP 取代大量 bespoke 集成代码，这部分是张作为"架构者"的溢价点。</dd>
+<dt>产出 A / B</dt>
+<dd><strong>A</strong>：一个可演示的真实 RAG/Agent 交付（附评测集与准确率报告）。<strong>B</strong>：模块《RAG 不是调 API：从选型到验收》——含金博脱敏案例，是课程方最稀缺的"真做过"素材。</dd>
+</dl>
+</div>
+</div>
+
+<h3>阶段 3｜交付与实施（第 17–36 周，约 180 小时）</h3>
+
+<div class="phase">
+<div class="hd"><h3>阶段 3 · 交付与实施</h3><div class="meta">第 17–36 周 ｜ 约 180 小时 ｜ 把"能做"变成"能交付、能验收、能讲清"</div></div>
+<div class="bd">
+<dl class="kv">
+<dt>交付三件套（JD 高频但最易被忽略）</dt>
+<dd>①<strong>实施方案</strong>（需求调研 → 场景拆解 → 技术选型 → 落地计划）；②<strong>培训手册 / SOP</strong>（分层培训计划 + 标准化操作手册，厦门 JD 原话）；③<strong>验收报告</strong>（准确率/节省工时/边界说明）。金博的 30%/40%/30% 里程碑结算 + Phase 0 单独立项是范本。</dd>
+<dt>售前与洽谈</dt>
+<dd>方案讲解、Demo/POC、价值传递（飞书广州 JD 核心）。这是张相对纯工程师的短板，需定向练——但靠 MBA 业务翻译力可快速补齐，不必从零。</dd>
+<dt>客户边界管理</dt>
+<dd>把"MVP 边界写进合同""哪些不做"写清楚，避免无限兜底。这一点金博文档已给出可复用模板。</dd>
+<dt>产出 A / B</dt>
+<dd><strong>A</strong>：一套可复用的交付模板库（方案/手册/验收/合同边界）。<strong>B</strong>：模块《AI 项目怎么交付：从 PoC 到验收》。</dd>
+</dl>
+</div>
+</div>
+
+<h3>阶段 4｜验证与产品化（第 29–52 周，约 240 小时）</h3>
+
+<div class="phase">
+<div class="hd"><h3>阶段 4 · 验证与产品化</h3><div class="meta">第 29–52 周 ｜ 约 240 小时 ｜ 内部自嗨与外部验证的分界线</div></div>
+<div class="bd">
+<dl class="kv">
+<dt>核心动作：2–3 个外部真实项目</dt>
+<dd>不是模拟题，是别人付钱或至少愿意署名的项目（校内部门 / 本地中小企业 / 电商商家均可）。作用是把阶段 1–3 建立的规范放到不认识的人手里验证——只有这步能回答"我的方法是通用方法，还是只有我自己跑得通"。</dd>
+<dt>建立季度更新机制</dt>
+<dd>把课程内容分"不变内核"（需求翻译逻辑、交付模板结构、验收判据）与"季度外壳"（具体框架截图/模型名）两层。每次模型迭代只重做 20%。</dd>
+<dt>产出 A / B</dt>
+<dd><strong>A</strong>：2–3 个可署名交付案例 + 1 份对外作品集。<strong>B</strong>：一门完整的 FDE 标准课（大纲/课件/实操素材/考核/讲师手册），并至少交付一个班次——这既是课程方产品，也是 OPC 可规模化载体。</dd>
+<dt>走到这步才谈产品化</dt>
+<dd>管线模板、RAG 方案包、交付手册——都建立在前面阶段产物上。顺序反了会变成"先做产品再找内核"，卖不动也讲不深。</dd>
+</dl>
+</div>
+</div>
+
+<h2>七、每一步都能变成钱：三重身份兑现路径</h2>
+
+<table>
+<thead><tr><th style="width:14%">阶段</th><th style="width:24%">交付物</th><th style="width:30%">① 作为交付方（OPC/合作）</th><th style="width:32%">② 作为课程方（讲师）</th></tr></thead>
+<tbody>
+<tr><td>阶段 0</td><td>连接器速查模板</td><td>接低价 API 对接单，摸行情</td><td>一级底座"模块 A"备课素材</td></tr>
+<tr><td>阶段 1</td><td><strong>可复用管线</strong></td><td>电商/校内批量素材交付</td><td>二级训练营 B1–B5 核心 Demo</td></tr>
+<tr><td>阶段 2</td><td>RAG/Agent 交付</td><td>企业知识库/智能体项目</td><td>"真做过"的稀缺课程素材</td></tr>
+<tr><td>阶段 3</td><td>交付模板库</td><td>独立接 FDE 小单的抓手</td><td>差异化课时（多数讲师讲不了）</td></tr>
+<tr><td>阶段 4</td><td>2–3 案例 + 一门标准课</td><td>定价权来源（中高位 15K+ 档）</td><td>完整可售 FDE 课程产品</td></tr>
+</tbody>
+</table>
+
+<div class="callout ok">
+<div class="t">给张的客户是谁：飞书系 JD 已把答案写好了</div>
+<p style="margin:6px 0 0">FDE 的买单方横跨：① <strong>企业服务商</strong>（飞书/字节/原厂，需要能把产品落地到客户业务的人，厦门/广州/苏州 JD 即此）；② <strong>传统企业</strong>（安庆阿里国际站、金博电梯这类"AI 落地需要但没人愿干/不会干的活"，不在 985 筛选体系）；③ <strong>院校与培训市场</strong>（需要"真做过交付、还能讲清楚"的讲师）。<br><br>
+<span class="hi">张的特殊杠杆：高职教师身份让他能以"产教融合/校企合作"拿到前两类客户以低价甚至免费给的机会</span>——纯自由职业者拿不到这种产业入口。这是 OPC 视角下"教育身份"的隐藏价值，不要当包袱。</p>
+</div>
+
+<h2>八、明确不学清单（按 JD 频次与定位倒推）</h2>
+
+<table>
+<thead><tr><th style="width:24%">不学</th><th class="c" style="width:12%">JD 频次</th><th>为什么可以不学</th></tr></thead>
+<tbody>
+<tr><td><strong>算法科研 / 从零训练</strong></td><td class="c">0</td><td>8 份 FDE JD <strong>没有一份</strong>要求算法深度。精灵云明确写"无需深度算法科研能力"。张 48 岁不与 25 岁算法工程师竞争，这是对的退避。</td></tr>
+<tr><td><strong>前端深水 / 重客户端</strong></td><td class="c">0</td><td>FDE 是应用/交付层，界面靠低代码（Coze/飞书多维表/Dify）托管，不必自研前端。</td></tr>
+<tr><td><strong>纯售前（无交付）</strong></td><td class="c">—</td><td>只讲方案不交付，稀缺性低且不符"真实交付"护城河。张要走"方案+交付"一体。</td></tr>
+<tr><td><strong>单模型原理钻研</strong></td><td class="c">低</td><td>选型判断力比背原理值钱（金博实证）。理解到能选型、能沟通即可，不必追论文。</td></tr>
+<tr><td>Prompt 技巧（作为主业）</td><td class="c">6 / 75%</td><td>频次高但<strong>饱和快</strong>：阶段 0 练到够用就停。它值钱的形式是"沉淀成模板库"（JD 原话），不是"背更多技巧"。</td></tr>
+</tbody>
+</table>
+
+<h2>九、季度自检与纠偏</h2>
+
+<p>每季度做一次，对照六条。<strong>前三条任一不过关，说明路线偏了，退回上一阶段重做，不要继续往前。</strong></p>
+
+<ol>
+<li><strong>外部性检查</strong>：本季有没有至少一件东西被<strong>不认识的人</strong>使用或付费？没有 → 停在自嗨边缘，立刻补真实样本。</li>
+<li><strong>复现检查</strong>：把管线/模板文档给一个人按着做，他能做到吗？不能 → 交付的是手艺不是标准，定价会被锁在 L2。</li>
+<li><strong>不可替代性检查</strong>：本季学的东西，一个刚毕业的计算机本科生三个月能不能追上？能 → 这项投入白费，砍掉。</li>
+<li><strong>双产出检查</strong>：每阶段"项目作品"和"教学模块"都产出了吗？只有一边 → 半年后要么没作品、要么没内核。</li>
+<li><strong>JD 对照检查</strong>：重新抓 10 份最新 FDE JD，看正在学的还在不在。工具/框架类一旦消失，立刻降优先级。</li>
+<li><strong>定价检查</strong>：产出是在"自己干执行"（拿 5–8K 价），还是在"翻译业务+兜底结果"（拿 15K+ 价）？一直在前者 → 阶段 3 没真正过关。</li>
+</ol>
+
+<h2>十、最需要警惕的两条路径</h2>
+
+<div class="callout danger">
+<div class="t">失败路径 A：停在工具层做"全能 AI 讲师"</div>
+<p style="margin:6px 0 0">表现：什么框架都会接，课也讲得热闹，但回答不了"怎么保证一个企业知识库问答准确率达标、怎么交付验收"。<br>为什么失败：这个位置供给庞大、价格被压（厦门 5–8K 即此档）。强模型/框架半年一代，每年重做，积累归零。张的 MBA+交付经验若只用来讲工具，是降维浪费。</p>
+</div>
+
+<div class="callout danger">
+<div class="t">失败路径 B：只有 PPT 项目，没有真实交付</div>
+<p style="margin:6px 0 0">表现：知识量很大，讲什么头头是道，但拿不出一个别人能用、能验收的真实交付案例。<br>为什么失败：阶段 2 的"真实项目喂养"没过。这一条不过，护城河"真实交付×教学转化"塌掉——而那是张相对于纯 AI 讲师、纯工程师的唯一稀缺点。<br><br><span class="hi">纠偏：现在就停掉纯学习，回到阶段 1/2，把一个真实交付做完整做完整做完整。</span></p>
+</div>
+
+<footer>
+<p><strong>数据来源</strong>：2026 年 9 月检索所得 FDE / AI 交付在招 JD 共 8 份，来源含全职招聘网、职坐标 IT 招聘、猎聘、国聘、智联等公开渠道；真实企业样本为张资料库《金博 AI 落地-MVP 方案与技能 Gap 分析》（石家庄本地电梯厂 RAG 技术支持，170h Gap、8 周 MVP）。全球趋势参考 FDE 岗位 2026 同比 +729%（仅作方向，非国内定价）。</p>
+<p><strong>可信度声明</strong>：JD 薪资为岗位原文所标区间，未做加权平均。技能频次为上述 8 份样本统计，用于判断技能结构而非市场占比。媒体转述的"AI 岗位均价 3 万"一类数字未予采用。</p>
+<p style="margin-top:16px"><strong>分工边界（与董老师主副配合）</strong>：张管"怎么批量跑、怎么交付"的技术底座与 FDE；董老师（AIGC 应用路线）管电商+短剧的视觉标准（什么算合格）。<span class="hi">张不替董老师定视觉标准</span>——否则她内核废；董老师不钻工程实现，脚本/部署由张承担。两人接口 = manhua.py 的 <code>meta.json</code>（status 三态 + score）与资产包规范文档。本文是 AI 培训体系三份核心文档之一，另见《AI培训体系总纲》《董老师 AIGC 应用路线 · 详细技能树与路线图》。</p>
+</footer>
+
+</div>
+</body>
+</html>

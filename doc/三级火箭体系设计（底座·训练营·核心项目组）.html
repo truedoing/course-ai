@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>三级火箭体系设计：底座 · 训练营 · 核心项目组</title>
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;padding:40px 20px 80px;background:#FFFFFF;color:#1F2328;
+    font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif;
+    font-size:15px;line-height:1.85;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:920px;margin:0 auto}
+  .kicker{font-size:12.5px;letter-spacing:.14em;color:#0C447C;font-weight:600;margin-bottom:14px}
+  h1{font-size:29px;line-height:1.4;margin:0 0 14px;font-weight:700;letter-spacing:-.01em}
+  .sub{font-size:16px;color:#57606A;margin:0 0 10px;line-height:1.7}
+  .meta{font-size:12.5px;color:#8A919A;border-top:1px solid #EAECEF;border-bottom:1px solid #EAECEF;padding:12px 0;margin:22px 0 34px}
+  h2{font-size:21px;margin:52px 0 16px;padding-left:13px;border-left:4px solid #0C447C;font-weight:700;line-height:1.5}
+  h3{font-size:16.5px;margin:32px 0 12px;font-weight:600;color:#0C447C}
+  h4{font-size:15px;margin:24px 0 8px;font-weight:600;color:#24292F}
+  p{margin:0 0 15px}
+  ul,ol{margin:0 0 16px;padding-left:22px}
+  li{margin-bottom:9px}
+  strong{font-weight:600}
+  em{font-style:normal;background:#FFF6DA;padding:1px 3px;border-radius:3px}
+  code{font-family:'SFMono-Regular',Consolas,'Liberation Mono',monospace;font-size:13px;background:#F2F4F7;padding:1px 5px;border-radius:4px;color:#0C447C}
+  table{width:100%;border-collapse:collapse;margin:18px 0 24px;font-size:13.5px}
+  th{background:#F4F6F8;text-align:left;padding:10px 11px;font-weight:600;color:#24292F;border-bottom:2px solid #DDE1E5;white-space:nowrap}
+  td{padding:10px 11px;border-bottom:1px solid #EAECEF;vertical-align:top;line-height:1.7}
+  tr:hover td{background:#FAFBFC}
+  .ok{color:#0B5B47;font-weight:600}
+  .cut{color:#A32D2D;font-weight:600}
+  .mid{color:#7A4A0A;font-weight:600}
+  .j{color:#3D444D;font-size:13px}
+  .key{background:#E6F1FB;border-left:4px solid #0C447C;padding:16px 20px;margin:22px 0;border-radius:0 8px 8px 0}
+  .key p:last-child{margin-bottom:0}
+  .box{background:#F7F8FA;border:1px solid #E6E8EB;padding:16px 20px;border-radius:8px;margin:20px 0}
+  .box p:last-child{margin-bottom:0}
+  .warnbox{background:#FAEEDA;border-left:4px solid #BA7517;padding:16px 20px;margin:20px 0;border-radius:0 8px 8px 0}
+  .warnbox p:last-child{margin-bottom:0}
+  .fixbox{background:#F4F0FB;border-left:4px solid #6E5AC8;padding:16px 20px;margin:20px 0;border-radius:0 8px 8px 0}
+  .fixbox p:last-child{margin-bottom:0}
+  .fig{margin:26px 0 30px}
+  .fig svg{display:block;width:100%;height:auto}
+  .fig figcaption{font-size:12.5px;color:#57606A;margin-top:10px;line-height:1.65}
+  .foot{margin-top:56px;padding-top:22px;border-top:1px solid #EAECEF;font-size:12.5px;color:#8A919A}
+  .foot ul{padding-left:20px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<p class="kicker">AIGC 赛道收窄 · 三级体系设计</p>
+<h1>三级火箭：语言底座 · 工程训练营 · 核心项目组</h1>
+<p class="sub">确认资源配置方案 A 之后，把"课内 + 训练营 + 精英班"合成一套能长上去、也能各自失效的体系</p>
+<p class="meta">设计时间：2026 年 9 月 ｜ 前提：方案 A（电商做课内主线与训练营主力，漫剧做核心组课余项目）｜ 学生：大二，距实习约一年 ｜ 配套：《电商视觉与漫剧两条赛道平行对比评估》《Python 课程改造方案（第 3 章起）》《AIGC 训练营执行计划》《训练营组织形式与两班合轨方案》</p>
+
+<h2>一、先确认：框架对，但有三处要改</h2>
+
+<div class="key">
+<p><strong>你的三级划分是对的，而且它比"选赛道"高一层——选赛道是第三级的事，第二级压根不该分。</strong>但直接按"火箭一级一级往上推"来理解会塌一处，改完这三处它才立得住。</p>
+</div>
+
+<h3>第一处：级与级是依赖顺序，不是时间顺序</h3>
+
+<p>如果三级串行推进——第一级讲完（第 15 周）再开第二级（16 周），第二级结束再选第三级——总共需要 40 周以上，加上寒暑假，一年窗口根本装不下，而且第三级开课就到实习前了。</p>
+
+<p>正确关系是：<strong>第一级是底座，必须先有；第二级和第三级在时间上并行。</strong>第二级第 4 周就启动，不等课内讲完（理由见第五节）；第三级是第二级里跑得快的那批人，不是等第二级"毕业"才成立的新班。</p>
+
+<h3>第二处：第二级的"通用"要钉死，否则会滑成工具课</h3>
+
+<p>"AIGC 通用技能"这个说法有个陷阱：它很容易被理解成"通用的 AIGC 工具操作"——ComfyUI 怎么用、提示词怎么写、MJ 参数怎么调。<strong>如果第二级教成这个，第三级一个人也长不出来</strong>，因为工具操作不产生工程能力，学生到第三级还是不会写管线。</p>
+
+<p>钉死的定义是：<strong>第二级教的是两条赛道共享的那八成工程能力</strong>——批量与并发、一致性控制、归档与版本、质检与筛选、工作流封装。它"通用"是因为这两条赛道都要用，不是因为它浅。</p>
+
+<h3>第三处：第三级建议不叫"精英班"</h3>
+
+<p>"精英"意味着选拔，而选拔意味着有人被淘汰——对专科生来说，被"选不上"的体验会直接影响他对整条路径的态度，也很容易让第二级剩下的二十几个人产生"那我就不是这块料"的判断。</p>
+
+<p>更准确的描述是：<strong>第三级的人不是"选"出来的，是"剩"下来的</strong>——第二级的节奏是每周必须有交付，跟不上的自然停在第二级，跟得上的自然进入第三级。所以叫<strong>核心项目组</strong>更贴切，它是按交付物自然分化的结果，不是考试的结果。</p>
+
+<figure class="fig">
+<svg viewBox="0 0 900 386" width="100%" role="img" aria-label="三级体系：第一级语言底座面向全体，第二级工程训练营招三十留十二，第三级核心项目组十到十二人">
+  <g font-family="-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif">
+    <rect x="250" y="40" width="400" height="82" rx="10" fill="#85B7EB" stroke="#185FA5" stroke-width="0.5"/>
+    <text x="270" y="66" font-size="14.5" font-weight="600" fill="#042C53">第三级 · 核心项目组</text>
+    <text x="270" y="90" font-size="12.5" fill="#0C447C">10–12 人 · 大二下 · 从训练营里长出来，不是考出来的</text>
+    <text x="270" y="110" font-size="12.5" fill="#0C447C">分叉：电商素材管线 / 漫剧生产管线</text>
+
+    <line x1="450" y1="140" x2="450" y2="126" stroke="#8A919A" stroke-width="1.5"/>
+    <path d="M444 130 L450 122 L456 130 Z" fill="#8A919A"/>
+
+    <rect x="190" y="142" width="520" height="82" rx="10" fill="#B5D4F4" stroke="#378ADD" stroke-width="0.5"/>
+    <text x="210" y="168" font-size="14.5" font-weight="600" fill="#042C53">第二级 · AIGC 工程训练营</text>
+    <text x="210" y="192" font-size="12.5" fill="#0C447C">志愿 · 招 30 留 12 · 第 4 周启动，不等课内讲完</text>
+    <text x="210" y="212" font-size="12.5" fill="#0C447C">两条赛道共享的八成：批量 一致性 归档 质检 工作流</text>
+
+    <line x1="450" y1="242" x2="450" y2="228" stroke="#8A919A" stroke-width="1.5"/>
+    <path d="M444 232 L450 224 L456 232 Z" fill="#8A919A"/>
+
+    <rect x="40" y="244" width="820" height="100" rx="10" fill="#E6F1FB" stroke="#85B7EB" stroke-width="0.5"/>
+    <text x="60" y="272" font-size="14.5" font-weight="600" fill="#042C53">第一级 · 语言底座</text>
+    <text x="60" y="298" font-size="12.5" fill="#0C447C">Python 课内剩余 60 学时 + JS 前端课 · 全体学生，没有选拔、没有门槛</text>
+    <text x="60" y="322" font-size="12.5" fill="#0C447C">语法内核 + 连接器：调接口、文件批处理、Git、读报错</text>
+
+    <text x="40" y="366" font-size="12.5" fill="#57606A">级与级之间是依赖顺序，不是时间顺序：第二级与第三级在时间上并行推进</text>
+  </g>
+</svg>
+<figcaption>图 1 ｜ 三级体系。宽度代表覆盖面，颜色深度代表强度。<strong>第一级决定这条路径能覆盖多少人，第三级决定它能撑多高</strong>——两级缺一不可，但作用相反。</figcaption>
+</figure>
+
+<h2>二、三级的边界总表</h2>
+
+<table>
+<thead><tr><th style="width:96px">级别</th><th style="width:150px">载体与性质</th><th style="width:88px">容量</th><th style="width:120px">时间锚点</th><th>教什么</th><th style="width:150px">结课产出</th></tr></thead>
+<tbody>
+<tr><td><strong>一级</strong><br>语言底座</td><td>课内必修<br><span class="j">Python 剩余 60 学时<br>JS 前端课（另两班）</span></td><td class="ok">全体<br><span class="j">不淘汰</span></td><td>本学期<br>第 3–15 周</td><td>语法内核（流程、字符串、容器、函数、文件、类、异常）+ <strong>连接器</strong>（调接口、文件批处理、Git、读报错）</td><td>一个能跑通的完整脚本<br><span class="j">+ README</span></td></tr>
+<tr><td><strong>二级</strong><br>工程训练营</td><td>社团志愿<br><span class="j">每周 2 小时</span></td><td class="mid">招 30<br>留 12</td><td>第 4 周启动<br>贯穿一学年</td><td>共享的八成：批量与并发、一致性控制、归档与版本、质检与筛选、工作流封装<br><span class="j">前 8 周不写代码</span></td><td>一本条漫 / 一套电商素材包<br><span class="j">含生产记录</span></td></tr>
+<tr><td><strong>三级</strong><br>核心项目组</td><td>课余项目组<br><span class="j">真实交付</span></td><td class="ok">10–12 人</td><td>大二上末定人<br>大二下出作品</td><td>分叉的两成：电商侧（SKU 表、平台尺寸规范、去背换背景、上架交付）/ 漫剧侧（角色参考图、分镜参数表、图转视频、音画合成）</td><td>可投稿或可接单的完整作品<br><span class="j">+ 成本核算表</span></td></tr>
+</tbody>
+</table>
+
+<h2>三、第一级：语言底座</h2>
+
+<h3>它的职责是"让所有人都有一个最低能用的能力"</h3>
+
+<p>第一级不教赛道，它教两样：<strong>用代码表达逻辑</strong>，以及<strong>让代码接上外部世界</strong>。第二样叫"连接器"，是整套体系里最关键也最容易被忽略的一层——学生不是语法不过关，是不知道怎么让程序跟外面的东西说话。</p>
+
+<p>连接器的构成与课时（已含在 60 学时内，不额外要课时）：</p>
+
+<ul>
+<li><strong>HTTP 与调接口 4 学时</strong>——requests、JSON、密钥怎么放。这是后面所有内容的引擎，<strong>提前到第 7 章之后就讲，不等全部章节讲完</strong>。</li>
+<li><strong>文件批处理 4 学时</strong>——路径遍历、PIL 改尺寸加水印、ffmpeg 命令行。电商换尺寸、漫剧合成帧，都用这一块。</li>
+<li><strong>Git 与虚拟环境 2 学时</strong>——不教分支模型，只教"提交、回退、看历史"三件事，够用即可。</li>
+<li><strong>读报错 0 学时</strong>——不单独排课，贯穿每一次练习。<strong>会读 traceback 比会写新代码更优先</strong>，它也是期末卷面最能区分真会假会的题型。</li>
+</ul>
+
+<div class="box">
+<p><strong>第一级的验收标准只有一条：结课时交出一个"别人能跑起来"的脚本。</strong>不是跑通一次给老师看，是把仓库发过去，对方照 README 能跑出来。作业是跑一次，工作是跑一百次——这个区别在第一级就要建立起来。</p>
+</div>
+
+<h3>JS 班在这里的位置</h3>
+
+<p>第一级含两个语言底座：Python 和 JS。<strong>它们不是两个专业方向，是同一条生产线的两端</strong>——Python 造引擎，JS 造控制台（任务队列、素材库、审核界面、数据看板）。</p>
+
+<p>对 JS 课程本身，这顺带解决了前端岗位收缩的困境：<strong>为 AI 内容生产做工具界面是新增量</strong>，仍然在写前端，只是服务对象从 C 端页面变成了生产流水线。同一套技术栈换一个还在增长的对象，是成本最低的转身方式。</p>
+
+<p>两个班的课内内容不必统一，但<strong>连接器那一层必须讲同一套</strong>——调接口、JSON、鉴权、错误处理，两边口径一致，第二级才有共通语言。</p>
+
+<h2>四、第二级：AIGC 工程训练营</h2>
+
+<h3>这一级最重要的设计不是"教什么"，是"每周必须交"</h3>
+
+<p>前面说过，第三级的人不是选出来的是剩下来的。这句话反过来决定了第二级的核心机制：<strong>它靠交付节奏自然分层，不靠考试。</strong></p>
+
+<p>所以第二级的硬性规则只有三条，写在招募通知里：</p>
+
+<ul>
+<li>每周固定 2 小时，<strong>每周必须有交付</strong></li>
+<li>连续两周不交，自动退出（保留旁听）</li>
+<li>交付物必须可复现——别人按你的记录能做出同样的东西</li>
+</ul>
+
+<p>第三条最容易被忽略，但它是工程能力和操作能力的分水岭。<strong>能出一张好图是操作，能写出"我用什么参数、跑了几次、筛掉了几张"才是工程。</strong></p>
+
+<h3>时间线：前 8 周不写代码</h3>
+
+<p>第一次课不要装环境、不要讲原理、不要讲扩散模型是什么。用现成的界面或平台，<strong>30 分钟内让他出第一张图</strong>。这个方向唯一的留存机制是可见产出，讲道理留不住人。</p>
+
+<p>代码在第 12 周前后介入（与课内讲到真实接口的时点合流）。到那时他已经在手动流程里卡了两个月——批量改尺寸改到手酸、想让十张图长得像同一个人却做不到——这时候脚本不是新知识点，是他等了很久的工具。</p>
+
+<h3>关键设计：第 9 周必须给两个样品</h3>
+
+<p>这是整套体系里最容易做漏的一步，但它决定第三级能不能长出人。</p>
+
+<p>如果第二级全程只教"通用的 AIGC"，学生到结束时仍然不知道电商和漫剧各自长什么样，第三级就会出现两种情况：要么没人报名，要么报名的人是被分配的而不是自驱的。<strong>两种情况都会让第三级在第一学期末就死掉。</strong></p>
+
+<figure class="fig">
+<svg viewBox="0 0 900 226" width="100%" role="img" aria-label="第二级的分叉机制：前八周共享，第九周给两个样品，第十一周自选，第十二周起分流">
+  <g font-family="-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif">
+    <rect x="40" y="50" width="170" height="110" rx="10" fill="#E6F1FB" stroke="#85B7EB" stroke-width="0.5"/>
+    <text x="125" y="78" text-anchor="middle" font-size="13.5" font-weight="600" fill="#0C447C">第 1–8 周</text>
+    <text x="125" y="102" text-anchor="middle" font-size="12.5" fill="#0C447C">共享的八成</text>
+    <text x="125" y="124" text-anchor="middle" font-size="12" fill="#57606A">全体 · 不写代码</text>
+
+    <line x1="212" y1="105" x2="238" y2="105" stroke="#8A919A" stroke-width="1.5"/>
+    <path d="M236 99 L244 105 L236 111 Z" fill="#8A919A"/>
+
+    <rect x="244" y="50" width="200" height="110" rx="10" fill="#FAEEDA" stroke="#BA7517" stroke-width="0.5"/>
+    <text x="344" y="72" text-anchor="middle" font-size="13.5" font-weight="600" fill="#7A4A0A">第 9–10 周 · 两个样品</text>
+    <rect x="256" y="84" width="176" height="30" rx="6" fill="#FFFFFF" stroke="#E3C48D" stroke-width="0.5"/>
+    <text x="344" y="103" text-anchor="middle" font-size="12.5" fill="#7A4A0A">电商：一套真实商品素材包</text>
+    <rect x="256" y="120" width="176" height="30" rx="6" fill="#FFFFFF" stroke="#E3C48D" stroke-width="0.5"/>
+    <text x="344" y="139" text-anchor="middle" font-size="12.5" fill="#7A4A0A">漫剧：30 秒成片片段</text>
+
+    <line x1="446" y1="105" x2="472" y2="105" stroke="#8A919A" stroke-width="1.5"/>
+    <path d="M470 99 L478 105 L470 111 Z" fill="#8A919A"/>
+
+    <rect x="478" y="50" width="150" height="110" rx="10" fill="#F4F0FB" stroke="#6E5AC8" stroke-width="0.5"/>
+    <text x="553" y="78" text-anchor="middle" font-size="13.5" font-weight="600" fill="#443BA8">第 11 周</text>
+    <text x="553" y="102" text-anchor="middle" font-size="12.5" fill="#443BA8">自己选</text>
+    <text x="553" y="124" text-anchor="middle" font-size="12" fill="#57606A">不考试，不分配</text>
+
+    <line x1="630" y1="105" x2="656" y2="105" stroke="#8A919A" stroke-width="1.5"/>
+    <path d="M654 99 L662 105 L654 111 Z" fill="#8A919A"/>
+
+    <rect x="662" y="50" width="198" height="110" rx="10" fill="#DFF3EC" stroke="#7FC9AF" stroke-width="0.5"/>
+    <text x="761" y="78" text-anchor="middle" font-size="13.5" font-weight="600" fill="#0B5B47">第 12 周起 · 分流</text>
+    <text x="761" y="102" text-anchor="middle" font-size="12.5" fill="#0B5B47">电商管线组 / 漫剧管线组</text>
+    <text x="761" y="124" text-anchor="middle" font-size="12" fill="#57606A">即第三级的人选</text>
+
+    <text x="40" y="192" font-size="12.5" fill="#57606A">两个样品必须都做出来给学生看，不能只讲。看过的选择才是选择，听过的只是名词。</text>
+    <text x="40" y="214" font-size="12.5" fill="#57606A">第 9 周这一步漏掉，第三级就会在期末前自然消失——不是没人报名，是没有人知道自己在报什么。</text>
+  </g>
+</svg>
+<figcaption>图 2 ｜ 第二级的分叉机制。前 8 周共享、第 9–10 周给样品、第 11 周自选、第 12 周起分流。<strong>两个样品各投入约 2 小时准备，是整学年性价比最高的一次投入</strong>。</figcaption>
+</figure>
+
+<h3>第二级的失败判据</h3>
+
+<div class="warnbox">
+<p><strong>到第二级结束时，看一条：学生能不能独立跑完"需求进来 → 素材出去 → 有记录"这条线。</strong></p>
+<p>能，就进第三级。不能——即使学生很积极、氛围很好、作品也好看——说明第二级教成了兴趣小组或工具课，第三级是长不出人的。<strong>这条判据要在第 8 周就自查一次，不要等到期末。</strong></p>
+</div>
+
+<h2>五、第三级：核心项目组</h2>
+
+<h3>定人时间：第 11 周给完样品之后，不要更早</h3>
+
+<p>常见做法是在训练营开营时就圈定"重点培养对象"。这里不要这么做，两个理由：</p>
+
+<ul>
+<li><strong>前 8 周看不出谁行。</strong>出图阶段表现积极的，往往是本来就爱画画或用惯工具的学生；真正能写出管线的，常常是前期话不多、但每次交付都完整的那几个。</li>
+<li><strong>过早圈人会制造两级分化。</strong>被圈进去的产生特权感，没被圈的提前放弃，第二级的自然分层机制就失效了。</li>
+</ul>
+
+<p>第 11 周自选之后，12 人左右的规模基本会自己浮现——选了电商的就往电商管线走，选了漫剧的就往漫剧走，两边都不选但一直在交付的，给他一个"管线维护"的位置（管素材库、管归档规范、管成本台账），<strong>这个位置在真实团队里是存在的，而且很重要</strong>。</p>
+
+<h3>两条管线的分叉点</h3>
+
+<table>
+<thead><tr><th style="width:110px">环节</th><th style="width:330px">电商素材管线</th><th>漫剧生产管线</th></tr></thead>
+<tbody>
+<tr><td>输入</td><td>SKU 表、白底图、平台尺寸规范</td><td>剧本、角色设定、分镜参数表</td></tr>
+<tr><td>一致性对象</td><td>同一件商品十个角度像同一件<br><span class="j">材质、色彩、logo 位置</span></td><td>同一个人五十集像同一个人<br><span class="j">脸、服装、色调</span></td></tr>
+<tr><td>批量环节</td><td>换背景、换尺寸、去背、多平台适配</td><td>图转视频、音画合成、字幕</td></tr>
+<tr><td>质检标准</td><td>可量化：点击率、转化率、平台过审率</td><td>半量化：废片率、一致性达标率、单集耗时</td></tr>
+<tr><td>产出单元</td><td class="ok">个人</td><td class="mid">小组 3–4 人署名</td></tr>
+<tr><td>人均算力</td><td class="ok">约 120 元</td><td class="mid">约 550 元</td></tr>
+<tr><td>出口</td><td>AI 设计师 4–6 千 → 搭工作流 10–12K</td><td>抽卡师 4–6 千 → 管线工程 25–40K</td></tr>
+</tbody>
+</table>
+
+<p>两条管线<strong>共用同一个脚本的前六个零件</strong>——第 8 章的 <code>Product</code> 类和 <code>Character</code> 类其实是同一个类的两个实例：都是一个"基准资产 + 参数表 + 质检标准"的对象。讲一个，另一个当作业。</p>
+
+<h3>第三级要交的不是作品，是"生产记录"</h3>
+
+<div class="fixbox">
+<p>成片或素材包当然要交，但真正体现工程能力、也真正能在面试里讲的东西是另外一份：<strong>工作流版本号、废片率、单集（单 SKU）耗时、成本核算、遇到的问题与改法。</strong></p>
+<p>顺德那条 10–12K 的 JD 问的是"这条线能不能自己跑"，不是"这张图好不好看"。<strong>能拿出这份记录的学生，已经能和只会出图的应聘者区分开了。</strong></p>
+</div>
+
+<h2>六、一年窗口下的时间表</h2>
+
+<p>把三级压进一条时间轴，四个阶段，注意第二级与第三级的并行关系：</p>
+
+<figure class="fig">
+<svg viewBox="0 0 900 340" width="100%" role="img" aria-label="一年窗口三级并行时间表">
+  <g font-family="-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif">
+    <text x="40" y="30" font-size="12.5" font-weight="600" fill="#57606A"></text>
+    <text x="200" y="30" text-anchor="middle" font-size="12.5" font-weight="600" fill="#57606A">大二上（9–12 月）</text>
+    <text x="400" y="30" text-anchor="middle" font-size="12.5" font-weight="600" fill="#57606A">寒假</text>
+    <text x="600" y="30" text-anchor="middle" font-size="12.5" font-weight="600" fill="#57606A">大二下（3–6 月）</text>
+    <text x="800" y="30" text-anchor="middle" font-size="12.5" font-weight="600" fill="#57606A">暑假（7–8 月）</text>
+
+    <text x="40" y="86" font-size="13.5" font-weight="600" fill="#1F2328">一级</text>
+    <text x="40" y="106" font-size="11.5" fill="#6B7379">课内 60 学时</text>
+    <rect x="120" y="60" width="160" height="60" rx="8" fill="#E6F1FB" stroke="#85B7EB" stroke-width="0.5"/>
+    <text x="200" y="84" text-anchor="middle" font-size="12.5" fill="#0C447C">教材主线</text>
+    <text x="200" y="104" text-anchor="middle" font-size="12.5" fill="#0C447C">第 3–11 章</text>
+    <rect x="300" y="60" width="160" height="60" rx="8" fill="#B5D4F4" stroke="#378ADD" stroke-width="0.5"/>
+    <text x="380" y="84" text-anchor="middle" font-size="12.5" font-weight="600" fill="#042C53">赛道模块</text>
+    <text x="380" y="104" text-anchor="middle" font-size="12.5" fill="#042C53">调接口 批量 交付</text>
+    <rect x="480" y="60" width="160" height="60" rx="8" fill="#F1EFE8" stroke="#D3D1C7" stroke-width="0.5"/>
+    <text x="560" y="92" text-anchor="middle" font-size="12.5" fill="#5F5E5A">—</text>
+    <rect x="680" y="60" width="160" height="60" rx="8" fill="#F1EFE8" stroke="#D3D1C7" stroke-width="0.5"/>
+    <text x="760" y="92" text-anchor="middle" font-size="12.5" fill="#5F5E5A">—</text>
+
+    <text x="40" y="176" font-size="13.5" font-weight="600" fill="#1F2328">二级</text>
+    <text x="40" y="196" font-size="11.5" fill="#6B7379">训练营</text>
+    <rect x="120" y="150" width="160" height="60" rx="8" fill="#B5D4F4" stroke="#378ADD" stroke-width="0.5"/>
+    <text x="200" y="174" text-anchor="middle" font-size="12.5" font-weight="600" fill="#042C53">出图 一致性 分镜</text>
+    <text x="200" y="194" text-anchor="middle" font-size="12.5" fill="#042C53">第 4 周启动</text>
+    <rect x="300" y="150" width="160" height="60" rx="8" fill="#DFF3EC" stroke="#7FC9AF" stroke-width="0.5"/>
+    <text x="380" y="174" text-anchor="middle" font-size="12.5" font-weight="600" fill="#0B5B47">脚本化</text>
+    <text x="380" y="194" text-anchor="middle" font-size="12.5" fill="#0B5B47">手动流程变代码</text>
+    <rect x="480" y="150" width="160" height="60" rx="8" fill="#DFF3EC" stroke="#7FC9AF" stroke-width="0.5"/>
+    <text x="560" y="174" text-anchor="middle" font-size="12.5" font-weight="600" fill="#0B5B47">接本地商家单</text>
+    <text x="560" y="194" text-anchor="middle" font-size="12.5" fill="#0B5B47">真实需求进场</text>
+    <rect x="680" y="150" width="160" height="60" rx="8" fill="#E4EFFB" stroke="#9CC3E8" stroke-width="0.5"/>
+    <text x="760" y="180" text-anchor="middle" font-size="12.5" fill="#0C447C">作品集打包</text>
+
+    <text x="40" y="266" font-size="13.5" font-weight="600" fill="#1F2328">三级</text>
+    <text x="40" y="286" font-size="11.5" fill="#6B7379">核心项目组</text>
+    <rect x="120" y="240" width="160" height="60" rx="8" fill="#F1EFE8" stroke="#D3D1C7" stroke-width="0.5"/>
+    <text x="200" y="264" text-anchor="middle" font-size="12" fill="#5F5E5A">第 11 周定人</text>
+    <text x="200" y="284" text-anchor="middle" font-size="12" fill="#5F5E5A">样品自选后</text>
+    <rect x="300" y="240" width="160" height="60" rx="8" fill="#FAEEDA" stroke="#E3C48D" stroke-width="0.5"/>
+    <text x="380" y="270" text-anchor="middle" font-size="12.5" fill="#7A4A0A">管线封装远程做</text>
+    <rect x="480" y="240" width="160" height="60" rx="8" fill="#85B7EB" stroke="#185FA5" stroke-width="0.5"/>
+    <text x="560" y="264" text-anchor="middle" font-size="12.5" font-weight="600" fill="#042C53">投稿 / 交付</text>
+    <text x="560" y="284" text-anchor="middle" font-size="12.5" fill="#042C53">10 集 2D 漫剧</text>
+    <rect x="680" y="240" width="160" height="60" rx="8" fill="#F4F0FB" stroke="#BDB5F0" stroke-width="0.5"/>
+    <text x="760" y="270" text-anchor="middle" font-size="12.5" fill="#443BA8">对接实习</text>
+
+    <text x="40" y="326" font-size="12.5" fill="#57606A">一级是全体，不淘汰；二级与三级并行推进，三级的人从二级里长出来，不是另开一个班。</text>
+  </g>
+</svg>
+<figcaption>图 3 ｜ 一年窗口的三级并行时间表。<strong>整个体系只有一个硬节点：大二下 3–6 月必须出可交付作品</strong>，倒推回去，第 11 周定人、寒假做脚本化，都没有冗余。</figcaption>
+</figure>
+
+<h2>七、算力预算的三级分配</h2>
+
+<p>按 2026 年 9 月公开单价推算（图片 0.03–0.08 元/张，图生视频 0.3–1.0 元/秒）：</p>
+
+<table>
+<thead><tr><th style="width:96px">级别</th><th style="width:150px">用途</th><th style="width:130px">人均</th><th style="width:110px">合计</th><th>说明</th></tr></thead>
+<tbody>
+<tr><td>一级</td><td>课内演示与练习</td><td class="ok">≈ 0</td><td class="ok">≈ 0</td><td>用离线 mock 跑通流程，真实调用只做教师演示。课内不必让全员烧额度</td></tr>
+<tr><td>二级</td><td>电商素材包 / 条漫</td><td class="mid">约 120 元</td><td class="mid">1.5–3.6 千</td><td>按留存 12–15 人算约 1.5–2 千；按招满 30 人算 3.6 千</td></tr>
+<tr><td>三级</td><td>电商管线 + 漫剧一部</td><td class="cut">300–600 元</td><td class="cut">4–7 千</td><td>漫剧是大头，按 8 人一组出一部组织可压到 4–6 千</td></tr>
+<tr><td colspan="3"><strong>合计</strong></td><td><strong>3–5 千</strong></td><td>这是"电商全员 + 漫剧一个核心组"的量级；要做到两条并重需 1.5 万以上</td></tr>
+</tbody>
+</table>
+
+<div class="box">
+<p><strong>一级几乎不花钱，这一点值得强调。</strong>很多老师的直觉是"要教 AI 就得先有算力和平台"，其实课内完全可以零成本跑通——用 mock 返回固定结果，学生练的是调接口的写法、批处理的逻辑、异常的处理，这些跟真实调用完全一样。<strong>真额度留给二级三级，那里才需要看到真实效果。</strong></p>
+</div>
+
+<h2>八、三级各自的失败预案</h2>
+
+<table>
+<thead><tr><th style="width:96px">级别</th><th style="width:230px">最可能的失败方式</th><th>预案</th></tr></thead>
+<tbody>
+<tr><td>一级</td><td>期末闭卷倒逼回传统教法，改造半途而废</td><td>知识点一个不删、只换案例载体，笔试零风险；新增内容挂到"上机 20%"上，不计分学生就不重视</td></tr>
+<tr><td>二级</td><td class="cut">滑成工具课或兴趣小组，第三级长不出人</td><td>第 8 周自查一次判据："能不能独立跑完需求进来→素材出去→有记录"。不能就砍掉花哨内容，回到批量与归档</td></tr>
+<tr><td>二级</td><td>人数流失到个位数</td><td>按招 30 留 12 设计，30%–40% 留存是正常水平；门槛前置（每周交付、两周不交退出）比事后掉人好得多</td></tr>
+<tr><td>三级</td><td>拖到期末才开，来不及出作品</td><td>第 11 周必须定人，寒假远程做脚本化，大二上末不完成这一步，大二下必然赶工</td></tr>
+<tr><td>三级</td><td>只有小组署名，个人作品集空</td><td>每人另交一份"我负责的环节 + 生产记录"；漫剧按 8 人一组组织时，务必拆到可归属的责任段</td></tr>
+</tbody>
+</table>
+
+<h2>九、接下来要定的四件事</h2>
+
+<ol>
+<li><strong>第二级的招募时间与门槛</strong>——建议第 4 周开营，招募通知里就把"每周 2 小时、每周有交付、两周不交退出"写死。这是本周就能做的事。</li>
+<li><strong>第 9 周两个样品由谁准备</strong>——电商素材包可以用本地商家的真实商品（顺带谈实习），漫剧 30 秒片段可以用现成 IP。两样各约 2 小时准备，但它是第三级能否成立的前提。</li>
+<li><strong>算力预算量级</strong>——3–5 千够"电商全员 + 漫剧一个核心组"，1.5 万以上才谈得上两条并重。<strong>这条比选赛道更硬</strong>，预算不到位，第三级只能压缩到电商一侧。</li>
+<li><strong>视传/数媒老师的接触时机</strong>——建议本周，只谈每学期三次评审各 1 小时（选题会、中期、终评）。<strong>请对方"定标准"不"做内容"</strong>：判断釉色还原对不对是他们的能力，让这个判断在三千张图上自动跑完并留痕，是我们的能力。两件事不重叠。</li>
+</ol>
+
+<div class="foot">
+<p>本文件的判断依据：</p>
+<ul>
+<li>三级划分由张老师提出（2026-09-18），本文件做了三处修正：级与级是依赖顺序而非时间顺序；第二级"通用"钉死为共享的八成工程能力；第三级改为自然分化的核心项目组而非选拔制的精英班。</li>
+<li>课时与课程结构来自《Python 课程改造方案（第 3 章起）》（72 学时，已上 12，剩余 60）。</li>
+<li>算力单价为 2026 年 9 月公开价格推算（SD/Flux API、Wan3.0 官方定价、可灵、Seedance），实际支出随调用量与平台政策浮动，建议按 1.5 倍冗余申请。</li>
+<li>薪资与岗位要求来自 2026 年 7–9 月在招 JD，具有时效性，正式引用前建议复核原文。</li>
+</ul>
+</div>
+
+</div>
+</body>
+</html>

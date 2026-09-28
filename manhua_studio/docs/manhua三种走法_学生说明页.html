@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>manhua 电商出图 · 三种走法说明（学生用）</title>
+<style>
+  * { box-sizing: border-box; }
+  body { font-family: -apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
+         color:#1f2933; background:#f7f8fa; margin:0; padding:24px; line-height:1.6; }
+  .wrap { max-width:900px; margin:0 auto; }
+  h1 { font-size:24px; color:#0f2942; margin:0 0 6px; }
+  h2 { font-size:19px; color:#0f2942; border-left:5px solid #2f6fed; padding-left:10px; margin:28px 0 12px; }
+  .lead { background:#eef5ff; border-radius:10px; padding:14px 18px; color:#243b53; font-size:15px; }
+  .goal { background:#fff; border:1px solid #d9dee3; border-radius:10px; padding:16px 20px; margin-top:14px; }
+  .cards { display:grid; grid-template-columns:1fr 1fr 1fr; gap:14px; margin-top:14px; }
+  .card { background:#fff; border:1px solid #d9dee3; border-radius:10px; padding:16px; }
+  .card h3 { margin:0 0 6px; font-size:16px; }
+  .c1 h3 { color:#2f6fed; } .c2 h3 { color:#0b875b; } .c3 h3 { color:#bf4d00; }
+  .card .tag { font-size:12px; color:#7b8794; margin-bottom:8px; }
+  .card ul { margin:6px 0 0; padding-left:18px; font-size:13px; color:#3e4c59; }
+  .code { background:#0f2942; color:#e4e7eb; border-radius:8px; padding:12px 14px;
+          font-family:"SFMono-Regular",Consolas,monospace; font-size:13px; overflow-x:auto; white-space:pre; }
+  .step { background:#fff; border:1px solid #d9dee3; border-radius:10px; padding:14px 18px; margin-top:10px; }
+  .step b { color:#243b53; }
+  .warn { background:#fff4e6; border-left:4px solid #bf4d00; padding:10px 14px; border-radius:6px; font-size:13px; color:#34313f; margin-top:14px; }
+  .ok { background:#e3f9e5; border-left:4px solid #0b875b; padding:10px 14px; border-radius:6px; font-size:13px; color:#1a4d2b; margin-top:14px; }
+  table { width:100%; border-collapse:collapse; margin-top:10px; font-size:13px; background:#fff; }
+  th,td { border:1px solid #d9dee3; padding:8px 10px; text-align:left; }
+  th { background:#eef2f7; color:#243b53; }
+  @media print { body{background:#fff;padding:0;} .wrap{max-width:none;} }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>manhua 电商出图 · 三种走法说明</h1>
+  <div class="lead">
+    一句话目标：<b>每个人最终都交一份「像真家伙」的商品页</b>——用<b>你自己拍的商品照片</b>，
+    经 AI 抠图 + 出图，变成可在浏览器打开、能滑动看图的电商素材页。所有人终点一样，只是起点离终点远近不同。
+  </div>
+
+  <div class="goal">
+    <b>为什么三种走法？</b> 有的同学第一次碰代码，有的已经能改函数。我们不让任何人卡在「太难做不完」，
+    也不让任何人只按回车没学到东西。你选适合自己的走法，最后都交出同样专业的页面。
+  </div>
+
+  <h2>三种走法（选一种开始）</h2>
+  <div class="cards">
+    <div class="card c1">
+      <h3>① 跟跑 · 一键包</h3>
+      <div class="tag">零基础 / 第一次</div>
+      <ul>
+        <li>放一张照片进 <code>input/</code></li>
+        <li>把 <code>.env</code> 里的两行 key 填好（老师发 <code>env.example</code>，复制成 <code>.env</code> 填一次即可）+ 学号</li>
+        <li>运行命令（<code>python -m manhua_studio --input 照片.jpg</code>），自动出商品页</li>
+        <li>产出：白底图 + 场景图 + 商品页</li>
+      </ul>
+    </div>
+    <div class="card c2">
+      <h3>② 并跑 · 半成品</h3>
+      <div class="tag">已会基础命令</div>
+      <ul>
+        <li>自己写商品名 / 卖点 / 选场景</li>
+        <li>看 AI 识别结果对不对，调提示词</li>
+        <li>练「把需求翻译成 AI 能懂的话」</li>
+        <li>不改管线代码也能长真本事</li>
+      </ul>
+    </div>
+    <div class="card c3">
+      <h3>③ 领跑 · 裸引擎</h3>
+      <div class="tag">能读改代码</div>
+      <ul>
+        <li>打开 <code>adapters.py</code> 加一个场景类型</li>
+        <li>或修一次故意留的 API 故障</li>
+        <li>练「读代码 / 改代码 / 排错」</li>
+        <li>这是大专够得着的真技能</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>怎么运行（命令对照）</h2>
+  <div class="step">
+    <b>第一步（只做一次）：</b>老师发 <code>env.example</code>，你复制成 <code>.env</code> 并填入你的 <code>UAPI_KEY</code> / <code>ARK_API_KEY</code>。
+    <code>.env</code> 已被 <code>.gitignore</code> 忽略，<b>不会提交</b>，放心填。之后再也<strong>不用每次复制 key</strong>。
+  </div>
+  <div class="step">
+    <b>Mac / Linux / Git Bash：</b>直接用 <code>python</code> 命令（key 已在 .env，不用再写）：
+    想自己敲也行（key 已在 .env，不用再写）：
+<div class="code"># 真实出图（key 自动从 .env 读取）
+python -m manhua_studio --input input/我的商品.jpg</div>
+  </div>
+  <div class="step">
+    <b>Windows 命令提示符（cmd）：</b>没有 <code>.sh</code>，逐行敲（注意路径用反斜杠）：
+<div class="code">python -m manhua_studio --input input\我的商品.jpg</div>
+    <div class="warn">Windows 若提示「python 不是命令」，把 <code>python</code> 换成 <code>python3</code>，或去 Microsoft Store 装 Python 并勾选「添加到 PATH」。</div>
+    <div class="warn">若报「缺少 ARK_API_KEY」：说明 .env 没填或没放在项目根目录。复制 <code>env.example</code> → <code>.env</code> 填好即可，<b>不用改代码</b>。</div>
+  </div>
+
+  <h2>并跑 / 领跑 多给一点（调 prompt / 读码改码）</h2>
+  <table>
+    <tr><th>想做什么</th><th>命令 / 做法</th><th>练到什么</th></tr>
+    <tr><td>自定义商品场景/画风（不碰架构）</td><td>改 <code>prompts.py</code> 的 <code>DEFAULT_SCENES</code> / <code>build_scene_prompt</code></td><td>需求翻译 + prompt 工程</td></tr>
+    <tr><td>真实出图（照片→白底→场景图→商品页）</td><td><code>python -m manhua_studio --input 照片.jpg</code></td><td>端到端跑通</td></tr>
+    <tr><td>看 AI 识别结果</td><td>看终端打印的识别 JSON</td><td>读懂 AI 输出</td></tr>
+    <tr><td>改默认场景模板</td><td>改 <code>prompts.py</code> 的 <code>DEFAULT_SCENES</code></td><td>prompt 工程</td></tr>
+    <tr><td>加一个场景类型 / 排错</td><td>改 <code>adapters.py</code></td><td>读码改码</td></tr>
+  </table>
+
+  <h2>交作业：学号定位</h2>
+  <div class="ok">
+    跑完后，脚本会自动把你的数据放到 <code>deliverables/&lt;你的学号&gt;/sku.js</code>。
+    老师用浏览器打开 <code>商品详情页_数据驱动.html?学号=你的学号</code> 就能看到<b>你</b>的页面。
+    你只需告诉老师学号，不用发一堆图。
+  </div>
+
+  <h2>合规红线（必看）</h2>
+  <div class="warn">
+    AI 生成的图必须标注「AI 合成」（市场监管要求）。本管线已自动加标注。
+    真实商品 + AI 扩展场景图 = 合法展示素材；<b>不要</b>用 AI 凭空编造一个不存在的商品直接当实物卖，那是虚假宣传。
+  </div>
+
+  <h2>交差还要填一张反思单</h2>
+  <div class="step">
+    每人交一份 <b>manhua反思单模板.html</b>：三句话（我做了什么 / 卡在哪怎么过的 / 下次想改哪）+ 自评档位 + 课堂口头 2 分钟。
+    弱生写「我用一键包跑出了页面，看懂了 AI 怎么把一张照片变成一套商品图」——这本身就合格。
+  </div>
+</div>
+</body>
+</html>

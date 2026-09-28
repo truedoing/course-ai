@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Python 课程改造方案 · 从第 3 章起（60 学时）</title>
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;padding:40px 20px 80px;background:#FFFFFF;color:#1F2328;
+    font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif;
+    font-size:15px;line-height:1.85;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:920px;margin:0 auto}
+  .kicker{font-size:12.5px;letter-spacing:.14em;color:#0C447C;font-weight:600;margin-bottom:14px}
+  h1{font-size:29px;line-height:1.4;margin:0 0 14px;font-weight:700;letter-spacing:-.01em}
+  .sub{font-size:16px;color:#57606A;margin:0 0 10px;line-height:1.7}
+  .meta{font-size:12.5px;color:#8A919A;border-top:1px solid #EAECEF;border-bottom:1px solid #EAECEF;padding:12px 0;margin:22px 0 34px}
+  h2{font-size:21px;margin:52px 0 16px;padding-left:13px;border-left:4px solid #0C447C;font-weight:700;line-height:1.5}
+  h3{font-size:16.5px;margin:32px 0 12px;font-weight:600;color:#0C447C}
+  h4{font-size:15px;margin:24px 0 8px;font-weight:600;color:#24292F}
+  p{margin:0 0 15px}
+  ul,ol{margin:0 0 16px;padding-left:22px}
+  li{margin-bottom:9px}
+  strong{font-weight:600}
+  em{font-style:normal;background:#FFF6DA;padding:1px 3px;border-radius:3px}
+  code{font-family:'SFMono-Regular',Consolas,'Liberation Mono',monospace;font-size:13px;background:#F2F4F7;padding:1px 5px;border-radius:4px;color:#0C447C}
+  table{width:100%;border-collapse:collapse;margin:18px 0 24px;font-size:13.5px}
+  th{background:#F4F6F8;text-align:left;padding:10px 11px;font-weight:600;color:#24292F;border-bottom:2px solid #DDE1E5;white-space:nowrap}
+  td{padding:10px 11px;border-bottom:1px solid #EAECEF;vertical-align:top;line-height:1.7}
+  tr:hover td{background:#FAFBFC}
+  .num{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+  .ok{color:#0B5B47;font-weight:600}
+  .cut{color:#A32D2D;font-weight:600}
+  .j{color:#3D444D;font-size:13px}
+  .key{background:#E6F1FB;border-left:4px solid #0C447C;padding:16px 20px;margin:22px 0;border-radius:0 8px 8px 0}
+  .key p:last-child{margin-bottom:0}
+  .box{background:#F7F8FA;border:1px solid #E6E8EB;padding:16px 20px;border-radius:8px;margin:20px 0}
+  .box p:last-child{margin-bottom:0}
+  .warnbox{background:#FAEEDA;border-left:4px solid #BA7517;padding:16px 20px;margin:20px 0;border-radius:0 8px 8px 0}
+  .warnbox p:last-child{margin-bottom:0}
+  .fig{margin:26px 0 30px}
+  .fig svg{display:block;width:100%;height:auto}
+  .fig figcaption{font-size:12.5px;color:#57606A;margin-top:10px;line-height:1.65}
+  .foot{margin-top:56px;padding-top:22px;border-top:1px solid #EAECEF;font-size:12.5px;color:#8A919A}
+  .foot ul{padding-left:20px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<p class="kicker">PYTHON 课程改造方案 · 教师执行稿 V3（电商素材管线口径）</p>
+<h1>从第 3 章开始，整门课只做一件事</h1>
+<p class="sub">剩余 60 学时，一条主线贯穿到底；期末交出来的不是习题集，是一条能跑的电商商品上架图生产线</p>
+<p class="meta">依据：《Python 快速编程入门（第 3 版）》配套教学大纲（参考 86 学时，<strong>实际排课 72</strong>）｜ 已用 12 学时讲完第 1–2 章，<strong>剩余 60 学时</strong> ｜ 学期：2026 秋 ｜ 环境：Windows 10 + Python 3.12.1 + PyCharm，<strong>学生自带笔记本进课堂，即讲即练</strong></p>
+
+<h2>一、先把账重算：不是 74，是 60</h2>
+
+<p>课时口径变了，整个方案要跟着重排。<strong>教材配套大纲写的是 86 学时，但实际排课是 72</strong>——第 1、2 章用掉 12，剩下只有 <strong>60</strong>。而教材第 3 到第 11 章按大纲需要 74 学时。</p>
+
+<p>这中间有 <strong>14 学时的硬缺口</strong>。它带来的结论和上一版不同：<span class="cut">这 14 学时不可能靠"每章省一点"抠出来</span>，每章省 1–2 学时总共也只有 8 学时，还把每章都讲成赶进度。<strong>必须整块动第 10、11 章。</strong></p>
+
+<table>
+<thead><tr><th style="width:190px">章节</th><th class="num">大纲</th><th class="num">新课时</th><th style="width:70px">增减</th><th>处理</th></tr></thead>
+<tbody>
+<tr><td>3 流程控制</td><td class="num">6</td><td class="num">6</td><td class="num">0</td><td class="j">换载体，主线构件 1</td></tr>
+<tr><td>4 字符串</td><td class="num">6</td><td class="num">5</td><td class="num cut">−1</td><td class="j">编码专题压到 10 分钟，主线构件 2</td></tr>
+<tr><td>5 组合数据类型</td><td class="num">6</td><td class="num">6</td><td class="num">0</td><td class="j">换载体，主线构件 3</td></tr>
+<tr><td>6 函数</td><td class="num">8</td><td class="num">7</td><td class="num cut">−1</td><td class="j">递归不排课时，主线构件 4</td></tr>
+<tr><td>7 文件与数据格式</td><td class="num">6</td><td class="num">6</td><td class="num">0</td><td class="j">换载体，主线构件 5（支点章）</td></tr>
+<tr><td>8 面向对象</td><td class="num">10</td><td class="num">8</td><td class="num cut">−2</td><td class="j"><strong>全知识点保留</strong>，砍多重继承等枝节，主线构件 6</td></tr>
+<tr><td>9 异常</td><td class="num">6</td><td class="num">4</td><td class="num cut">−2</td><td class="j">只讲 4 个常见异常 + 1 个自定义异常，主线构件 7</td></tr>
+<tr><td>10 计算生态与常用库</td><td class="num">10</td><td class="num">2</td><td class="num cut">−8</td><td class="j">只留 pip、random 种子、time；<strong>删 turtle（3）、Pygame 铺垫（3）、jieba/wordcloud 专题（2）</strong></td></tr>
+<tr><td>11 飞机大战</td><td class="num">16</td><td class="num">0</td><td class="num cut">−16</td><td class="j"><strong>整块取消</strong>。它的课程目标"实现一个完整项目"，由模块 D 以更高的达成度接走</td></tr>
+<tr style="background:#F4F6F8"><td><strong>教材主线小计</strong></td><td class="num"><strong>74</strong></td><td class="num"><strong>44</strong></td><td class="num cut"><strong>−30</strong></td><td><strong>教材主线 44 + 赛道模块 16 = 60</strong></td></tr>
+</tbody>
+</table>
+
+<figure class="fig">
+<svg viewBox="0 0 900 262" width="100%" role="img" aria-label="60 学时的来源与去向：大纲需要 74 学时，实际可用 60，缺口 14；改造后为教材主线 44 加赛道模块 16">
+  <g font-family="-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif">
+    <text x="20" y="52" font-size="13.5" font-weight="600" fill="#24292F">大纲需求</text>
+    <text x="20" y="72" font-size="11.5" fill="#8A919A">第 3–11 章</text>
+    <rect x="150" y="38" width="549" height="34" rx="6" fill="#EEF1F4" stroke="#D3D1C7" stroke-width="0.5"/>
+    <text x="424" y="60" text-anchor="middle" font-size="12.5" fill="#2C2C2A">教材第 3–10 章　58</text>
+    <rect x="699" y="38" width="151" height="34" rx="6" fill="#FAEEDA" stroke="#EF9F27" stroke-width="0.5"/>
+    <text x="774" y="60" text-anchor="middle" font-size="12.5" font-weight="600" fill="#854F0B">飞机大战 16</text>
+    <text x="866" y="60" font-size="12.5" font-weight="700" fill="#5F5E5A">74</text>
+
+    <text x="20" y="128" font-size="13.5" font-weight="600" fill="#24292F">实际可用</text>
+    <text x="20" y="148" font-size="11.5" fill="#8A919A">72 − 12</text>
+    <rect x="150" y="114" width="568" height="34" rx="6" fill="#E6F1FB" stroke="#85B7EB" stroke-width="0.5"/>
+    <text x="434" y="136" text-anchor="middle" font-size="12.5" font-weight="600" fill="#0C447C">60 学时</text>
+    <rect x="718" y="114" width="132" height="34" rx="6" fill="#FBDDDD" stroke="#E08B8B" stroke-width="0.5"/>
+    <text x="784" y="136" text-anchor="middle" font-size="12.5" font-weight="600" fill="#A32D2D">缺口 −14</text>
+
+    <text x="20" y="204" font-size="13.5" font-weight="600" fill="#24292F">改造后</text>
+    <text x="20" y="224" font-size="11.5" fill="#8A919A">知识点不减</text>
+    <rect x="150" y="190" width="416" height="34" rx="6" fill="#E6F1FB" stroke="#85B7EB" stroke-width="0.5"/>
+    <text x="358" y="212" text-anchor="middle" font-size="12.5" fill="#0C447C">教材主线　44</text>
+    <rect x="566" y="190" width="152" height="34" rx="6" fill="#9BC4E4" stroke="#7EB2DA" stroke-width="0.5"/>
+    <text x="642" y="212" text-anchor="middle" font-size="12.5" font-weight="600" fill="#082F52">赛道模块　16</text>
+
+    <line x1="150" y1="244" x2="718" y2="244" stroke="#C4CAD0" stroke-width="1.2"/>
+    <text x="434" y="258" text-anchor="middle" font-size="12" fill="#57606A">60 学时　缺口 14 全部由第 10、11 章承担</text>
+  </g>
+</svg>
+<figcaption>图 1 ｜ 60 学时的来源。灰色那一整块是不可动的知识点，黄块是可以整块取消的；<strong>缺口 14 不摊到每章头上，全部压在第 10、11 章</strong>——这是这份方案和上一版最大的不同。</figcaption>
+</figure>
+
+<div class="key">
+<p><strong>取消第 11 章是最容易被质疑的一步，所以要先把理由说死。</strong>大纲给第 11 章写的课程目标是"实现一个飞机大战项目"，考察的是<em>多文件组织、状态管理、事件循环</em>。这些目标一条都不用放弃，换成"实现一个可交付的电商素材批量生产线"后达成度反而更高：飞机大战交付的是一份只能在自己电脑上跑的游戏，而后者交付的是一套真实上架图，能放进作品集、能在面试时打开链接，也能直接讲清楚"一张实拍图怎么变成一整套商品图"。</p>
+<p>唯一的代价是"趣味性"。但趣味性在这个学期由训练营承担——它不是消失了，是换了个地方。</p>
+</div>
+
+<h2>二、核心改法：从"换案例"升级为"一条主线"</h2>
+
+<p>上一版的做法是<strong>每章换一个案例</strong>：第 3 章讲生成任务状态，第 4 章讲提示词模板，第 5 章讲参数表。这比原教材好，但有个没解决的问题——<strong>案例之间不累积</strong>。学期末学生手里还是十几个互不相干的练习，拼不出一个东西。</p>
+
+<p>这一版改法更彻底：<strong>整学期只做一个项目，一个脚本从开学长到期末。</strong></p>
+
+<div class="box">
+<p>项目定为一个文件：<code>manhua.py</code>。它的最终形态是——读一份商品照片与上架需求清单，自动去底白底、批量做场景化、质检筛选废片，输出一整套上架素材包与生产记录。</p>
+<p>从第 3 章起，<strong>每章只做一件事：给这个脚本加一个构件</strong>。学 <code>if</code> 就是给它加状态判定，学文件就是给它加归档，学类就是给它加 <code>Product</code>（一个商品就是一类对象）。学期结束时，它不是十几个练习，是一个能跑的东西。</p>
+</div>
+
+<p>这样做最直接的好处是解决了你说的"太慢"：</p>
+
+<ul>
+<li><strong>不用每章重建背景。</strong>传统讲法每换一个案例要花 5–8 分钟解释"这个程序是干嘛的"，一学期重复十次。一条主线只需要解释一次，第一次课做完，后面每章直接进入"这次加什么"。</li>
+<li><strong>代码可复用。</strong>上一章写的函数下一章直接调用，学生不用每次从头写。实际教学时间能省下相当一部分。</li>
+<li><strong>作业即项目进度。</strong>不存在"作业做完了但对期末项目没用"的情况，学生每一次作业的边际收益都看得见，这是专科生唯一有效的持续动力。</li>
+<li><strong>debug 有上下文。</strong>报错不再是孤立的练习错误，而是"我的脚本哪里坏了"——这是真实开发的心理状态，也是我们从 L1 推到 L3 必须经历的一步。</li>
+</ul>
+
+<figure class="fig">
+<svg viewBox="0 0 900 236" width="100%" role="img" aria-label="manhua.py 逐章长大：十一个构件从第 3 章的状态判定一路加到出片交付">
+  <g font-family="-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif">
+    <rect x="10" y="30" width="160" height="56" rx="8" fill="#E2ECF7" stroke="#9BC4E4" stroke-width="0.5"/>
+    <text x="90" y="52" text-anchor="middle" font-size="12.5" font-weight="600" fill="#155E8F">第 3 章 流程控制</text>
+    <text x="90" y="70" text-anchor="middle" font-size="11.5" fill="#155E8F">构件 1 状态判定</text>
+    <text x="90" y="20" text-anchor="middle" font-size="11.5" fill="#8A919A">if / while</text>
+
+    <line x1="174" y1="58" x2="192" y2="58" stroke="#AEBDCB" stroke-width="1.6"/>
+    <path d="M190 53 L199 58 L190 63 Z" fill="#AEBDCB"/>
+
+    <rect x="200" y="30" width="160" height="56" rx="8" fill="#CFE2F3" stroke="#9BC4E4" stroke-width="0.5"/>
+    <text x="280" y="52" text-anchor="middle" font-size="12.5" font-weight="600" fill="#12507F">第 4 章 字符串</text>
+    <text x="280" y="70" text-anchor="middle" font-size="11.5" fill="#12507F">构件 2 提示词模板</text>
+
+    <line x1="364" y1="58" x2="382" y2="58" stroke="#AEBDCB" stroke-width="1.6"/>
+    <path d="M380 53 L389 58 L380 63 Z" fill="#AEBDCB"/>
+
+    <rect x="390" y="30" width="160" height="56" rx="8" fill="#B8D4EC" stroke="#7EB2DA" stroke-width="0.5"/>
+    <text x="470" y="52" text-anchor="middle" font-size="12.5" font-weight="600" fill="#0E4470">第 5 章 容器</text>
+    <text x="470" y="70" text-anchor="middle" font-size="11.5" fill="#0E4470">构件 3 参数表</text>
+
+    <line x1="554" y1="58" x2="572" y2="58" stroke="#AEBDCB" stroke-width="1.6"/>
+    <path d="M570 53 L579 58 L570 63 Z" fill="#AEBDCB"/>
+
+    <rect x="580" y="30" width="160" height="56" rx="8" fill="#9BC4E4" stroke="#7EB2DA" stroke-width="0.5"/>
+    <text x="660" y="52" text-anchor="middle" font-size="12.5" font-weight="600" fill="#0B3A61">第 6 章 函数</text>
+    <text x="660" y="70" text-anchor="middle" font-size="11.5" fill="#0B3A61">构件 4 封装调用</text>
+
+    <line x1="744" y1="58" x2="762" y2="58" stroke="#AEBDCB" stroke-width="1.6"/>
+    <path d="M760 53 L769 58 L760 63 Z" fill="#AEBDCB"/>
+
+    <rect x="770" y="30" width="120" height="56" rx="8" fill="#7EB2DA" stroke="#5A96C8" stroke-width="0.5"/>
+    <text x="830" y="52" text-anchor="middle" font-size="12.5" font-weight="600" fill="#082F52">第 7 章 文件</text>
+    <text x="830" y="70" text-anchor="middle" font-size="11.5" fill="#082F52">构件 5 归档</text>
+
+    <path d="M830 90 L830 108 L90 108 L90 130" fill="none" stroke="#AEBDCB" stroke-width="1.6"/>
+    <path d="M85 124 L90 133 L95 124 Z" fill="#AEBDCB"/>
+
+    <rect x="10" y="136" width="160" height="56" rx="8" fill="#7EB2DA" stroke="#5A96C8" stroke-width="0.5"/>
+    <text x="90" y="158" text-anchor="middle" font-size="12.5" font-weight="600" fill="#082F52">第 8 章 面向对象</text>
+    <text x="90" y="176" text-anchor="middle" font-size="11.5" fill="#082F52">构件 6 Product 类</text>
+
+    <line x1="174" y1="164" x2="192" y2="164" stroke="#AEBDCB" stroke-width="1.6"/>
+    <path d="M190 159 L199 164 L190 169 Z" fill="#AEBDCB"/>
+
+    <rect x="200" y="136" width="160" height="56" rx="8" fill="#9BC4E4" stroke="#7EB2DA" stroke-width="0.5"/>
+    <text x="280" y="158" text-anchor="middle" font-size="12.5" font-weight="600" fill="#0B3A61">第 9 章 异常</text>
+    <text x="280" y="176" text-anchor="middle" font-size="11.5" fill="#0B3A61">构件 7 重试与超时</text>
+
+    <line x1="364" y1="164" x2="382" y2="164" stroke="#AEBDCB" stroke-width="1.6"/>
+    <path d="M380 159 L389 164 L380 169 Z" fill="#AEBDCB"/>
+
+    <rect x="390" y="136" width="160" height="56" rx="8" fill="#B8D4EC" stroke="#7EB2DA" stroke-width="0.5"/>
+    <text x="470" y="158" text-anchor="middle" font-size="12.5" font-weight="600" fill="#0E4470">模块 A 调接口</text>
+    <text x="470" y="176" text-anchor="middle" font-size="11.5" fill="#0E4470">构件 8 真实出图</text>
+
+    <line x1="554" y1="164" x2="572" y2="164" stroke="#AEBDCB" stroke-width="1.6"/>
+    <path d="M570 159 L579 164 L570 169 Z" fill="#AEBDCB"/>
+
+    <rect x="580" y="136" width="160" height="56" rx="8" fill="#CFE2F3" stroke="#9BC4E4" stroke-width="0.5"/>
+    <text x="660" y="158" text-anchor="middle" font-size="12.5" font-weight="600" fill="#12507F">模块 B 批量生产</text>
+    <text x="660" y="176" text-anchor="middle" font-size="11.5" fill="#12507F">构件 9 筛选候选</text>
+
+    <line x1="744" y1="164" x2="762" y2="164" stroke="#AEBDCB" stroke-width="1.6"/>
+    <path d="M760 159 L769 164 L760 169 Z" fill="#AEBDCB"/>
+
+    <rect x="770" y="136" width="120" height="56" rx="8" fill="#E2ECF7" stroke="#9BC4E4" stroke-width="0.5"/>
+    <text x="830" y="158" text-anchor="middle" font-size="12.5" font-weight="600" fill="#155E8F">模块 C 交付</text>
+    <text x="830" y="176" text-anchor="middle" font-size="11.5" fill="#155E8F">构件 10 出片交付</text>
+
+    <text x="10" y="216" font-size="12" fill="#57606A">底色越深，代表这一格离"能拿出手"越近。第 8 章那一格是整条线的枢纽。</text>
+    <text x="890" y="216" text-anchor="end" font-size="12" fill="#57606A">期末：一个能跑通的电商素材管线</text>
+  </g>
+</svg>
+<figcaption>图 2 ｜ <code>manhua.py</code> 的十一个构件（含 S0 照片入口与多产品批量）。学生每章交付的不是作业，是同一个脚本长大一格——这是"提速"真正的来源，不是讲得快，是不重复。</figcaption>
+</figure>
+
+<h2>三、60 学时怎么切</h2>
+
+<table>
+<thead><tr><th style="width:250px">板块</th><th class="num">学时</th><th>内容</th></tr></thead>
+<tbody>
+<tr style="background:#F4F6F8"><td colspan="3"><strong>教材主线　44 学时</strong>（知识点不减，载体全换）</td></tr>
+<tr><td>第 3–7 章　基础语法</td><td class="num">30</td><td class="j">流程控制 6、字符串 5、容器 6、函数 7、文件 6</td></tr>
+<tr><td>第 8 章　面向对象</td><td class="num">8</td><td class="j">Product / 一致性打分，全知识点落在一个例子上</td></tr>
+<tr><td>第 9 章　异常</td><td class="num">4</td><td class="j">只讲够用的部分</td></tr>
+<tr><td>第 10 章　计算生态</td><td class="num">2</td><td class="j">pip、随机种子、节流</td></tr>
+<tr style="background:#F4F6F8"><td colspan="3"><strong>赛道模块　16 学时</strong>（新增，不进笔试）</td></tr>
+<tr><td>模块 A　调接口与密钥</td><td class="num">4</td><td class="j">HTTP、requests、JSON、API Key 与环境变量、限流与计费</td></tr>
+<tr><td>模块 B　批量生产与一致性</td><td class="num">6</td><td class="j">任务编排与节流、参考图锁定与种子、候选打分与废片筛选</td></tr>
+<tr><td>模块 C　出片与交付</td><td class="num">3</td><td class="j">按 SKU 归档、README 与生产记录、合规标注（AI 合成）</td></tr>
+<tr><td>模块 D　期末项目周</td><td class="num">3</td><td class="j">完整跑通一批商品上架图 + 答辩，替代原飞机大战的项目环节</td></tr>
+<tr style="background:#F4F6F8"><td><strong>合计</strong></td><td class="num"><strong>60</strong></td><td><strong>教材主线 44 + 赛道模块 16</strong></td></tr>
+</tbody>
+</table>
+
+<h2>四、逐章怎么改</h2>
+
+<h3>第 3 章　流程控制　6 学时</h3>
+<table>
+<thead><tr><th style="width:96px">项</th><th>内容</th></tr></thead>
+<tbody>
+<tr><td>知识点</td><td class="j">if / elif / else、while、for、break、continue、循环嵌套（一个即可）</td></tr>
+<tr><td>原案例</td><td class="j">会员等级评定、登录检测、房贷计算器</td></tr>
+<tr><td>换成</td><td class="j">商品上架任务状态判定（已出图 / 排队中 / 失败待重试）、失败重试计数、单 SKU 成本核算</td></tr>
+<tr><td>构件 1</td><td class="j">读一份上架任务清单，统计已出图、排队、失败的数量</td></tr>
+<tr><td>砍什么</td><td class="j">房贷计算器的多层嵌套（保留一个嵌套示例就够）</td></tr>
+</tbody>
+</table>
+
+<h3>第 4 章　字符串　5 学时（−1）</h3>
+<table>
+<thead><tr><th style="width:96px">项</th><th>内容</th></tr></thead>
+<tbody>
+<tr><td>知识点</td><td class="j">切片、格式化、f-string、常用方法、正则入门</td></tr>
+<tr><td>原案例</td><td class="j">过滤不良词语、文字排版工具</td></tr>
+<tr><td>换成</td><td class="j">场景化提示词模板拼接（商品名 + 卖点 + 场景）、敏感词过滤</td></tr>
+<tr><td>构件 2</td><td class="j">从参数表生成 N 条场景化 prompt，输出到文件</td></tr>
+<tr><td>砍什么</td><td class="j">字符编码专题压到 10 分钟带过——学生只需要知道"一律 UTF-8"</td></tr>
+</tbody>
+</table>
+
+<h3>第 5 章　组合数据类型　6 学时</h3>
+<table>
+<thead><tr><th style="width:96px">项</th><th>内容</th></tr></thead>
+<tbody>
+<tr><td>知识点</td><td class="j">列表、元组、字典、集合、推导式</td></tr>
+<tr><td>原案例</td><td class="j">词频统计、手机通讯录</td></tr>
+<tr><td>换成</td><td class="j">商品 × 场景 的嵌套参数表；<strong>词频统计保留</strong>，它正好用于商品标题/卖点词频分析</td></tr>
+<tr><td>构件 3</td><td class="j">一份商品清单，能展开成 N 条上架图生成任务</td></tr>
+<tr><td>砍什么</td><td class="j">无。这一章是后面参数驱动的基础，不动</td></tr>
+</tbody>
+</table>
+
+<h3>第 6 章　函数　7 学时（−1）</h3>
+<table>
+<thead><tr><th style="width:96px">项</th><th>内容</th></tr></thead>
+<tbody>
+<tr><td>知识点</td><td class="j">参数、返回值、作用域、模块与导入、lambda、递归</td></tr>
+<tr><td>原案例</td><td class="j">智能聊天机器人、兔子数列、学生管理系统</td></tr>
+<tr><td>换成</td><td class="j">封装一次生成调用（<strong>先用假引擎 mock</strong>）、按一致性打分排序候选图</td></tr>
+<tr><td>构件 4</td><td class="j"><code>generate_image(params)</code> 返回模拟结果；脚本拆成多文件</td></tr>
+<tr><td>砍什么</td><td class="j">递归不排课时（兔子数列作为课后阅读），省 1 学时</td></tr>
+</tbody>
+</table>
+
+<h3>第 7 章　文件与数据格式　6 学时（支点章）</h3>
+<table>
+<thead><tr><th style="width:96px">项</th><th>内容</th></tr></thead>
+<tbody>
+<tr><td>知识点</td><td class="j">文件读写、路径处理、CSV、JSON、os 模块</td></tr>
+<tr><td>原案例</td><td class="j">文件备份、用户账户管理</td></tr>
+<tr><td>换成</td><td class="j">按"SKU"建目录批量归档、<code>config.json</code> 外置密钥、CSV 记录生产日志</td></tr>
+<tr><td>构件 5</td><td class="j">跑批结果自动归档 + 一份 <code>production_log.csv</code></td></tr>
+<tr><td>砍什么</td><td class="j">无。<strong>这一章是所有批量处理的前提，课时不能动</strong></td></tr>
+</tbody>
+</table>
+
+<div class="key">
+<p><strong>第 8 章是全案枢纽，建议全知识点保留。</strong>大纲要求的类、属性、构造、封装、继承、重写、多态，<em>七个知识点可以全部落在 <code>Product</code> 一个类上</em>：</p>
+<p>属性 = 参考图路径、材质、固定种子｜方法 = 一致性打分｜封装 = 参数不外泄、只能通过方法改｜继承 = <code>Product</code> 派生 <code>Character</code>（漫剧角色，预留的第二条线伏笔）｜重写 = 不同商品/角色的检查规则不同｜多态 = 统一调用 <code>score()</code> 而不用关心类型。</p>
+<p>学生学 OOP 普遍卡在"为什么要写类"。而"一个商品就是一类对象，每个对象带着自己的参考图和参数"，既是标准 OOP，又正好是一致性工程的核心心智模型。<strong>这一章教好了，后面三个模块才有落点。</strong></p>
+</div>
+
+<h3>第 8 章　面向对象　8 学时（−2）</h3>
+<table>
+<thead><tr><th style="width:96px">项</th><th>内容</th></tr></thead>
+<tbody>
+<tr><td>原案例</td><td class="j">生词本、人机猜拳</td></tr>
+<tr><td>换成</td><td class="j"><code>Product</code>（参考图 + 材质 + 一致性检查）；任务用字典/任务对象承载</td></tr>
+<tr><td>构件 6</td><td class="j">Product v2：能对自己的候选图打一致性分（白底纯度 / 构图比 / 清晰度 / 文字占比）</td></tr>
+<tr><td>砍什么</td><td class="j">多重继承、运算符重载、类属性与实例属性的边界纠缠（−2）</td></tr>
+</tbody>
+</table>
+
+<h3>第 9 章　异常　4 学时（−2）</h3>
+<table>
+<thead><tr><th style="width:96px">项</th><th>内容</th></tr></thead>
+<tbody>
+<tr><td>知识点</td><td class="j">try / except / else / finally、4 个常见异常、自定义异常、断言</td></tr>
+<tr><td>换成</td><td class="j">接口超时、限流报错、重试退避、单任务失败不中断整批</td></tr>
+<tr><td>构件 7</td><td class="j">跑 100 个任务，失败 5 个也不崩，日志完整</td></tr>
+<tr><td>砍什么</td><td class="j">异常体系全讲、assert 专题（−2）</td></tr>
+</tbody>
+</table>
+
+<h3>第 10 章　计算生态　2 学时（−8）</h3>
+<table>
+<thead><tr><th style="width:96px">项</th><th>内容</th></tr></thead>
+<tbody>
+<tr><td>保留</td><td class="j">pip 与第三方库安装（1）、random 与随机种子（0.5，用于结果可复现）、time 与节流（0.5）</td></tr>
+<tr><td>删除</td><td class="j">turtle（3）、Pygame 铺垫（3）、jieba 与 wordcloud 专题（2）</td></tr>
+<tr><td>交付</td><td class="j">一份 <code>requirements.txt</code> + 可复现的随机种子</td></tr>
+<tr><td>说明</td><td class="j">jieba 与 wordcloud 不是没用，是它的用法挪到训练营的商品标题/卖点词频分析环节——那里有真实文本，效果更好</td></tr>
+</tbody>
+</table>
+
+<h2>五、四个赛道模块：只在课内做"能跑通"的最小版</h2>
+
+<p>原则先说清楚：<strong>课内只负责让每个学生都跑通一次，深度一律交给训练营。</strong>60 学时里只有 16 学时给赛道内容，任何"讲透"的企图都会把课讲崩。</p>
+
+<h4>模块 A　调接口与密钥　4 学时</h4>
+<ul>
+<li>HTTP 与请求响应（1）——不讲协议细节，讲"发一个请求、拿一段 JSON"</li>
+<li>requests 与 JSON 解析（1.5）</li>
+<li>API Key 与环境变量（1）——<strong>不要把密钥写进代码，这是职业习惯的起点</strong></li>
+<li>限流与计费（0.5）——让学生第一次意识到"每次调用都占额度"</li>
+<li><strong>当堂交付：真实出图第一张。</strong>这一刻是全学期的情绪高点，前面的铺垫都在这儿兑现——用老师给的 key，把一张实拍图跑成白底图 + 场景图</li>
+</ul>
+
+<h4>模块 B　批量生产与一致性　6 学时</h4>
+<ul>
+<li>任务编排与节流（2）——队列、并发上限、失败重排</li>
+<li>参考图锁定与种子（2）——<strong>整个赛道的技术核心</strong>：怎么让同一件商品在不同场景里外观一致（不是"第 1 集和第 50 集是同一个人"，而是"第 1 张和第 50 张是同一个杯"）</li>
+<li>候选打分与废片筛选（2）——用规则而非肉眼：白底纯度、构图比、清晰度、文字占比</li>
+<li><strong>当堂交付：一次跑 100 张，自动筛出候选。</strong>这一步做完，学生直观理解"产能"两个字</li>
+</ul>
+
+<h4>模块 C　出片与交付　3 学时</h4>
+<ul>
+<li>按 SKU 分目录归档（1）——每个商品一个文件夹，含白底图、场景图、JSON 元数据</li>
+<li>README 与生产记录（1.5）——<strong>生产记录是这一模块的重点</strong>：工作流版本号、废片率、单 SKU 耗时、成本核算</li>
+<li>合规标注（0.5）——AI 生成的图<strong>上架须标注「AI 合成」</strong>（市场监管要求），这是红线教育，不是可有可无</li>
+<li><strong>当堂交付：一套商品上架素材包（白底 + 场景图 + 生产记录）。</strong>这套素材包就是训练营招募时给学生看的东西</li>
+</ul>
+
+<h4>模块 D　期末项目周　3 学时</h4>
+<p>完整跑通一批商品上架图 + 小组答辩。答辩只问三个问题：<strong>你的脚本哪里最容易坏？坏了怎么知道？废片率多少？</strong>——这三个问题答得上来，就说明真的理解了工程是什么。</p>
+
+<h2>六、15 周执行顺序（每周 4 学时）</h2>
+
+<table>
+<thead><tr><th style="width:56px">周</th><th style="width:190px">内容</th><th class="num">学时</th><th>当堂交付</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>第 3 章 分支与循环（上）<br><span class="j">第一节课先亮青瓷茶漏真实出图闭环图</span></td><td class="num">4</td><td class="j">环境检查完毕，每人建好仓库</td></tr>
+<tr><td>2</td><td>第 3 章（2）+ 第 4 章（2）</td><td class="num">4</td><td class="j">构件 1</td></tr>
+<tr><td>3</td><td>第 4 章（3）+ 第 5 章（1）</td><td class="num">4</td><td class="j">构件 2</td></tr>
+<tr style="background:#FFF8E6"><td>4</td><td>第 5 章（4）<br><span class="j">训练营本周启动</span></td><td class="num">4</td><td class="j">构件 3</td></tr>
+<tr><td>5</td><td>第 5 章（1）+ 第 6 章（3）</td><td class="num">4</td><td class="j">—</td></tr>
+<tr><td>6</td><td>第 6 章（4）</td><td class="num">4</td><td class="j">构件 4</td></tr>
+<tr><td>7</td><td>第 7 章（4）</td><td class="num">4</td><td class="j">—</td></tr>
+<tr><td>8</td><td>第 7 章（2）+ 第 8 章（2）</td><td class="num">4</td><td class="j">构件 5</td></tr>
+<tr><td>9</td><td>第 8 章（4）</td><td class="num">4</td><td class="j">Product v1</td></tr>
+<tr><td>10</td><td>第 8 章（2）+ 第 9 章（2）</td><td class="num">4</td><td class="j">构件 6</td></tr>
+<tr><td>11</td><td>第 9 章（2）+ 第 10 章（2）</td><td class="num">4</td><td class="j">构件 7</td></tr>
+<tr><td>12</td><td>模块 A 调接口（4）</td><td class="num">4</td><td class="j"><strong>构件 8：真实出图</strong></td></tr>
+<tr><td>13</td><td>模块 B 批量生产（4）</td><td class="num">4</td><td class="j">—</td></tr>
+<tr><td>14</td><td>模块 B（2）+ 模块 C（2）</td><td class="num">4</td><td class="j"><strong>构件 9：候选集</strong></td></tr>
+<tr><td>15</td><td>模块 C（1）+ 模块 D（3）</td><td class="num">4</td><td class="j"><strong>构件 10：上架素材包 + 答辩</strong></td></tr>
+</tbody>
+</table>
+
+<div class="warnbox">
+<p><strong>执行顺序上有一处刻意的设计：模块 A 放在第 12 周，不等所有章节讲完。</strong>原因很简单——调接口是后面所有内容的引擎，太晚讲，前面的构件就只能一直 mock，学生会失去真实感。放在第 12 周，正好接在第 8 章 <code>Product</code> 和第 9 章异常之后：类已经能把参数组织好，异常已经能处理失败，此时接真实接口，一次就成。</p>
+</div>
+
+<h2>七、为什么这样能更快：四个机制</h2>
+
+<p>"太慢"不是讲得慢，是<strong>大量学时花在了不产生积累的地方</strong>。这套方案用四个机制把它压回来：</p>
+
+<table>
+<thead><tr><th style="width:150px">机制</th><th>具体做法</th><th>省在哪</th></tr></thead>
+<tbody>
+<tr><td><strong>一条主线</strong></td><td class="j">整学期一个 <code>manhua.py</code>，每章加一个构件</td><td class="j">省掉每章 5–8 分钟的背景解释，一学期约 2 学时；更重要的是让作业产生复利</td></tr>
+<tr><td><strong>讲练一体</strong></td><td class="j">自带笔记本课堂，两节连排按「讲 20 分钟 + 做 25 分钟 + 收尾 5 分钟」切</td><td class="j">不留"回去练"。专科生的课外完成率极低，课上做完等于把有效学时翻倍</td></tr>
+<tr><td><strong>先给成品再拆</strong></td><td class="j">第 1 周先亮青瓷茶漏真实出图闭环图，之后每章先演示"加完这个构件会变成什么样"</td><td class="j">省掉"学这个有什么用"的反复解释与相应的注意力损耗</td></tr>
+<tr><td><strong>砍掉不产生构件的铺垫</strong></td><td class="j">turtle、Pygame、递归、飞机大战、异常体系全讲</td><td class="j">直接腾出 14+ 学时，这是缺口的主要来源</td></tr>
+</tbody>
+</table>
+
+<div class="box">
+<p><strong>第 2 条（讲练一体）的前提现在已具备：学生自带笔记本进课堂，理论课和动手在同一空间完成。</strong>新增的 16 学时赛道内容全部可以课上做，不留课后作业——这是专科完成率的最大保障，也意味着教考分离与否都不会卡住"动手"这一环。</p>
+</div>
+
+<h2>八、课内与训练营怎么分工</h2>
+
+<p>你说"讲到一半同步开也行"——这个判断是对的，而且<strong>越早越好</strong>。原因不是课时，是心理：等到课内讲完接口再开训练营，学生对 Python 的认知早就定型成"做习题"了。</p>
+
+<table>
+<thead><tr><th style="width:120px"></th><th>课内（60 学时 · 全员）</th><th>训练营（社团 · 自愿）</th></tr></thead>
+<tbody>
+<tr><td>定位</td><td class="j">保底：让每个人都跑通一次</td><td class="j">加速：让愿意的人做出能投的作品</td></tr>
+<tr><td>内容</td><td class="j">语法 + 一条最小电商素材管线</td><td class="j">审美判断、平台规则、真实项目、接单</td></tr>
+<tr><td>深度</td><td class="j">跑通即可，不追求好看</td><td class="j">追求"能投稿""能被商家接受"</td></tr>
+<tr><td>评价</td><td class="j">构件是否交付</td><td class="j">素材包是否有观众、是否有甲方认可</td></tr>
+<tr><td>启动</td><td class="j">已在进行中</td><td class="j"><strong>第 4 周启动</strong></td></tr>
+</tbody>
+</table>
+
+<figure class="fig">
+<svg viewBox="0 0 900 236" width="100%" role="img" aria-label="15 周双轨时间轴：课内从教材主线到赛道模块，训练营第 4 周启动，第 12 周后合流">
+  <g font-family="-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif">
+    <text x="20" y="34" font-size="13" font-weight="600" fill="#0C447C">课内</text>
+
+    <rect x="90" y="18" width="352" height="30" rx="6" fill="#E6F1FB" stroke="#85B7EB" stroke-width="0.5"/>
+    <text x="266" y="38" text-anchor="middle" font-size="12.5" fill="#0C447C">教材主线　第 3–10 章　44 学时</text>
+
+    <rect x="446" y="18" width="152" height="30" rx="6" fill="#9BC4E4" stroke="#7EB2DA" stroke-width="0.5"/>
+    <text x="522" y="38" text-anchor="middle" font-size="12.5" font-weight="600" fill="#082F52">赛道模块 16</text>
+
+    <text x="612" y="38" font-size="12" fill="#57606A">第 12 周起真实出图</text>
+
+    <text x="90" y="66" font-size="11.5" fill="#8A919A">W1</text>
+    <text x="266" y="66" font-size="11.5" fill="#8A919A">W8</text>
+    <text x="522" y="66" font-size="11.5" fill="#8A919A">W11　→　W15</text>
+
+    <line x1="20" y1="92" x2="880" y2="92" stroke="#EAECEF" stroke-width="1"/>
+
+    <text x="20" y="130" font-size="13" font-weight="600" fill="#443BA8">训练营</text>
+
+    <rect x="266" y="114" width="320" height="30" rx="6" fill="#EFEDFD" stroke="#BDB5F0" stroke-width="0.5"/>
+    <text x="426" y="134" text-anchor="middle" font-size="12.5" fill="#443BA8">不写代码：去底、场景化、一致性</text>
+
+    <rect x="590" y="114" width="290" height="30" rx="6" fill="#DFF3EC" stroke="#7FC9AF" stroke-width="0.5"/>
+    <text x="735" y="134" text-anchor="middle" font-size="12.5" font-weight="600" fill="#0B5B47">接入脚本，与课内合流</text>
+
+    <text x="266" y="162" font-size="11.5" fill="#8A919A">W4 启动</text>
+    <text x="590" y="162" font-size="11.5" fill="#8A919A">W12 起</text>
+    <text x="266" y="180" font-size="11.5" fill="#8A919A">第一次课用老师 key，30 分钟出第一张白底/场景图</text>
+
+    <line x1="20" y1="200" x2="880" y2="200" stroke="#EAECEF" stroke-width="1"/>
+
+    <text x="20" y="228" font-size="12.5" fill="#57606A">两条轨共用同一批商品照片与同一套场景设定：课内讲"为什么这样写"，训练营做"这样做出来的效果"</text>
+  </g>
+</svg>
+<figcaption>图 3 ｜ 双轨节奏。训练营前期不写代码是刻意的——<strong>先让产出可见，再让代码有意义</strong>；等第 12 周课内讲到调接口，两边正好合流，学生在训练营里已经攒了两个月的问题要问。</figcaption>
+</figure>
+
+<h2>九、考试怎么办</h2>
+
+<p>大纲写明期末闭卷百分制（平时 30% + 期末 70%）。这反而是这套方案最稳的地方：<strong>换的是载体，不是知识点</strong>。学生考的是 f-string、推导式、try-except，跟他用这些做了飞机大战还是电商素材包，完全没有关系。</p>
+
+<table>
+<thead><tr><th style="width:150px">范围</th><th>处理</th></tr></thead>
+<tbody>
+<tr><td class="ok">必考不变</td><td class="j">分支循环、字符串方法与格式化、列表字典推导式、函数参数与返回值、文件读写、类与对象、try-except</td></tr>
+<tr><td class="cut">不再考</td><td class="j">turtle 绘图、Pygame、递归、jieba/wordcloud、飞机大战相关</td></tr>
+<tr><td class="ok">新增不进笔试</td><td class="j">模块 A/B/C 的赛道内容<strong>不进闭卷</strong>，全部计入平时分</td></tr>
+</tbody>
+</table>
+
+<div class="warnbox">
+<p><strong>需要你确认一个风险：这门课是不是教考分离。</strong>如果期末由教研室统一命题或抽考，取消第 10、11 章就有出题风险。如果是任课教师自主命题（大多数高职基础课如此），则完全可控。这一点确认后，取消清单才能最终定稿。</p>
+</div>
+
+<p><strong>平时分的挂法要改。</strong>原结构里"上机 20%"是最合适的挂钩点：把构件 1 到构件 10 的交付情况折算进上机成绩，其余（出勤 5、作业 5）不变。<span class="cut">赛道内容如果不计分，学生不会重视</span>——这是把 16 学时投入打水漂最常见的原因。</p>
+
+<h2>十、现在要做的三件事</h2>
+
+<ol>
+<li><strong>确认一件硬事：期末是否教考分离。（场地问题已因"自带笔记本课堂"而消解，讲练一体无需额外资源。）</strong>如果是任课教师自主命题，第 10、11 章的取消清单就能最终定稿；若由教研室统命题，则需保留可考知识点清单。</li>
+<li><strong>准备第 1 周的青瓷茶漏真实出图样例。</strong>用你拍的青瓷茶漏跑通的产物（白底图 + 4 张场景图），能当场说清"这是一张实拍图，经脚本变成一整套上架图"。这一件事的投入产出比高于后面任何一章——学生第一眼看到的是"我能做出真东西"，而不是"又要学语法"。</li>
+<li><strong>训练营的算力本周定下来。</strong>第 4 周启动，第一周不装环境但要出图，算力是唯一可能让它开不起来的硬条件。好消息是 S1 去底（UAPI）与 S2 场景化（Seedream 4.0）当前均为免费额度，学生各自注册、各用各的，教师 key 仅作演示——这条线成本已清零。</li>
+</ol>
+
+<div class="box">
+<p><strong>最后一个提醒：一年窗口里，别追求体系完整，追求"能拿出的东西"。</strong>学生去实习面试，掏出来的是一个作品链接，不是成绩单。这份方案里所有不能落到可见产出的环节都已经砍掉了，剩下 60 学时每一格都对应一个能跑的构件——这是它能在一个学期内做完的唯一原因。</p>
+<p>还有一件事别忘：训练营天然就是你的实验班，而且比强制分班干净——自愿报名意味着选择偏差可以正面处理，未报名的同专业学生就是现成对照组。<strong>基线数据必须在第一周采集</strong>（课前问卷 + 一次小测），事后补就废了。</p>
+</div>
+
+<div class="foot">
+<p><strong>说明</strong></p>
+<ul>
+<li>课时口径：教材配套大纲参考值 86 学时，实际排课 72；第 1–2 章已用 12，剩余 60。章节原始分配以大纲表为准，本表为改造后排课。</li>
+<li>本方案只改教学载体与项目主线，不删减考试知识点；赛道模块不进闭卷，计入平时分（上机 20%）。</li>
+<li>主线项目 <code>manhua.py</code> 已落地为电商素材管线：S0 实拍照片 → S1 UAPI 免费抠图去底 → S2 Seedream 4.0 参考图场景化 → S3 质检交付；青瓷茶漏为已跑通的演示样例，学生可拍各自物品复现。</li>
+<li>配套文档：《AIGC 训练营执行计划（从出图到投稿）》《第 3 章 明天课堂执行稿》。</li>
+</ul>
+</div>
+
+</div>
+</body>
+</html>

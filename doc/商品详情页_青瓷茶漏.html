@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>青花瓷茶漏 · 商品详情（教学演示）</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+    background: #e9eaee;
+    display: flex;
+    justify-content: center;
+    padding: 16px 0 90px;
+    color: #1f2329;
+  }
+  .phone {
+    width: 100%;
+    max-width: 420px;
+    background: #f2f3f5;
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 8px 30px rgba(0,0,0,.12);
+  }
+
+  /* 顶部仿真状态栏 */
+  .statusbar {
+    height: 28px;
+    background: linear-gradient(135deg, #ff6a00, #ff2d2d);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 14px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  /* 主图轮播 */
+  .gallery-wrap { position: relative; background: #000; }
+  .gallery {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+  .gallery::-webkit-scrollbar { display: none; }
+  .gallery figure {
+    flex: 0 0 100%;
+    scroll-snap-align: start;
+    position: relative;
+  }
+  .gallery img { width: 100%; height: 420px; object-fit: contain; display: block; background: #fff; }
+  .gallery figcaption {
+    position: absolute;
+    left: 0; bottom: 0; right: 0;
+    background: linear-gradient(transparent, rgba(0,0,0,.55));
+    color: #fff;
+    font-size: 12px;
+    padding: 18px 12px 8px;
+  }
+  .arrow {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    width: 30px; height: 30px; border-radius: 50%;
+    background: rgba(0,0,0,.35); color: #fff; border: none;
+    font-size: 16px; cursor: pointer; z-index: 2;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .arrow.prev { left: 8px; }
+  .arrow.next { right: 8px; }
+  .dots {
+    position: absolute; bottom: 8px; left: 0; right: 0;
+    display: flex; justify-content: center; gap: 6px; z-index: 2;
+  }
+  .dots i {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: rgba(255,255,255,.5); transition: .2s;
+  }
+  .dots i.on { background: #fff; width: 16px; border-radius: 3px; }
+
+  /* 合规提示 */
+  .compliance {
+    background: #fff7e6; color: #ad6800;
+    font-size: 11px; padding: 7px 12px; line-height: 1.5;
+    border-bottom: 1px solid #ffe7ba;
+  }
+
+  /* 价格卡 */
+  .price-card { background: #fff; padding: 12px 14px 14px; }
+  .price-card h1 { font-size: 17px; font-weight: 700; line-height: 1.4; }
+  .price-card .sub { color: #888; font-size: 12px; margin-top: 4px; }
+  .price-row { display: flex; align-items: baseline; gap: 8px; margin-top: 10px; }
+  .price { color: #ff2d2d; font-size: 24px; font-weight: 800; }
+  .price small { font-size: 13px; font-weight: 700; }
+  .price .demo { font-size: 10px; font-weight: 400; color: #bbb; margin-left: 2px; }
+  .origin { color: #bbb; font-size: 13px; text-decoration: line-through; }
+  .sold { margin-left: auto; color: #999; font-size: 12px; }
+  .tags { display: flex; gap: 6px; margin-top: 10px; flex-wrap: wrap; }
+  .tags span {
+    font-size: 11px; padding: 2px 7px; border-radius: 3px;
+    background: #fff0ed; color: #ff5000; border: 1px solid #ffd9cc;
+  }
+  .tags span.gray { background: #f2f3f5; color: #888; border-color: #e3e5e9; }
+
+  /* 店铺条 */
+  .shop {
+    background: #fff; margin-top: 8px; padding: 12px 14px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .shop .logo {
+    width: 38px; height: 38px; border-radius: 8px;
+    background: linear-gradient(135deg, #ff6a00, #ff2d2d);
+    color: #fff; display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 700;
+  }
+  .shop .name { font-size: 14px; font-weight: 600; }
+  .shop .meta { font-size: 11px; color: #999; margin-top: 2px; }
+
+  /* 卖点 */
+  .points { background: #fff; margin-top: 8px; padding: 12px 14px; }
+  .points h2 { font-size: 14px; margin-bottom: 8px; }
+  .points ul { list-style: none; }
+  .points li { font-size: 13px; color: #444; padding: 5px 0 5px 20px; position: relative; }
+  .points li::before { content: "✓"; color: #ff5000; position: absolute; left: 0; font-weight: 700; }
+
+  /* 详情图区 */
+  .detail { background: #fff; margin-top: 8px; padding: 12px 14px 16px; }
+  .detail h2 { font-size: 14px; margin-bottom: 10px; }
+  .detail figure { margin-bottom: 14px; }
+  .detail img { width: 100%; border-radius: 8px; background: #f7f8fa; }
+  .detail figcaption { font-size: 12px; color: #666; margin-top: 6px; line-height: 1.5; }
+
+  /* 底部购买栏 */
+  .buybar {
+    position: fixed; bottom: 0; left: 50%; transform: translateX(-50%);
+    width: 100%; max-width: 420px;
+    background: #fff; border-top: 1px solid #eee;
+    display: flex; align-items: center; padding: 8px 12px; gap: 10px;
+    box-shadow: 0 -2px 10px rgba(0,0,0,.06);
+  }
+  .buybar .icon { text-align: center; font-size: 11px; color: #666; width: 40px; }
+  .buybar .icon div:first-child { font-size: 18px; }
+  .buybar .btns { flex: 1; display: flex; gap: 8px; }
+  .buybar button {
+    flex: 1; border: none; color: #fff; font-size: 14px; font-weight: 700;
+    padding: 10px 0; border-radius: 20px; cursor: pointer;
+  }
+  .buybar .cart { background: #ff9000; }
+  .buybar .buy { background: linear-gradient(135deg, #ff6a00, #ff2d2d); }
+</style>
+</head>
+<body>
+<div class="phone">
+
+  <div class="statusbar">
+    <span>9:41</span>
+    <span>青瓷小铺 · 商品详情</span>
+    <span>📶 100%</span>
+  </div>
+
+  <div class="gallery-wrap">
+    <button class="arrow prev" onclick="move(-1)">‹</button>
+    <button class="arrow next" onclick="move(1)">›</button>
+    <div class="gallery" id="gallery">
+      <figure><img src="assets/素材/teacher_tea_strainer.jpg" alt="实拍原图"><figcaption>① 实拍原图 · 商家随手拍（客户拍的，闭环起点）</figcaption></figure>
+      <figure><img src="assets/素材/teacher_tea_strainer_whitebg.webp" alt="白底主图"><figcaption>② 白底主图 · S1 UAPI 免费抠图去底</figcaption></figure>
+      <figure><img src="assets/素材/teacher_tea_strainer_whitebg_scene_中式茶席.webp" alt="中式茶席"><figcaption>③ 场景图 · 中式茶席</figcaption></figure>
+      <figure><img src="assets/素材/teacher_tea_strainer_whitebg_scene_现代简约茶台.webp" alt="现代简约茶台"><figcaption>④ 场景图 · 现代简约茶台</figcaption></figure>
+      <figure><img src="assets/素材/teacher_tea_strainer_whitebg_scene_禅意书房.webp" alt="禅意书房"><figcaption>⑤ 场景图 · 禅意书房</figcaption></figure>
+      <figure><img src="assets/素材/teacher_tea_strainer_whitebg_scene_茶室礼盒.webp" alt="茶室礼盒"><figcaption>⑥ 场景图 · 茶室礼盒</figcaption></figure>
+    </div>
+    <div class="dots" id="dots"></div>
+  </div>
+
+  <div class="compliance">
+    ⚠️ 本页图片由 AI 生成（seedream 参考图生图），上架 / 对外展示须标注「AI 合成」——教学演示页，非真实店铺数据。
+  </div>
+
+  <div class="price-card">
+    <h1>青花瓷茶漏 · 手绘青花功夫茶配件</h1>
+    <div class="sub">手绘青花 / 白瓷托架 / 功夫茶配件</div>
+    <div class="price-row">
+      <span class="price"><small>¥</small>39.00<span class="demo">示例</span></span>
+      <span class="origin">¥59.00</span>
+      <span class="sold">已拼 <b>1280</b> 件<span class="demo"> 示例</span></span>
+    </div>
+    <div class="tags">
+      <span>AI 合成图</span>
+      <span>包邮</span>
+      <span>7 天无理由</span>
+      <span class="gray">教学演示</span>
+    </div>
+  </div>
+
+  <div class="shop">
+    <div class="logo">青瓷</div>
+    <div>
+      <div class="name">青瓷小铺</div>
+      <div class="meta">描述：manhua.py 出图任务 · 演示案例店铺</div>
+    </div>
+  </div>
+
+  <div class="points">
+    <h2>商品卖点</h2>
+    <ul>
+      <li>手绘青花：釉下青花手绘纹样，中式茶席气质</li>
+      <li>白瓷托架：配套白瓷承托，出水利落不挂壁</li>
+      <li>功夫茶配件：适配盖碗 / 紫砂壶，滤孔细密</li>
+      <li>一键出图：实拍 → 去底 → 场景化，4/4 合格、0 废片</li>
+    </ul>
+  </div>
+
+  <div class="detail">
+    <h2>商品详情 · 滑动查看</h2>
+    <figure>
+      <img src="assets/素材/teacher_tea_strainer_whitebg_scene_中式茶席.webp" alt="中式茶席">
+      <figcaption>中式茶席：原样放入茶席场景，柔和自然光、主体突出，适合「新中式」「茶空间」类目主图。</figcaption>
+    </figure>
+    <figure>
+      <img src="assets/素材/teacher_tea_strainer_whitebg_scene_现代简约茶台.webp" alt="现代简约茶台">
+      <figcaption>现代简约茶台：干净台面 + 侧光，突出器物线条，适配「极简家居」「送礼」场景。</figcaption>
+    </figure>
+    <figure>
+      <img src="assets/素材/teacher_tea_strainer_whitebg_scene_禅意书房.webp" alt="禅意书房">
+      <figcaption>禅意书房：书案 + 暖光氛围，传递「慢生活」调性，适合内容种草图。</figcaption>
+    </figure>
+    <figure>
+      <img src="assets/素材/teacher_tea_strainer_whitebg_scene_茶室礼盒.webp" alt="茶室礼盒">
+      <figcaption>茶室礼盒：礼盒陈列构图，作为详情页「规格 / 包装」区块图，引导下单。</figcaption>
+    </figure>
+    <figure>
+      <img src="assets/素材/teacher_tea_strainer_whitebg.webp" alt="白底主图">
+      <figcaption>白底主图（S1 去底）：平台搜推首图标准版式，干净背景、无文字水印。</figcaption>
+    </figure>
+  </div>
+
+  <div class="buybar">
+    <div class="icon"><div>🎧</div>客服</div>
+    <div class="icon"><div>🏠</div>店铺</div>
+    <div class="icon"><div>🛒</div>购物车</div>
+    <div class="btns">
+      <button class="cart">加入购物车</button>
+      <button class="buy">立即购买</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  const gallery = document.getElementById('gallery');
+  const figs = gallery.querySelectorAll('figure');
+  const dots = document.getElementById('dots');
+  let idx = 0;
+
+  figs.forEach((_, i) => {
+    const d = document.createElement('i');
+    if (i === 0) d.className = 'on';
+    dots.appendChild(d);
+  });
+  const dotEls = dots.querySelectorAll('i');
+
+  function updateDots() {
+    const i = Math.round(gallery.scrollLeft / gallery.clientWidth);
+    dotEls.forEach((d, k) => d.classList.toggle('on', k === i));
+    idx = i;
+  }
+  gallery.addEventListener('scroll', () => {
+    window.requestAnimationFrame(updateDots);
+  });
+
+  function move(step) {
+    const next = Math.max(0, Math.min(figs.length - 1, idx + step));
+    gallery.scrollTo({ left: next * gallery.clientWidth, behavior: 'smooth' });
+  }
+</script>
+</body>
+</html>

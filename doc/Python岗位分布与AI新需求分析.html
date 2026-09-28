@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Python 岗位分布与 AI 新需求分析</title>
+<style>
+  :root{
+    --ink:#1f2328; --ink2:#57606a; --ink3:#848d97;
+    --line:#e4e7eb; --bg:#ffffff; --bg2:#f7f8fa;
+    --blue:#185FA5; --teal:#0F6E56; --amber:#854F0B; --purple:#534AB7; --red:#A32D2D;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;padding:48px 24px 80px;background:var(--bg);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei","Segoe UI",sans-serif;
+    font-size:15px;line-height:1.75;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:980px;margin:0 auto}
+  h1{font-size:26px;font-weight:600;margin:0 0 8px;letter-spacing:-.01em}
+  .sub{color:var(--ink2);font-size:14px;margin:0 0 4px}
+  .meta{color:var(--ink3);font-size:13px;margin:0 0 36px;padding-bottom:20px;border-bottom:1px solid var(--line)}
+  h2{font-size:19px;font-weight:600;margin:46px 0 14px;padding-top:22px;border-top:1px solid var(--line)}
+  h2:first-of-type{border-top:none;padding-top:0}
+  h3{font-size:16px;font-weight:600;margin:28px 0 10px}
+  p{margin:0 0 14px}
+  ul{margin:0 0 14px;padding-left:22px}
+  li{margin-bottom:7px}
+  .box{background:var(--bg2);border-radius:10px;padding:18px 22px;margin:18px 0}
+  .box p:last-child{margin-bottom:0}
+  table{width:100%;border-collapse:collapse;margin:18px 0;font-size:13.5px}
+  th{text-align:left;font-weight:600;color:var(--ink2);font-size:13px;
+     border-bottom:1.5px solid var(--line);padding:9px 10px;vertical-align:bottom}
+  td{padding:10px;border-bottom:1px solid var(--line);vertical-align:top}
+  tr:last-child td{border-bottom:none}
+  td.j{color:var(--ink2);font-size:13px;line-height:1.6}
+  .tag{display:inline-block;padding:1px 7px;border-radius:5px;font-size:12px;font-weight:500;white-space:nowrap}
+  .t5{background:#EEEDFE;color:#534AB7}
+  .t4{background:#E6F1FB;color:#185FA5}
+  .t3{background:#E1F5EE;color:#0F6E56}
+  .t2{background:#E1F5EE;color:#0F6E56}
+  .t1{background:#FAEEDA;color:#854F0B}
+  .t0{background:#F1EFE8;color:#5F5E5A}
+  .ok{color:#0F6E56;font-weight:500}
+  .no{color:#A32D2D;font-weight:500}
+  .mid{color:#854F0B;font-weight:500}
+  .kv{display:grid;grid-template-columns:auto 1fr;gap:6px 16px;font-size:14px;margin:12px 0}
+  .kv dt{color:var(--ink3);white-space:nowrap}
+  .kv dd{margin:0}
+  .note{font-size:13px;color:var(--ink3);margin-top:8px}
+  .big{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:18px 0}
+  .card{background:var(--bg2);border-radius:10px;padding:16px}
+  .card .lbl{font-size:12.5px;color:var(--ink2);margin:0 0 6px}
+  .card .num{font-size:24px;font-weight:500;margin:0;line-height:1.2}
+  .card .unit{font-size:13px;color:var(--ink2);font-weight:400}
+  .cite{font-size:12.5px;color:var(--ink3);margin-top:20px;padding-top:16px;border-top:1px solid var(--line)}
+  .cite li{margin-bottom:4px}
+  .grp{font-weight:600;color:var(--ink)}
+  .fig{margin:22px 0 26px}
+  .fig svg{display:block;width:100%;height:auto}
+  .fig figcaption{font-size:12.5px;color:#57606A;margin-top:10px;line-height:1.65}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>Python 岗位分布与 AI 新需求分析</h1>
+<p class="sub">面向高职 Python 课程建设：岗位需求结构、增长趋势与能力锚点</p>
+<p class="meta">采样时间：2026 年 9 月 ｜ 样本：53 条真实招聘 JD（含 AIGC 方向补录 7 条）+ 4 份行业报告 ｜ 用途：Python 课程定位论证与能力模块设计</p>
+
+<h2>一、核心结论</h2>
+
+<div class="box">
+<p><strong>1. Python 岗位正在分叉，两条路的要求方向相反。</strong>传统开发岗要「精通、交付系统」，AI 新岗位要「了解、能验证想法」。这两条路对课程的要求完全不同，不能用同一套教学目标覆盖。</p>
+<p><strong>2. AI 新岗位是唯一在高速增长的板块，且门槛正在向专科生开放。</strong>智能体开发需求同比 +244%，AI 产品经理 +87.7%，数据标注/AI 训练师 +30.3%——而这三类岗位中，后两类的 JD 里大量写着"大专""应届可投""零基础可学"。</p>
+<p><strong>3. Python 在新岗位里的角色，从"交付语言"变成了"验证工具"。</strong>新岗位的原始措辞是"能写脚本处理数据、能用代码快速验证想法"（Inspire），"了解 Python 基础或 API 接口调用等概念"（艾为电子）。要求动词整体下移了 1–2 个等级。</p>
+<p><strong>4. AI 能力已经从加分项变成基础分。</strong>2026 年春招 10221 条岗位样本中，47% 提出了 AI 要求；腾讯技术岗 AI 渗透率 75%，字节设计岗 63%、超过研发岗。普华永道测算具备 AI 技能的岗位平均工资溢价 56%。</p>
+<p><strong>5. AIGC 是被本次调研漏掉、补录后才发现的一支增量，而且它的 Python 用法和数据岗不是一回事。</strong>补录的 7 条 AIGC 岗位显示，这一支内部可分三层：内容生产层（大专可投，招聘里几乎不写 Python）、应用工程层（大专可投，Python 用于<em>调接口、批处理、搭工作流</em>）、算法层（本科起，不作课程锚点）。问题在于：这一支的招聘信息里"招转培"比例明显偏高，筛选成本高于其他族。</p>
+</div>
+
+<h2>二、趋势证据：这批数字是硬的</h2>
+
+<p>以下数据来自智联招聘《2026 年人工智能产业人才发展报告》（基于 2026 上半年平台数据）与相关行业调研，不是估算。</p>
+
+<figure class="fig">
+<svg viewBox="0 0 900 216" width="100%" role="img" aria-label="四类岗位同比增速对比：AI 智能体开发 +244%，AI 产品经理 +87.7%，数据标注与 AI 训练师 +30.3%，人工智能工程师 +19.3%">
+  <g font-family="-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif">
+    <text x="238" y="46" text-anchor="end" font-size="13.5" font-weight="600" fill="#1F2328">AI 智能体开发人才需求</text>
+    <rect x="250" y="32" width="500" height="26" rx="6" fill="#7EB2DA"/>
+    <text x="762" y="50" font-size="13.5" font-weight="700" fill="#082F52">+244%</text>
+
+    <text x="238" y="92" text-anchor="end" font-size="13.5" font-weight="600" fill="#1F2328">AI 产品经理职位数</text>
+    <rect x="250" y="78" width="180" height="26" rx="6" fill="#9BC4E4"/>
+    <text x="442" y="96" font-size="13.5" font-weight="700" fill="#0B3A61">+87.7%</text>
+
+    <text x="238" y="138" text-anchor="end" font-size="13.5" font-weight="600" fill="#1F2328">数据标注 / AI 训练师</text>
+    <rect x="250" y="124" width="62" height="26" rx="6" fill="#CFE2F3"/>
+    <text x="324" y="142" font-size="13.5" font-weight="700" fill="#12507F">+30.3%</text>
+
+    <text x="238" y="184" text-anchor="end" font-size="13.5" font-weight="600" fill="#1F2328">人工智能工程师</text>
+    <rect x="250" y="170" width="40" height="26" rx="6" fill="#E2ECF7"/>
+    <text x="302" y="188" font-size="13.5" font-weight="700" fill="#155E8F">+19.3%</text>
+  </g>
+</svg>
+<figcaption>图 1 ｜ 四类岗位的同比增速。条越长增速越高，颜色越深代表增量越大——<strong>课程要对接的是上面两条</strong>，它们对应的能力区间恰恰不是"精通语法"那一档。</figcaption>
+</figure>
+
+<table>
+<thead><tr><th style="width:270px">指标</th><th style="width:140px">数值</th><th>说明</th></tr></thead>
+<tbody>
+<tr><td>AI 行业招聘企业数</td><td class="ok">同比 +24.8%</td><td class="j">企业数与职位数齐增（职位数 +10.6%）</td></tr>
+<tr><td>AI 智能体开发人才需求</td><td class="ok">同比 +244%</td><td class="j">增速最高的细分方向，AI 正从"辅助工具"走向"自主执行"</td></tr>
+<tr><td>AI 产品经理职位数</td><td class="ok">同比 +87.7%</td><td class="j">领跑核心岗位；已向医药制造、汽车研发等实体行业渗透</td></tr>
+<tr><td>数据标注 / AI 训练师</td><td class="ok">同比 +30.3%</td><td class="j">求职者专业 TOP10 中出现汉语言文学，说明专业门槛低</td></tr>
+<tr><td>人工智能工程师需供比</td><td>2.62 : 1</td><td class="j">汽车研发/制造领域达 8.2:1，缺口最大</td></tr>
+<tr><td>AI 技能岗位工资溢价</td><td class="ok">+56%</td><td class="j">普华永道《AI Jobs Barometer》测算</td></tr>
+<tr><td>春招岗位 AI 要求渗透率</td><td class="ok">47%</td><td class="j">腾讯、字节等 5 家互联网公司 10221 条岗位统计；腾讯技术岗 75%</td></tr>
+<tr><td>AI 岗位地域分布</td><td>新一线占 40.7%</td><td class="j">一线四城合计近 25%；上海增速 53.7% 领跑一线</td></tr>
+<tr><td>实体行业 AI 工程师月薪</td><td>2.2 万元级</td><td class="j">新能源 22594 元、航空航天 22787 元、医药制造 AI 产品经理 21048 元</td></tr>
+</tbody>
+</table>
+
+<p class="note">官方认定的新职业方向包括：AI 转型架构师、AI 智能体训练师、AI 产品经理、AI 合规与 AI 伦理工程师。人工智能训练师已有人社部门认定的社会化职业技能等级证书。</p>
+
+<h2>三、AI 新岗位的五个族群与样本清单</h2>
+
+<p>我把 53 条样本按岗位形态归为五族（AIGC 支线的 7 条作为族 2 的延伸单列）。这个分类不是学术分类，而是按<strong>同一族内对 Python 的要求高度一致</strong>来切的——这样它才可以直接对应到课程模块。</p>
+
+<figure class="fig">
+<svg viewBox="0 0 900 237" width="100%" role="img" aria-label="五个族群对 Python 要求的档位区间：数据与训练 L0 到 L3，应用落地 L4，产品与运营 L1 到 L3，赋能与培训 L1 到 L3，治理族样本不足">
+  <g font-family="-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif">
+    <text x="340" y="18" text-anchor="middle" font-size="12" fill="#6B7379">L0</text>
+    <text x="450" y="18" text-anchor="middle" font-size="12" fill="#6B7379">L1</text>
+    <text x="560" y="18" text-anchor="middle" font-size="12" fill="#6B7379">L2</text>
+    <text x="670" y="18" text-anchor="middle" font-size="12" fill="#6B7379">L3</text>
+    <text x="780" y="18" text-anchor="middle" font-size="12" fill="#6B7379">L4</text>
+
+    <text x="290" y="50" text-anchor="end" font-size="13" font-weight="600" fill="#1F2328">族 1 · 数据与训练</text>
+    <rect x="305" y="33" width="400" height="24" rx="6" fill="#CFE2F3"/>
+    <text x="830" y="50" font-size="12.5" fill="#5F5E5A">大专为主</text>
+
+    <text x="290" y="90" text-anchor="end" font-size="13" font-weight="600" fill="#1F2328">族 2 · 应用落地</text>
+    <rect x="745" y="73" width="70" height="24" rx="6" fill="#9BC4E4"/>
+    <text x="830" y="90" font-size="12.5" fill="#5F5E5A">卡作品</text>
+
+    <text x="290" y="130" text-anchor="end" font-size="13" font-weight="600" fill="#1F2328">族 3 · 产品与运营</text>
+    <rect x="415" y="113" width="290" height="24" rx="6" fill="#E2ECF7"/>
+    <text x="830" y="130" font-size="12.5" fill="#5F5E5A">本科为主</text>
+
+    <text x="290" y="170" text-anchor="end" font-size="13" font-weight="600" fill="#1F2328">族 4 · 赋能与培训</text>
+    <rect x="415" y="153" width="290" height="24" rx="6" fill="#CFE2F3"/>
+    <text x="830" y="170" font-size="12.5" fill="#5F5E5A">大专可投</text>
+
+    <text x="290" y="210" text-anchor="end" font-size="13" font-weight="600" fill="#1F2328">族 5 · 治理（观察）</text>
+    <rect x="305" y="193" width="510" height="24" rx="6" fill="#F1EFE8" stroke="#D3D1C7" stroke-width="1" stroke-dasharray="5 4"/>
+    <text x="830" y="210" font-size="12.5" fill="#5F5E5A">样本不足</text>
+  </g>
+</svg>
+<figcaption>图 2 ｜ 五个族群对 Python 的要求档位（横轴 L0 最低 → L4 最高），条越长说明族内跨度越大；右侧一组词是这一族真正卡人的那道门槛。族 2 整族落在 L4，这是它薪资上限最高、也最要求作品的原因。</figcaption>
+</figure>
+
+<h3>族 1 · 数据与训练族</h3>
+<p>负责把数据喂给模型、把模型输出调好。这是专科生最容易进入的一族。</p>
+<table>
+<thead><tr><th style="width:180px">岗位</th><th style="width:150px">企业 / 地区</th><th style="width:96px">学历</th><th style="width:96px">薪资</th><th>Python 相关要求</th><th style="width:44px">等级</th></tr></thead>
+<tbody>
+<tr><td>数据标注 / AI 训练师</td><td>江西智核云标（新余）</td><td class="ok">大专 应届可投</td><td>8千-1.2万</td><td class="j">零基础可学，<strong>无需编程、无需技术底子</strong>；负责数据清洗、质检、编写优化提示词</td><td><span class="tag t0">L0</span></td></tr>
+<tr><td>数据标注 / AI 训练师</td><td>荟骏人力（天津）</td><td class="ok">专科及以上</td><td>3-10K</td><td class="j">熟练电脑操作，会用标注工具完成拉框、分类、注释</td><td><span class="tag t0">L0</span></td></tr>
+<tr><td>AI 智能训练师</td><td>小咖智数（贵阳）</td><td class="ok">2026 届大专</td><td>3-5K</td><td class="j">多模态数据标注；对主流 AI 辅助工具有基本认知</td><td><span class="tag t0">L0</span></td></tr>
+<tr><td>AI 训练师（提示词）</td><td>—</td><td>本科<span class="ok">，优秀可放宽专科</span></td><td>—</td><td class="j">具备基础 python 开发能力，能在大模型辅助下完成简单代码的编写、修改与调试</td><td><span class="tag t2">L2</span></td></tr>
+<tr><td>AI 训练师（代码型）</td><td>四川中鸿数智（遂宁）</td><td class="ok">专科及以上</td><td>4.5-5.5K</td><td class="j">掌握 C/C#/Java/<strong>JavaScript</strong>/Python/Node.js 等任意一种编程语言</td><td><span class="tag t1">L1</span></td></tr>
+<tr><td>AI 训练师</td><td>上海坤载元码（郑州）</td><td class="ok">大专</td><td>5-10K×13</td><td class="j">熟练掌握 Python，能使用 Pandas、NumPy；精通 Prompt 工程</td><td><span class="tag t3">L3</span></td></tr>
+</tbody>
+</table>
+
+<h3>族 2 · 应用落地族</h3>
+<p>增长最猛的一族（+244%），也是技术要求最高的一族。注意：核心技能不是 Python 语法，而是<strong>编排能力</strong>。</p>
+<table>
+<thead><tr><th style="width:180px">岗位</th><th style="width:150px">企业 / 地区</th><th style="width:96px">学历</th><th style="width:96px">薪资</th><th>Python 相关要求</th><th style="width:44px">等级</th></tr></thead>
+<tbody>
+<tr><td>大模型 AI 应用开发工程师</td><td>武汉（接受实习生）</td><td class="ok">大专 应届可投</td><td>1-2万</td><td class="j">Python + LangChain / AutoGen / Milvus / FAISS / LlamaIndex；RAG 搭建、Agent 开发、模型编排</td><td><span class="tag t4">L4</span></td></tr>
+<tr><td>AIGC 应用工程师（智能体）</td><td>成都</td><td class="ok">大专 应届可投</td><td>5千-2万</td><td class="j">LangChain / Dify / Coze；RAG 知识库搭建、向量数据库、API 封装对接</td><td><span class="tag t4">L4</span></td></tr>
+<tr><td>大模型应用开发工程师</td><td>欧钛鑫光电（苏州）</td><td class="ok">校招 大专 不限经验</td><td>—</td><td class="j">掌握 Python、PyTorch/TensorFlow；LangChain/LLamaIndex；向量数据库；FastAPI</td><td><span class="tag t4">L4</span></td></tr>
+<tr><td>AI Agent 研发工程师（初级 / 实习）</td><td>海妖科技（成都）</td><td class="ok">大专</td><td>—</td><td class="j">扎实 Python 基础、FastAPI、asyncio；Prompt 调试；RAG 清洗切片；pgvector / Milvus</td><td><span class="tag t4">L4</span></td></tr>
+<tr><td>AI 大模型应用开发（OpenClaw）</td><td>仟草中药饮片（北京）</td><td class="mid">应届 大专<span class="no">（要求栏写本科）</span></td><td>25K 以下</td><td class="j">LangChain/LangChain4J、MCP 协议、Function Calling、Milvus、RAG</td><td><span class="tag t4">L4</span></td></tr>
+</tbody>
+</table>
+<p class="note">这一族的共同点：学历写"大专"的不少，但几乎都要求"有可展示的项目成果""个人项目、课程项目、实战项目均可"。<strong>学历不是卡点，作品才是。</strong></p>
+
+<h3>延伸 · AIGC 内容生成支线（补录 7 条）</h3>
+
+<p>这一支在第一轮采集时被整体漏掉了，原因是检索口径：本报告的入口条件是"招聘要求含 Python"，而 AIGC 里招人最多的那批岗位（AI 剪辑、AI 设计、AI 电商图文）根本不写 Python。补录之后看清楚了——<strong>AIGC 不是没有 Python 岗位，而是它内部的 Python 分布是分层的</strong>。</p>
+
+<figure class="fig">
+<svg viewBox="0 0 900 316" width="100%" role="img" aria-label="AIGC 岗位的三层结构与 Python 要求：内容生产层不提 Python，应用工程层要求脚本与工作流能力，算法层本科起不纳入课程锚点">
+  <g font-family="-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif">
+    <rect x="40" y="20" width="600" height="76" rx="10" fill="#E2ECF7" stroke="#9BC4E4" stroke-width="0.5"/>
+    <text x="60" y="50" font-size="14" font-weight="600" fill="#155E8F">内容生产层：AIGC 创作者 / AI 剪辑 / AI 电商图文</text>
+    <text x="60" y="74" font-size="12.5" fill="#155E8F">大专可投，招聘里基本不写 Python，看工具熟练度与作品集</text>
+    <rect x="700" y="42" width="170" height="32" rx="8" fill="#F1EFE8" stroke="#D3D1C7" stroke-width="0.5"/>
+    <text x="785" y="63" text-anchor="middle" font-size="12.5" fill="#5F5E5A">Python：不提</text>
+
+    <rect x="40" y="112" width="600" height="76" rx="10" fill="#B8D4EC" stroke="#7EB2DA" stroke-width="0.5"/>
+    <text x="60" y="142" font-size="14" font-weight="600" fill="#0B3A61">应用工程层：AIGC 应用工程师 / 提示词工程师</text>
+    <text x="60" y="166" font-size="12.5" fill="#0B3A61">大专可投，Python 用于调接口、批处理、搭自动化工作流</text>
+    <rect x="700" y="134" width="170" height="32" rx="8" fill="#CFE2F3" stroke="#9BC4E4" stroke-width="0.5"/>
+    <text x="785" y="155" text-anchor="middle" font-size="12.5" font-weight="600" fill="#0B3A61">Python：加分或要求</text>
+
+    <rect x="40" y="204" width="600" height="76" rx="10" fill="#EEF1F4" stroke="#D3D1C7" stroke-width="0.5"/>
+    <text x="60" y="234" font-size="14" font-weight="600" fill="#4E565D">算法层：多模态模型训练与微调</text>
+    <text x="60" y="258" font-size="12.5" fill="#4E565D">本科起、三年以上经验，不作高职课程锚点</text>
+    <rect x="700" y="226" width="170" height="32" rx="8" fill="#F1EFE8" stroke="#D3D1C7" stroke-width="0.5"/>
+    <text x="785" y="247" text-anchor="middle" font-size="12.5" fill="#5F5E5A">本科起</text>
+
+    <text x="40" y="302" font-size="12" fill="#57606A">中间那一层，才是本报告要接的部分</text>
+  </g>
+</svg>
+<figcaption>图 3 ｜ AIGC 支线的三层结构。第一层体量最大但进不了"要求 Python"的口径，第三层够不着，<strong>课程与就业推荐都应对准第二层</strong>。</figcaption>
+</figure>
+
+<table>
+<thead><tr><th style="width:180px">岗位</th><th style="width:150px">企业 / 地区</th><th style="width:96px">学历</th><th style="width:96px">薪资</th><th>Python 相关要求</th><th style="width:44px">等级</th></tr></thead>
+<tbody>
+<tr><td>AIGC 应用工程师</td><td>四川晟昇文化（成都）</td><td class="ok">大专 1 年以下</td><td class="ok">7千-1.4万</td><td class="j">精通 Stable Diffusion / Midjourney / Sora 等主流 AIGC 工具与工作流，<strong>熟练使用 Python 进行脚本开发与流程自动化</strong>；提示词工程、模型微调、工作流搭建（同公司另有 1-3 年经验、招 10 人的一条，措辞一致）</td><td><span class="tag t4">L4</span></td></tr>
+<tr><td>AIGC 内容生成工程师</td><td>内蒙古数智云（包头）</td><td class="ok">大专</td><td class="ok">7-12K</td><td class="j">设计提示词、调用大模型接口产出内容；<strong>熟悉 Python 或 JavaScript 是加分项，能直接调 API 上手更快</strong>；卡人的是工具熟练度与作品集</td><td><span class="tag t3">L3</span></td></tr>
+<tr><td>AIGC 人才储备（四个方向）</td><td>广西腾九洲（南宁）<br><span class="j">中国公共招聘网</span></td><td class="ok">大学专科</td><td>7001 元以上</td><td class="j">官方 JD 直接列出四个岗位名：<strong>AIGC 应用工程师（注明"主流招聘名称，新人适配度最高"）、AIGC 内容创意工程师、AIGC 提示词工程师、AIGC 产品运营师</strong>；加分能力"熟悉 Python 基础编程，了解大模型微调、RAG 搭建、AI 绘画模型训练"</td><td><span class="tag t2">L2</span></td></tr>
+<tr><td>AI 多模态应用支持实习生</td><td>深信产教融合（成都）</td><td class="ok">专科及以上 2026 届</td><td>3.0-7.0K</td><td class="j">多模态 AIGC 内容（图文、视频）的数据采集、清洗与标注；用豆包、千问、即梦做生成与测试；数据整理统计与报表输出。<strong>跨数据族与 AIGC 两支，是应届生最现实的入口</strong></td><td><span class="tag t1">L1</span></td></tr>
+<tr><td>AIGC 产业基地创作者</td><td>江西金手指（南昌）</td><td class="ok">大专及以上</td><td class="mid">按订单计酬</td><td class="j">AI 电商视频、AI 图文、信息流剪辑；15 天岗前培训后派单。<strong>不要求 Python</strong>，列此条用于说明"为什么 AIGC 体量大却进不了本报告的统计口径"</td><td><span class="tag t0">L0</span></td></tr>
+</tbody>
+</table>
+
+<p><strong>这一支里 Python 的用法，与数据族不是同一件事。</strong>数据族的链路是"取数 → 清洗 → 分析 → 结论"，Python 服务于<em>判断</em>；AIGC 应用工程层的链路是"调接口批量生成 → 脚本串工作流 → 批量筛选质检"，Python 服务于<em>产能</em>。共同点是：都不要求"从零造系统"，都落在 L2–L4 区间，都不考语法而考"能不能让机器替你干完一批活"。</p>
+
+<div class="box">
+<p><strong>风险提示：这一支的"招转培"比例明显高于其他四族，向学生推荐前必须先筛。</strong>补录中出现三种典型信号：</p>
+<ul>
+<li><strong>薪资与经验严重不匹配。</strong>镇江易创"AIGC 生成工程师"：专科、招 20 人、宣称转正 8000-25000 元/月、年均 10 万起，经验要求却写"不限"，由一所职业技术学院就业网转发。"经验不限 + 20 人 + 八千起"三者同时出现，本身就是信号。</li>
+<li><strong>"免费培训 + 百分百入职"。</strong>安徽某文化公司 AIGC 工程师（专科及以上，招 40 人），宣传口径是"免费使用公司影视基地与算力平台，无硬件门槛""考核合格者 100% 入职"。一次招 40 人的"工程师岗"却配整套培训话术，应按培训招生而非招聘岗位理解。</li>
+<li><strong>按件计酬被包装成岗位。</strong>南昌某公司"AIGC 产业基地创作者"（大专及以上，20 人）：15 天岗前培训后"第一个月派发 1 万订单"，报酬随订单量浮动，实质是内容外包派单。</li>
+</ul>
+<p>判别方法只有一句：<strong>看它让你交付什么、钱从哪来。</strong>招聘岗位的交付物是项目成果、固定薪资占大头、会追问作品；招转培的交付物是"培训后考核"，收入靠派单或提成，且几乎不看作品。</p>
+</div>
+
+<h3>族 3 · 产品与运营族</h3>
+<p>用户提到的那类岗位。增速 +87.7%，但学历门槛是本科为主的，需要区别对待。</p>
+<table>
+<thead><tr><th style="width:180px">岗位</th><th style="width:150px">企业 / 地区</th><th style="width:96px">学历</th><th style="width:96px">薪资</th><th>Python 相关要求</th><th style="width:44px">等级</th></tr></thead>
+<tbody>
+<tr><td><strong>AI 产品经理</strong>（校招 ~10 人）</td><td><strong>Inspire（原 Thoughtworks）</strong></td><td>本科为主<br><span class="ok">其他专业但编程基础扎实者同样欢迎</span></td><td>—</td><td class="j">"具备扎实的编程基础与动手验证能力：<strong>能写脚本处理数据、能用代码快速验证想法</strong>"；岗位职责明确列出 <strong>Vibe Coding</strong> 模块</td><td><span class="tag t3">L3</span></td></tr>
+<tr><td>AI 产品经理（智能体）</td><td>阿里巴巴 2027 届</td><td>本科</td><td>100-150/天</td><td class="j">熟练使用 SQL/Python 分析用户行为数据，<strong>或</strong>具备基础技术开发能力；有 Prompt 工程实践</td><td><span class="tag t2">L2</span></td></tr>
+<tr><td>AI 产品经理</td><td>杭州滨江（校招）</td><td>本科 应届可投</td><td>8千-1.2万×14</td><td class="j">具备基本的编程（如 Python、Java 等）和数据分析能力</td><td><span class="tag t2">L2</span></td></tr>
+<tr><td>AI 产品经理</td><td>复星（上海）</td><td>本科 应届</td><td>—</td><td class="j">加分项：具备基础编程能力（Python/JavaScript），可与技术团队高效协作</td><td><span class="tag t1">L1</span></td></tr>
+<tr><td>AI 产品经理 - 2027 届</td><td>艾为电子（上海）</td><td>本科</td><td>—</td><td class="j"><strong>了解</strong> Python 基础或 API 接口调用等概念</td><td><span class="tag t1">L1</span></td></tr>
+<tr><td>AI 应用运营专员</td><td>通用依沃（深圳）</td><td class="ok">大专 2025-26 应届</td><td>5.5千-1万</td><td class="j">搭建 AI 提示词模板、给 AI 做知识投喂、审核 AI 输出；<strong>不要求精通，要有实操意愿</strong></td><td><span class="tag t1">L1</span></td></tr>
+<tr><td>AI 数字化储备干部</td><td>厦门（2026 应届）</td><td class="ok">大专及以上 专业不限</td><td>—</td><td class="j">熟练使用各类 AI 工具完成文案、设计、剪辑、数据分析；主动钻研 AI 新应用场景</td><td><span class="tag t1">L1</span></td></tr>
+<tr><td>AI 专员</td><td>慧创精供（广州）</td><td class="ok">大专 无需经验</td><td>5-7千</td><td class="j">设计与管理 Prompt 模板；<strong>基于 RAG 技术搭建内部 AI 问答系统</strong>；开展分层 AI 培训</td><td><span class="tag t2">L2</span></td></tr>
+<tr><td>智能客服专员</td><td>明晟智服（佛山）</td><td class="ok">专科 专业不限</td><td>4-5K</td><td class="j">优化 AI 回复、搭建智能话术库；用过 DeepSeek/Kimi 等任一工具优先，<strong>没有可培训</strong></td><td><span class="tag t0">L0</span></td></tr>
+</tbody>
+</table>
+
+<h3>族 4 · 赋能与培训族</h3>
+<p>这一族我原本没预期，但它可能是<strong>与高职学生背景最匹配的一族</strong>——要的是"懂 AI + 会讲"，不是"会写工程代码"。</p>
+<table>
+<thead><tr><th style="width:180px">岗位</th><th style="width:150px">企业 / 地区</th><th style="width:96px">学历</th><th style="width:96px">薪资</th><th>核心要求</th><th style="width:44px">等级</th></tr></thead>
+<tbody>
+<tr><td>AI 赋能项目实战讲师（储备）</td><td>圆心启点（西安）</td><td class="ok">2026 届大专及以上</td><td>—</td><td class="j">承担 AI 效率提升、提示词工程、Coze 智能体搭建课程授课；<strong>体验过至少 2 款主流 AI 工具</strong>；有讲课/分享经历优先</td><td><span class="tag t1">L1</span></td></tr>
+<tr><td>AI 行业培训讲师（政企内训）</td><td>鹭港智联（厦门）</td><td class="ok">大专 1-3 年</td><td class="ok">1.4-2.6万</td><td class="j">面向企业客户开设 AI 智能体落地实训课；Docker 部署、智能体平台全流程实操教学；有法律/外贸行业知识优先</td><td><span class="tag t3">L3</span></td></tr>
+<tr><td>AI 应用培训师</td><td>联达重锻（重庆）</td><td class="ok">大专 经验不限 可应届</td><td>4-8千</td><td class="j">掌握主流 AI 工具全场景实操（文案/图像/数据处理/编程辅助）；面向销售、生产、行政、财务定制培训课程</td><td><span class="tag t1">L1</span></td></tr>
+<tr><td>AI 运营讲师 / 企业 AI 培训专员</td><td>贵联科技（秦皇岛）</td><td>本科</td><td>4-6K</td><td class="j">面向工厂、实体企业开展 AI 实操落地培训；<strong>有无经验均可，优秀应届生也可</strong></td><td><span class="tag t1">L1</span></td></tr>
+</tbody>
+</table>
+
+<h3>族 5 · 治理族（样本尚少）</h3>
+<p>AI 合规与伦理工程师、数据安全、内容风控。已进入官方新职业清单，但当前招聘样本稀疏，尚不足以判断门槛。<strong>建议列为观察方向，暂不作为课程锚点。</strong></p>
+
+<h2>四、最关键的变化：Python 的动词下移了</h2>
+
+<p>把两批 JD 的原文并排放，会看到一个非常干净的变化：<strong>招聘方描述 Python 时用的动词，整体下移了 1–2 个等级。</strong></p>
+
+<figure class="fig">
+<svg viewBox="0 0 900 240" width="100%" role="img" aria-label="Python 要求动词的六级阶梯：能交付系统、能写模块、能取数、能验证想法、能对话、能读懂">
+  <g font-family="-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif">
+    <text x="20" y="40" font-size="12.5" font-weight="600" fill="#5F5E5A">旧范式</text>
+    <line x1="126" y1="20" x2="126" y2="80" stroke="#C4CAD0" stroke-width="1.5"/>
+
+    <rect x="140" y="20" width="480" height="26" rx="6" fill="#7EB2DA"/>
+    <text x="156" y="38" font-size="13" font-weight="600" fill="#082F52">L5 能交付系统</text>
+    <text x="640" y="38" font-size="12.5" fill="#5F5E5A">精通 + OOP + 协程</text>
+
+    <rect x="140" y="54" width="480" height="26" rx="6" fill="#9BC4E4"/>
+    <text x="156" y="72" font-size="13" font-weight="600" fill="#0B3A61">L4 能写模块</text>
+    <text x="640" y="72" font-size="12.5" fill="#5F5E5A">熟悉语法 + 模块化</text>
+
+    <text x="20" y="142" font-size="12.5" font-weight="600" fill="#5F5E5A">新范式</text>
+    <line x1="126" y1="88" x2="126" y2="216" stroke="#C4CAD0" stroke-width="1.5"/>
+
+    <rect x="140" y="88" width="480" height="26" rx="6" fill="#B8D4EC"/>
+    <text x="156" y="106" font-size="13" font-weight="600" fill="#0E4470">L3 能取数</text>
+    <text x="640" y="106" font-size="12.5" fill="#5F5E5A">SQL / Python 分析数据</text>
+
+    <rect x="140" y="122" width="480" height="26" rx="6" fill="#CFE2F3"/>
+    <text x="156" y="140" font-size="13" font-weight="600" fill="#12507F">L2 能验证想法</text>
+    <text x="640" y="140" font-size="12.5" fill="#5F5E5A">写脚本、快速验证</text>
+
+    <rect x="140" y="156" width="480" height="26" rx="6" fill="#E2ECF7"/>
+    <text x="156" y="174" font-size="13" font-weight="600" fill="#155E8F">L1 能对话</text>
+    <text x="640" y="174" font-size="12.5" fill="#5F5E5A">基础编程，能对接工程师</text>
+
+    <rect x="140" y="190" width="480" height="26" rx="6" fill="#EEF1F4"/>
+    <text x="156" y="208" font-size="13" font-weight="600" fill="#4E565D">L0 能读懂</text>
+    <text x="640" y="208" font-size="12.5" fill="#5F5E5A">了解基础或 API 概念</text>
+  </g>
+</svg>
+<figcaption>图 4 ｜ Python 要求动词的六级阶梯，从上到下要求递减。<strong>上两级是旧范式（L4–L5），下面四级是 AI 新岗位正在用的表述</strong>——课程目标如果压在上两级，等于押注增速只有 +19.3% 的那个市场。</figcaption>
+</figure>
+
+<table>
+<thead><tr><th style="width:120px">范式</th><th style="width:230px">JD 原文措辞</th><th style="width:190px">出处</th><th>要求的能力</th></tr></thead>
+<tbody>
+<tr><td rowspan="4" class="grp">Python =<br>交付能力</td><td class="j">精通 Python 及生态库，掌握 OOP/设计模式/协程</td><td class="j">深圳 · Python 开发工程师</td><td class="j">能交付系统</td></tr>
+<tr><td class="j">扎实掌握 Python 语法，熟练使用 Django 框架</td><td class="j">天津 · Python 全栈</td><td class="j">能交付系统</td></tr>
+<tr><td class="j">熟悉 Python 语法，了解面向对象编程</td><td class="j">西安 · Python 开发工程师</td><td class="j">能写模块</td></tr>
+<tr><td class="j">掌握 python，能编写模块化、可重用、易维护代码</td><td class="j">杭州 · 运维实施工程师</td><td class="j">能写模块</td></tr>
+<tr><td rowspan="4" class="grp">Python =<br>验证能力</td><td class="j">能写脚本处理数据、能用代码快速验证想法</td><td class="j">Inspire · AI 产品经理</td><td class="j">能验证想法</td></tr>
+<tr><td class="j">具备基础编程能力（Python/JavaScript），可与技术团队高效协作</td><td class="j">复星 · AI 产品经理</td><td class="j">能对话</td></tr>
+<tr><td class="j">了解 Python 基础或 API 接口调用等概念</td><td class="j">艾为电子 · AI 产品经理</td><td class="j">能读懂</td></tr>
+<tr><td class="j">熟练使用 SQL/Python 分析用户行为数据，或具备基础技术开发能力</td><td class="j">阿里巴巴 · AI 产品经理</td><td class="j">能取数</td></tr>
+</tbody>
+</table>
+
+<div class="box">
+<p><strong>这个变化对课程的含义很直接：</strong>如果课程目标只对标上表前四行（L4–L5），那么它服务的岗位虽然仍在招聘，但增速只有个位数到十几；而增速 87.7% 和 244% 的岗位，落在下四行的能力区间（L1–L3）。</p>
+<p><strong>更值得注意的是"或"字。</strong>阿里巴巴写的是"熟练使用 SQL/Python 分析用户行为数据，<em>或</em>具备基础技术开发能力"——这两条路是并列可选的。企业要的不是某一种语言，是<strong>数据与技术的基本操作能力</strong>，Python 只是其中最通用的那个入口。</p>
+</div>
+
+<h2>五、新岗位的能力指纹</h2>
+
+<p>把上面五族对 Python 的要求抽出来，可以得到一张很清晰的对照表。注意最后一列的差异——<strong>同一个"Python 能力"，在不同族里指向的完全不是同一件事</strong>。</p>
+
+<table>
+<thead><tr><th style="width:120px">族群</th><th style="width:170px">Python 在其中扮演</th><th style="width:100px">要求区间</th><th>实际考核的能力</th></tr></thead>
+<tbody>
+<tr><td><span class="grp">数据与训练族</span></td><td class="j">可选工具<br>（甚至不需要）</td><td><span class="tag t0">L0</span> <span class="tag t1">L1</span> <span class="tag t3">L3</span></td><td class="j">数据敏感度、规则理解、文字提炼能力。多个 JD 明写"无需编程"，Python 是加分不是门槛</td></tr>
+<tr><td><span class="grp">应用落地族</span></td><td class="j">胶水语言</td><td><span class="tag t4">L4</span></td><td class="j">不是语法，是<strong>编排</strong>：Prompt 设计、RAG 流程、Agent 工具调用、API 封装。Python 负责把大模型、向量库、业务系统粘起来</td></tr>
+<tr><td><span class="grp">产品与运营族</span></td><td class="j">沟通凭证</td><td><span class="tag t1">L1</span> <span class="tag t2">L2</span> <span class="tag t3">L3</span></td><td class="j">自己取数、快速做原型验证、跟工程师对齐。JD 原话是"能与技术团队高效协作"</td></tr>
+<tr><td><span class="grp">赋能与培训族</span></td><td class="j">讲课素材</td><td><span class="tag t1">L1</span> <span class="tag t3">L3</span></td><td class="j">把 AI 工具讲清楚、把操作步骤标准化。考核表达与拆解能力，不考核工程能力</td></tr>
+</tbody>
+</table>
+
+<h2>六、专科生的出口排序</h2>
+
+<figure class="fig">
+<svg viewBox="0 0 900 338" width="100%" role="img" aria-label="专科生出口排序四档：门槛明确匹配、背景最匹配、需要作品但学历不卡、需谨慎对待">
+  <g font-family="-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif">
+    <rect x="40" y="20" width="820" height="64" rx="10" fill="#DFF3EC" stroke="#7FC9AF" stroke-width="0.5"/>
+    <text x="60" y="48" font-size="13.5" font-weight="600" fill="#0B5B47">第一档</text>
+    <text x="60" y="70" font-size="12" fill="#0B5B47">门槛明确匹配</text>
+    <text x="210" y="59" font-size="13" fill="#0B5B47">数据标注 / AI 训练师、智能客服训练、AI 应用运营</text>
+    <text x="650" y="59" font-size="12.5" font-weight="600" fill="#0B5B47">3K – 1.2万</text>
+
+    <rect x="40" y="98" width="820" height="64" rx="10" fill="#EFEDFD" stroke="#BDB5F0" stroke-width="0.5"/>
+    <text x="60" y="126" font-size="13.5" font-weight="600" fill="#443BA8">第二档</text>
+    <text x="60" y="148" font-size="12" fill="#443BA8">背景最匹配，被低估</text>
+    <text x="210" y="137" font-size="13" fill="#443BA8">AI 应用培训师、AI 赋能项目讲师、企业 AI 培训专员</text>
+    <text x="650" y="137" font-size="12.5" font-weight="600" fill="#443BA8">4K – 2.6万</text>
+
+    <rect x="40" y="176" width="820" height="64" rx="10" fill="#E4EFFB" stroke="#9CC3E8" stroke-width="0.5"/>
+    <text x="60" y="204" font-size="13.5" font-weight="600" fill="#0C447C">第三档</text>
+    <text x="60" y="226" font-size="12" fill="#0C447C">需要作品，但学历不卡</text>
+    <text x="210" y="215" font-size="13" fill="#0C447C">大模型应用开发、AIGC 应用工程师、AI Agent 开发</text>
+    <text x="650" y="215" font-size="12.5" font-weight="600" fill="#0C447C">5千 – 2万</text>
+
+    <rect x="40" y="254" width="820" height="64" rx="10" fill="#FBEEDA" stroke="#E3C48D" stroke-width="0.5"/>
+    <text x="60" y="282" font-size="13.5" font-weight="600" fill="#7A4A0A">需谨慎</text>
+    <text x="60" y="304" font-size="12" fill="#7A4A0A">不宜作为课程锚点</text>
+    <text x="210" y="293" font-size="13" fill="#7A4A0A">大厂 AI 产品经理、纯 Python 开发（L5）</text>
+    <text x="650" y="293" font-size="12.5" font-weight="600" fill="#7A4A0A">本科 / 硕士门槛</text>
+  </g>
+</svg>
+<figcaption>图 5 ｜ 出口排序。前两档的共同点是"大专 + 应届可投"写在明面上；第三档不看学历、看作品，也是 AIGC 支线所在的一档；第四档不建议作为课程宣传锚点。</figcaption>
+</figure>
+
+<h3>第一档：门槛明确匹配（可零基础起步）</h3>
+<dl class="kv">
+<dt>岗位</dt><dd>数据标注 / AI 训练师、智能客服训练、AI 应用运营、AI 数字化储备</dd>
+<dt>证据</dt><dd class="ok">大专、专业不限、应届可投；多个 JD 明写"零基础可学""没有可培训"</dd>
+<dt>薪资</dt><dd>3K–1.2万（区间大，看城市与企业质量）</dd>
+</dl>
+
+<h3>第二档：背景最匹配，被严重低估</h3>
+<dl class="kv">
+<dt>岗位</dt><dd>AI 应用培训师 / AI 赋能项目讲师 / 企业 AI 培训专员</dd>
+<dt>证据</dt><dd class="ok">2026 届大专及以上；计算机、教育技术、数字媒体专业优先；有讲课、支教、社团分享经历优先</dd>
+<dt>薪资</dt><dd>4K–2.6万（厦门政企内训岗 1.4–2.6 万，大专 1-3 年）</dd>
+<dt>理由</dt><dd>要求"懂 AI 工具 + 会讲"，正好是高职计算机 + 师范背景的交集，且不与科班生正面竞争</dd>
+</dl>
+
+<h3>第三档：需要作品，但学历不卡</h3>
+<dl class="kv">
+<dt>岗位</dt><dd>大模型应用开发、AIGC 应用工程师、AI Agent 开发</dd>
+<dt>证据</dt><dd class="mid">大量 JD 写"大专""校招不限经验"，但同时要求"有可展示、可复盘的实战项目成果"</dd>
+<dt>薪资</dt><dd>5千–2万</dd>
+<dt>风险</dt><dd>技能栈更新快（LangChain、Dify、Coze、Milvus…），课程若绑死某个框架，两年后会失效</dd>
+</dl>
+
+<h3>需要谨慎对待的方向</h3>
+<dl class="kv">
+<dt>大厂 AI 产品经理</dt><dd class="no">字节要求 2027/2028 届硕士在读，阿里、复星、艾为均为本科门槛。不宜作为高职课程宣传锚点</dd>
+<dt>纯 Python 开发（L5）</dt><dd class="no">仍需"精通 + OOP + 设计模式 + 协程"，与本科科班正面竞争，且职位增速仅 19.3%</dd>
+</dl>
+
+<h2>七、对 Python 课程的具体建议</h2>
+
+<div class="box">
+<p><strong>1. 把课程目标从"语言覆盖"改为"能力分层达标"。</strong>建议以 L1–L3 为专科层次的主目标区间，L4 作为优秀学生的拔高段。理由很直接：L1–L3 对应的是增速 +87.7% 和 +244% 的岗位区间，L5 对应的是 +19.3% 的岗位。</p>
+<p><strong>2. 必须新增一个模块：Python × 大模型 API。</strong>多个族的 JD 都出现了"调用/调试业务 API""接口封装、对接、调试、部署""API 接口调用等概念"。这是两年前不存在、现在成为刚需的内容——用 Python 把大模型能力接到自己的业务流程上。</p>
+<p><strong>3. 必须新增：结构化输出与提示词工程。</strong>JD 原文"输出格式标准化""结构化程度（JSON/Pydantic）""精通 Prompt 工程"。这不是"语文课"，是工程约束——模型输出要能被程序稳定消费。</p>
+<p><strong>4. 数据能力的底座不变，但服务对象变了。</strong>Pandas + SQL 仍然是绝对主力（Python 与 SQL 在样本中六成并列出现），但过去它服务于"做报表"，现在它服务于"清洗数据喂给模型""评估模型输出质量"。教学案例应该换掉。</p>
+<p><strong>5. 考核方式建议改为"读改 + 验证"。</strong>依据是新岗位 JD 的原话："在大模型辅助下完成简单代码的编写、修改与调试"。建议核心考核设为：给一段陌生代码或 AI 生成代码，要求读懂、改对、并写脚本验证结果。这比"从零写一个功能"更贴近岗位真实动作。</p>
+<p><strong>6. 建议开设面向非技术岗的 Python 素养课。</strong>47% 的春招岗位提出了 AI 要求，其中包含大量运营、设计、客服、行政岗。这些学生需要的不是工程能力，而是"能自己取数 + 能跟 AI 协作"。这是一个被忽视的课程增量市场。</p>
+<p><strong>7. 建议增设"用 Python 做 AIGC 自动化"的小模块，4–6 课时即可，不占用主干课时。</strong>依据是补录到的两条 JD 原文："熟练使用 Python 进行脚本开发与流程自动化"（成都，大专，7千-1.4万）、"熟悉 Python 是加分项，能直接调 API 上手更快"（包头，大专，7-12K）。它教的动作只有三个：调生成接口批量出图出片、用脚本把几个工具串成工作流、对生成结果做批量筛选与质检。<strong>它的额外价值是产出物可见</strong>——图、视频、漫剧本身就是作品集素材，比一份数据分析报告更容易让学生拿得出手，也更容易在第三档岗位的面试里被看见。两条边界要守住：不要上成某个工具（ComfyUI、Midjourney）的操作培训，工具两年一换；向学生推荐 AIGC 岗位之前必须先做招转培筛查。</p>
+</div>
+
+<h3>一个可落地的能力模块草案</h3>
+<table>
+<thead><tr><th style="width:70px">层级</th><th style="width:200px">课程模块</th><th>达标表现（可直接写进考核标准）</th><th style="width:96px">对应族群</th></tr></thead>
+<tbody>
+<tr><td><span class="tag t1">L1</span></td><td>能读懂与调用</td><td class="j">读懂别人写的 50 行脚本；看懂 API 文档与返回的 JSON；能改参数跑通</td><td class="j">产品运营、培训</td></tr>
+<tr><td><span class="tag t2">L2</span></td><td>AI 协作编程</td><td class="j">用 AI 工具生成代码后，能定位并修正其中的错误；能写结构化 Prompt 让输出稳定</td><td class="j">产品运营、训练</td></tr>
+<tr><td><span class="tag t3">L3</span></td><td>数据任务闭环</td><td class="j">独立完成"取数（SQL）→ 清洗（Pandas）→ 可视化 → 结论"的完整链路</td><td class="j">运营、训练、培训</td></tr>
+<tr><td><span class="tag t4">L4</span></td><td>大模型应用编排</td><td class="j">用 Python 调用大模型 API，搭一个能跑通的 RAG 问答或 Agent 小应用</td><td class="j">应用落地</td></tr>
+</tbody>
+</table>
+
+<h2>八、留给实验班验证的假设</h2>
+
+<p>这次调研浮现出两个可以直接量化的假设，都能支撑实验班的数据采集：</p>
+
+<p><strong>假设一：</strong>在"读懂并改对陌生/AI 生成代码"这一任务上的表现，与实习岗位匹配度的相关性，显著高于"从零编写代码"的表现。若成立，则 L2 层级的考核方式就应该从"写"改为"读改"。</p>
+
+<p><strong>假设二：</strong>完成 L3 模块（SQL + Pandas 任务闭环）的学生，在 AI 训练师、AI 应用运营、AI 培训师三类岗位上的实习录用率，显著高于未完成的学生。若成立，则可直接证明课程模块与就业出口的因果链，这是期刊投稿最有说服力的形态。</p>
+
+<p>两个假设的对照组设计都很简单：同年级、同学期、课程模块有无的区别，不需要额外造数据。</p>
+
+<p class="cite">
+<strong>数据来源</strong>
+<ul>
+<li>智联招聘《2026 年人工智能产业人才发展报告》（2026 年 7 月发布，基于平台上半年数据）</li>
+<li>经济日报、经济参考报（新华社）、央视网、中国教育在线相关报道</li>
+<li>普华永道《AI Jobs Barometer》</li>
+<li>北京日报对腾讯、字节跳动等 5 家互联网公司 2026 春招 10221 条岗位的统计</li>
+<li>招聘样本平台：全职招聘网、BOSS 直聘、智联招聘、前程无忧、鱼泡直聘、ChinaHR、今日招聘、圆才网、应届生求职网、汇博招聘，以及西安交通大学、华北水利水电大学、西安培华学院、广东职业技术学院、中国地质大学、河北工业大学、重庆市高校毕业生智慧就业平台等高校就业网</li>
+<li>AIGC 支线补录来源（2026 年 8–9 月）：中国公共招聘网（mohrss）、全职招聘网、应届生求职网、国家大学生就业服务平台、江西省与安徽省大学生就业服务平台、BOSS 直聘岗位聚合信息</li>
+<li>薪资与学历要求均照录 JD 原文，未做调整。JD 具有时效性，正式引用前建议复核原文。</li>
+</ul>
+</p>
+
+</div>
+</body>
+</html>

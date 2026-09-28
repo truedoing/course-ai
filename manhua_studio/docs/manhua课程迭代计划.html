@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>manhua-studio 课程迭代计划（电商出图管线 · V1–V5）</title>
+<style>
+  body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;color:#1A2233;background:#fff;max-width:960px;margin:24px auto;padding:0 20px;line-height:1.7;}
+  h1{font-size:22px;font-weight:700;margin:0 0 6px;}
+  h2{font-size:17px;font-weight:700;margin:28px 0 10px;border-left:4px solid #185FA5;padding-left:10px;}
+  h3{font-size:15px;font-weight:700;margin:18px 0 6px;}
+  .sub{color:#5F5E5A;font-size:14px;margin:0 0 18px;}
+  table{border-collapse:collapse;width:100%;font-size:13px;margin:10px 0 18px;}
+  th,td{border:1px solid #C9D6E5;padding:8px 10px;vertical-align:top;text-align:left;}
+  th{background:#E6F1FB;font-weight:700;color:#042C53;}
+  tr:nth-child(even) td{background:#F5F7FA;}
+  .tag{display:inline-block;background:#EAF3DE;color:#27500A;border:1px solid #3B6D11;border-radius:6px;padding:1px 7px;font-size:12px;font-weight:700;}
+  .ver{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 4px;}
+  .ver span{flex:1;min-width:150px;background:#E6F1FB;border:1px solid #185FA5;border-radius:10px;padding:10px 12px;text-align:center;font-weight:700;color:#042C53;font-size:13px;}
+  .note{background:#FAEEDA;border:1px solid #EF9F27;border-radius:10px;padding:12px 14px;font-size:13px;color:#412402;margin:14px 0;}
+  .axis{background:#F5F7FA;border:1px solid #C9D6E5;border-radius:10px;padding:12px 14px;font-size:13px;margin:10px 0;}
+  code{background:#F1EFE8;padding:1px 5px;border-radius:4px;font-size:12px;}
+  ul{margin:6px 0 6px 18px;padding:0;}
+  li{margin:3px 0;}
+</style>
+</head>
+<body>
+<h1>manhua-studio 课程迭代计划</h1>
+<p class="sub">电商出图管线 · 5 版渐进（V1–V5）· 教师备课用 · 2026-09-25</p>
+
+<h2>一、目标与两条轴</h2>
+<p><b>最终目标：</b>所有学生交付一份"像真家伙"的数据驱动商品页——真实 Seedream 出图、WebP 压缩、学号定位、配反思单。同一份交付物，不分快慢班。</p>
+<div class="axis">
+<p style="margin:0 0 6px"><b>轴 1 · 版本迭代（课程时间轴）：</b>V1→V5 跨数次课逐步叠加构件，<b>每版端到端可跑、是完整的</b>，只是范围由小到大。非瀑布（不是最后才拼起来）。</p>
+<p style="margin:0"><b>轴 2 · 三种走法（学生能力轴）：</b>同一版本内，弱/中/强学生拿不同厚度的支撑——跟跑（AI 基本写完，跑+读）/ 并跑（半成品，改 prompts）/ 领跑（裸引擎，自己写+排错）；三档都写代码，只是 AI 扶到哪一步不同。</p>
+</div>
+<div class="note"><b>"完整"的精确定义：</b>集成完整＝这一版端到端跑通、非桩代码、能交真东西；<b>不是</b>功能完整＝不必含最终全部特性。学生需讲明：V1 只有白底图"不是没做完，是这一版的范围就到这里"。</div>
+
+<h2>二、版本总览（5 版渐进 · 难度逐版压低）</h2>
+<div class="ver">
+  <span>V1 去底白图<br>S1 + cli</span>
+  <span>V2 场景图<br>S2 + prompts</span>
+  <span>V3 商品页<br>sku + 页面</span>
+  <span>V4 识别闭环<br>S0 自动识别</span>
+  <span>V5 工程化<br>质检 + 排错</span>
+</div>
+<p class="sub" style="margin-top:8px">每版在前一版基础上<b>叠加</b>构件，老代码原样保留；建议占 5–6 次课（V3 页面是新概念，留 1–2 次）。</p>
+
+<table>
+<tr><th>版本</th><th>建议课次</th><th>新增构件（manhua-studio 模块）</th><th>学生当版交付物</th></tr>
+<tr><td><b>V1</b> 去底白图</td><td>1 次</td><td>S1 去底（adapters.py · stage1_remove_bg）＋ cli 入口</td><td>1 张干净白底商品图（真实电商素材）</td></tr>
+<tr><td><b>V2</b> 场景图</td><td>1 次</td><td>S2 出图（adapters.py · stage2_scene）＋ prompts 模板（prompts.py）＋ mock/真实切换</td><td>白底图 ＋ <b>2–3 张</b>场景图（已压低：原 4 张→2–3）</td></tr>
+<tr><td><b>V3</b> 商品页</td><td>1–2 次</td><td>数据化（pipeline.py · write_sku_data）＋ 商品页 ＋ WebP 压缩（pipeline.py · stage_optimize_web）＋ 学号定位</td><td><b>可浏览商品页</b>——"真家伙"在此成型</td></tr>
+<tr><td><b>V4</b> 识别闭环</td><td>1 次</td><td>S0 智能识别（adapters.py · stage0_recognize）全自动</td><td>照片丢入→全自动出全套（闭环）</td></tr>
+<tr><td><b>V5</b> 工程化收口</td><td>1 次＋答辩</td><td>质检筛选（pipeline.py · pick_best/count_status）＋ 错误处理（404/JSON 解析）＋ 归档日志</td><td>生产级管线 ＋ 反思单 ＋ 口头 2 分钟</td></tr>
+</table>
+
+<h2>三、每版验收三档（最低 / 期望 / 挑战）</h2>
+<p class="sub">三档对应你已有的"验收三档"，不重画。弱生达标线＝最低档（靠写好的代码包），强生冲挑战档（改代码/排错）。一键包＝教师用 Yoo Code 写好的完整代码包（非黑盒），三档都写/读代码，只是 AI 扶持度不同。</p>
+<table>
+<tr><th>版本</th><th>最低（达标·一键包可达）</th><th>期望（半成品可达）</th><th>挑战（裸引擎可达）</th></tr>
+<tr><td>V1</td><td>用一键包跑出白底图并截图归档</td><td>自己配 UAPI_KEY、跑命令出图</td><td>读懂 cli 参数、改输出文件名</td></tr>
+<tr><td>V2</td><td>一键包出 2 张场景图</td><td>自己写/调场景 prompts 模板</td><td>在 generate.py 加一个自定义场景</td></tr>
+<tr><td>V3</td><td>一键包出商品页</td><td>自己把商品名/卖点填进数据</td><td>改页面样式或加一个数据字段</td></tr>
+<tr><td>V4</td><td>一键包跑通全自动</td><td>看 S0 输出、判断识别质量</td><td>微调识别 prompt 提升准确性</td></tr>
+<tr><td>V5</td><td>跑通并交反思单</td><td>能描述一次自己遇到的报错</td><td>修一个故意留的故障 / 加一个构件</td></tr>
+</table>
+
+<h2>四、三种走法支撑物（教师备课清单）</h2>
+<p>复杂度全挡在备课阶段，学生端只拿到清晰说明。下列物几乎都<b>复用现有成果</b>，不必新造：</p>
+<table>
+<tr><th>走法</th><th>给谁</th><th>支撑物（教师准备）</th><th>现有基础</th></tr>
+<tr><td><b>一键包</b></td><td>弱</td><td>代码已写好：跟跑生 <code>cp env.example .env</code> 填 key 后，<code>python -m manhua_studio --input 照片.jpg</code> → 出 <code>deliverables/学号/</code></td><td>出图模式已是全自动；弱生拿到写好的代码包后直接 <code>python -m manhua_studio --input 照片.jpg</code></td></tr>
+<tr><td><b>半成品</b></td><td>中</td><td>填 <code>config.json</code> ＋ 调 <code>prompts.py</code> 模板的图文指引</td><td>路径/参数已在代码中预设，或经 <code>.env</code> 配置；半成品走法主要改 <code>prompts.py</code> 模板</td></tr>
+<tr><td><b>裸引擎</b></td><td>强</td><td>指到 <code>adapters.py / pipeline.py</code> ＋ 一张"故障练习卡"（故意留 404/JSON 错）</td><td>模块化结构天然支持</td></tr>
+</table>
+<p>另备<b>反思单</b>（三句话）：① 我做了什么 ② 我卡在哪/怎么过的 ③ 下次想改哪。弱生写"我主要跑了现成的，但看懂了 AI 能把一张照片变成一整套商品图"即合格；强生必须写出"我改了 adapters.py / pipeline.py 第 X 段 / 修了什么错"才给高分。</p>
+
+<h2>五、防"大家都躺一键包"</h2>
+<ul>
+<li><b>阶梯钩子：</b>L1（弱走法）产出<b>可见地不完整</b>——例如 V1 只出白底图，V3 才有完整页面，能力强的自然想往上爬。</li>
+<li><b>期末硬线：</b>所有人至少达到"期望档"（中走法），挑战档加分；与验收三档挂钩。</li>
+<li><b>低成本区分：</b>反思单 ＋ 口头 2 分钟，不靠监考。靠文字区分三档，比建三套体系轻得多。</li>
+<li><b>去污名化：</b>所有人从 V1 跟跑起步；一键包是"入口"不是"差生标签"。</li>
+</ul>
+
+<h2>六、与三级火箭 / 工程使能的关系</h2>
+<ul>
+<li><b>层级定位：</b>本计划落在"一级语言底座"课内（Python/JS 班的电商出图项目模块），是学期宏观"三级火箭"里最底层的实做单元；版本迭代是这一单元的微观展开。</li>
+<li><b>为什么能"每版只激活下一构件"：</b>昨日把 manhua.py 重构为 <code>manhua-studio/</code>（入口薄 / 引擎厚 / 适配器 adapters 与管线 pipeline 两层），V_n 只是多启用一个构件（adapters.py / pipeline.py 里的函数），旧代码原样保留、不会把上一版搞坏。若仍挤在单文件，每次加版都要手工删改，迭代就走不动。<b>重构的教学价值在此。</b></li>
+<li><b>理论背书：</b>逐步释放责任（Gradual Release of Responsibility）＋ 敏捷"可工作软件优先"，可写进你期刊投稿的方法论段。</li>
+</ul>
+
+<div class="note"><b>下一步可产出：</b>① 已写好的完整代码包（弱生直接跑，无需壳脚本） ② 半成品走法图文指引 ③ 反思单模板 ④ 学生版《三种走法说明页》（HTML 可打印）。以上均可在你确认后一次性生成。</div>
+</body>
+</html>

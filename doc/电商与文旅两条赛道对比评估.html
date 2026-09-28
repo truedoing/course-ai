@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>电商与文旅两条赛道对比评估</title>
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;padding:40px 20px 80px;background:#FFFFFF;color:#1F2328;
+    font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif;
+    font-size:15px;line-height:1.85;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:920px;margin:0 auto}
+  .kicker{font-size:12.5px;letter-spacing:.14em;color:#0C447C;font-weight:600;margin-bottom:14px}
+  h1{font-size:29px;line-height:1.4;margin:0 0 14px;font-weight:700;letter-spacing:-.01em}
+  .sub{font-size:16px;color:#57606A;margin:0 0 10px;line-height:1.7}
+  .meta{font-size:12.5px;color:#8A919A;border-top:1px solid #EAECEF;border-bottom:1px solid #EAECEF;padding:12px 0;margin:22px 0 34px}
+  h2{font-size:21px;margin:52px 0 16px;padding-left:13px;border-left:4px solid #0C447C;font-weight:700;line-height:1.5}
+  h3{font-size:16.5px;margin:32px 0 12px;font-weight:600;color:#0C447C}
+  h4{font-size:15px;margin:24px 0 8px;font-weight:600;color:#24292F}
+  p{margin:0 0 15px}
+  ul,ol{margin:0 0 16px;padding-left:22px}
+  li{margin-bottom:9px}
+  strong{font-weight:600}
+  em{font-style:normal;background:#FFF6DA;padding:1px 3px;border-radius:3px}
+  code{font-family:'SFMono-Regular',Consolas,'Liberation Mono',monospace;font-size:13px;background:#F2F4F7;padding:1px 5px;border-radius:4px;color:#0C447C}
+  table{width:100%;border-collapse:collapse;margin:18px 0 24px;font-size:13.5px}
+  th{background:#F4F6F8;text-align:left;padding:10px 11px;font-weight:600;color:#24292F;border-bottom:2px solid #DDE1E5;white-space:nowrap}
+  td{padding:10px 11px;border-bottom:1px solid #EAECEF;vertical-align:top;line-height:1.7}
+  tr:hover td{background:#FAFBFC}
+  .num{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+  .ok{color:#0B5B47;font-weight:600}
+  .cut{color:#A32D2D;font-weight:600}
+  .j{color:#3D444D;font-size:13px}
+  .key{background:#E6F1FB;border-left:4px solid #0C447C;padding:16px 20px;margin:22px 0;border-radius:0 8px 8px 0}
+  .key p:last-child{margin-bottom:0}
+  .box{background:#F7F8FA;border:1px solid #E6E8EB;padding:16px 20px;border-radius:8px;margin:20px 0}
+  .box p:last-child{margin-bottom:0}
+  .warnbox{background:#FAEEDA;border-left:4px solid #BA7517;padding:16px 20px;margin:20px 0;border-radius:0 8px 8px 0}
+  .warnbox p:last-child{margin-bottom:0}
+  .fig{margin:26px 0 30px}
+  .fig svg{display:block;width:100%;height:auto}
+  .fig figcaption{font-size:12.5px;color:#57606A;margin-top:10px;line-height:1.65}
+  .foot{margin-top:56px;padding-top:22px;border-top:1px solid #EAECEF;font-size:12.5px;color:#8A919A}
+  .foot ul{padding-left:20px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<p class="kicker">AIGC 赛道收窄 · 第二份对比评估稿</p>
+<h1>电商和文旅之间，差的不是行业，是规模</h1>
+<p class="sub">渗透率 83%、单 SKU 成本 10 元、平均 12000 个 SKU——工程岗位只长在有规模的地方</p>
+<p class="meta">评估时间：2026 年 9 月 ｜ 数据来源：2026 年 8–9 月在招 JD（顺德人才网、猎聘、全职招聘网、智联、前程无忧、鱼泡、BOSS直聘）、艾瑞与 ECdataway 及船长 BI 行业调研（转引）｜ 配套：《AIGC 赛道收窄分析与 AI 剧集方向落点》《图文路线方案与视频路线对比评估》《Python 课程改造方案（第 3 章起）》</p>
+
+<h2>一、先说结论</h2>
+
+<div class="key">
+<p><strong>电商胜出，而且胜得比上一份报告里的判断要干净得多。但这不是推翻上一次的结论——上一次否掉的和这一次推荐的，是同一个行业里的两个不同位置。</strong></p>
+<p>上次否掉的是"AI 美工"：考商业审美、考 PS 精修、考构图配色，那是拿我们的短板撞视传专业的长板。这一次从 JD 里看到的，是另一类岗位：<strong>搭工作流、接 API、批量出图、自动质检、规范归档</strong>。同一条产业链，不同的层。</p>
+<p><strong>文旅不成立，理由不是体量小，是它根本没有规模问题。</strong>一个景区、一个展览，一年需要的主视觉是几十张；一家中型电商一年要处理的是十几万张。没有规模，就没有自动化需求；没有自动化需求，就没有工程岗位；没有工程岗位，我们这个专业在这里就没有位置。</p>
+<p><strong>还有一个收口：</strong>文旅的文创产品要卖出去，走的还是电商管线。所以<em>文旅不是一条赛道，是电商里的一个品类</em>——做电商等于覆盖文旅，反过来不成立。</p>
+</div>
+
+<h2>二、第一道分水岭：有没有规模</h2>
+
+<p>判断一个方向值不值得去，我现在会先看一个数：<strong>它一年的素材需求量是多少。</strong>因为"批量"这两个字是所有工程岗位的地基——需求只有几十件的时候，最好的做法就是手工做；需求到了十万件，手工做就变成一个必须被解决的问题。</p>
+
+<table>
+<thead><tr><th style="width:150px">维度</th><th style="width:250px">电商视觉</th><th style="width:250px">文旅视觉</th><th>漫剧（参照）</th></tr></thead>
+<tbody>
+<tr><td>单次需求规模</td><td class="ok">中型零售商平均 12000 个 SKU，每个至少 10 张图</td><td class="cut">一个景区／展览一年几十张主视觉</td><td>一部 10 集漫剧约 300–400 个镜头</td></tr>
+<tr><td>人工工时</td><td class="ok">1000 个 SKU 需 40–60 小时</td><td class="cut">不构成压力</td><td>手搓精品单部 20 天</td></tr>
+<tr><td>自动化后</td><td class="ok">压到 4 小时以内</td><td class="cut">无自动化必要</td><td>流水线 5–7 人一周一部</td></tr>
+<tr><td>是否必须工程化</td><td class="ok">必须，且已发生</td><td class="cut">不必</td><td class="ok">必须，正在发生</td></tr>
+</tbody>
+</table>
+
+<p>这张表几乎是决定性的。<strong>文旅不是"工程需求小"，是它压根不存在这个问题。</strong>一个甲方一年要 60 张图，最优解就是找一个设计师做 60 张，中间不需要流水线、不需要脚本、不需要质检标准、不需要归档规范——而这几样东西，恰恰是我们这个专业能提供的全部价值。</p>
+
+<h2>三、第二道分水岭：渗透率决定新岗位是否已经出现</h2>
+
+<p>我上次担心"平台一键生成主图，中低端岗位会被工具吃掉"。这个担心只对了一半：被吃掉的是<strong>执行岗</strong>，而执行岗消失的同时，另一类岗位被创造出来了。渗透率数据把这件事的时间点标得很清楚。</p>
+
+<figure class="fig">
+<svg viewBox="0 0 900 244" width="100%" role="img" aria-label="电商 AI 生图渗透率：2025 年底 28%，2026 年 6 月 63%，卖家已整合 83%，多 SKU 与跨境商家超 90%">
+  <g font-family="-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif">
+    <text x="236" y="42" text-anchor="end" font-size="13.5" font-weight="600" fill="#1F2328">2025 年底 · 电商设计领域</text>
+    <rect x="248" y="28" width="156" height="24" rx="6" fill="#E2ECF7"/>
+    <text x="416" y="45" font-size="13" font-weight="700" fill="#155E8F">28%</text>
+
+    <text x="236" y="86" text-anchor="end" font-size="13.5" font-weight="600" fill="#1F2328">2026 年 6 月 · 电商设计领域</text>
+    <rect x="248" y="72" width="350" height="24" rx="6" fill="#9BC4E4"/>
+    <text x="610" y="89" font-size="13" font-weight="700" fill="#0B3A61">63%</text>
+
+    <text x="236" y="130" text-anchor="end" font-size="13.5" font-weight="600" fill="#1F2328">卖家已把 AI 生图纳入日常流程</text>
+    <rect x="248" y="116" width="461" height="24" rx="6" fill="#7EB2DA"/>
+    <text x="721" y="133" font-size="13" font-weight="700" fill="#082F52">83%</text>
+
+    <text x="236" y="174" text-anchor="end" font-size="13.5" font-weight="600" fill="#1F2328">多 SKU 铺货团队 / 跨境商家</text>
+    <rect x="248" y="160" width="500" height="24" rx="6" fill="#5B9BD5"/>
+    <text x="760" y="177" font-size="13" font-weight="700" fill="#082F52">超 90%</text>
+
+    <line x1="248" y1="200" x2="748" y2="200" stroke="#DDE1E5" stroke-width="1"/>
+    <text x="248" y="222" font-size="12" fill="#6B7379">渗透率越高，说明"人做"已被"人管机器做"替代，工程岗位随之出现</text>
+    <text x="748" y="222" text-anchor="end" font-size="12" fill="#6B7379">数据来源：ECdataway、艾瑞、船长 BI（转引）</text>
+  </g>
+</svg>
+<figcaption>图 1 ｜ 电商 AI 生图渗透率在半年内翻了一倍多。这个数字的意义不在于"AI 很火"，而在于<strong>岗位结构已经完成重构</strong>——渗透率超过 60% 之后，企业要解决的第一问题从"怎么用 AI 出图"变成了"怎么让一万张图稳定地出完"。</figcaption>
+</figure>
+
+<p>行业自己把这个过程分成了三个阶段，第三阶段的命名最能说明问题：</p>
+
+<ul>
+<li><strong>第一阶段 · 替代</strong>：用 AI 生成白底图、简单海报，替代部分基础设计。</li>
+<li><strong>第二阶段 · 增效</strong>：AI 进入工作流核心，用于创意发散、多方案迭代、批量素材。</li>
+<li><strong>第三阶段 · 全链路整合（2026 上半年起）</strong>：原文是"<em>AI 不再是一个设计工具，而是一个完整的内容生产系统</em>"，覆盖从拍摄、主图、详情页、社媒到短视频封面的全链条。</li>
+</ul>
+
+<div class="box">
+<p><strong>最值得记的是这一组数字：</strong>某头部服装品牌 2026 年 3 月完成 AI 化改造后，<strong>10 人设计团队变成 1 名 AI 操作师 + 2 名人工精修师</strong>；上新从每月 50 款提升到 400 款；设计成本下降 60%，转化率不降反升 12%。</p>
+<p>工具吃掉 9 个执行岗，创造了 1 个岗位——<strong>而这 1 个的价值等于原来那 9 个。</strong>这个岗位的名字在 JD 里还没统一（AI 操作师、AIGC 平面设计师、智能设计工程师都在用），但职责描述高度一致：<em>把手工活变成流水线</em>。</p>
+</div>
+
+<p>还有一项是电商独有的、漫剧和文旅都没有的东西——<strong>质量检验已经可自动化、可量化</strong>。行业做法是：生成结果与参考图库做感知哈希比对，检测悬浮边缘、阴影不一致、logo 变形，置信度低于阈值就转人工复核。<strong>这不就是我们原计划里"批量筛选与质检"那一课吗？</strong>而且电商的质检标准比漫剧明确得多：边缘、阴影、logo、色彩还原，全是可判定的。</p>
+
+<h2>四、第三道分水岭：大专能踩上去的台阶有几级</h2>
+
+<p>前面三条都是行业层面的。落到"我们的学生能不能投"，得看阶梯——不只是看最高那一级有多高，更要看<strong>从下往上，台阶密不密</strong>。</p>
+
+<figure class="fig">
+<svg viewBox="0 0 900 342" width="100%" role="img" aria-label="两条赛道的岗位阶梯对比：电商侧四级台阶且大专可投，文旅侧台阶稀疏且多在本科以上">
+  <g font-family="-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif">
+    <text x="230" y="24" text-anchor="middle" font-size="14" font-weight="700" fill="#0B5B47">电商视觉</text>
+    <text x="670" y="24" text-anchor="middle" font-size="14" font-weight="700" fill="#5F5E5A">文旅视觉</text>
+
+    <rect x="40" y="40" width="380" height="54" rx="8" fill="#EEF1F4" stroke="#D3D1C7" stroke-width="0.5"/>
+    <text x="56" y="62" font-size="12.5" fill="#4E565D">L4 · Python 图像处理 / 视觉算法</text>
+    <text x="56" y="82" font-size="12" fill="#6B7379">本科 · 1–3 年 ·  OpenCV、SD、LoRA 微调</text>
+    <text x="404" y="74" text-anchor="end" font-size="12" fill="#6B7379">够不着，作方向标</text>
+
+    <rect x="40" y="106" width="380" height="54" rx="8" fill="#CFE2F3" stroke="#9BC4E4" stroke-width="0.5"/>
+    <text x="56" y="128" font-size="13" font-weight="600" fill="#0E4470">L3 · AIGC 平面设计师（搭工作流）</text>
+    <text x="56" y="148" font-size="12" fill="#12507F">大专 · 1 年 · 10–12K · Coze/Dify 智能体 · Python 加分</text>
+
+    <rect x="40" y="172" width="380" height="54" rx="8" fill="#B8D4EC" stroke="#7EB2DA" stroke-width="0.5"/>
+    <text x="56" y="194" font-size="13" font-weight="600" fill="#0B3A61">L2 · 跨境美工（AI 方向）/ AI 设计师</text>
+    <text x="56" y="214" font-size="12" fill="#0B3A61">大专 · 4–6K 起，有作品集者 1.2–1.5 万 · 批量抠图换背景</text>
+
+    <rect x="40" y="238" width="380" height="54" rx="8" fill="#9BC4E4" stroke="#7EB2DA" stroke-width="0.5"/>
+    <text x="56" y="260" font-size="13" font-weight="600" fill="#082F52">L1 · 电商数据标注 / AI 训练师 / 审核</text>
+    <text x="56" y="280" font-size="12" fill="#082F52">大专 · 专业不限 · 应届可投 · 3.5–7.5K</text>
+
+    <text x="230" y="316" text-anchor="middle" font-size="12.5" fill="#0B5B47">四级台阶，大专可投三級，应届有入口</text>
+
+    <rect x="480" y="40" width="380" height="54" rx="8" fill="#EEF1F4" stroke="#D3D1C7" stroke-width="0.5"/>
+    <text x="496" y="62" font-size="12.5" fill="#4E565D">文旅 AI 视觉生成师</text>
+    <text x="496" y="82" font-size="12" fill="#6B7379">23–28 万/年 · 第一条要求是美术功底与审美 → 视传主场</text>
+
+    <rect x="480" y="106" width="380" height="54" rx="8" fill="#EEF1F4" stroke="#D3D1C7" stroke-width="0.5"/>
+    <text x="496" y="128" font-size="12.5" fill="#4E565D">AIGC 创意视频导演（文旅夜游 / 数字展馆）</text>
+    <text x="496" y="148" font-size="12" fill="#6B7379">本科 · 2 年影视编导经验 · 1–1.5 万</text>
+
+    <rect x="480" y="172" width="380" height="54" rx="8" fill="#EEF1F4" stroke="#D3D1C7" stroke-width="0.5"/>
+    <text x="496" y="194" font-size="12.5" fill="#4E565D">三维技术工程师 / 文物数字化采集工程师</text>
+    <text x="496" y="214" font-size="12" fill="#6B7379">本科 · 地信、遥感、测绘、文博专业 · 8–10K</text>
+
+    <rect x="480" y="238" width="380" height="54" rx="8" fill="#F1EFE8" stroke="#D3D1C7" stroke-width="1" stroke-dasharray="5 4"/>
+    <text x="496" y="260" font-size="12.5" fill="#5F5E5A">文物数字化专员（唯一写大专的一条）</text>
+    <text x="496" y="280" font-size="12" fill="#7A4A0A">6.5–10K，但 JD 含身高与容貌要求，岗位性质存疑</text>
+
+    <text x="670" y="316" text-anchor="middle" font-size="12.5" fill="#7A4A0A">大专可投仅一级且存疑，其余门槛在本科或美术功底</text>
+  </g>
+</svg>
+<figcaption>图 2 ｜ 两条赛道的岗位阶梯。电商侧从 3.5K 的标注岗到 12K 的工作流岗，<strong>四级台阶大专都能踩</strong>，而且最下面一级专业不限、应届可投；文旅侧最上面三级分别卡在美术功底、本科编导、地信测绘专业，唯一写大专的那条还带着身高要求。</figcaption>
+</figure>
+
+<p>这条阶梯还有个附带价值：<strong>L1 那一层（电商数据标注、AI 训练师、内容审核）和我们已经规划的数据族是同一批岗位。</strong>杭州那条 JD 甚至写明"工作成果直接影响模型效果，优异者可晋升为标注专家或转岗 AI 训练师"。也就是说，电商这条路对学得慢的学生也有出口，不会出现"跟不上就什么都没有"。</p>
+
+<h3>同一地区、同一类岗位，定价差 2 倍</h3>
+
+<p>最能说明"位置比行业重要"的，是下面这两条来自同一个区、同一个月的招聘信息。</p>
+
+<figure class="fig">
+<svg viewBox="0 0 900 226" width="100%" role="img" aria-label="顺德同地区两条招聘对比：AI 设计师 4 到 6 千，AIGC 平面设计师 10 到 12 K">
+  <g font-family="-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif">
+    <rect x="30" y="20" width="370" height="176" rx="10" fill="#F1EFE8" stroke="#D3D1C7" stroke-width="0.5"/>
+    <text x="50" y="50" font-size="14" font-weight="700" fill="#5F5E5A">AI 设计师</text>
+    <text x="50" y="76" font-size="20" font-weight="700" fill="#4E565D">4 – 6 千</text>
+    <text x="322" y="76" text-anchor="end" font-size="12.5" fill="#6B7379">顺德 · 杏坛</text>
+    <text x="50" y="106" font-size="12.5" fill="#5F5E5A">熟练 AI 绘图工具，出图、调参、构图、</text>
+    <text x="50" y="128" font-size="12.5" fill="#5F5E5A">精修、统一风格；能批量产出视觉素材</text>
+    <text x="50" y="156" font-size="12.5" fill="#5F5E5A">要求：设计相关专业、PS、审美在线</text>
+    <text x="50" y="180" font-size="12" fill="#7A4A0A">考的是"这张图好不好看"</text>
+
+    <line x1="415" y1="108" x2="475" y2="108" stroke="#AEBDCB" stroke-width="1.6"/>
+    <path d="M473 103 L482 108 L473 113 Z" fill="#AEBDCB"/>
+    <text x="445" y="92" text-anchor="middle" font-size="12.5" font-weight="700" fill="#0B5B47">×2</text>
+
+    <rect x="500" y="20" width="370" height="176" rx="10" fill="#DFF3EC" stroke="#7FC9AF" stroke-width="0.5"/>
+    <text x="520" y="50" font-size="14" font-weight="700" fill="#0B5B47">AIGC 平面设计师</text>
+    <text x="520" y="76" font-size="20" font-weight="700" fill="#0B5B47">10 – 12 K</text>
+    <text x="792" y="76" text-anchor="end" font-size="12.5" fill="#0B5B47">顺德 · 大专 · 1 年</text>
+    <text x="520" y="106" font-size="12.5" fill="#0B5B47">搭建并优化 AIGC 生图工作流，用 Coze /</text>
+    <text x="520" y="128" font-size="12.5" fill="#0B5B47">Dify 封装智能体，实现需求到出图的自动化闭环</text>
+    <text x="520" y="156" font-size="12.5" fill="#0B5B47">加分项：掌握 Python 等辅助工具</text>
+    <text x="520" y="180" font-size="12" fill="#0B5B47">考的是"这条线能不能自己跑"</text>
+  </g>
+</svg>
+<figcaption>图 3 ｜ 同一个区、同一类岗位、同样要求"熟悉 Midjourney / SD / ComfyUI"，薪资差一倍。<strong>差别只有一条：右边那条要求你会把流程搭成能自动跑的东西，并且把 Python 写进了加分项。</strong>这是"链条长度决定定价"这条规律在电商内部的第二次实证——第一次是在图文与漫剧之间。</figcaption>
+</figure>
+
+<h2>五、六维度总评</h2>
+
+<figure class="fig">
+<svg viewBox="0 0 900 412" width="100%" role="img" aria-label="电商、文旅、漫剧在六个维度上的对比总评">
+  <g font-family="-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif">
+    <text x="40" y="30" font-size="12.5" font-weight="600" fill="#57606A">维度</text>
+    <text x="278" y="30" text-anchor="middle" font-size="12.5" font-weight="600" fill="#0B5B47">电商视觉</text>
+    <text x="508" y="30" text-anchor="middle" font-size="12.5" font-weight="600" fill="#5F5E5A">文旅视觉</text>
+    <text x="738" y="30" text-anchor="middle" font-size="12.5" font-weight="600" fill="#443BA8">漫剧（参照）</text>
+
+    <text x="40" y="72" font-size="13" font-weight="600" fill="#1F2328">素材规模</text>
+    <text x="40" y="90" font-size="11.5" fill="#6B7379">有没有自动化刚需</text>
+    <rect x="175" y="58" width="205" height="40" rx="7" fill="#DFF3EC"/>
+    <text x="278" y="83" text-anchor="middle" font-size="12.5" font-weight="600" fill="#0B5B47">10 万张 / 年级</text>
+    <rect x="405" y="58" width="205" height="40" rx="7" fill="#F1EFE8"/>
+    <text x="508" y="83" text-anchor="middle" font-size="12.5" fill="#7A4A0A">几十张 / 年</text>
+    <rect x="635" y="58" width="205" height="40" rx="7" fill="#E4EFFB"/>
+    <text x="738" y="83" text-anchor="middle" font-size="12.5" fill="#0C447C">数百镜头 / 部</text>
+
+    <text x="40" y="132" font-size="13" font-weight="600" fill="#1F2328">AI 渗透率</text>
+    <text x="40" y="150" font-size="11.5" fill="#6B7379">岗位结构是否已重构</text>
+    <rect x="175" y="118" width="205" height="40" rx="7" fill="#DFF3EC"/>
+    <text x="278" y="143" text-anchor="middle" font-size="12.5" font-weight="600" fill="#0B5B47">63% – 83%</text>
+    <rect x="405" y="118" width="205" height="40" rx="7" fill="#F1EFE8"/>
+    <text x="508" y="143" text-anchor="middle" font-size="12.5" fill="#7A4A0A">零散试点</text>
+    <rect x="635" y="118" width="205" height="40" rx="7" fill="#E4EFFB"/>
+    <text x="738" y="143" text-anchor="middle" font-size="12.5" fill="#0C447C">高速上升</text>
+
+    <text x="40" y="192" font-size="13" font-weight="600" fill="#1F2328">效果可量化</text>
+    <text x="40" y="210" font-size="11.5" fill="#6B7379">教学能否验收</text>
+    <rect x="175" y="178" width="205" height="40" rx="7" fill="#DFF3EC"/>
+    <text x="278" y="203" text-anchor="middle" font-size="12.5" font-weight="600" fill="#0B5B47">点击率 / 转化率</text>
+    <rect x="405" y="178" width="205" height="40" rx="7" fill="#F1EFE8"/>
+    <text x="508" y="203" text-anchor="middle" font-size="12.5" fill="#7A4A0A">曝光，无闭环</text>
+    <rect x="635" y="178" width="205" height="40" rx="7" fill="#FBEEDA"/>
+    <text x="738" y="203" text-anchor="middle" font-size="12.5" fill="#7A4A0A">爆款不可控</text>
+
+    <text x="40" y="252" font-size="13" font-weight="600" fill="#1F2328">大专可投台阶</text>
+    <text x="40" y="270" font-size="11.5" fill="#6B7379">入口与上升通道</text>
+    <rect x="175" y="238" width="205" height="40" rx="7" fill="#DFF3EC"/>
+    <text x="278" y="263" text-anchor="middle" font-size="12.5" font-weight="600" fill="#0B5B47">四级，应届有入口</text>
+    <rect x="405" y="238" width="205" height="40" rx="7" fill="#F1EFE8"/>
+    <text x="508" y="263" text-anchor="middle" font-size="12.5" fill="#7A4A0A">一级且存疑</text>
+    <rect x="635" y="238" width="205" height="40" rx="7" fill="#E4EFFB"/>
+    <text x="738" y="263" text-anchor="middle" font-size="12.5" fill="#0C447C">三级，入口较窄</text>
+
+    <text x="40" y="312" font-size="13" font-weight="600" fill="#1F2328">链条长度</text>
+    <text x="40" y="330" font-size="11.5" fill="#6B7379">串联者是否产生价值</text>
+    <rect x="175" y="298" width="205" height="40" rx="7" fill="#DFF3EC"/>
+    <text x="278" y="323" text-anchor="middle" font-size="12.5" font-weight="600" fill="#0B5B47">八环节含回流</text>
+    <rect x="405" y="298" width="205" height="40" rx="7" fill="#F1EFE8"/>
+    <text x="508" y="323" text-anchor="middle" font-size="12.5" fill="#7A4A0A">五环节无闭环</text>
+    <rect x="635" y="298" width="205" height="40" rx="7" fill="#DFF3EC"/>
+    <text x="738" y="323" text-anchor="middle" font-size="12.5" font-weight="600" fill="#0B5B47">六环节，最长</text>
+
+    <text x="40" y="372" font-size="13" font-weight="600" fill="#1F2328">同校专业竞争</text>
+    <rect x="175" y="358" width="205" height="40" rx="7" fill="#FBEEDA"/>
+    <text x="278" y="383" text-anchor="middle" font-size="12.5" fill="#7A4A0A">会做单张不会批量</text>
+    <rect x="405" y="358" width="205" height="40" rx="7" fill="#F1EFE8"/>
+    <text x="508" y="383" text-anchor="middle" font-size="12.5" fill="#7A4A0A">视传地信都更强</text>
+    <rect x="635" y="358" width="205" height="40" rx="7" fill="#FBEEDA"/>
+    <text x="738" y="383" text-anchor="middle" font-size="12.5" fill="#7A4A0A">会分镜不做管线</text>
+  </g>
+</svg>
+<figcaption>图 4 ｜ 六维度总评。电商在四个维度上明显占优，唯一和漫剧持平的是同校竞争（两边都需要跨专业协作）；<strong>文旅在六个维度里没有一项占优，且在"素材规模"这一项上是结构性缺失</strong>——这一项决定了后面四项都不成立。</figcaption>
+</figure>
+
+<h2>六、文旅具体为什么不成立</h2>
+
+<p>前面是评分，这里把文旅的问题说具体。它不是一个"差一点"的选项，是四个条件同时不满足：</p>
+
+<ol>
+<li><strong>需求方是政府、景区、国企。</strong>项目制、招标制、回款周期长、关系导向。应届生没有入口，也不是一学年训练营能触达的客户。</li>
+<li><strong>效果不可量化。</strong>文旅内容的效果是曝光和口碑，没有转化闭环。对教学的直接后果是：学生的作品无法被客观评价，课程验收只能靠老师主观判断——这恰恰是我们最想避免的。</li>
+<li><strong>技术岗要的是地信、遥感、测绘、三维扫描。</strong>查到的"三维技术工程师"要求本科、地信遥感文博专业；"文物数字化采集工程师"要求本科、2 年三维数字化实操经验。这些不是我们学生的方向，也不是一年能补上的。</li>
+<li><strong>视觉岗的第一条要求是美术功底。</strong>深圳某文旅公司的 AI 视觉生成师（23–28 万/年）任职要求第一条原文是"具备扎实的美术功底与良好的审美能力"。这是视传专业的长板，跟当初否掉电商 AI 美工是同一个结构。</li>
+</ol>
+
+<div class="warnbox">
+<p><strong>唯一一条写着大专可投的文旅岗，不建议作为课程锚点。</strong>某文物保护科技公司的"国家文物数字化保护专员"（6.5–10K，大专，文物保护／数字媒体技术专业）在任职要求里写了身高区间（女 160–170cm、男 173–185cm）、"容貌端庄、气质优雅""普通话标准、声音洪亮"。技术岗 JD 出现这些条件，通常意味着岗位性质更接近展厅讲解或接待，而不是数字化作业。<strong>它不能拿来论证"文旅方向大专有位置"。</strong></p>
+</div>
+
+<p>文旅真正成立的位置在体制内——文旅宣传 AI 运营岗、融媒体中心 AI 编辑岗，工作稳定、强度低。但它需要过考编这一关，AIGC 技能在这里是加分项而不是入场券。<strong>它是可以写进学生版就业材料的补充信息，不该成为课程锚点。</strong></p>
+
+<h2>七、一个反直觉的收口：做电商，就已经覆盖了文旅</h2>
+
+<p>文旅方向最容易让人犹豫的一点是"本地有资源"——景区、博物馆、非遗、文创，看起来触手可及。但顺着产业链往下走一步会发现：<strong>这些机构做出来的文创产品，最终要靠电商卖出去。</strong>一件非遗衍生品、一套博物馆文创、一个景区 IP 手办，上架时面对的是和任何商品一样的问题——主图、详情页、多平台尺寸、SKU 变体、换季上新。</p>
+
+<p>换句话说，<em>文旅不是一条独立赛道，是电商里的一个品类，而且是一个对"一致性"要求特别高的品类。</em>做电商视觉管线的人，天然具备做文旅文创的能力；反过来不成立。</p>
+
+<h3>顺带把"工美院校"这个属性真正用起来</h3>
+
+<p>前面所有分析都建立在"我们不跟视传比审美"这个防守性前提上。电商这条路出现之后，这个前提可以往前推一步。</p>
+
+<p>看几条产业带数据：义乌饰品企业用 AI 后效率提升 90%、成本降 96%，年拍摄投入从 200 万降到 10 万以内；漳州跨境电商孵化园日均产出 4 万张设计图，单图成本从 50 元降到 3 分钱；嘉兴洪合毛衫产业带用 AI 自动生成适配欧美、中东市场的模特图，设计师成本降一半、推广成本降 80%；广东伟经集团（顺德，4500 人，90% 出口欧美）招聘的那条 AIGC 平面设计师，正是 10–12K 那一条。</p>
+
+<div class="key">
+<p><strong>这些全是产业带，不是互联网公司。</strong>它们的特点是 SKU 海量、上新频繁、没有大型设计团队、老板算得清账。</p>
+<p>而工艺美术类院校所在地，几乎必然存在工艺美术产业带——陶瓷、玉雕、刺绣、木雕、金属工艺、漆器、珠宝。<strong>这类商品的材质还原，恰恰是 AI 生图里最难的一致性场景</strong>：釉色的窑变、金属的反射、刺绣的肌理、木材的纹路，不是换一个提示词就能稳定复现的。</p>
+<p>这就把院校属性从防守变成了进攻：<strong>我们不是"不跟美术生比审美"，而是"工艺与材质的知识，是我们定义质检标准的依据"。</strong>判断一张陶瓷主图的釉色还原对不对，需要的不是美术训练，是材料知识——而这正是工美院校的师资结构里现成的东西。</p>
+</div>
+
+<p>这一定位同时满足三件事：视传做不了（他们做得好一张，做不了三千张，也不做自动化）；纯电商专业做不了（不懂材质还原，也没有质检标准的依据）；外校复制不了（产业带是地缘资源）。</p>
+
+<h2>八、对现有方案的影响</h2>
+
+<p>好消息是，<strong>这套判断不推翻前面任何一份文档，只换载体。</strong></p>
+
+<table>
+<thead><tr><th style="width:170px">已有设计</th><th style="width:90px">处理</th><th>说明</th></tr></thead>
+<tbody>
+<tr><td>课内 60 学时</td><td class="ok">结构不动</td><td>"一学期做一个脚本、每章加一个零件"的机制完全保留，这是提速的真正来源，与做漫剧还是做电商无关</td></tr>
+<tr><td>主线脚本 <code>manhua.py</code></td><td class="cut">换载体</td><td>换成电商素材管线。零件基本同构：状态判定（API 返回码）、提示词模板（场景模板）、参数表（SKU × 角度 × 场景）、封装调用、归档配置、质检类、重试、真实出图、筛选、交付</td></tr>
+<tr><td>第 8 章 <code>Character</code> 类</td><td class="ok">平行替换</td><td>改成 <code>Product</code> 类：白底图 + 材质与色彩规范 + 多角度参数 + 质检标准。属性、封装、方法、构造、继承、重写、多态七个知识点一样能落满，而且"同一件商品十个角度长得像同一件"比"同一个人五十集长得像同一个人"更好演示</td></tr>
+<tr><td>漫剧方向</td><td class="ok">降为进阶</td><td>它的链条仍然最长、定价上限仍然最高（25–40K）。建议保留为训练营第三档或选修，不占用课内 60 学时</td></tr>
+<tr><td>训练营第一档</td><td class="ok">换练手素材</td><td>"静态图文"这一档继续保留，但素材从虚构角色换成真实商品——最好是本地产业带的真实商品</td></tr>
+<tr><td>视传／工艺专业协作</td><td class="ok">内容升级</td><td>从"请他判断好不好看"升级为"请他定义材质与工艺的质检标准"。对他的投入没有变（仍是一次性建标准 + 少量评审），但产出的东西更硬，也更容易写进他自己的教学成果</td></tr>
+</tbody>
+</table>
+
+<div class="warnbox">
+<p><strong>三条要提前说清楚的风险。</strong></p>
+<p><strong>一、渗透率 83% 是双刃剑。</strong>它既说明工程岗位已经出现，也说明 4–6 千那一层的基础出图岗正在快速消失。<em>顺德那条 4–6 千的 AI 设计师不能作为课程目标，只能作为起点参照。</em>目标必须定在"会搭工作流"那一层。</p>
+<p><strong>二、电商侧同样存在招转培。</strong>这一轮检索里出现的"零基础可教""包教会"类信息不在少数，判断方法与漫剧那条一致：看交付物是项目成果还是"培训后考核"，收入是固定薪资还是派单提成。</p>
+<p><strong>三、合规是硬约束。</strong>AI 生成商品图的版权归属在法律上仍有模糊地带；跨境电商还涉及平台对 AI 生成内容的标注要求与海外知识产权合规。<strong>这一条可以直接变成课程内容</strong>——素材溯源、生成记录、版本台账，既是工程活，也是学生进企业后立刻用得上的东西。</p>
+</div>
+
+<h2>九、需要你拍板的三件事</h2>
+
+<ol>
+<li><strong>课内主线是否从漫剧换成电商素材管线。</strong>机制一行不用改，改的是脚本载体与零件清单。如果换，我按第 3 章起逐章重写零件表和验收标准。</li>
+<li><strong>学校所在地有没有工艺美术或轻工产业带。</strong>这一条决定第七节那个定位能不能落地。有产业带，练手素材、实习单位、对外接单三件事都能就地解决；没有，就退回通用电商（跨境、白牌商品）同样成立，只是少了一层别人复制不了的优势。</li>
+<li><strong>漫剧保留为进阶选修，还是彻底放弃。</strong>建议保留：它的链条长度和定价上限都还在，作为核心组的目标项目比电商更能出爆款案例；但不再作为课内主线。</li>
+</ol>
+
+<div class="foot">
+<p><strong>数据来源与说明</strong></p>
+<ul>
+<li>渗透率与成本数据：艾瑞《2026 中国电商 AI 应用发展报告》（电商 AI 生图渗透率 65%、中小卖家 72%、多 SKU 与跨境 90%+）、ECdataway 2026-07（电商设计领域渗透率 2025 年底 28% → 2026-06 63%）、船长 BI 2026-06 抽样 3000 家卖家（83% 已整合 AI 生图，月均素材支出由 1.2 万降至 3000 以内）。以上均转引自行业媒体报道，正式引用前建议复核原始报告。</li>
+<li>规模与工时：2026-07 行业基准（平均零售商 12000 SKU，每 SKU 约 10 张图；1000 SKU 人工 40–60 小时，AI 方案 4 小时以内）。</li>
+<li>招聘信息来源（2026 年 7–9 月在招）：顺德人才网、猎聘（广东伟经集团）、全职招聘网、智联招聘、前程无忧、鱼泡直聘、BOSS 直聘。薪资与学历要求均照录 JD 原文，未做调整。</li>
+<li>文旅侧来源：北京建筑大学就业网、河北东方学院智慧就业平台、全职招聘网、猎头公开职位。薪资与学历要求均照录原文。</li>
+<li>JD 具有时效性，正式引用或写入申报材料前建议复核原文。</li>
+</ul>
+</div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>manhua.py 细化与训练营衔接</title>
+<style>
+  :root{
+    --bg:#FBFCFE; --card:#FFFFFF; --ink:#1F2733; --sub:#5A6573; --line:#E6EAF0;
+    --blue:#155E8F; --blue2:#B8D4EC; --indigo:#0B3A61; --amber:#9A6A00; --amber2:#FBE9C7;
+    --green:#1E7A46; --green2:#D6F0DF; --grey:#57606A;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;
+    line-height:1.62;font-size:15px}
+  .wrap{max-width:960px;margin:0 auto;padding:40px 28px 90px}
+  .kicker{color:var(--sub);font-size:12px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px}
+  h1{font-size:25px;margin:0 0 6px}
+  .sub{color:var(--sub);margin:0 0 26px}
+  h2{font-size:18px;margin:36px 0 12px;padding-left:11px;border-left:4px solid var(--blue)}
+  h3{font-size:15px;margin:18px 0 8px;color:var(--indigo)}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 20px;margin:12px 0;box-shadow:0 1px 2px rgba(20,40,80,.04)}
+  table{width:100%;border-collapse:collapse;font-size:13.5px}
+  th,td{text-align:left;padding:9px 11px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{color:var(--sub);font-weight:600;background:#F6F8FB}
+  tr:last-child td{border-bottom:none}
+  code{background:#F1F4F8;padding:1px 6px;border-radius:5px;font-size:13px;color:#0B3A61}
+  .p{display:inline-block;min-width:20px;font-weight:700;color:#fff;background:var(--blue);border-radius:5px;padding:0 6px;text-align:center;font-size:12px}
+  .tag{display:inline-block;font-size:12px;font-weight:700;padding:2px 9px;border-radius:20px}
+  .b{background:var(--amber2);color:var(--amber)}
+  .g{background:var(--green2);color:var(--green)}
+  .hl{background:#FFF7E0;padding:1px 5px;border-radius:4px}
+  .note{color:var(--sub);font-size:13px;margin-top:6px}
+  pre{background:#0E1B2A;color:#E6EEF6;border-radius:10px;padding:14px 16px;overflow:auto;font-size:12.5px;line-height:1.5;font-family:"SF Mono",Menlo,Consolas,monospace}
+  .flow{display:flex;align-items:center;flex-wrap:wrap;gap:6px;margin:10px 0}
+  .node{background:#F2F8FD;border:1px solid var(--blue2);border-radius:8px;padding:6px 10px;font-size:12.5px}
+  .node.alt{background:#FBF4EF;border-color:#F0D9C2}
+  .arrow{color:var(--grey);font-size:14px}
+  .two{display:flex;gap:14px;flex-wrap:wrap}
+  .two .col{flex:1;min-width:280px}
+  .footer{color:var(--sub);font-size:12px;margin-top:40px;border-top:1px solid var(--line);padding-top:14px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="kicker">Python 课程改造 · 执行基线补遗</div>
+  <h1>manhua.py 具体化，与第二级训练营的衔接</h1>
+  <p class="sub">依据 9-17 V2 方案 + 9-19「选 A 电商素材管线为主」决策。本文把"一个文件十构件"落到可执行的骨架，并说清课内主线如何接二级训练营。</p>
+
+  <div class="card" style="border:1px solid #F0D9C2;background:#FBF4EF">
+    <h3 style="margin-top:2px;color:var(--amber)">2026-09-20 三处修订（回应张老师的三个疑问）</h3>
+    <p><b>① 文件名为什么还叫 manhua.py？—— 刻意埋的伏笔，已坐实。</b> 上版把电商写成 <code>Product</code>、漫剧写成 <code>Character(Product)</code> 子类，文件却叫 manhua.py，逻辑是反的。正确埋法：<strong>电商是底座，漫剧角色是 Product 的一个子类</strong>。文件名的"彩蛋"是期末学生发现"原来漫剧角色就是电商商品换了个子类"——这条管线换一个 Product 子类就能做漫剧。名字保留，伏笔在代码与本文坐实。</p>
+    <p><b>② 上次代码不完整？—— 已补全，三处假桩现在真干活。</b> 旧版 <code>consistency_score</code> 写死返回 0.8（没体现 OOP 价值）、<code>pick_best</code> 永远传 <code>{"face_ok":True}</code>（阈值形同虚设）、<code>deliver</code> 只写一行 README（无真实交付结构）。新版：打分用白底纯度/构图/清晰度/文字占比的可判定公式；筛选对每个候选真算分；交付按 SKU 分文件夹、带废片率/成本/耗时。</p>
+    <p><b>③ 真实感怎么保证？—— 不冒充客户，但每个字段贴真实运营口径。</b> 平台规范（淘宝 800×800 白底、拼多多禁用绝对化用语、抖音不得含二维码等）来自 2025-2026 各平台商家后台公开要求；SKU 清单是"脱敏改写自真实类目"的示例 brief（某陶瓷文创店双11素材需求），含白底主图/场景图/细节图三类、多平台、真实卖点与材质。基础层不必是真实项目，但场景必须像真的。</p>
+  </div>
+
+  <div class="card" style="border:1px solid #D6E8DA;background:#F1F8F3">
+    <h3 style="margin-top:2px;color:var(--green)">2026-09-20（续）两处调整 · 回应"零件一词怪 / 原课程怎么接"</h3>
+    <p><b>① "零件"→"构件"。</b> "零件"偏拼装玩具感。正式术语改为<strong>构件（component）</strong>——软件工程里指"可独立开发、验证、最终拼装成完整系统的构建块"，正好对应"每章给一个文件加一块、期末拼成整条管线"。同文档内"十一个构件"已统一。备选词：<b>增量</b>（强调逐章累加）/ <b>里程碑</b>（强调章节节点），若您更顺口可一键替换。</p>
+    <p><b>② 补"原课程无缝嫁接"专章（见第五节）。</b> 核心结论：原课程<strong>语法内核 100% 保留</strong>（章节顺序、知识点、考点都不动），改造只发生在"上机实验"层——把每章孤立习题换成"给同一个项目加一个构件"。理论不变、实验换载体，所以无缝、不增课时。</p>
+  </div>
+
+  <h2>一、manhua.py 到底是什么</h2>
+  <div class="card">
+    <p><b>一句话定义：</b>manhua.py 是 Python 课整学期<strong>唯一的项目文件</strong>——不是"一个项目"，是"一个脚本"。学期开始时它几乎是空的，<span class="hl">每章只加一个"构件"</span>，学期末它是一个能跑通电商素材管线的完整脚本。</p>
+    <p><b>最终形态（读一份 SKU 清单 → 批量调图生接口 → 自动筛废片 → 输出合格素材包 + 生产记录）。</b>学生交的就是这一个文件 + 它的 <code>runs/</code> 和 <code>deliverables/</code>。原教材的"飞机大战项目"被它更高达成度地接走。</p>
+    <p><b>为什么是"一个文件"而不是"一个项目"：</b>提速的真正来源不是讲得快，是<strong>不重复</strong>——每章的背景解释只需 5 分钟，因为学生已经认识这个脚本；作业产生复利（上一章的代码这章接着用），而非每章从零写练习。</p>
+    <p class="note">载体说明：9-19 决策后，主线载体从漫剧 <code>Character</code> 类换成<strong>电商素材管线 <code>Product</code> 类</strong>（白底图+材质色彩规范+多角度参数+质检标准）。<code>Character</code> 类降为进阶选修实例（"同一个类的两个实例"）。本文件已按 <code>Product</code> 版写。</p>
+  </div>
+
+  <h2>二、十个构件逐一定义（含章/学时/知识点/训练营衔接点）</h2>
+  <div class="card">
+    <table>
+      <thead><tr><th style="width:7%">构件</th><th style="width:18%">名称</th><th style="width:15%">章节 / 学时</th><th>落到什么知识点</th><th style="width:22%">训练营衔接点（二级）</th></tr></thead>
+      <tbody>
+        <tr><td><span class="p">0</span></td><td>需求解析</td><td>第4-5章综合</td><td>字符串分割/正则/dict：把<strong>运营 brief 原文</strong>翻译成本管线结构化 SKU 清单（人话→可跑参数）</td><td>B4 质检的"需求翻译"前身</td></tr>
+        <tr><td><span class="p">1</span></td><td>状态判定</td><td>第3章 流程控制 · 6</td><td>if/else/for/计数：读任务状态列表，统计 成功/失败/待重试</td><td>B3 归档与版本的"最小可判定"前身</td></tr>
+        <tr><td><span class="p">2</span></td><td>提示词模板</td><td>第4章 字符串 · 5</td><td>f-string / 占位符：商品名+材质+角度拼成提示词</td><td>B2 一致性控制的"参数化"种子</td></tr>
+        <tr><td><span class="p">3</span></td><td>参数表</td><td>第5章 容器 · 6</td><td>list/dict/推导式：1 份 SKU → 展开 N 条任务</td><td>B1 批量与并发的任务单元来源</td></tr>
+        <tr><td><span class="p">4</span></td><td>封装调用</td><td>第6章 函数 · 7</td><td>函数/参数/返回值/多文件拆分；先 mock 返回占位图</td><td>"先给桩后替换"：假引擎先通全链</td></tr>
+        <tr><td><span class="p">5</span></td><td>归档配置</td><td>第7章 文件 · 6（支点章）</td><td>pathlib/csv/json：跑批结果归档 + production_log.csv</td><td>B3 归档与版本；C4 交接凭据</td></tr>
+        <tr><td><span class="p">6</span></td><td>Product 类</td><td>第8章 OOP · 8（枢纽）</td><td>七个 OOP 知识点全落一个类：属性/构造/封装/方法/继承/重写/多态</td><td>B2 一致性控制的"对象化"（参考图锚点）</td></tr>
+        <tr><td><span class="p">7</span></td><td>重试与超时</td><td>第9章 异常 · 4</td><td>try/except/自定义异常：跑 100 个失败 5 个也不崩</td><td>B1 批量与并发的健壮性</td></tr>
+        <tr><td><span class="p">8</span></td><td>真实出图</td><td>模块A 调接口 · 4（W12）</td><td>接 <strong>Seedream（火山方舟）</strong>：HTTP/requests/JSON/密钥环境变量/限流/二进制下载；出第一张真图（<code>--real</code> 触发）</td><td>B1 批量与并发的起点（单→批）</td></tr>
+        <tr><td><span class="p">9</span></td><td>筛选候选</td><td>模块B 批量生产 · 6（W13-14）</td><td>批量出图 + 按<strong>可判定标准</strong>筛选（铁律：不许形容词）</td><td>B4 质检与筛选（图→自动检查项）</td></tr>
+        <tr><td><span class="p">10</span></td><td>出片交付</td><td>模块C+D · 3+3（W15）</td><td>图片序列转视频/字幕/归档/README + 生产记录 + 答辩</td><td>C3 成本产能核算；三级"生产记录"</td></tr>
+      </tbody>
+    </table>
+    <p class="note">第 8 章是枢纽：大纲要求的七项 OOP 知识点全部落在 <code>Product</code> 一个类上，零删减；它同时是 B2 一致性工程的"对象化心智模型"。<code>Character</code> 作为子类示例，演示继承/重写，留给漫剧进阶选修。</p>
+  </div>
+
+  <h2>三、与二级训练营的衔接（核心）</h2>
+
+  <h3>3.1 衔接的根本逻辑：课内教"分叉之前的那段"</h3>
+  <div class="card">
+    <p>两条赛道（电商 / 漫剧）共享的<strong>八成主干</strong>（B1 批量并发 / B2 一致性 / B3 归档版本 / B4 质检筛选 / B5 工作流封装）在二级才展开。<strong>课内 60 学时教的，正是"分叉之前的那段"</strong>：连接器（调接口/批处理/Git/读报错）+ 一个能跑的单件脚本。所以课内<strong>不必在两条赛道间二选一</strong>——学生带着的是那八成主干，二级再分流。</p>
+    <div class="flow">
+      <span class="node">课内 manhua.py（单件脚本）</span><span class="arrow">→</span>
+      <span class="node">二级 B1-B5 放大成工程能力</span><span class="arrow">→</span>
+      <span class="node">三级 真实交付 + 生产记录</span>
+    </div>
+  </div>
+
+  <h3>3.2 时间衔接：课内打底，训练营第 4 周启动，第 12 周合流</h3>
+  <div class="card">
+    <ul>
+      <li><b>W1–11 课内</b>：打语言底座，manhua.py 长到构件 7（前 8 周全是 mock，无真实调用）。</li>
+      <li><b>W4 训练营启动</b>：前 8 周<strong>不写代码</strong>（出图/一致性/分镜用现成界面），与课内进度无关，反而是给课内攒问题的地方。</li>
+      <li><b>W12 合流</b>：课内讲"调接口"（构件 8），训练营此时介入代码——学生已经知道"为什么调接口"，不会把它当又一章孤立知识。</li>
+    </ul>
+    <p class="note">关键设计：模块 A（调接口）<strong>提前到第 12 周，不等章节讲完</strong>。原因：调接口是后面所有内容的引擎，太晚讲前面只能一直 mock，学生会失去真实感。放在第 12 周正好接在第 8 章类 + 第 9 章异常之后：参数已能组织好、失败已能处理，一次就成。</p>
+  </div>
+
+  <h3>3.3 能力对齐：同一条线被放大三次</h3>
+  <div class="card">
+    <table>
+      <thead><tr><th>能力线</th><th>一级（课内 manhua.py）</th><th>二级（训练营 B1-B5）</th><th>三级（核心项目组）</th></tr></thead>
+      <tbody>
+        <tr><td>调接口</td><td>调通一次（构件 8）</td><td>批量并发 + 重试（构件 7/9）</td><td>服务化：队列 + 日志</td></tr>
+        <tr><td>批处理</td><td>1 份 SKU → N 条（构件 3）</td><td>整批参数化跑</td><td>整线自动换配置</td></tr>
+        <tr><td>一致性</td><td>参考图锁定写入类（构件 6）</td><td>10 张像同一个，说清锁了什么</td><td>写进资产库，换人执行仍一致</td></tr>
+        <tr><td>质检</td><td>看出"不行"（构件 9）</td><td>写出 3 条可判定标准</td><td>把别人的判断翻译成自动检查项</td></tr>
+        <tr><td>记录</td><td>production_log.csv（构件 5）</td><td>耗时 / 废片率</td><td>成本核算 + 产能测算</td></tr>
+      </tbody>
+    </table>
+    <p class="note"><b>结论：三级不是新东西，是二级同一条能力线被放到真实交付里；二级也不是新东西，是课内单件被放大成批量与工程化。</b>衔接不是"教两遍"，是"同一根线越拉越粗"。</p>
+  </div>
+
+  <h3>3.4 衔接的"接口"：文件契约 CONTRACT.md</h3>
+  <div class="card">
+    <p>课内 manhua.py 跑出的 <code>results/</code> 目录结构，就是与训练营（及未来 JS 工具组）对接的契约原型：</p>
+    <pre>results/
+  task_xxx/
+    raw/        # 候选图
+    picked/     # 筛选后合格图
+    meta.json   # task_id / status(done|failed|pending) / files / attempts / seconds / cost</pre>
+    <p>二级 B3 直接复用这个结构做版本与归档；若后续 JS 班进工具组，<code>meta.json</code> 的字段就是双方契约（字段只增不改 / status 必须三态 / 相对路径）。<strong>课内第 5 构件写的归档，天然就是契约的雏形</strong>——这是衔接最省力的一点。</p>
+  </div>
+
+  <h3>3.5 7-8 人核心如何"带过去"（对应 9-19 规模决策）</h3>
+  <div class="card">
+    <ul>
+      <li>课内是<strong>全体 Python 班必修底座</strong>（不淘汰）；<span class="hl">7-8 人是自组织的高质量核心</span>，从课内自然分层出来（不以开营就圈"重点"）。</li>
+      <li>这 7-8 人把 manhua.py 的构件带进二级，<strong>自己放大成批量/一致性/质检</strong>，并自组织成"电商管线组 + 资产与规范组"。</li>
+      <li>二级失败判据（第 8 周自查）：学生能否独立跑完"需求进来 → 素材出去 → 有记录"。能，就进三级；不能，说明二级滑成兴趣小组，三级长不出人。<strong>这条判据正好用课内 manhua.py 当样本。</strong></li>
+    </ul>
+  </div>
+
+  <h3>3.6 董老师（AIGC 应用层）在衔接里的位置</h3>
+  <div class="card">
+    <div class="two">
+      <div class="col" style="background:#F2F8FD;border:1px solid var(--blue2);border-radius:10px;padding:12px 14px">
+        <h3 style="margin-top:4px">张 · 侧重 FDE + 底座</h3>
+        <p>课内 manhua.py 的底座（连接器/批处理/Git）+ 二级的管线/工程化放大，都归张。这释放精力给 FDE。</p>
+      </div>
+      <div class="col" style="background:#FBF4EF;border:1px solid #F0D9C2;border-radius:10px;padding:12px 14px">
+        <h3 style="margin-top:4px">董老师 · AIGC 应用层</h3>
+        <p>课内构件 8-9 出图后，<strong>一致性标准 / 质检清单 / 资产库</strong>（B2/B4）由她定——她把"这张行不行"翻译成可复用的检查项，正好呼应其"视觉资产架构者"定位。</p>
+      </div>
+    </div>
+    <p class="note">即：课内出"图"，董老师出"图好不好/算不算合格的标准"，张出"怎么批量跑、怎么交付"。三者咬合，不替对方定标准。</p>
+  </div>
+
+  <h2>四、已落地：manhua.py 完整可运行（已实测）</h2>
+  <div class="card">
+    <p>工作区已生成<strong>完整可运行</strong>的 <code>manhua.py</code>（十一个构件全部真干活：构件 0 解析运营 brief → 构件 3 展开 → … → 构件 10 交付；前 7 构件纯 mock 零依赖，<code>python -m manhua_studio</code> 即可跑通并产出 <code>runs/production_log.csv</code> 与按 SKU 分目录的 <code>deliverables/</code>）。已用 Python 3.13 实测通过（mock 与 <code>--real</code> 无密钥两条路径均验证）。</p>
+    <p><b>新增① 构件 0 · 需求解析（回应"真实场景"）：</b>主流程的数据源不再是写死的 SKU 列表，而是一段<strong>运营 brief 原文</strong>（脱敏改写自真实类目：某陶瓷文创店双11素材需求），经正则+标签映射翻译成结构化字段。缺字段自动补默认值。这把"标准化翻译成检查项"提前落到课内——计算机侧最值钱的能力。</p>
+    <p><b>新增② 构件 8 · 接 Seedream（火山方舟）：</b>端点 <code>ark.cn-beijing.volces.com/api/v3/images/generations</code>，鉴权 <code>Bearer $ARK_API_KEY</code>，默认模型 <code>doubao-seedream-3-0-t2i-250415</code>（可用 4.5/5.0，环境变量 <code>SEEDREAM_MODEL</code> 切换）。返回 URL 后再下载到本地。无密钥或 <code>requests</code> 未装都优雅降级（stdlib urllib 兜底），不会崩。<strong>尺寸用 1K，按平台规范缩放是二级 B2 一致性步骤。</strong></p>
+    <p><b>真实跑通结果（mock 模式，4 个 SKU 跨 4 平台）：</b></p>
+    <pre>[展开] 共 29 条生成任务
+[状态] {'done': 29, 'failed': 0, 'pending': 0}
+  青花瓷杯:     合格 4 / 废片 10
+  竹编收纳筐:   合格 5 / 废片 0
+  国风真丝丝巾: 合格 4 / 废片 4
+  虚拟IP·阿瓷:  合格 0 / 废片 2      ← Character 子类，人脸约束严，出片率天然低
+[交付] deliverables/README.md  耗时 0.22s</pre>
+    <p><b>交付结构（真实感体现）：</b></p>
+    <pre>deliverables/
+  README.md                      # 含合格数/废片率/总成本/耗时
+  TC-001/青花瓷杯_白底主图_正面.json   # 每个合格素材带 prompt+种子+质检指标
+  TC-001/青花瓷杯_白底主图_俯视.json
+  TC-002/竹编收纳筐_白底主图_正面.json
+  …（按 SKU 分文件夹，真实模式即 .png + 同名 json）
+runs/production_log.csv          # 29 行，列含 bg_purity/comp_ratio/clarity/text_ratio/cost</pre>
+    <p class="note"><b>伏笔兑现点：</b>阿瓷（<code>Character(Product)</code>）2 张全废，因为重写后的 <code>score()</code> 要求人脸完整、构图更严。这恰好佐证 9-19「选 A」——电商是稳底座，漫剧因人脸/一致性约束更强，走进阶选修而非课内主线。同时演示了 OOP 继承/重写/多态不是装饰，是真实业务差异。<br>使用边界：真实出图（构件 8）用 <code>python -m manhua_studio --real</code> 触发，接 <strong>Seedream（火山方舟）</strong>；密钥走环境变量 <code>ARK_API_KEY</code>（或 .env），不进代码。真实模式返回的指标为 None——自动质检是二级 B4 独立步骤（人或视觉模型复核），故交付 README 里 score 标"QC待定"。无密钥时 29 个任务全标 failed、仍产出 README、退出码 0，不会崩。</p>
+  </div>
+
+  <h2>五、与原 Python 课程的无缝嫁接</h2>
+
+  <h3>5.1 嫁接根本原则：不砍知识点，只换实践载体</h3>
+  <div class="card">
+    <ul>
+      <li><b>语法内核 100% 保留：</b>原课本的章节顺序、每个知识点、期末考点全部不动。考试仍按原知识点出（比如仍可单独考"写一个学生类"）。</li>
+      <li><b>只换"上机实验"载体：</b>原来每章末尾的孤立习题（判断奇偶数、读写 txt、写函数算面积…），换成"给 manhua.py 这个项目加一个构件"。知识点练的还是同一个，只是落到了一个持续生长的真实脚本上。</li>
+      <li><b>理论不变 + 实验换载体 = 无缝：</b>老师照常按课本讲理论，学生照常做实验，只是实验产物不再是一次性练习文件，而是同一个项目的累积增量。不需要额外重排课表。</li>
+    </ul>
+  </div>
+
+  <h3>5.2 衔接公式</h3>
+  <div class="card">
+    <p class="flow" style="font-size:14px">
+      <span class="node">原第 N 章理论（不动）</span><span class="arrow">+</span>
+      <span class="node">原第 N 章上机实验 → 改写为第 N 个构件</span><span class="arrow">=</span>
+      <span class="node">manhua.py 长一节</span>
+    </p>
+    <p>期末综合项目<strong>不再是期末突击</strong>，而是 11 个构件提前一章章拼好的自然结果。改造方案《Python课程改造方案（第3章起）》与此完全对齐：已讲的第 1-2 章是构件 0–10 的前置，嫁接从第 3 章（构件 1）起。</p>
+  </div>
+
+  <h3>5.3 原课程章节 → 构件 映射表（知识点零删减）</h3>
+  <div class="card">
+    <table>
+      <thead><tr><th style="width:18%">原课程章节</th><th style="width:24%">原知识点（全部保留）</th><th style="width:10%">承接构件</th><th>嫁接方式（原习题 → 构件增量）</th></tr></thead>
+      <tbody>
+        <tr><td>第1章 环境与入门</td><td>安装/IDLE/print/注释/变量</td><td rowspan="2">前置</td><td>把"第一个程序"场景换成 manhua.py 的空文件说明；print 输出项目简介。不单独成构件。</td></tr>
+        <tr><td>第2章 数据类型与运算</td><td>int/float/str/bool/运算符/类型转换</td><td>构件 0 解析 SKU 字段时，学生已会的基础类型概念直接复用。已讲到，作前置。</td></tr>
+        <tr><td>第3章 流程控制</td><td>if/elif/else/for/while/break</td><td><span class="p">1</span> 状态判定</td><td>原"判断奇偶数"习题 → "统计一批生成任务的成功/失败/待重试数量"。</td></tr>
+        <tr><td>第4章 字符串与格式化</td><td>字符串方法/f-string/切片/编码</td><td><span class="p">2</span> 提示词模板</td><td>原"字符串格式化"习题 → "用 f-string 把商品名+材质+角度拼成提示词"。</td></tr>
+        <tr><td>第4-5章 综合</td><td>字符串分割/正则/dict 组装</td><td><span class="p">0</span> 需求解析</td><td>原"文本处理"习题 → "把运营 brief 原文翻译成本管线结构化 SKU 清单"。</td></tr>
+        <tr><td>第5章 组合数据类型</td><td>list/tuple/dict/set/推导式</td><td><span class="p">3</span> 参数表</td><td>原"列表统计"习题 → "1 份 SKU 清单展开成 N 条生成任务"。</td></tr>
+        <tr><td>第6章 函数</td><td>定义/参数/返回值/作用域/模块拆分</td><td><span class="p">4</span> 封装调用</td><td>原"写函数算面积"习题 → "封装出图调用（先 mock 返回占位图）"。</td></tr>
+        <tr><td>第7章 文件与数据格式</td><td>open/pathlib/csv/json</td><td><span class="p">5</span> 归档配置</td><td>原"读写 txt"习题 → "跑批结果自动归档成 production_log.csv"。</td></tr>
+        <tr><td>第8章 面向对象</td><td>类/对象/封装/继承/多态/魔法方法</td><td><span class="p">6</span> Product 类</td><td>原"学生类"习题 → "Product 类，七项 OOP 知识点全落一个类；Character 演示继承重写"。零删减。</td></tr>
+        <tr><td>第9章 异常处理</td><td>try/except/else/finally/自定义异常</td><td><span class="p">7</span> 重试与超时</td><td>原"除零异常"习题 → "接口超时自动重试，掉几个不崩整批"。</td></tr>
+        <tr><td>第10章 标准库/第三方库</td><td>os/sys/re/datetime/初识 requests</td><td><span class="p">8</span> 真实出图</td><td>原"调用一个 API"习题 → "接 Seedream（火山方舟）真出第一张图"。</td></tr>
+        <tr><td>第11章 综合项目</td><td>（原飞机大战/学生管理系统等）</td><td><span class="p">9</span>+<span class="p">10</span> 筛选交付</td><td>原期末突击项目 → 已被 11 个构件提前拼好；期末做"换配置重跑 / 加一个新 SKU 子类（如 Book(Product)）"。</td></tr>
+      </tbody>
+    </table>
+    <p class="note">注：上表章节标题按常见高职 Python 教材结构列出，请按贵校实际选用课本的章名对齐；映射逻辑（理论保留、实验换构件）不变。<span class="p">0</span> 为跨第 4-5 章的综合实验构件。</p>
+  </div>
+
+  <h3>5.4 为什么"无缝"：三个不增</h3>
+  <div class="card">
+    <ul>
+      <li><b>不增课时：</b>每个构件占用原章节的实验学时，不在课表外另排。前 8 周纯 mock、零第三方依赖，和原课程上机难度曲线一致。</li>
+      <li><b>不删考点：</b>原 OOP 七项知识点一个不少地落在 Product 一个类上；期末仍可单独考"写一个学生类""解释继承"。</li>
+      <li><b>不换教材：</b>老师备课照旧，只是把每章实验的"题目背景"从教科书例题换成"给项目加一块"。学生课本、笔记、考点全部延续。</li>
+    </ul>
+  </div>
+
+  <h3>5.5 已讲章节（第1-2章）与期末自主命题</h3>
+  <div class="card">
+    <ul>
+      <li><b>第 1-2 章已讲：</b>作为构件 0–10 的前置，不在本改造重讲。学生已会的类型/变量概念，在构件 0 解析 SKU 字段时直接复用，无需回炉。</li>
+      <li><b>期末自主命题可控：</b>载体是 manhua.py，但考核仍按原知识点。命题示例："新增一个 Book(Product) 子类，让它出书封主图"——既考继承重写，又考项目整合，空间大、可控、不易泄题。</li>
+    </ul>
+  </div>
+
+  <div class="footer">生成于 2026-09-20 · 配套《Python课程改造方案（第3章起）》《三级火箭体系设计》《执行基线 v1》· 载体已按 9-19「选 A 电商素材管线」更新 · 已于 Python 3.13 实测跑通 · 2026-09-20 续：零件→构件更名，新增原课程无缝嫁接专章（第五节）</div>
+</div>
+</body>
+</html>

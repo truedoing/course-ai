@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AIGC 赛道收窄：AI 剧集方向的判断与落点</title>
+<style>
+  :root{
+    --ink:#1F2328; --sub:#57606A; --line:#E4E7EB; --soft:#F7F8FA;
+  }
+  *{box-sizing:border-box}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif;
+    color:var(--ink); background:#FFFFFF; line-height:1.85; font-size:15px;
+    max-width:960px; margin:0 auto; padding:52px 28px 90px;
+  }
+  .kicker{font-size:13px; letter-spacing:.08em; color:#6B7379; font-weight:600; margin:0 0 10px}
+  h1{font-size:29px; line-height:1.4; margin:0 0 12px; letter-spacing:-.01em}
+  .sub{font-size:16px; color:var(--sub); margin:0 0 18px; line-height:1.7}
+  .meta{font-size:12.5px; color:#6B7379; border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:10px 0; margin:0 0 34px}
+  h2{font-size:21px; margin:52px 0 16px; padding-bottom:10px; border-bottom:2px solid #1F2328}
+  h3{font-size:17px; margin:34px 0 12px}
+  h4{font-size:15px; margin:22px 0 8px; color:var(--ink)}
+  p{margin:0 0 14px}
+  ul,ol{margin:0 0 16px; padding-left:22px}
+  li{margin-bottom:7px}
+  strong{font-weight:600}
+  em{font-style:normal; background:#FFF4C5; padding:0 3px; border-radius:3px}
+  code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:13px; background:#F2F4F7; padding:1px 5px; border-radius:4px}
+  table{width:100%; border-collapse:collapse; margin:16px 0 20px; font-size:13.5px}
+  th{background:#F2F4F7; text-align:left; padding:9px 10px; font-weight:600; border-bottom:2px solid #DDE1E6; white-space:nowrap}
+  td{padding:9px 10px; border-bottom:1px solid var(--line); vertical-align:top}
+  td.j{color:#33383D}
+  .ok{color:#0B5B47; font-weight:600}
+  .no{color:#8A5A00}
+  .mid{color:#6B7379}
+  .box{background:var(--soft); border-left:4px solid #B8C4CF; padding:14px 18px; margin:18px 0 22px; border-radius:0 8px 8px 0}
+  .box p:last-child{margin-bottom:0}
+  .key{background:#EFF6FF; border-left:4px solid #7EB2DA; padding:14px 18px; margin:18px 0 22px; border-radius:0 8px 8px 0}
+  .key p:last-child{margin-bottom:0}
+  .warnbox{background:#FDF6EC; border-left:4px solid #E3C48D; padding:14px 18px; margin:18px 0 22px; border-radius:0 8px 8px 0}
+  .warnbox p:last-child{margin-bottom:0}
+  .fig{margin:24px 0 28px}
+  .fig svg{display:block; width:100%; height:auto}
+  .fig figcaption{font-size:12.5px; color:#57606A; margin-top:10px; line-height:1.65}
+  .tag{display:inline-block; font-size:11.5px; font-weight:600; padding:1px 7px; border-radius:4px; white-space:nowrap}
+  .t1{background:#E2ECF7; color:#155E8F}
+  .t2{background:#CFE2F3; color:#12507F}
+  .t3{background:#B8D4EC; color:#0E4470}
+  .foot{margin-top:56px; padding-top:18px; border-top:1px solid var(--line); font-size:12.5px; color:#6B7379}
+  .foot li{margin-bottom:5px}
+</style>
+</head>
+<body>
+
+<p class="kicker">课程方向收窄 · 决策分析</p>
+<h1>收窄到 AIGC：为什么是 AI 剧集，以及怎么落</h1>
+<p class="sub">面向工艺美术类院校计算机专业的赛道判断、能力锚点与课程落点</p>
+<p class="meta">判断依据：2026 年 AI 剧集与电商 AIGC 产业数据、平台分账规则、真实招聘 JD ｜ 约束条件：课时有限、学生为专科层次、院校属工美类</p>
+
+<h2>一、先把问题重新表述：我们缺的不是方向，是位置</h2>
+
+<p>"电商"和"AI 短剧"看起来是两个行业，但对一所<strong>工美类院校的计算机专业</strong>来说，真正要决定的不是"做哪个行业"，而是<strong>"在这个行业里，我们的学生站在链条的哪一环"</strong>。</p>
+
+<p>理由很直接：行业会变，平台规则会变，工具半年一换；但"这一环需不需要编程能力、需不需要工程思维"这件事，三五年内不会变。<strong>锁对位置，行业换了可以平移；锁错位置，行业再热也轮不到我们的学生。</strong></p>
+
+<div class="key">
+<p><strong>本文结论先放在前面：主线锁 AI 剧集（漫剧 / 仿真人剧）的内容生产，能力锚点放在"一致性工程 + 批量生产流水线"；电商 AIGC 不放弃，但换一个站位——作为保底出口与流水线练兵场。</strong></p>
+<p>核心理由只有一句：电商 AIGC 考的是商业审美，那是本校视传、数媒专业的长板；AI 剧集卡的是一致性与产能，那是工程问题，而这道题<strong>目前整个行业还没人解好</strong>。</p>
+</div>
+
+<h2>二、两条赛道的事实对照</h2>
+
+<h3>AI 剧集：体量与缺口</h3>
+
+<table>
+<thead><tr><th style="width:210px">指标</th><th>数据</th><th style="width:200px">来源</th></tr></thead>
+<tbody>
+<tr><td>市场规模</td><td class="j">2026 年全年预计 <strong>240 亿元</strong>（机构预测口径）；另一口径为 2026 年前 5 个月已达 220 亿、全年预计 400 亿</td><td class="j">国信证券 / DataEye</td></tr>
+<tr><td>产能</td><td class="j">2026 上半年抖音端 AI 剧漫剧新剧 <strong>22.19 万部</strong>；2 月起月均新剧稳定在 3 万部以上，3 月单月 4.67 万部</td><td class="j">DataEye</td></tr>
+<tr><td>爆款率</td><td class="j">2025 年上线 60946 部，播放量破亿 96 部，<strong>爆款率 0.16%</strong></td><td class="j">国信证券</td></tr>
+<tr><td>成本与周期</td><td class="j">单部成本压至 3–5 万元（较真人剧降幅超 90%），周期缩短至数天，月产能百部以上</td><td class="j">九州文化</td></tr>
+<tr><td>岗位释放</td><td class="j">九州文化一家宣布后续释放 <strong>超 5000 个岗位</strong>；近一年吸纳高校毕业生 5800 人，占新增员工 95%，30 岁以下占 80%</td><td class="j">证券时报</td></tr>
+<tr><td>区域缺口</td><td class="j">深圳数字创意产业人才缺口 2.5 万人，其中动漫、微短剧赛道缺口 1 万人；<em>兼具剧本创作能力与 AI 调校实操能力的复合型人才尤为紧缺</em></td><td class="j">深圳市人社局</td></tr>
+<tr><td>从业者构成</td><td class="j">AI 短剧从业者 <strong>80% 来自游戏、互联网等非影视背景</strong>——行业还没有形成既得利益者与人才壁垒</td><td class="j">央视财经</td></tr>
+<tr><td>新岗位</td><td class="j">已出现「<strong>抽卡师</strong>」：AI 产出不满意或穿帮的地方，由专人改提示词微调后重新生成。某从业者由电商运营转岗，无影视基础，一个月上手</td><td class="j">湖北网络广播电视台</td></tr>
+</tbody>
+</table>
+
+<h3>平台分账：钱从哪来</h3>
+
+<p>抖音集团短剧版权中心公开的保底与分成系数（这是判断"哪个形态值得教"的硬依据）：</p>
+
+<table>
+<thead><tr><th style="width:180px">内容形态</th><th style="width:200px">S+ 级保底</th><th style="width:120px">分成系数</th><th>教学含义</th></tr></thead>
+<tbody>
+<tr><td><strong>AI 仿真人剧</strong></td><td class="ok">54–72 万元 / 部</td><td class="ok">60%</td><td class="j">2026 年的增量所在，但算力成本高、技术门槛高，宜作进阶演示</td></tr>
+<tr><td>3D 动画漫剧</td><td class="j">45–60 万元 / 部</td><td class="j">50%</td><td class="j">可做，但建模门槛不适合专科起点</td></tr>
+<tr><td><strong>2D 动画漫剧</strong></td><td class="j">45–60 万元 / 部</td><td class="j">40%</td><td class="j"><strong>教学主流程</strong>：成本低、一致性技术成熟、学生能完整跑通</td></tr>
+<tr><td>表情包动态漫</td><td class="mid">—</td><td class="mid">10%</td><td class="j">适合作为入门练手项目</td></tr>
+<tr><td>动态 / 静态解说漫</td><td class="mid">—</td><td class="mid">5% / 1%</td><td class="j">不建议作为课程产出目标</td></tr>
+</tbody>
+</table>
+
+<h3>电商 AIGC：同样是真实需求，但站位不同</h3>
+
+<p>电商这边的数据并不差：AIGC 电商视觉设计师是"需求最高、转行首选"的岗位，应届 7–10K，1–2 年经验 15–22K，跨境方向更高。郑州一条真实 JD（7千-1.1万，1-3 年，大专）的关键词里甚至直接出现了 <strong>Python、工作流搭建、AI 自动化生产流程</strong>，加分项写着"有 ComfyUI 工作流搭建经验"；更高一级的 AI 品牌视觉策划（24–26K）也写着"具备基础 Python 脚本能力优先"。</p>
+
+<p>但把 JD 读完会发现，这些岗位真正考的是<strong>商业审美、转化逻辑、PS 精修合成</strong>——"理解商品卖点、用户心理及页面转化逻辑""Photoshop 精修能力扎实"。Python 与工作流是加分项，不是入场券。</p>
+
+<p>这就引出了一个必须正视的问题：<strong>我们是工美类院校，视传、数媒、动漫专业就在同一个校园里。</strong>让计算机专业学生去考"商业审美 + PS 精修"，是拿自己的短板，去撞同校另一个专业的长板。</p>
+
+<div class="warnbox">
+<p><strong>还有一个时间维度的风险：电商 AIGC 的中低端岗位正在被工具吃掉。</strong>平台侧"一键生成主图、场景图、模特图"已成标配，商家自己就能用。岗位的存活方式只有两条：往上走到品牌视觉策略（要求 5 年经验，专科应届够不着），或者往右走到"素材的批量生产与数据迭代"——后一条又回到了工程能力上。</p>
+</div>
+
+<h2>三、四条推理：为什么 AI 剧集更适合我们</h2>
+
+<h3>推理 1：行业最大的痛点是工程问题，不是美术问题</h3>
+
+<p>行业对 AI 剧集的批评集中在四点：<strong>角色形象崩坏、物理逻辑混乱、音画不同步、剧情套路化</strong>。中新网的报道把症结说得非常清楚："AI 简化生产流程，却无法降低原创创作门槛。"</p>
+
+<p>拆开看：剧情套路化是内容问题（归文学、编剧），但<strong>角色崩坏、物理混乱、音画不同步，本质都是"一致性"问题</strong>——怎么让第 1 集和第 50 集的同一个人长得一样，怎么让连续镜头不穿帮。这恰恰是要靠参考图锁定、角色模型微调、参数版本管理、生成结果自动筛选来解决的，<strong>是工程，不是美术</strong>。</p>
+
+<h3>推理 2：链条足够长，才有"串联者"的位置</h3>
+
+<p>电商素材的生产是短链条：选品 → 出图 → 精修 → 上架，一个人用两三个工具就能闭环，所以"串联"不产生额外价值。AI 剧集是长链条：剧本 → 角色设定 → 分镜 → 生图生视频 → 配音配乐 → 剪辑合成投流，六个环节七八个人协作，<strong>必须有人负责"让整条线跑得通、跑得稳、可复现"</strong>。</p>
+
+<p>这个角色在行业里还没有固定名字，有人叫技术美术，有人叫 AI 制片，有人干脆归在"AI 调校"。<strong>岗位名没固化，恰恰是先发优势——我们有机会参与定义它。</strong></p>
+
+<h3>推理 3：工美院校的跨专业结构，天然就是一个制作单元</h3>
+
+<p>业内对生产组织形态的判断是"10 人小团队为一个创作单元"（九紫源 AI 总导演丁宽）。而这个结构，一所工美类院校在校内就能凑齐：</p>
+
+<figure class="fig">
+<svg viewBox="0 0 900 214" width="100%" role="img" aria-label="跨专业制作单元：计算机专业负责工具链与一致性，数媒与动漫负责角色分镜与剪辑，文学与视传负责剧本与美术">
+  <rect x="0" y="0" width="900" height="214" fill="#FFFFFF"/>
+  <g font-family="-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif">
+    <text x="10" y="18" font-size="13" font-weight="600" fill="#1F2328">一个 10 人制作单元，工美院校在校内就能凑齐</text>
+
+    <rect x="10" y="34" width="280" height="150" rx="10" fill="#E4EFFB" stroke="#9CC3E8" stroke-width="0.8"/>
+    <text x="150" y="60" text-anchor="middle" font-size="13.5" font-weight="700" fill="#0C447C">计算机专业 · 3 人</text>
+    <text x="26" y="86" font-size="12.5" fill="#1F2328">· 角色 LoRA 训练与版本管理</text>
+    <text x="26" y="110" font-size="12.5" fill="#1F2328">· ComfyUI 工作流搭建与复用</text>
+    <text x="26" y="134" font-size="12.5" fill="#1F2328">· 批量生成、自动筛选与质检</text>
+    <text x="26" y="158" font-size="12.5" fill="#1F2328">· 素材资产与流水线编排</text>
+    <text x="150" y="176" text-anchor="middle" font-size="11.5" font-weight="600" fill="#0C447C">＝ 一致性与产能</text>
+
+    <rect x="310" y="34" width="280" height="150" rx="10" fill="#DFF3EC" stroke="#7FC9AF" stroke-width="0.8"/>
+    <text x="450" y="60" text-anchor="middle" font-size="13.5" font-weight="700" fill="#0B5B47">数媒 / 动漫 · 4 人</text>
+    <text x="326" y="86" font-size="12.5" fill="#1F2328">· 角色形象与美术设定</text>
+    <text x="326" y="110" font-size="12.5" fill="#1F2328">· 分镜与镜头语言</text>
+    <text x="326" y="134" font-size="12.5" fill="#1F2328">· 成片剪辑与节奏</text>
+    <text x="326" y="158" font-size="12.5" fill="#1F2328">· 画面审美与穿帮把关</text>
+    <text x="450" y="176" text-anchor="middle" font-size="11.5" font-weight="600" fill="#0B5B47">＝ 好看</text>
+
+    <rect x="610" y="34" width="280" height="150" rx="10" fill="#FBEEDA" stroke="#E3C48D" stroke-width="0.8"/>
+    <text x="750" y="60" text-anchor="middle" font-size="13.5" font-weight="700" fill="#7A4A0A">文学 / 视传 · 3 人</text>
+    <text x="626" y="86" font-size="12.5" fill="#1F2328">· 剧本改编与结构化分集</text>
+    <text x="626" y="110" font-size="12.5" fill="#1F2328">· 题材与热点判断</text>
+    <text x="626" y="134" font-size="12.5" fill="#1F2328">· 品牌与视觉规范</text>
+    <text x="626" y="158" font-size="12.5" fill="#1F2328">· 宣发物料</text>
+    <text x="750" y="176" text-anchor="middle" font-size="11.5" font-weight="600" fill="#7A4A0A">＝ 有人看</text>
+
+    <text x="10" y="204" font-size="11.5" fill="#57606A">深圳人社局点名紧缺的是"兼具剧本创作能力与 AI 调校实操能力的复合型人才"——一个人很难两者兼备，但一个跨专业单元可以。</text>
+  </g>
+</svg>
+<figcaption>图 1 ｜ 跨专业制作单元。这是工美类院校<strong>别人复制不了的结构优势</strong>：纯工科院校凑不出"好看"和"有人看"，纯艺术院校凑不出"一致性与产能"。</figcaption>
+</figure>
+
+<h3>推理 4：标准刚落地，这是申报与发表的窗口期</h3>
+
+<p>2026 年 3 月，<strong>全国首个"AI+漫剧职业技能培训标准"落地</strong>，搭建了"培—考—评"完整规范体系；"十五五"规划建议也明确提出培育高水平文化人才队伍。对职业院校来说，这意味着三件可以立刻做的事：对接培训标准开发课程、申报相关课题或产业学院、把跨专业制作单元的教学实验做成可发表的数据。<strong>这个窗口不会开太久。</strong></p>
+
+<h2>四、能力锚点：不是"会生图"，是"让一百个镜头长得像同一个人"</h2>
+
+<p>这是整份分析里最需要守住的一条。<strong>如果课程教的是"怎么用某个工具出图"，三到六个月就会被工具追平</strong>——字节的"小云雀 AI"已经能做到"提供故事文本，自动完成从剧本到成片"。教操作，等于教学生去跟 Agent 抢活。</p>
+
+<p>要教的是工具背后的那层工程能力，它分三层：</p>
+
+<figure class="fig">
+<svg viewBox="0 0 900 268" width="100%" role="img" aria-label="一致性工程的三层结构：角色资产层、生成控制层、批量与质检层，以及每层对应的能力与工具">
+  <rect x="0" y="0" width="900" height="268" fill="#FFFFFF"/>
+  <g font-family="-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif">
+    <text x="10" y="18" font-size="13" font-weight="600" fill="#1F2328">能力锚点：一致性工程的三层</text>
+
+    <rect x="10" y="32" width="600" height="68" rx="10" fill="#B8D4EC" stroke="#7EB2DA" stroke-width="0.8"/>
+    <text x="28" y="58" font-size="13.5" font-weight="700" fill="#0E4470">第 1 层 · 角色资产层</text>
+    <text x="28" y="80" font-size="12.5" fill="#0E4470">把"一个人"变成可复用、可版本化的资产：角色模型微调、风格预设、参考图库、命名与版本规范</text>
+    <rect x="630" y="48" width="260" height="36" rx="8" fill="#E8F0F9" stroke="#9BC4E4" stroke-width="0.5"/>
+    <text x="760" y="71" text-anchor="middle" font-size="12.5" font-weight="600" fill="#0B3A61">LoRA / 风格模型 / 资产库</text>
+
+    <rect x="10" y="112" width="600" height="68" rx="10" fill="#9BC4E4" stroke="#6FA8D0" stroke-width="0.8"/>
+    <text x="28" y="138" font-size="13.5" font-weight="700" fill="#082F52">第 2 层 · 生成控制层</text>
+    <text x="28" y="160" font-size="12.5" fill="#082F52">让每一次生成都落在同一条线上：参考图锁定、姿势与构图控制、局部重绘、参数记录与可复现</text>
+    <rect x="630" y="128" width="260" height="36" rx="8" fill="#CFE2F3" stroke="#7EB2DA" stroke-width="0.5"/>
+    <text x="760" y="151" text-anchor="middle" font-size="12.5" font-weight="600" fill="#082F52">ControlNet / IP-Adapter / ComfyUI</text>
+
+    <rect x="10" y="192" width="600" height="68" rx="10" fill="#7EB2DA" stroke="#5A9CC8" stroke-width="0.8"/>
+    <text x="28" y="218" font-size="13.5" font-weight="700" fill="#062A44">第 3 层 · 批量与质检层</text>
+    <text x="28" y="240" font-size="12.5" fill="#062A44">把一次成功变成一百次稳定：批量调用、废片自动识别与去重、一致性打分、成本与产能核算</text>
+    <rect x="630" y="208" width="260" height="36" rx="8" fill="#9BC4E4" stroke="#5A9CC8" stroke-width="0.5"/>
+    <text x="760" y="231" text-anchor="middle" font-size="12.5" font-weight="600" fill="#062A44">Python 脚本 / API / 自动筛选</text>
+  </g>
+</svg>
+<figcaption>图 2 ｜ 一致性工程三层。颜色越深，越接近计算机专业的核心地盘。<strong>第 3 层是 Python 的主场，也是别人最难替代的部分</strong>——它决定了团队一天能出 10 条素材还是 1000 条。</figcaption>
+</figure>
+
+<div class="key">
+<p><strong>把锚点定在这里，还有一个额外好处：这套能力是可平移的。</strong></p>
+<p>它解决的是"如何让一批 AI 生成物保持统一、可控、可批量交付"。AI 剧集要用它，电商的千款 SKU 主图要用它，游戏买量素材要用它，互动影游也要用它。<strong>即使三年后短剧风口退了，学生手上的能力不会作废</strong>——这才是把课时押在这里的真正理由。</p>
+</div>
+
+<h2>五、收窄后的技能树</h2>
+
+<p>原来那份五方向技能树可以整体收窄成下面这一棵。注意它不再按"方向"分叉，而是<strong>按"会用 / 会改 / 会造"三级递进</strong>——因为方向已经锁定了，剩下的问题是深度。</p>
+
+<figure class="fig">
+<svg viewBox="0 0 900 258" width="100%" role="img" aria-label="收窄后的三级技能树：L1 会用、L2 会改、L3 会造，各级别的能力、工具与产出">
+  <rect x="0" y="0" width="900" height="258" fill="#FFFFFF"/>
+  <g font-family="-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif">
+    <text x="10" y="18" font-size="13" font-weight="600" fill="#1F2328">收窄后的技能树：三级递进，逐级加深</text>
+
+    <rect x="10" y="32" width="280" height="206" rx="10" fill="#E2ECF7" stroke="#9BC4E4" stroke-width="0.8"/>
+    <text x="150" y="58" text-anchor="middle" font-size="14" font-weight="700" fill="#155E8F">L1 · 会用</text>
+    <text x="150" y="78" text-anchor="middle" font-size="11.5" fill="#155E8F">能用现成流程做出东西</text>
+    <line x1="26" y1="88" x2="274" y2="88" stroke="#9BC4E4" stroke-width="1"/>
+    <text x="26" y="110" font-size="12" fill="#1F2328">· 读懂并复用现成工作流</text>
+    <text x="26" y="132" font-size="12" fill="#1F2328">· 会抽卡：改提示词、调参数</text>
+    <text x="26" y="154" font-size="12" fill="#1F2328">· 能识别废片与穿帮</text>
+    <text x="26" y="176" font-size="12" fill="#1F2328">· 会用云 API 出图出片</text>
+    <rect x="26" y="190" width="248" height="34" rx="7" fill="#CFE2F3"/>
+    <text x="150" y="212" text-anchor="middle" font-size="12" font-weight="600" fill="#12507F">产出：独立完成 10 集短漫剧</text>
+
+    <rect x="310" y="32" width="280" height="206" rx="10" fill="#CFE2F3" stroke="#7EB2DA" stroke-width="0.8"/>
+    <text x="450" y="58" text-anchor="middle" font-size="14" font-weight="700" fill="#12507F">L2 · 会改</text>
+    <text x="450" y="78" text-anchor="middle" font-size="11.5" fill="#12507F">能改流程、管住一致性</text>
+    <line x1="326" y1="88" x2="574" y2="88" stroke="#7EB2DA" stroke-width="1"/>
+    <text x="326" y="110" font-size="12" fill="#1F2328">· 角色模型微调与版本管理</text>
+    <text x="326" y="132" font-size="12" fill="#1F2328">· 搭 ComfyUI 工作流</text>
+    <text x="326" y="154" font-size="12" fill="#1F2328">· 参考图锁定与局部重绘</text>
+    <text x="326" y="176" font-size="12" fill="#1F2328">· 素材命名与资产管理规范</text>
+    <rect x="326" y="190" width="248" height="34" rx="7" fill="#B8D4EC"/>
+    <text x="450" y="212" text-anchor="middle" font-size="12" font-weight="600" fill="#0E4470">产出：跨 30 集不崩的角色方案</text>
+
+    <rect x="610" y="32" width="280" height="206" rx="10" fill="#B8D4EC" stroke="#5A9CC8" stroke-width="0.8"/>
+    <text x="750" y="58" text-anchor="middle" font-size="14" font-weight="700" fill="#0E4470">L3 · 会造</text>
+    <text x="750" y="78" text-anchor="middle" font-size="11.5" fill="#0E4470">能设计整条生产流水线</text>
+    <line x1="626" y1="88" x2="874" y2="88" stroke="#5A9CC8" stroke-width="1"/>
+    <text x="626" y="110" font-size="12" fill="#1F2328">· 脚本串起生→筛→检→合</text>
+    <text x="626" y="132" font-size="12" fill="#1F2328">· 批量调用与失败重试</text>
+    <text x="626" y="154" font-size="12" fill="#1F2328">· 自动去重、一致性与质量打分</text>
+    <text x="626" y="176" font-size="12" fill="#1F2328">· 成本核算与产能测算</text>
+    <rect x="626" y="190" width="248" height="34" rx="7" fill="#9BC4E4"/>
+    <text x="750" y="212" text-anchor="middle" font-size="12" font-weight="600" fill="#082F52">产出：一套可交接的生产流水线</text>
+  </g>
+</svg>
+<figcaption>图 3 ｜ 收窄后的技能树。<strong>L1 是大多数学生的落点，L2 是培养目标，L3 是少数尖子的上限</strong>——这个分布与专科层次的实际是匹配的，不必强求人人到 L3。</figcaption>
+</figure>
+
+<h3>与之前那份"Python 基础之上的技能树"如何衔接</h3>
+
+<p>不推翻，只是<strong>换主干</strong>：共用主干里的"HTTP 与调 API""Git 与版本管理""读文档与读报错"全部保留，而且地位更高了——因为它们正是 L3 的前置。原来的"数据方向（SQL + Pandas）"从主干降为<strong>选修</strong>，因为 AI 剧集链条里真正用到数据分析的地方只有两处：投放之后的转化复盘，以及生成质量的量化评估。这两处可以用 4 课时带过，不必再单独开 12 课时的数据模块。</p>
+
+<h2>六、落地路径：一门课 + 一个工作室 + 一个跨专业项目</h2>
+
+<p>课时有限的前提下，不建议新开专业或大改培养方案。<strong>最小可行的落法是三个"一"</strong>：</p>
+
+<h3>1 · 一门课：《AI 内容生产与自动化》（建议 42 课时 + 项目实训）</h3>
+
+<table>
+<thead><tr><th style="width:56px">序</th><th style="width:230px">模块</th><th style="width:66px">课时</th><th>要点</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>AI 剧集生产流程认知</td><td class="ok">4</td><td class="j">六环节全览、平台规则与分账机制、成本结构。<strong>先把"钱从哪来"讲清楚</strong>，学生才知道自己在为谁解决什么问题</td></tr>
+<tr><td>2</td><td>生图与一致性控制</td><td class="ok">8</td><td class="j">角色模型微调、参考图锁定、构图与姿势控制、局部重绘。重点不是出一张好图，是<em>出一百张像同一个人的图</em></td></tr>
+<tr><td>3</td><td>工作流搭建与复用</td><td class="ok">8</td><td class="j">ComfyUI 节点式流程、参数记录与可复现、工作流的版本管理与交接</td></tr>
+<tr><td>4</td><td>Python 批量生产</td><td class="ok">10</td><td class="j">调 API 批量生成、文件批处理、废片自动识别与去重、一致性打分、成本核算。<strong>本模块是 Python 课程的正统延续</strong></td></tr>
+<tr><td>5</td><td>成片合成与交付</td><td class="ok">4</td><td class="j">ffmpeg 拼接、TTS 配音与口型、字幕与成片规范、平台投稿流程</td></tr>
+<tr><td>6</td><td>跨专业项目实训</td><td class="ok">8+</td><td class="j">计算机 + 数媒/动漫 + 文学/视传组队，完整交付一部 10 集漫剧并投稿</td></tr>
+</tbody>
+</table>
+
+<h3>2 · 一个工作室：把课程产出变成可展示的资产</h3>
+
+<p>工作室的意义不是"兴趣小组"，而是解决三个现实问题：<strong>算力共享</strong>（集中采购云 API 额度，比分散使用便宜得多）、<strong>作品沉淀</strong>（学生的作品需要有一个持续更新的公开主页，这是招生与就业的凭证）、<strong>对外接单</strong>（承接本地商家的 AI 素材、短视频与电商主图，既是实训也是收入来源）。</p>
+
+<h3>3 · 一个跨专业项目：作为教学实验的数据来源</h3>
+
+<p>跨专业组队本身就是一项可研究的教学干预。可以设置对照组：计算机专业独立制作 vs 跨专业单元制作，比较成片质量指标（一致性、完播率、投稿通过率）与学生能力达成度。<strong>这类数据正好支撑职教类期刊的实证论文</strong>，也正好呼应"教学改进 + 学术发表"的双线目标。</p>
+
+<h2>七、风险与对冲</h2>
+
+<div class="warnbox">
+<p><strong>风险 1｜平台政策波动。</strong>2026 年 2 月红果被传砍掉九成真人短剧项目、取消保底分成，导致不少纯承制公司停工；单部剧盈利上限目前还卡在 100 万元左右。</p>
+<p><strong>对冲：</strong>不把就业押在单一平台或单一内容形态上。能力锚点放在"一致性工程 + 批量生产"，这套能力可以平移到电商素材、游戏买量素材、互动影游。同时教学产出走 2D 漫剧（保底 45–60 万、分成 40%），避开真人短剧的政策波动区。</p>
+</div>
+
+<div class="warnbox">
+<p><strong>风险 2｜工具吃掉流程。</strong>字节"小云雀 AI"已实现"提供故事文本，自动完成从剧本到成片"；Agent 化是明确方向。</p>
+<p><strong>对冲：</strong>教"搭建"不教"操作"，教"评估"不教"生成"。Agent 能替你跑流程，但<em>判断哪个镜头穿帮、哪张脸崩了、这一版够不够商用</em>——这个判断力目前还是人的活，也正是"抽卡师"这个岗位存在的理由。</p>
+</div>
+
+<div class="warnbox">
+<p><strong>风险 3｜算力与成本。</strong>高职院校通常没有 GPU 资源，视频生成的 API 费用不低。</p>
+<p><strong>对冲：</strong>① 主流程用 2D 漫剧，单张成本远低于视频；② 全部走云 API，不自建算力；③ 用平台侧的扶持计划——红果漫剧开放网文 IP 免费改编并配套 AI 算力补贴与项目保底，这类资源应当主动对接；④ 与地方制作公司共建实训，九州文化这类企业正在释放数千岗位，实训设备与算力可由企业侧承担。</p>
+</div>
+
+<div class="warnbox">
+<p><strong>风险 4｜内容同质化与低质化。</strong>爆款率只有 0.16%，说明"会做"远不等于"能活"。</p>
+<p><strong>对冲：</strong>评价体系不能只看"出了多少集"，必须加入质量维度。最简单有效的办法是<strong>把校内动漫、文学专业的师生拉进评价环节</strong>——让专业的人判断"这个故事讲没讲清楚"，这既是质量把关，也是跨专业协作的真实形态。</p>
+</div>
+
+<h2>八、还有一层：这对你个人是窗口期</h2>
+
+<p>顺带说一件与课程无关、但与你有关的事。2026 年 3 月全国首个"AI+漫剧职业技能培训标准"刚落地，深圳等地公开的数字创意人才缺口是 2.5 万人量级，而职业院校里系统做这件事的还很少。这意味着三件事同时成立：<strong>申报课题有依据、对接标准有抓手、教学实验有数据</strong>。</p>
+
+<p>而"跨专业制作单元"这种组织形式，本身就是一项有研究价值的教学干预——它可以直接回答一个职教领域的真问题：<em>在 AI 把生产门槛拉平之后，职业教育的专业边界应该怎么重组？</em>这个问题值得写成论文，也值得做成可复制的方案。</p>
+
+<div class="key">
+<p><strong>一句话收尾：</strong>电商 AIGC 和 AI 剧集的选择，表面是选行业，实际是选位置。我们该站的位置，不是"会画图的人"——那个位置本校视传专业的同学站得更稳；而是"<strong>让一堆 AI 生成物保持统一、可控、能批量交付的人</strong>"。这个位置现在还空着，而且恰好在我们的能力半径里。</p>
+</div>
+
+<div class="foot">
+<p style="font-weight:600;color:#33383D">数据来源</p>
+<ul>
+<li>产业规模与产能：国信证券、DataEye（2026 上半年抖音端 AI 剧漫剧新剧 22.19 万部；2025 年上线 60946 部、破亿 96 部）。两个市场规模口径存在差异（240 亿 / 400 亿），引用时建议注明来源。</li>
+<li>成本、周期与岗位：九州文化、证券时报（2026-08）；深圳人社局数字创意产业人才缺口数据。</li>
+<li>分账与保底：抖音集团短剧版权中心公开的分账系数与 S+ 级保底区间；红果政策调整见 21 世纪经济报道（2026-03）。</li>
+<li>岗位与薪资：全职招聘网 AI 电商美工 JD（郑州，7千-1.1万，大专）；传智播客 2026-08 行业岗位盘点；央视财经从业者构成报道。</li>
+<li>标准与政策：全国首个"AI+漫剧职业技能培训标准"（2026 年 3 月）；"十五五"规划建议相关表述。</li>
+<li>课时为参考估算，按高职 45 分钟一节、两节连排计，未含课外练习与项目时间。市场数据具有时效性，正式立项引用前建议复核原文。</li>
+</ul>
+</div>
+
+</body>
+</html>
