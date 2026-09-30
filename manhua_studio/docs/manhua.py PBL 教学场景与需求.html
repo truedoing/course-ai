@@ -52,7 +52,7 @@
 
   <div class="card" style="border:1px solid var(--amber2);background:#FBFAF0">
     <h3 style="margin-top:2px;color:var(--amber)">为什么必须有这份场景说明书</h3>
-    <p>PBL（项目式学习）成立的前提是<strong>学生能指认"我写的代码对应真实世界的哪一步"</strong>。manhua.py 十个构件讲清楚了"怎么写"，但没讲"为什么世界长这样"。如果只发代码，学生会把 <code>parse_brief</code>、<code>consistency_score</code> 当成无意义的练习函数。本文补上"业务上下文"，让每个构件都有一句"在真实电商素材生产里，这一步是……"。</p>
+    <p>PBL（项目式学习）成立的前提是<strong>学生能指认"我写的代码对应真实世界的哪一步"</strong>。manhua.py 十一构件讲清楚了"怎么写"，但没讲"为什么世界长这样"。如果只发代码，学生会把 <code>stage0_recognize</code>、<code>parse_products_csv</code> 当成无意义的练习函数。本文补上"业务上下文"，让每个构件都有一句"在真实电商素材生产里，这一步是……"。</p>
     <p class="note">真实感分级见第八节：一级课内只到 <span class="tag g">L1 脱敏真实口径</span>，不碰真店、不占算力。真店是三级可选，不是一级前提。</p>
   </div>
 
@@ -62,10 +62,10 @@
     <p>你们做的事：把阿琳的口述需求，<strong>翻译成机器能跑的参数</strong>，批量生成素材，按平台规范质检、筛掉废片，最后交付"每个 SKU 一套合格素材 + 一份生产记录"。这正是 manhua.py 整条管线的业务原型。</p>
     <div class="flow">
       <span class="node alt">阿琳口述需求</span><span class="arrow">→</span>
-      <span class="node">parse_brief 翻译成结构化</span><span class="arrow">→</span>
+      <span class="node">需求解析翻译成结构化</span><span class="arrow">→</span>
       <span class="node">展开生成任务</span><span class="arrow">→</span>
-      <span class="node">出图(构0-8)</span><span class="arrow">→</span>
-      <span class="node">质检筛废片(构6-7)</span><span class="arrow">→</span>
+      <span class="node">出图(构件8)</span><span class="arrow">→</span>
+      <span class="node">质检筛废片(构件9)</span><span class="arrow">→</span>
       <span class="node alt">交付合格素材包</span>
     </div>
     <p class="note">伏笔：清单里有一个 SKU「阿瓷」是漫剧角色（<code>Character(Product)</code> 子类）。学生期末会发现"原来漫剧角色就是电商商品换了个子类"——同一套管线换一个类就能做漫剧，这正是选 A 决策的工程依据。</p>
@@ -101,14 +101,14 @@
 
   <h2>四、需求 brief（人话 → 结构化）</h2>
   <div class="card">
-    <p>阿琳给的是口述/半结构化文字，学生要翻译成 manhua.py 能跑的参数。下面是「 brief 原文」与「 parse_brief 解析出的字段」对照——<strong>这一步本身就是就业框架里最值钱的"需求翻译"能力</strong>。</p>
+    <p>阿琳给的是口述/半结构化文字，学生要翻译成 manhua.py 能跑的参数。下面是「 brief 原文」与「 stage0_recognize / parse_products_csv 解析出的字段」对照——<strong>这一步本身就是就业框架里最值钱的"需求翻译"能力</strong>。</p>
     <h3>① 原始 brief（学生读到的样子）</h3>
     <pre>【双11 上新 brief】
 1. 青瓷茶杯 | 类目:陶瓷 | 材质:釉面哑光 | 卖点:好看/耐用/手作 | 平台:淘宝,拼多多 | 主图:白底主图,场景图
 2. 茶壶套装 | 类目:陶瓷 | 材质:粗陶 | 卖点:送礼体面 | 平台:抖音,小红书 | 主图:白底主图,细节图,场景图
 3. 釉下彩盘 | 类目:陶瓷 | 材质:釉下彩 | 卖点:吃饭也有仪式感 | 平台:淘宝 | 主图:白底主图
 4. 阿瓷(原创IP) | 类目:漫剧角色 | 材质:虚拟形象 | 卖点:人设吸粉 | 平台:抖音,小红书 | 主图:场景图,细节图</pre>
-    <h3>② parse_brief 解析出的结构化字段（构件 0 产出）</h3>
+    <h3>② 解析出的结构化字段（构件 0 需求解析产出，对应代码 stage0_recognize + parse_products_csv）</h3>
     <table>
       <thead><tr><th>字段</th><th>含义</th><th>缺省处理</th></tr></thead>
       <tbody>
@@ -135,7 +135,7 @@
         <tr><td>人脸完整（漫剧）</td><td>阿瓷类必须人脸完整、无畸变</td><td>董老师（重写 score）</td></tr>
       </tbody>
     </table>
-    <p class="note">manhua.py 里 <code>consistency_score</code> 目前已用前四项算出可判定分；<code>Character.score()</code> 重写了人脸项，所以阿瓷 0 合格/2 废片——学生能从"为什么同一管线两种结果"反推 OOP 继承/重写不是装饰。</p>
+    <p class="note">manhua.py 里 <code>Product.score()</code> 用白底纯度/构图比/清晰度/文字占比四项算出可判定分（真实模式 metrics 由二级 B4 复核）；<code>Character.score()</code> 重写了人脸项，所以阿瓷 0 合格/2 废片——学生能从"为什么同一管线两种结果"反推 OOP 继承/重写不是装饰。</p>
   </div>
 
   <h2>六、学生分章任务（PBL 任务卡 = 原课程每章上机实验）</h2>
@@ -160,7 +160,7 @@
   <div class="two">
     <div class="col"><div class="card">
       <h3 style="color:var(--green)">一级课内（L1，现在就做）</h3>
-      <p>反馈来自<strong>规则自检</strong>：跑完管线，生产记录里每张图有 status（ok/fail/rework）和 score。学生对照验收清单自己判"废片率为啥高"。无需真实客户、零算力、离线 mock 即可。</p>
+      <p>反馈来自<strong>规则自检</strong>：跑完管线，生产记录里每张图有 status（done/failed/pending）和 score。学生对照验收清单自己判"废片率为啥高"。无需真实客户、零算力、规则自检即可。</p>
       <p class="note">真实感到此足够：场景像真的、规则是真的、质检逻辑是真的。</p>
     </div></div>
     <div class="col"><div class="card">
@@ -175,7 +175,7 @@
     <thead><tr><th>等级</th><th>含义</th><th>算力</th><th>客户</th><th>落在哪一级</th></tr></thead>
     <tbody>
       <tr><td><span class="tag b">L0</span></td><td>纯假习题（传统课本）</td><td>0</td><td>无</td><td>改造前</td></tr>
-      <tr><td><span class="tag g">L1</span></td><td>脱敏真实口径 brief + 真规则自检</td><td>0（mock）</td><td>虚构阿琳</td><td><b>一级课内（本文目标）</b></td></tr>
+      <tr><td><span class="tag g">L1</span></td><td>脱敏真实口径 brief + 真规则自检</td><td>0（规则自检，无需算力）</td><td>虚构阿琳</td><td><b>一级课内（本文目标）</b></td></tr>
       <tr><td><span class="tag b">L2</span></td><td>真实商家当客户给 brief+反馈</td><td>二级 1.5-2千</td><td>真实商家/校友</td><td>二级训练营</td></tr>
       <tr><td><span class="tag r">L3</span></td><td>真开店（微店/抖店）自运营</td><td>三级另计</td><td>自有店</td><td>三级核心组（可选）</td></tr>
     </tbody>

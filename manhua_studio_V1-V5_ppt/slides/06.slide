@@ -1,0 +1,46 @@
+<Slide style={{ width: '1280px', height: '720px', padding: 0, background: '#FFFFFF', display: 'flex', flexDirection: 'column' }}>
+  <Box style={{ background: '#0E3F8C', height: 80, display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingLeft: 48, paddingRight: 40 }}>
+    <Text style={{ color: '#FFFFFF', fontSize: 26, fontWeight: 'bold' }}>V3 商品页（真家伙成型）</Text>
+    <Box style={{ background: '#E8EFF8', borderRadius: 10, padding: '6px 18px' }}>
+      <Text style={{ fontSize: 26, fontWeight: 'bold', color: '#0E3F8C' }}>V3</Text>
+    </Box>
+  </Box>
+  <Box style={{ flex: 1, display: 'flex', flexDirection: 'row', padding: 32, gap: 20 }}>
+    <Box style={{ flex: 1.22, background: '#F7F9FC', border: '1px solid #D6DCE5', borderRadius: 12, padding: 22, display: 'flex', flexDirection: 'column', gap: 12 }}>
+      <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#0E3F8C' }}>学生任务 · 当版做什么</Text>
+      <Text style={{ fontSize: 19, color: '#1A2230', lineHeight: 1.55 }}>
+        <span style={{ fontWeight: 'bold' }}>功能目标：</span>白底图 + 场景图 → 可浏览商品页（"真家伙"在此成型）
+      </Text>
+      <Text style={{ fontSize: 19, color: '#1A2230', lineHeight: 1.55 }}>
+        <span style={{ fontWeight: 'bold' }}>任务：</span>一键包出商品页；中档自己把商品名/卖点填进数据；强档改页面样式或加数据字段
+      </Text>
+      <Text style={{ fontSize: 19, color: '#1A2230', lineHeight: 1.55 }}>
+        <span style={{ fontWeight: 'bold' }}>交付物：</span>可浏览商品页（含 sku.json/js + WebP 压缩图，按学号分文件夹）
+      </Text>
+    </Box>
+    <Box style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 16 }}>
+      <Box style={{ flex: 1, background: '#F7F9FC', border: '1px solid #D6DCE5', borderRadius: 12, padding: 20, display: 'flex', flexDirection: 'column', gap: 10 }}>
+        <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#0E3F8C' }}>新增构件 · 代码位置</Text>
+        <Text style={{ fontSize: 18, color: '#1A2230', lineHeight: 1.5 }}>
+          <span style={{ fontWeight: 'bold' }}>pipeline.write_sku_data</span>：数据化 sku（名称/卖点/图清单）
+        </Text>
+        <Text style={{ fontSize: 18, color: '#1A2230', lineHeight: 1.5 }}>
+          <span style={{ fontWeight: 'bold' }}>pipeline.stage_optimize_web</span>：WebP 压缩 ＋ 商品页 ＋ 学号定位
+        </Text>
+      </Box>
+      <Box style={{ flex: 1, background: '#F0F5FC', border: '1px solid #1E4FA8', borderRadius: 12, padding: 20, display: 'flex', flexDirection: 'column', gap: 8 }}>
+        <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#0E3F8C' }}>教师备课</Text>
+        <Text style={{ fontSize: 17, color: '#4A5568', lineHeight: 1.5 }}>· 商品页模板</Text>
+        <Text style={{ fontSize: 17, color: '#4A5568', lineHeight: 1.5 }}>· 学号定位说明（交付物按学号分文件夹）</Text>
+      </Box>
+    </Box>
+  </Box>
+  <Box style={{ height: 80, display: 'flex', flexDirection: 'row', alignItems: 'center', padding: '0 32', gap: 16, background: '#E8EFF8' }}>
+    <Text style={{ fontSize: 17, color: '#1A2230' }}><span style={{ fontWeight: 'bold', color: '#1E4FA8' }}>最低</span> 一键包出商品页</Text>
+    <Text style={{ fontSize: 17, color: '#1A2230' }}><span style={{ fontWeight: 'bold', color: '#1E4FA8' }}>期望</span> 自己填商品名/卖点</Text>
+    <Text style={{ fontSize: 17, color: '#1A2230' }}><span style={{ fontWeight: 'bold', color: '#1E4FA8' }}>挑战</span> 改页面样式或加数据字段</Text>
+  </Box>
+  <Box style={{ height: 36, display: 'flex', alignItems: 'center', justifyContent: 'flex-end', padding: '0 48px' }}>
+    <Text style={{ fontSize: 14, color: '#8B97A8' }}>06 / 12</Text>
+  </Box>
+</Slide>

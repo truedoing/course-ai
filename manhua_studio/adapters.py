@@ -137,7 +137,7 @@ def stage2_scene(white_path, name, selling_point, scene, api_key, prompt_overrid
 
 
 def generate_image(task, api_key=None, white_path=None):
-    """构件 4 · 真实出图（Seedream 4.0 参考图生图）。无 mock 分支。"""
+    """构件 8 · 真实出图（Seedream 4.0 参考图生图）。无 mock 分支。"""
     if not api_key:
         raise GenerationError("未配置 ARK_API_KEY（Seedream 4.0 场景化需要）")
     if not white_path:

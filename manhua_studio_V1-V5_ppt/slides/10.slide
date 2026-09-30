@@ -1,0 +1,33 @@
+<Slide style={{ width: '1280px', height: '720px', padding: 0, background: '#FFFFFF', display: 'flex', flexDirection: 'column' }}>
+  <Box style={{ background: '#0E3F8C', height: 80, display: 'flex', alignItems: 'center', paddingLeft: 48 }}>
+    <Text style={{ color: '#FFFFFF', fontSize: 26, fontWeight: 'bold' }}>验收三档汇总（V1–V5）</Text>
+  </Box>
+  <Box style={{ flex: 1, display: 'flex', flexDirection: 'column', padding: 30, gap: 14 }}>
+    <Table
+      style={{ width: '100%', height: '100%' }}
+      defaultTextStyle={{ fontSize: 17, textAlign: 'left', color: '#1A2230', lineHeight: 1.4 }}
+      defaultCellStyle={{ border: { left: { width: 1, color: '#D6DCE5' }, right: { width: 1, color: '#D6DCE5' }, top: { width: 1, color: '#D6DCE5' }, bottom: { width: 1, color: '#D6DCE5' } } }}
+      cells={[
+        [
+          { text: '版本', textStyle: { bold: true, color: '#fff', fontSize: 18 }, cellStyle: { background: { color: '#0E3F8C' } } },
+          { text: '最低（达标·一键包可达）', textStyle: { bold: true, color: '#fff', fontSize: 18 }, cellStyle: { background: { color: '#0E3F8C' } } },
+          { text: '期望（半成品可达）', textStyle: { bold: true, color: '#fff', fontSize: 18 }, cellStyle: { background: { color: '#0E3F8C' } } },
+          { text: '挑战（裸引擎可达）', textStyle: { bold: true, color: '#fff', fontSize: 18 }, cellStyle: { background: { color: '#0E3F8C' } } },
+        ],
+        ['V1 去底白图', '一键包跑出白底图并截图归档', '自己配 UAPI_KEY、跑命令出图', '读懂 cli 参数、改输出文件名'],
+        ['V2 场景图', '一键包出 2 张场景图', '自己写/调场景 prompts 模板', '在 generate 加一个自定义场景'],
+        ['V3 商品页', '一键包出商品页', '自己把商品名/卖点填进数据', '改页面样式或加一个数据字段'],
+        ['V4 识别闭环', '一键包跑通全自动', '看 S0 输出、判断识别质量', '微调识别 prompt 提升准确性'],
+        ['V5 工程化', '跑通并交反思单', '能描述一次自己遇到的报错', '修一个故障 / 加一个构件'],
+      ]}
+    />
+    <Box style={{ background: '#E8EFF8', borderRadius: 10, padding: 16 }}>
+      <Text style={{ fontSize: 19, color: '#1A2230', lineHeight: 1.5 }}>
+        <span style={{ fontWeight: 'bold', color: '#1E4FA8' }}>期末硬线：</span>所有人至少达到"期望档"（中走法），挑战档加分；弱生达标线＝最低档（靠写好的代码包），强生冲挑战档。
+      </Text>
+    </Box>
+  </Box>
+  <Box style={{ height: 36, display: 'flex', alignItems: 'center', justifyContent: 'flex-end', padding: '0 48px' }}>
+    <Text style={{ fontSize: 14, color: '#8B97A8' }}>10 / 12</Text>
+  </Box>
+</Slide>

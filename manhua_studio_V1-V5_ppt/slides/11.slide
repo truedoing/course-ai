@@ -1,0 +1,32 @@
+<Slide style={{ width: '1280px', height: '720px', padding: 0, background: '#FFFFFF', display: 'flex', flexDirection: 'column' }}>
+  <Box style={{ background: '#0E3F8C', height: 80, display: 'flex', alignItems: 'center', paddingLeft: 48 }}>
+    <Text style={{ color: '#FFFFFF', fontSize: 26, fontWeight: 'bold' }}>防"躺平"策略与反思单</Text>
+  </Box>
+  <Box style={{ flex: 1, display: 'flex', flexDirection: 'row' }}>
+    <Box style={{ width: 320, background: '#F0F5FC', display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: 48 }}>
+      <Text style={{ fontSize: 40, fontWeight: 'bold', color: '#0E3F8C' }}>防躺平</Text>
+      <Text style={{ fontSize: 18, color: '#4A5568', marginTop: 8 }}>低成本区分三档</Text>
+    </Box>
+    <Box style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '0 48px', gap: 12 }}>
+      <Box style={{ background: '#F7F9FC', border: '1px solid #D6DCE5', borderRadius: 10, padding: 14, display: 'flex', flexDirection: 'column', gap: 4 }}>
+        <Text style={{ fontSize: 20, fontWeight: 'bold', color: '#0E3F8C' }}>① 阶梯钩子</Text>
+        <Text style={{ fontSize: 17, color: '#1A2230', lineHeight: 1.45 }}>弱走法产出可见地不完整（V1 只白底图，V3 才有完整页），能力强的自然想往上爬。</Text>
+      </Box>
+      <Box style={{ background: '#F7F9FC', border: '1px solid #D6DCE5', borderRadius: 10, padding: 14, display: 'flex', flexDirection: 'column', gap: 4 }}>
+        <Text style={{ fontSize: 20, fontWeight: 'bold', color: '#0E3F8C' }}>② 期末硬线</Text>
+        <Text style={{ fontSize: 17, color: '#1A2230', lineHeight: 1.45 }}>所有人至少达期望档，挑战档加分；与验收三档挂钩。</Text>
+      </Box>
+      <Box style={{ background: '#F7F9FC', border: '1px solid #D6DCE5', borderRadius: 10, padding: 14, display: 'flex', flexDirection: 'column', gap: 4 }}>
+        <Text style={{ fontSize: 20, fontWeight: 'bold', color: '#0E3F8C' }}>③ 低成本区分</Text>
+        <Text style={{ fontSize: 17, color: '#1A2230', lineHeight: 1.45 }}>反思单 + 口头 2 分钟，不靠监考；靠文字区分三档，比建三套体系轻得多。</Text>
+      </Box>
+      <Box style={{ background: '#F0F5FC', border: '1px solid #1E4FA8', borderRadius: 10, padding: 14, display: 'flex', flexDirection: 'column', gap: 4 }}>
+        <Text style={{ fontSize: 20, fontWeight: 'bold', color: '#0E3F8C' }}>④ 去污名化 + 反思单三句话</Text>
+        <Text style={{ fontSize: 17, color: '#4A5568', lineHeight: 1.45 }}>所有人从 V1 跟跑起步，一键包是入口不是差生标签。反思单：①我做了什么 ②我卡在哪/怎么过的 ③下次想改哪</Text>
+      </Box>
+    </Box>
+  </Box>
+  <Box style={{ height: 36, display: 'flex', alignItems: 'center', justifyContent: 'flex-end', padding: '0 48px' }}>
+    <Text style={{ fontSize: 14, color: '#8B97A8' }}>11 / 12</Text>
+  </Box>
+</Slide>

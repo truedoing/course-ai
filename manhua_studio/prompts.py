@@ -12,6 +12,7 @@ PLATFORM_SPECS = {
 DEFAULT_SCENES = ["北欧客厅场景", "办公桌使用场景", "礼品盒包装场景"]
 
 
+# 构件 2 · 提示词模板：f-string 拼装商品名 + 卖点 + 场景（第 4 章字符串）
 def build_scene_prompt(name, selling_point, scene):
     """S2 场景化：把白底商品原样放入指定场景，商品须与白底图完全一致。"""
     return (f"将同一件商品原样放入以下场景，商品外观须与白底图完全一致、不可变形变色："

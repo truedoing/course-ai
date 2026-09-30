@@ -1,0 +1,50 @@
+<Slide style={{ width: '1280px', height: '720px', padding: 0, background: '#FFFFFF', display: 'flex', flexDirection: 'column' }}>
+  <Box style={{ background: '#0E3F8C', height: 80, display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingLeft: 48, paddingRight: 40 }}>
+    <Text style={{ color: '#FFFFFF', fontSize: 26, fontWeight: 'bold' }}>V1 去底白图</Text>
+    <Box style={{ background: '#E8EFF8', borderRadius: 10, padding: '6px 18px' }}>
+      <Text style={{ fontSize: 26, fontWeight: 'bold', color: '#0E3F8C' }}>V1</Text>
+    </Box>
+  </Box>
+  <Box style={{ flex: 1, display: 'flex', flexDirection: 'row', padding: 32, gap: 20 }}>
+    <Box style={{ flex: 1.22, background: '#F7F9FC', border: '1px solid #D6DCE5', borderRadius: 12, padding: 22, display: 'flex', flexDirection: 'column', gap: 12 }}>
+      <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#0E3F8C' }}>学生任务 · 当版做什么</Text>
+      <Text style={{ fontSize: 19, color: '#1A2230', lineHeight: 1.55 }}>
+        <span style={{ fontWeight: 'bold' }}>功能目标：</span>把一张真实商品照片，变成干净白底电商主图。
+      </Text>
+      <Text style={{ fontSize: 19, color: '#1A2230', lineHeight: 1.55 }}>
+        <span style={{ fontWeight: 'bold' }}>跟跑步骤：</span><br />
+        ① cp env.example .env，填 UAPI_KEY<br />
+        ② python -m manhua_studio --input 照片.jpg<br />
+        ③ 查看 deliverables/ 下生成的白底图
+      </Text>
+      <Text style={{ fontSize: 19, color: '#1A2230', lineHeight: 1.55 }}>
+        <span style={{ fontWeight: 'bold' }}>交付物：</span>1 张白底商品图（真实电商素材，截图归档到学号文件夹）
+      </Text>
+    </Box>
+    <Box style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 16 }}>
+      <Box style={{ flex: 1, background: '#F7F9FC', border: '1px solid #D6DCE5', borderRadius: 12, padding: 20, display: 'flex', flexDirection: 'column', gap: 10 }}>
+        <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#0E3F8C' }}>新增构件 · 代码位置</Text>
+        <Text style={{ fontSize: 18, color: '#1A2230', lineHeight: 1.55 }}>
+          <span style={{ fontWeight: 'bold' }}>adapters.stage1_remove_bg</span>：调用 UAPI(uapis.cn) 免费抠图 API，去底返回白底图
+        </Text>
+        <Text style={{ fontSize: 18, color: '#1A2230', lineHeight: 1.55 }}>
+          <span style={{ fontWeight: 'bold' }}>cli.py</span>：--input 解析 + 调度入口
+        </Text>
+      </Box>
+      <Box style={{ flex: 1, background: '#F0F5FC', border: '1px solid #1E4FA8', borderRadius: 12, padding: 20, display: 'flex', flexDirection: 'column', gap: 8 }}>
+        <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#0E3F8C' }}>教师备课</Text>
+        <Text style={{ fontSize: 17, color: '#4A5568', lineHeight: 1.5 }}>· 一键包代码已写好（弱生直接跑）</Text>
+        <Text style={{ fontSize: 17, color: '#4A5568', lineHeight: 1.5 }}>· UAPI_KEY 免费申请指引（uapis.cn）</Text>
+        <Text style={{ fontSize: 17, color: '#4A5568', lineHeight: 1.5 }}>· 命令速查卡</Text>
+      </Box>
+    </Box>
+  </Box>
+  <Box style={{ height: 80, display: 'flex', flexDirection: 'row', alignItems: 'center', padding: '0 32', gap: 16, background: '#E8EFF8' }}>
+    <Text style={{ fontSize: 17, color: '#1A2230' }}><span style={{ fontWeight: 'bold', color: '#1E4FA8' }}>最低</span> 一键包跑出白底图并截图</Text>
+    <Text style={{ fontSize: 17, color: '#1A2230' }}><span style={{ fontWeight: 'bold', color: '#1E4FA8' }}>期望</span> 自己配 UAPI_KEY 跑命令出图</Text>
+    <Text style={{ fontSize: 17, color: '#1A2230' }}><span style={{ fontWeight: 'bold', color: '#1E4FA8' }}>挑战</span> 读懂 cli 参数、改输出文件名</Text>
+  </Box>
+  <Box style={{ height: 36, display: 'flex', alignItems: 'center', justifyContent: 'flex-end', padding: '0 48px' }}>
+    <Text style={{ fontSize: 14, color: '#8B97A8' }}>04 / 12</Text>
+  </Box>
+</Slide>

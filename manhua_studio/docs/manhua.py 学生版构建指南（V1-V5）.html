@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>manhua.py 学生版构建指南（V1–V5）</title>
+<style>
+  :root{
+    --ink:#1f2937; --sub:#5b6675; --line:#e5e9f0; --bg:#f7f9fc; --card:#ffffff;
+    --v1:#2563eb; --v2:#0d9488; --v3:#d97706; --v4:#7c3aed; --v5:#dc2626;
+    --code-bg:#0f172a; --code-ink:#e2e8f0; --good:#15803d;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:-apple-system,"PingFang SC","Microsoft YaHei",Segoe UI,sans-serif;
+    line-height:1.7;font-size:15px}
+  .wrap{max-width:920px;margin:0 auto;padding:32px 22px 80px}
+  header.hero{background:linear-gradient(135deg,#1e3a8a,#2563eb);color:#fff;
+    border-radius:16px;padding:30px 30px 26px;margin-bottom:26px}
+  header.hero h1{margin:0 0 8px;font-size:25px;letter-spacing:.5px}
+  header.hero p{margin:6px 0 0;opacity:.92;font-size:14px}
+  .tag{display:inline-block;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.35);
+    padding:2px 10px;border-radius:20px;font-size:12px;margin:10px 8px 0 0}
+  section{background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:22px 24px;margin:18px 0;box-shadow:0 1px 3px rgba(20,30,60,.04)}
+  h2{font-size:19px;margin:0 0 12px;padding-bottom:8px;border-bottom:2px solid var(--line)}
+  h3{font-size:16px;margin:18px 0 8px}
+  p{margin:8px 0}
+  ul,ol{margin:8px 0;padding-left:22px}
+  li{margin:5px 0}
+  .note{background:#fff7ed;border-left:4px solid var(--v3);padding:10px 14px;border-radius:8px;
+    font-size:13.5px;color:#7c2d12;margin:14px 0}
+  .key{background:#eff6ff;border-left:4px solid var(--v1);padding:10px 14px;border-radius:8px;
+    font-size:13.5px;color:#1e3a8a;margin:14px 0}
+  .ver{display:flex;align-items:center;gap:10px;margin:0 0 4px}
+  .vbadge{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;
+    border-radius:11px;color:#fff;font-weight:700;font-size:15px;flex:none}
+  .v1{background:var(--v1)} .v2{background:var(--v2)} .v3{background:var(--v3)}
+  .v4{background:var(--v4)} .v5{background:var(--v5)}
+  .vtitle{font-size:18px;font-weight:700;margin:0}
+  pre{background:var(--code-bg);color:var(--code-ink);border-radius:10px;padding:14px 16px;
+    overflow:auto;font-size:13px;line-height:1.55;font-family:"SF Mono",Consolas,Menlo,monospace}
+  code{background:#eef2f7;padding:1px 6px;border-radius:5px;font-size:13px;
+    font-family:"SF Mono",Consolas,Menlo,monospace;color:#b91c1c}
+  pre code{background:none;padding:0;color:inherit}
+  table{width:100%;border-collapse:collapse;margin:12px 0;font-size:13.5px}
+  th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+  th{background:#f1f5f9;font-weight:600}
+  .acc{background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:10px 14px;margin:12px 0}
+  .acc b{color:var(--good)}
+  .ask{background:#faf5ff;border-left:4px solid var(--v4);padding:10px 14px;border-radius:8px;
+    font-size:13.5px;color:#581c87;margin:12px 0}
+  .step{background:#f8fafc;border:1px dashed #cbd5e1;border-radius:8px;padding:10px 14px;margin:10px 0}
+  .toc a{color:var(--v1);text-decoration:none}
+  .toc a:hover{text-decoration:underline}
+  .small{font-size:12.5px;color:var(--sub)}
+  .pill{display:inline-block;background:#eef2ff;color:#3730a3;border:1px solid #c7d2fe;
+    padding:1px 9px;border-radius:20px;font-size:12px;margin:0 3px 4px 0}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero">
+  <h1>manhua.py 学生版构建指南（V1–V5）</h1>
+  <p>一份「对着它写代码」的任务书 —— 讲清楚这个项目是什么，然后把每个版本拆成「你要写什么功能 / 函数契约 / 验收标准 / 怎么向 AI 提需求」。</p>
+  <p>
+    <span class="tag">AI 辅助 · 一步一步写</span>
+    <span class="tag">GitHub v1–v5 仅作范本对照</span>
+  </p>
+</header>
+
+<section>
+  <h2>1. 这个项目是什么（先建立整体直觉）</h2>
+  <p><b>manhua_studio</b>（课程里叫 <code>manhua.py</code>）是一条「电商素材出图管线」。它干一件事：把商家随手拍的一张<b>商品实拍照片</b>，一步步变成能上架的素材——</p>
+  <ul>
+    <li><b>S1 去底</b>：照片 → 抠掉背景 → 白底主图</li>
+    <li><b>S2 出图</b>：白底图 → 放进不同场景 → 多张场景图</li>
+    <li><b>S0 识别</b>：照片 → 自动认出是什么商品、写卖点文案</li>
+    <li>再叠加：质检筛选、WebP 压缩、归档日志、商品页数据</li>
+  </ul>
+  <p>这些能力被拆成 <b>11 个「构件」</b>，串在一条主线上：<b>连接器 → 批处理 → 一致性 → 质检 → 文件契约</b>。每个版本（V1→V5）只往上加一层能力，所以每版都不大、都能跑通。</p>
+  <div class="note"><b>为什么要一步一步写，而不是直接用现成工具？</b> 练的是「工程化能力」：怎么把一个含糊需求翻译成可运行、可复用、可交付的代码。这正是高职生相对「纯用 AI 工具的人」的护城河——你既能用 AI，也能把 AI 的产出工程化交付。</div>
+</section>
+
+<section>
+  <h2>2. 环境与骨架（做一次，V1–V5 共用）</h2>
+  <h3>2.1 安装依赖</h3>
+  <pre><code>pip install requests python-dotenv Pillow</code></pre>
+  <h3>2.2 包结构（从 V1 第一天就按这个搭）</h3>
+  <pre><code>course-ai/
+├── env.example          # 密钥模板（复制成 .env 填值）
+├── .env                 # 你的密钥（不进 git）
+└── manhua_studio/       # ← Python 包，所有代码在这里
+    ├── __init__.py      # 加载 .env + 版本号
+    ├── schemas.py       # 数据结构 / 异常
+    ├── adapters.py      # 外部服务适配层（S0/S1/S2）
+    ├── prompts.py       # 提示词模板（V2 起）
+    ├── pipeline.py      # 业务管线（V3 起）
+    └── cli.py           # 入口（解析参数、调度）</code></pre>
+  <div class="key"><b>运行方式（固定）：</b> 在 <code>course-ai/</code> 根目录执行 <code>python -m manhua_studio --input 照片.jpg</code>。<br>
+  <b>禁止</b> <code>python manhua_studio/cli.py</code> 直接跑——cli.py 用了包内相对导入，裸脚本执行会 <code>ImportError</code>。git 与运行都以父级 <code>course-ai</code> 为工作区。</div>
+  <h3>2.3 密钥（.env）</h3>
+  <ul>
+    <li><code>UAPI_KEY</code>：S1 去底（uapis.cn 免费申请），<b>V1 起就需要</b>。</li>
+    <li><code>ARK_API_KEY</code>：S0 识别 + S2 出图（火山方舟），<b>V4 起需要</b>。</li>
+  </ul>
+  <pre><code># env.example
+UAPI_KEY=你的_uapis_密钥
+ARK_API_KEY=你的_火山方舟_密钥</code></pre>
+  <p class="small">布置：<code>cp env.example .env</code> 后填入真实值。<code>.env</code> 已被 <code>.gitignore</code> 忽略，不会进提交。</p>
+</section>
+
+<section>
+  <h2>3. 你在 AI 辅助下怎么写（工作模式）</h2>
+  <ol>
+    <li><b>读版块</b>：先看本指南某一版的「目标」和「你要写的文件」。</li>
+    <li><b>向 AI 提需求</b>：把「函数契约」里的输入输出讲给 AI，让它写实现。例：「写一个函数 stage1_remove_bg(input_path, api_key)，调用 uapis 抠图接口，把返回的白底图存到 assets/素材/ 下，返回本地路径。」</li>
+    <li><b>你跑、你看</b>：复制 AI 给的代码，自己运行，自己读报错。</li>
+    <li><b>验收过关</b>：对照本版「验收标准」逐条核对，跑通再进下一版。</li>
+    <li><b>对照范本（可选）</b>：真卡住了，去看 <code>git show vN:manhua_studio/xxx.py</code> 的对应版本——那是答案，不是起点。</li>
+  </ol>
+  <div class="note">AI 是「副驾」，你是「驾驶员」。代码归你写、归你跑、归你负责。本指南给的是<b>契约和边界</b>，不是完整答案。</div>
+</section>
+
+<!-- ============ V1 ============ -->
+<section>
+  <div class="ver"><span class="vbadge v1">V1</span><p class="vtitle">去底白图 —— 照片 → 白底商品图（S1 去底）</p></div>
+  <p class="small">对应阶段：S1 去底。这是地基，只做一件事，但必须端到端跑通。</p>
+
+  <h3>目标</h3>
+  <p>给定一张商品照片，调用免费的 UAPI 抠图接口，去掉背景、输出一张<b>白底商品图</b>，存到本地。命令行：<code>python -m manhua_studio --input 照片.jpg</code>。</p>
+
+  <h3>你要写的文件（4 个）</h3>
+  <div class="step"><b>① <code>manhua_studio/__init__.py</code></b> —— 包初始化 + 加载密钥
+    <ul>
+      <li>显式加载 <code>.env</code>：优先找<b>包目录</b>下的 <code>.env</code>，其次找<b>运行目录</b>下的（哪个存在用哪个）。</li>
+      <li>定义 <code>__version__ = "1.0"</code>。</li>
+    </ul>
+    <pre><code># 契约要点：
+from pathlib import Path
+from dotenv import load_dotenv
+_env_path = next(
+    (p for p in (Path(__file__).resolve().parent / ".env",
+                 Path.cwd() / ".env") if p.exists()), None)
+if _env_path is not None:
+    load_dotenv(_env_path, override=False)</code></pre>
+  </div>
+
+  <div class="step"><b>② <code>manhua_studio/schemas.py</code></b> —— 异常类（V1 只有一个）
+    <pre><code>class GenerationError(Exception):
+    pass</code></pre>
+  </div>
+
+  <div class="step"><b>③ <code>manhua_studio/adapters.py</code></b> —— 外部服务适配层（V1 只有 S1）
+    <ul>
+      <li>常量：<code>UAPI_ENDPOINT = "https://uapis.cn/api/v1/image/matting"</code></li>
+      <li>辅助 <code>_ensure_dir(p)</code>：目录不存在就建。</li>
+      <li><code>stage1_remove_bg(input_path, api_key) -&gt; str</code>：内部调 <code>_call_uapi_matting</code>，返回本地白底图路径。</li>
+    </ul>
+    <p><b>UAPI 抠图请求契约（必知）：</b></p>
+    <pre><code>POST https://uapis.cn/api/v1/image/matting
+Headers: Authorization: Bearer &lt;UAPI_KEY&gt;
+Body(form):
+  image_base64 = "data:&lt;mime&gt;;base64,&lt;图片base64&gt;"
+  image_name   = 文件名
+  output       = "background"
+  background_color = "ffffff"   # 白底
+  out_format   = "png"
+返回 JSON: { "image_base64": "&lt;白底图base64&gt;" }
+存盘: assets/素材/&lt;原名&gt;_whitebg.png</code></pre>
+  </div>
+
+  <div class="step"><b>④ <code>manhua_studio/cli.py</code></b> —— 入口
+    <ul>
+      <li><code>argparse</code> 解析 <code>--input</code>（必填，商品照片路径）。</li>
+      <li>先校验：照片是否存在；<code>UAPI_KEY</code> 是否配置（没配就明确报错退出，别假装能跑）。</li>
+      <li>调 <code>stage1_remove_bg</code>，打印「[完成] 白底图: 路径」。</li>
+    </ul>
+  </div>
+
+  <div class="acc"><b>验收标准（全部满足才算 V1 过关）：</b>
+    <ul>
+      <li><code>python -m manhua_studio --input 某照片.jpg</code> 不报错。</li>
+      <li>生成 <code>assets/素材/某照片_whitebg.png</code>，肉眼看是<b>白底、主体去背</b>的图。</li>
+      <li>没填 <code>UAPI_KEY</code> 时，给出清晰中文报错（不是一堆英文 traceback 甩脸）。</li>
+    </ul>
+  </div>
+
+  <div class="ask"><b>向 AI 怎么提（V1 范例）：</b><br>
+  「帮我写 manhua_studio 这个 Python 包。① __init__.py 用 python-dotenv 显式加载包目录或运行目录下的 .env，定义 __version__='1.0'；② schemas.py 里定义一个 GenerationError(Exception)；③ adapters.py 里写 stage1_remove_bg(input_path, api_key)，内部 POST uapis.cn 的 image/matting 接口（Bearer 认证，传 image_base64、output=background、background_color=ffffff、out_format=png），把返回的 image_base64 存成 assets/素材/&lt;名&gt;_whitebg.png 并返回路径；④ cli.py 用 argparse 收 --input，检查文件和 UAPI_KEY 后调用它。给我 4 个文件的完整代码。」</div>
+</section>
+
+<!-- ============ V2 ============ -->
+<section>
+  <div class="ver"><span class="vbadge v2">V2</span><p class="vtitle">场景图 —— 白底图 → 多张场景图（S2 出图 + 提示词）</p></div>
+  <p class="small">对应阶段：S2 出图；新增构件 2 提示词模板。新增 ARK_API_KEY 依赖。</p>
+
+  <h3>目标</h3>
+  <p>在 V1 白底图基础上，把商品「原样」放进几个不同场景（如北欧客厅、办公桌、礼品盒），用 Seedream 4.0 各出一张场景图。</p>
+
+  <h3>你要新增 / 修改的</h3>
+  <div class="step"><b>① 新建 <code>prompts.py</code></b>
+    <ul>
+      <li><code>DEFAULT_SCENES = ["北欧客厅场景","办公桌使用场景","礼品盒包装场景"]</code></li>
+      <li><code>build_scene_prompt(name, selling_point, scene) -&gt; str</code>：返回一段提示词，强调「商品外观须与白底图完全一致、不可变形变色」。</li>
+    </ul>
+  </div>
+  <div class="step"><b>② 改 <code>adapters.py</code></b> 加 S2
+    <ul>
+      <li>常量：<code>SEEDREAM_ENDPOINT</code>、<code>SEEDREAM_MODEL</code>（默认 <code>doubao-seedream-4-0-250828</code>）。</li>
+      <li>辅助：<code>_image_to_data_uri(path)</code>、<code>_http_post_json(...)</code>、<code>_http_get_bytes(url)</code>。</li>
+      <li><code>stage2_scene(white_path, name, selling_point, scene, api_key, prompt_override=None) -&gt; str</code>：以白底图为参考图，调 Seedream 出场景图，存 <code>assets/素材/&lt;名&gt;_scene_&lt;场景&gt;.png</code> 返回路径。</li>
+      <li><code>generate_image(task, api_key=None, white_path=None) -&gt; dict</code>：统一出图入口，返回 <code>{"ok":True,"path":...,"metrics":None,"cost":...}</code>。</li>
+    </ul>
+  </div>
+  <div class="step"><b>③ 改 <code>cli.py</code></b>：S1 去底后，遍历 <code>DEFAULT_SCENES</code> 各调一次 <code>generate_image</code>，打印每张结果。</div>
+
+  <div class="acc"><b>验收：</b> 跑通后 <code>assets/素材/</code> 下除白底图外，还有 <b>3 张</b>不同场景的商品图；商品在图里不变形、不换色。</div>
+  <div class="ask"><b>向 AI 提：</b>「在现有包上加 V2：新建 prompts.py（DEFAULT_SCENES + build_scene_prompt），adapters.py 加 stage2_scene 和 generate_image（调火山方舟 Seedream 图生图，白底图作参考图），cli.py 在去底后遍历场景各出一张。」</div>
+</section>
+
+<!-- ============ V3 ============ -->
+<section>
+  <div class="ver"><span class="vbadge v3">V3</span><p class="vtitle">商品页 —— 数据化 SKU + 商品页 + WebP（业务管线）</p></div>
+  <p class="small">对应构件：构件 3 任务展开、构件 10 出片交付（含 WebP）、构件 6 Product 类。新增 pipeline.py。</p>
+
+  <h3>目标</h3>
+  <p>把「一个商品 + 多张场景图」组织成<b>结构化数据</b>（SKU），输出可直接喂给网页的商品页数据（sku.json / sku.js），并把生成图统一压成 WebP 省空间。</p>
+
+  <h3>你要新增 / 修改的</h3>
+  <div class="step"><b>① 改 <code>schemas.py</code></b> 加 <code>Product</code> 类（含 <code>score(metrics)</code> 打分方法，V5 才真正用）和 <code>Character(Product)</code> 子类（漫剧角色，更严的打分）。</div>
+  <div class="step"><b>② 新建 <code>pipeline.py</code></b>
+    <ul>
+      <li><code>expand_tasks(products)</code>：1 个商品 → 展开成 N 条场景任务（每条带 sku_code/name/scene/status 等）。</li>
+      <li><code>count_status(tasks)</code>：统计 done/failed/pending。</li>
+      <li><code>stage_optimize_web(paths)</code>：把 PNG/JPG 转 WebP、限制最大边、删原图，返回旧→新路径映射。</li>
+      <li><code>deliver(tasks, kept, rejected, product)</code>：按 SKU 分目录归档 + 写 README。</li>
+      <li><code>write_sku_data(product, all_tasks)</code>：写 <code>deliverables/&lt;sku&gt;/sku.json</code> 和 <code>sku.js</code>（含原图/白底图/各场景图路径）。</li>
+      <li><code>parse_products_csv(path)</code>：从 CSV 读多个商品（V3 起支持批）。</li>
+    </ul>
+  </div>
+  <div class="step"><b>③ 改 <code>cli.py</code></b>：构造 product 字典（带 sku_code/name/scenes）→ expand_tasks → run_batch → stage_optimize_web → deliver → write_sku_data。</div>
+
+  <div class="acc"><b>验收：</b> 输出 <code>deliverables/SKU-001/sku.json</code> 含商品名、卖点、图片列表；生成图均为 <code>.webp</code>；README 写明「AI 合成」合规标注。</div>
+  <div class="ask"><b>向 AI 提：</b>「加 V3：schemas.py 加 Product/Character 类和 score 方法；新建 pipeline.py 实现 expand_tasks、stage_optimize_web（Pillow 转 WebP）、deliver、write_sku_data（写 sku.json+sku.js）；cli.py 串起来。」</div>
+</section>
+
+<!-- ============ V4 ============ -->
+<section>
+  <div class="ver"><span class="vbadge v4">V4</span><p class="vtitle">识别闭环 —— 照片 → 全自动出全套（S0 智能识别）</p></div>
+  <p class="small">对应阶段：S0 识别。至此「照片进去、全套素材出来」完全自动，无需手填商品名。</p>
+
+  <h3>目标</h3>
+  <p>用豆包视觉模型<b>自动识别</b>照片里的商品、生成上架文案（名称/卖点/建议场景），替代 V3 里手填的商品信息。</p>
+
+  <h3>你要新增 / 修改的</h3>
+  <div class="step"><b>① 改 <code>adapters.py</code></b> 加 <code>stage0_recognize(image_path, api_key, model=None) -&gt; dict</code>
+    <ul>
+      <li>把照片转 data_uri，调豆包多模态接口（<code>response_format={"type":"json_object"}</code>）。</li>
+      <li>返回 <code>{product_name, subtitle, shop_name, points[], tags[], suggested_scenes[]}</code>。</li>
+      <li>注意解析模型可能用 ```json 代码块包裹，要剥掉再 json.loads。</li>
+    </ul>
+  </div>
+  <div class="step"><b>② 改 <code>cli.py</code></b>：流程改为 <b>先 S0 识别</b> → 用识别结果构造 product（scenes 取 suggested_scenes）→ 再 S1 去底 → S2 出图。没 <code>ARK_API_KEY</code> 时明确报错。</div>
+
+  <div class="acc"><b>验收：</b> 只给一张照片，不手填任何商品信息，程序自动认出商品名、写出卖点、并据此出场景图；sku.json 里的 name/points 来自识别结果。</div>
+  <div class="ask"><b>向 AI 提：</b>「加 V4：adapters.py 加 stage0_recognize，用火山方舟豆包视觉模型识别商品图并返回规定字段的 JSON；cli.py 改成先识别再走 V3 流程。」</div>
+</section>
+
+<!-- ============ V5 ============ -->
+<section>
+  <div class="ver"><span class="vbadge v5">V5</span><p class="vtitle">工程化收口 —— 质检筛选 + 错误处理 + 归档日志</p></div>
+  <p class="small">对应构件：构件 9 质检筛选、构件 5 归档、构件 7 重试、production_log。收尾成「可交付工程」。</p>
+
+  <h3>目标</h3>
+  <p>让管线具备<b>工程健壮性</b>：个别出图失败不影响整批；跑批结果有日志可溯源；产出有合格/废片区分。</p>
+
+  <h3>你要新增 / 修改的</h3>
+  <div class="step"><b>① 改 <code>pipeline.py</code></b>
+    <ul>
+      <li><code>pick_best(tasks, product, threshold=0.7)</code>：按 product.score 把任务分成 kept / rejected；真实模式 metrics=None 时标记 <code>"QC待定"</code> 进 kept（人工/二级复核）。</li>
+      <li><code>archive_run(tasks, run_dir)</code>：把跑批结果写 <code>deliverables/runs/production_log.csv</code>（跨组交接的凭据）。</li>
+    </ul>
+  </div>
+  <div class="step"><b>② 改 <code>cli.py</code></b>
+    <ul>
+      <li>加 <code>run_batch(tasks, max_retry=3)</code>：单条失败自动重试，整批不归零。</li>
+      <li>流程末尾：count_status → archive_run → 对每个 product 调 pick_best → deliver(kept, rejected) → write_sku_data。</li>
+    </ul>
+  </div>
+
+  <div class="acc"><b>验收：</b> 故意断网/坏图制造一次失败，程序不崩、有重试、production_log.csv 记录下来；交付物分合格/废片；README 含废片率与成本统计。</div>
+  <div class="ask"><b>向 AI 提：</b>「加 V5：pipeline.py 加 pick_best（用 Product.score 多态）和 archive_run（写 csv）；cli.py 加 run_batch 重试，流程尾接质检+归档+交付。」</div>
+</section>
+
+<section>
+  <h2>4. 总览：版本 → 文件 → 关键函数 → 验收</h2>
+  <table>
+    <tr><th>版本</th><th>新增/修改文件</th><th>本版关键函数</th><th>验收一句话</th></tr>
+    <tr><td><span class="pill" style="background:#dbeafe;color:#1e40af">V1</span> 去底白图</td><td>__init__ / schemas / adapters / cli</td><td>stage1_remove_bg</td><td>出一张白底去背图</td></tr>
+    <tr><td><span class="pill" style="background:#ccfbf1;color:#0f766e">V2</span> 场景图</td><td>+prompts；改 adapters/cli</td><td>build_scene_prompt / stage2_scene / generate_image</td><td>白底图变 3 张场景图</td></tr>
+    <tr><td><span class="pill" style="background:#fef3c7;color:#b45309">V3</span> 商品页</td><td>+pipeline；改 schemas/cli</td><td>expand_tasks / stage_optimize_web / write_sku_data / Product</td><td>出 sku.json + WebP 商品页数据</td></tr>
+    <tr><td><span class="pill" style="background:#ede9fe;color:#6d28d9">V4</span> 识别闭环</td><td>改 adapters/cli</td><td>stage0_recognize</td><td>只给照片自动认商品+出全套</td></tr>
+    <tr><td><span class="pill" style="background:#fee2e2;color:#b91c1c">V5</span> 工程化</td><td>改 pipeline/cli</td><td>pick_best / archive_run / run_batch(重试)</td><td>失败可重试、有日志、分合格废片</td></tr>
+  </table>
+  <div class="key"><b> milestones：</b> 每版跑通验收再进下一版。五个版本全部过关 = 你亲手从零写出了 manhua_studio 这条工程管线，GitHub 上的 v1–v5 只是你每一步的「参考答案」。</div>
+</section>
+
+<section>
+  <h2>5. 关联文档</h2>
+  <ul>
+    <li><code>manhua.py 基础班实施方案(API版).html</code> —— 老师视角的班级落地方案。</li>
+    <li><code>manhua三种走法_学生说明页.html</code> —— 半成品走法等三种学习路径说明。</li>
+    <li><code>manhua.py PBL 教学场景与需求.html</code> —— 项目式学习场景。</li>
+    <li>V1–V5 工程演进教学 PPT —— 老师教学用（功能地图 / 验收三档）。</li>
+  </ul>
+  <p class="small">本指南与上面这些互补：上面讲「为什么这么设计 / 老师怎么教」，本指南讲「你这一步具体写什么」。</p>
+</section>
+
+</div>
+</body>
+</html>

@@ -50,7 +50,7 @@
 <div class="wrap">
 <header>
   <h1>manhua.py 基础班实施方案（API 版）</h1>
-  <div class="sub">三级火箭 · 一级语言底座（课内必修）· 真实电商 AI 出图闭环 · 修订于 2026-09-22（V3.2 Seedream 4.0）</div>
+  <div class="sub">三级火箭 · 一级语言底座（课内必修）· 真实电商 AI 出图闭环 · 修订于 2026-09-22（V5 真实闭环 · Seedream 4.0）</div>
 </header>
 
 <div class="card">
@@ -98,7 +98,7 @@
 
 <h2>3. 基础班四阶段管线</h2>
 <div class="stage"><div class="num">0</div><div>
-  <b>S0 采集（学生动手）</b><br/>
+  <b>输入 · 学生拍照（--input 照片.jpg）</b><br/>
   手机任意背景拍一张<b>真实产品</b>照（如一只杯子）。无需影棚、无需白底——这一步本来就是"白底不好拍"难题的入口。</div></div>
 <div class="stage"><div class="num">1</div><div>
   <b>S1 去底白底化（UAPI 免费抠图 · uapis.cn matting）</b><br/>
@@ -115,25 +115,30 @@
   <span class="tag api">已定</span> Seedream 4.0 <code>doubao-seedream-4-0-250828</code>（免费额度，火山方舟）；
   <span class="tag l2">可替换</span> 其它参考图生图 API（二级社团工程深化，替换 <code>_call_seedream_i2i</code> 一个函数即可）。</div></div>
 <div class="stage"><div class="num">3</div><div>
-  <b>S3 质检与交付</b><br/>
+  <b>收口 · 质检与交付（V5：构件9质检 + 构件10出片交付（含 WebP） + 构件5归档）</b><br/>
   筛选翻车牌（光影/透视错位）、标注 <code>AI 合成</code>、按 SKU 归档、输出交付清单。
   即课程 <b>B4 质检筛选</b> + 合规红线的落点。</div></div>
 
 <h2>4. 构件映射（每章加一个，期末拼成管线）</h2>
 <table>
   <tr><th>构件</th><th>对应阶段</th><th>教的工程能力</th></tr>
-  <tr><td>构件1 · 图像采集与 IO</td><td>S0</td><td>文件读写、路径管理、参数解析</td></tr>
-  <tr><td>构件2 · 去底白底化（API 封装）</td><td>S1</td><td>第三方 API 调用、密钥管理、错误处理</td></tr>
-  <tr><td>构件3 · 云端参考图生图（Seedream 4.0）</td><td>S2</td><td>大模型 API、参考图驱动生图、prompt 工程、结构化输出</td></tr>
-  <tr><td>构件4 · 批量并发与一致性</td><td>S1+S2</td><td>并发控制、重试、命名规范、幂等</td></tr>
-  <tr><td>构件5 · 质检筛选</td><td>S3</td><td>"标准化翻译成检查项"、自动+人工复核</td></tr>
-  <tr><td>构件6 · 合规标注 + 归档交付</td><td>S3</td><td>合规意识（AI 合成）、产物归档与清单</td></tr>
+  <tr><td>构件0 · 需求解析</td><td>S0/CSV</td><td>字符串/正则/dict：brief→结构化 SKU</td></tr>
+  <tr><td>构件1 · 状态判定</td><td>内部</td><td>if/else/for 计数：done/failed/pending</td></tr>
+  <tr><td>构件2 · 提示词模板</td><td>S2</td><td>f-string：商品名+卖点+场景拼装</td></tr>
+  <tr><td>构件3 · 任务展开</td><td>内部</td><td>list/dict：1 个 SKU → N 条任务</td></tr>
+  <tr><td>构件4 · 封装调用</td><td>S1/S2</td><td>函数封装 API、密钥管理、错误处理</td></tr>
+  <tr><td>构件5 · 归档配置</td><td>收口</td><td>pathlib/csv/json：production_log</td></tr>
+  <tr><td>构件6 · Product 类</td><td>OOP</td><td>属性/构造/封装/方法/继承/重写/多态</td></tr>
+  <tr><td>构件7 · 重试与超时</td><td>S1/S2</td><td>try/except：个别失败不崩整批</td></tr>
+  <tr><td>构件8 · 真实出图</td><td>S2</td><td>Seedream API、参考图生图、结构化输出</td></tr>
+  <tr><td>构件9 · 筛选候选</td><td>收口</td><td>“标准化翻译成检查项”、可判定标准</td></tr>
+  <tr><td>构件10 · 出片交付</td><td>收口</td><td>WebP 后处理 + 按 SKU 归档 + README + 标注 AI 合成</td></tr>
 </table>
 <div class="note"><b>关键修正：</b>原"文本编造产品"的 text2img 构件，被替换为真实的 <b>去底 + 图生图</b> 双构件。Python/AI 管线核心技能（API 调用、批量、一致性、质检、归档、交付）<b>一个都不丢</b>，只是从"凭空生成"变成"基于真实产品的扩展"。</div>
 
 <h2>5. 案例范本（真实可交付）</h2>
 <div class="card">
-  <p><b>流程：</b>学生拍一只真实杯子 → S1 专用 API 去底（保留杯子本体） → S2 Seedream 4.0 参考图生图（把手持/办公桌/户外/车载/礼盒场景） → S3 质检标注归档。</p>
+  <p><b>流程：</b>学生拍一只真实杯子 → S1 专用 API 去底（保留杯子本体） → S2 Seedream 4.0 参考图生图（把手持/办公桌/户外/车载/礼盒场景） → 收口：质检标注归档（V5）。</p>
   <p><b>评审口径：</b>"这能卖吗？" → <span class="ok">能</span>，因为它就是千万商家的日常（家作 13 万商家、慕思省 140 万）。
   真实产品 + 真实出图流程，经得起任何追问。</p>
   <p><b>教学彩蛋：</b>S2 生成的图"10 张 8 张能用、2 张翻车（光影/透视错位）"——恰好是 B4 质检模块的真实素材；
@@ -153,7 +158,7 @@
   <li><b>S2 场景化已切换为 Seedream 4.0 参考图生图</b>：端到端测试显示，输入张老师拍的深蓝色磨砂保温杯白底图，Seedream 4.0 能可靠保留产品外观、颜色与材质，并自然生成"商务办公桌面 / 户外便携 / 车载杯架 / 礼品礼盒"四类场景图，包括"手拿着杯子"这类无法靠 PIL 贴图实现的交互场景。</li>
   <li><b>去底 API 选型（已定）</b>：UAPI 免费抠图（uapis.cn matting）。remove.bg 将于 2026-12-01 关闭、本地 RMBG-1.4 下放二级社团，故一级基础班采用 UAPI 免费抠图，与"全 API / 薅免费额度"策略一致。</li>
   <li><b>成本口径修正</b>：Seedream 4.0 同为免费额度（火山方舟），与"S1 UAPI 免费抠图 + S2 Seedream 免费额度"的"全 API / 薅免费额度"策略一致。学生端各自注册 UAPI 与火山方舟、各用各的免费额度；教师提供的 key 仅用于课内演示与范本，一级基础班零成本。</li>
-  <li><b>是否链入 index.html 导航</b>：已加入 B5，index 文档数已更新为 26。</li>
+  <li><b>是否链入 index.html 导航</b>：已加入一级底座 B 分类与 F 工程教学文档。</li>
   <li><b>二级社团 RMBG 改造任务书</b>：可单独立项，由自驱学生承接。</li>
 </ul>
 

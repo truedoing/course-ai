@@ -1,0 +1,37 @@
+<Slide style={{ width: '1280px', height: '720px', padding: 0, background: '#FFFFFF', display: 'flex', flexDirection: 'column' }}>
+  <Box style={{ background: '#0E3F8C', height: 80, display: 'flex', alignItems: 'center', paddingLeft: 48 }}>
+    <Text style={{ color: '#FFFFFF', fontSize: 26, fontWeight: 'bold' }}>总览：两条轴与 V1–V5 路线</Text>
+  </Box>
+  <Box style={{ flex: 1, display: 'flex', flexDirection: 'row' }}>
+    <Box style={{ width: 320, background: '#F0F5FC', display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: 48 }}>
+      <Text style={{ fontSize: 48, fontWeight: 'bold', color: '#0E3F8C' }}>总览</Text>
+      <Text style={{ fontSize: 18, color: '#4A5568', marginTop: 8 }}>OVERVIEW</Text>
+    </Box>
+    <Box style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '0 56px', gap: 22 }}>
+      <Box style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 10 }}>
+        {['V1 去底','V2 场景','V3 商品页','V4 识别','V5 工程化'].map((t, i) => (
+          <Box key={i} style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 10 }}>
+            <Box style={{ background: '#E8EFF8', border: '1px solid #1E4FA8', borderRadius: 20, padding: '10px 16px' }}>
+              <Text style={{ fontSize: 18, fontWeight: 'bold', color: '#0E3F8C' }}>{t}</Text>
+            </Box>
+            {i < 4 && <Text style={{ fontSize: 22, color: '#1E4FA8', fontWeight: 'bold' }}>→</Text>}
+          </Box>
+        ))}
+      </Box>
+      <Box style={{ background: '#F7F9FC', border: '1px solid #D6DCE5', borderRadius: 10, padding: 20, gap: 12, display: 'flex', flexDirection: 'column' }}>
+        <Text style={{ fontSize: 19, color: '#1A2230', lineHeight: 1.6 }}>
+          <span style={{ fontWeight: 'bold', color: '#0E3F8C' }}>轴1 · 版本迭代（课程时间轴）：</span>V1→V5 跨 5–6 次课逐步叠加构件，每版端到端可跑、是完整的，只是范围由小到大。
+        </Text>
+        <Text style={{ fontSize: 19, color: '#1A2230', lineHeight: 1.6 }}>
+          <span style={{ fontWeight: 'bold', color: '#0E3F8C' }}>轴2 · 三种走法（学生能力轴）：</span>同版本内弱/中/强拿不同厚度支撑——跟跑(代码写完跑+读) / 并跑(半成品改 prompts) / 领跑(裸引擎自己写+排错)。
+        </Text>
+        <Text style={{ fontSize: 19, color: '#1A2230', lineHeight: 1.6 }}>
+          <span style={{ fontWeight: 'bold', color: '#D9534F' }}>"完整"的精确定义：</span>集成完整＝这版端到端跑通、非桩代码；不是功能完整＝不必含最终全部特性。学生须讲清：V1 只有白底图不是没做完，是范围就到这里。
+        </Text>
+      </Box>
+    </Box>
+  </Box>
+  <Box style={{ height: 36, display: 'flex', alignItems: 'center', justifyContent: 'flex-end', padding: '0 48px' }}>
+    <Text style={{ fontSize: 14, color: '#8B97A8' }}>03 / 12</Text>
+  </Box>
+</Slide>

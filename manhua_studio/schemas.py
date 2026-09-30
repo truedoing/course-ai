@@ -3,6 +3,7 @@ class GenerationError(Exception):
     pass
 
 
+# 构件 6 · Product 类：七个 OOP 知识点（属性/构造/封装/方法/继承/重写/多态）落在一个类
 class Product:
     def __init__(self, name, material, ref_image, seed):
         self._name = name

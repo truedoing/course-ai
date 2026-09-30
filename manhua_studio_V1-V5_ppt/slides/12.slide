@@ -1,0 +1,16 @@
+<Slide style={{ width: '1280px', height: '720px', padding: 0, background: '#FFFFFF', display: 'flex', flexDirection: 'column' }}>
+  <Box style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '0 80px', gap: 24 }}>
+    <Text style={{ fontSize: 52, fontWeight: 'bold', color: '#0E3F8C', textAlign: 'center' }}>一份仓库，五版递进</Text>
+    <Text style={{ fontSize: 24, color: '#4A5568', textAlign: 'center', lineHeight: 1.6 }}>
+      从 V1 白底图到 V5 生产级管线，每版都端到端可跑、是完整的。<br />
+      学生 clone 后对照本图，清楚每阶段该完成什么、交付什么、如何验收。
+    </Text>
+    <Box style={{ background: '#F0F5FC', border: '1px solid #1E4FA8', borderRadius: 12, padding: 24, display: 'flex', flexDirection: 'column', gap: 12, width: 720 }}>
+      <Text style={{ fontSize: 20, color: '#1A2230' }}><span style={{ fontWeight: 'bold', color: '#0E3F8C' }}>运行：</span>python -m manhua_studio --input 照片.jpg</Text>
+      <Text style={{ fontSize: 20, color: '#1A2230' }}><span style={{ fontWeight: 'bold', color: '#0E3F8C' }}>回看阶段：</span>git checkout vN（v1–v5 任意一版）</Text>
+    </Box>
+  </Box>
+  <Box style={{ height: 64, display: 'flex', alignItems: 'center', justifyContent: 'center', borderTop: '1px solid #D6DCE5' }}>
+    <Text style={{ fontSize: 16, color: '#8B97A8' }}>工艺美术类高职 · 计算机专业 · Python 课程改造 · 张老师 2026 秋</Text>
+  </Box>
+</Slide>

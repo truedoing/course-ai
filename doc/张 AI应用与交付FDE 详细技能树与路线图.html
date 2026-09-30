@@ -430,7 +430,7 @@ footer{margin-top:60px;padding-top:20px;border-top:1px solid var(--line);font-si
 <dt>1.1 批处理与并发</dt>
 <dd>从"跑一条"到"跑一万条"：任务队列、并发控制、失败重试、成本统计。对应 manhua.py 构件 9（批量出图）。</dd>
 <dt>1.2 一致性与质检</dt>
-<dd>把"看着对不对"翻译成可勾选判据（manhua.py 的 <span class="mono">consistency_score</span> 与 <span class="mono">pick_best</span>）。这一层是张与董老师接口的所在：他出"图"，她定"图算不算合格"，但质检脚本由他实现、验收清单由她定。</dd>
+<dd>把"看着对不对"翻译成可勾选判据（manhua.py 的 <span class="mono">Product.score</span> 与 <span class="mono">pick_best</span>）。这一层是张与董老师接口的所在：他出"图"，她定"图算不算合格"，但质检脚本由他实现、验收清单由她定。</dd>
 <dt>1.3 版本与归档</dt>
 <dd>产物命名规范、版本号、生产日志（manhua.py 的 <span class="mono">production_log.csv</span> 与 <span class="mono">meta.json</span> 三态 status）。这套契约是未来与 JS 工具组、与董老师资产包对齐的文件接口。</dd>
 <dt>产出 A（里程碑作品）</dt>

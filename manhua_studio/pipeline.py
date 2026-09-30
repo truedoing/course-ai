@@ -118,7 +118,7 @@ def stage_optimize_web(paths, max_w=WEBP_MAX_W, quality=WEBP_QUALITY):
 
 
 # ---------------------------------------------------------------------
-# 构件 5 归档 + 构件 10 交付 + S3+ 数据化交付
+# 构件 5 归档 + 构件 10 交付 + 数据化交付
 # ---------------------------------------------------------------------
 def archive_run(tasks, run_dir="deliverables/runs"):
     """构件 5：跑批结果归档成 production_log.csv（跨组交接'别人能看懂'的凭据）。"""

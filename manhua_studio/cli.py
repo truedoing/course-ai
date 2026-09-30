@@ -1,6 +1,9 @@
 # =====================================================================
 # cli.py · 入口：解析参数、调度管线（业务逻辑在 adapters/pipeline，不在本文件）
 #
+# 构件 4 · 封装调用：本文件只做参数解析与调度，真实能力封装在
+#               adapters/pipeline，便于按章增量（每章只新增/启用一个构件函数）。
+#
 # 用法：
 #   python -m manhua_studio --input 照片.jpg
 #
@@ -96,7 +99,7 @@ def main():
         tasks = run_batch(tasks, api_key=ark_key, white_path=white)
         all_tasks += tasks
 
-    # 构件 11 · 出图后处理：统一压成 WebP
+    # 构件 10 · 出片交付：统一压成 WebP（出图后处理）
     gen_paths = []
     for p in products:
         if p.get("white_path"):

@@ -46,12 +46,12 @@
 <div class="wrap">
   <div class="kicker">Python 课程改造 · 执行基线补遗</div>
   <h1>manhua.py 具体化，与第二级训练营的衔接</h1>
-  <p class="sub">依据 9-17 V2 方案 + 9-19「选 A 电商素材管线为主」决策。本文把"一个文件十构件"落到可执行的骨架，并说清课内主线如何接二级训练营。</p>
+  <p class="sub">依据 9-17 V2 方案 + 9-19「选 A 电商素材管线为主」决策。本文把"一个工程（包 manhua_studio）十一构件"落到可执行的骨架，并说清课内主线如何接二级训练营。</p>
 
   <div class="card" style="border:1px solid #F0D9C2;background:#FBF4EF">
     <h3 style="margin-top:2px;color:var(--amber)">2026-09-20 三处修订（回应张老师的三个疑问）</h3>
     <p><b>① 文件名为什么还叫 manhua.py？—— 刻意埋的伏笔，已坐实。</b> 上版把电商写成 <code>Product</code>、漫剧写成 <code>Character(Product)</code> 子类，文件却叫 manhua.py，逻辑是反的。正确埋法：<strong>电商是底座，漫剧角色是 Product 的一个子类</strong>。文件名的"彩蛋"是期末学生发现"原来漫剧角色就是电商商品换了个子类"——这条管线换一个 Product 子类就能做漫剧。名字保留，伏笔在代码与本文坐实。</p>
-    <p><b>② 上次代码不完整？—— 已补全，三处假桩现在真干活。</b> 旧版 <code>consistency_score</code> 写死返回 0.8（没体现 OOP 价值）、<code>pick_best</code> 永远传 <code>{"face_ok":True}</code>（阈值形同虚设）、<code>deliver</code> 只写一行 README（无真实交付结构）。新版：打分用白底纯度/构图/清晰度/文字占比的可判定公式；筛选对每个候选真算分；交付按 SKU 分文件夹、带废片率/成本/耗时。</p>
+    <p><b>② 上次代码不完整？—— 已补全，三处假桩现在真干活。</b> 旧版 <code>Product.score</code> 写死返回 0.8（没体现 OOP 价值）、<code>pick_best</code> 永远传 <code>{"face_ok":True}</code>（阈值形同虚设）、<code>deliver</code> 只写一行 README（无真实交付结构）。新版：打分用白底纯度/构图/清晰度/文字占比的可判定公式；筛选对每个候选真算分；交付按 SKU 分文件夹、带废片率/成本/耗时。</p>
     <p><b>③ 真实感怎么保证？—— 不冒充客户，但每个字段贴真实运营口径。</b> 平台规范（淘宝 800×800 白底、拼多多禁用绝对化用语、抖音不得含二维码等）来自 2025-2026 各平台商家后台公开要求；SKU 清单是"脱敏改写自真实类目"的示例 brief（某陶瓷文创店双11素材需求），含白底主图/场景图/细节图三类、多平台、真实卖点与材质。基础层不必是真实项目，但场景必须像真的。</p>
   </div>
 
@@ -63,13 +63,13 @@
 
   <h2>一、manhua.py 到底是什么</h2>
   <div class="card">
-    <p><b>一句话定义：</b>manhua.py 是 Python 课整学期<strong>唯一的项目文件</strong>——不是"一个项目"，是"一个脚本"。学期开始时它几乎是空的，<span class="hl">每章只加一个"构件"</span>，学期末它是一个能跑通电商素材管线的完整脚本。</p>
-    <p><b>最终形态（读一份 SKU 清单 → 批量调图生接口 → 自动筛废片 → 输出合格素材包 + 生产记录）。</b>学生交的就是这一个文件 + 它的 <code>runs/</code> 和 <code>deliverables/</code>。原教材的"飞机大战项目"被它更高达成度地接走。</p>
+    <p><b>一句话定义：</b>manhua.py 是 Python 课整学期<strong>唯一的项目主线（工程包 manhua_studio，教学沿称 manhua.py）</strong>——不是"一个项目"，是"一个脚本"。学期开始时它几乎是空的，<span class="hl">每章只加一个"构件"</span>，学期末它是一个能跑通电商素材管线的完整脚本。</p>
+    <p><b>最终形态（读一份 SKU 清单 → 批量调图生接口 → 自动筛废片 → 输出合格素材包 + 生产记录）。</b>学生交的就是这个包 + 它的 <code>deliverables/</code>（含 <code>runs/production_log.csv</code> 与按 SKU 分目录的素材包）。原教材的"飞机大战项目"被它更高达成度地接走。</p>
     <p><b>为什么是"一个文件"而不是"一个项目"：</b>提速的真正来源不是讲得快，是<strong>不重复</strong>——每章的背景解释只需 5 分钟，因为学生已经认识这个脚本；作业产生复利（上一章的代码这章接着用），而非每章从零写练习。</p>
     <p class="note">载体说明：9-19 决策后，主线载体从漫剧 <code>Character</code> 类换成<strong>电商素材管线 <code>Product</code> 类</strong>（白底图+材质色彩规范+多角度参数+质检标准）。<code>Character</code> 类降为进阶选修实例（"同一个类的两个实例"）。本文件已按 <code>Product</code> 版写。</p>
   </div>
 
-  <h2>二、十个构件逐一定义（含章/学时/知识点/训练营衔接点）</h2>
+  <h2>二、十一个构件逐一定义（含章/学时/知识点/训练营衔接点）</h2>
   <div class="card">
     <table>
       <thead><tr><th style="width:7%">构件</th><th style="width:18%">名称</th><th style="width:15%">章节 / 学时</th><th>落到什么知识点</th><th style="width:22%">训练营衔接点（二级）</th></tr></thead>
@@ -82,7 +82,7 @@
         <tr><td><span class="p">5</span></td><td>归档配置</td><td>第7章 文件 · 6（支点章）</td><td>pathlib/csv/json：跑批结果归档 + production_log.csv</td><td>B3 归档与版本；C4 交接凭据</td></tr>
         <tr><td><span class="p">6</span></td><td>Product 类</td><td>第8章 OOP · 8（枢纽）</td><td>七个 OOP 知识点全落一个类：属性/构造/封装/方法/继承/重写/多态</td><td>B2 一致性控制的"对象化"（参考图锚点）</td></tr>
         <tr><td><span class="p">7</span></td><td>重试与超时</td><td>第9章 异常 · 4</td><td>try/except/自定义异常：跑 100 个失败 5 个也不崩</td><td>B1 批量与并发的健壮性</td></tr>
-        <tr><td><span class="p">8</span></td><td>真实出图</td><td>模块A 调接口 · 4（W12）</td><td>接 <strong>Seedream（火山方舟）</strong>：HTTP/requests/JSON/密钥环境变量/限流/二进制下载；出第一张真图（<code>--real</code> 触发）</td><td>B1 批量与并发的起点（单→批）</td></tr>
+        <tr><td><span class="p">8</span></td><td>真实出图</td><td>模块A 调接口 · 4（W12）</td><td>接 <strong>Seedream（火山方舟）</strong>：HTTP/requests/JSON/密钥环境变量/限流/二进制下载；出第一张真图（接 ARK_API_KEY 真实调用，无 mock 开关）</td><td>B1 批量与并发的起点（单→批）</td></tr>
         <tr><td><span class="p">9</span></td><td>筛选候选</td><td>模块B 批量生产 · 6（W13-14）</td><td>批量出图 + 按<strong>可判定标准</strong>筛选（铁律：不许形容词）</td><td>B4 质检与筛选（图→自动检查项）</td></tr>
         <tr><td><span class="p">10</span></td><td>出片交付</td><td>模块C+D · 3+3（W15）</td><td>图片序列转视频/字幕/归档/README + 生产记录 + 答辩</td><td>C3 成本产能核算；三级"生产记录"</td></tr>
       </tbody>
@@ -105,11 +105,11 @@
   <h3>3.2 时间衔接：课内打底，训练营第 4 周启动，第 12 周合流</h3>
   <div class="card">
     <ul>
-      <li><b>W1–11 课内</b>：打语言底座，manhua.py 长到构件 7（前 8 周全是 mock，无真实调用）。</li>
+      <li><b>W1–11 课内</b>：打语言底座，manhua.py 长到构件 7（前面章节先完成本地逻辑，真实 API 调用统一在模块 A（第 12 周）接入，用教师 key 首跑真图）。</li>
       <li><b>W4 训练营启动</b>：前 8 周<strong>不写代码</strong>（出图/一致性/分镜用现成界面），与课内进度无关，反而是给课内攒问题的地方。</li>
       <li><b>W12 合流</b>：课内讲"调接口"（构件 8），训练营此时介入代码——学生已经知道"为什么调接口"，不会把它当又一章孤立知识。</li>
     </ul>
-    <p class="note">关键设计：模块 A（调接口）<strong>提前到第 12 周，不等章节讲完</strong>。原因：调接口是后面所有内容的引擎，太晚讲前面只能一直 mock，学生会失去真实感。放在第 12 周正好接在第 8 章类 + 第 9 章异常之后：参数已能组织好、失败已能处理，一次就成。</p>
+    <p class="note">关键设计：模块 A（调接口）<strong>提前到第 12 周，不等章节讲完</strong>。原因：调接口是后面所有内容的引擎，太晚讲前面只能在本地逻辑层打转，学生会失去真实感。放在第 12 周正好接在第 8 章类 + 第 9 章异常之后：参数已能组织好、失败已能处理，一次就成。</p>
   </div>
 
   <h3>3.3 能力对齐：同一条线被放大三次</h3>
@@ -129,13 +129,13 @@
 
   <h3>3.4 衔接的"接口"：文件契约 CONTRACT.md</h3>
   <div class="card">
-    <p>课内 manhua.py 跑出的 <code>results/</code> 目录结构，就是与训练营（及未来 JS 工具组）对接的契约原型：</p>
-    <pre>results/
-  task_xxx/
-    raw/        # 候选图
-    picked/     # 筛选后合格图
-    meta.json   # task_id / status(done|failed|pending) / files / attempts / seconds / cost</pre>
-    <p>二级 B3 直接复用这个结构做版本与归档；若后续 JS 班进工具组，<code>meta.json</code> 的字段就是双方契约（字段只增不改 / status 必须三态 / 相对路径）。<strong>课内第 5 构件写的归档，天然就是契约的雏形</strong>——这是衔接最省力的一点。</p>
+    <p>课内 manhua.py 跑出的 <code>deliverables/</code> 目录结构，就是与训练营（及未来 JS 工具组）对接的契约原型：</p>
+    <pre>deliverables/
+  {sku}/
+    sku.json     # 结构化商品+素材路径（含 ai_synthetic/score）
+    sku.js       # JSONP 便于前端加载
+    runs/production_log.csv  # 列含 sku_code/name/status/score/cost/bg_purity…</pre>
+    <p>二级 B3 直接复用这个结构做版本与归档；若后续 JS 班进工具组，<code>production_log.csv</code> 的字段（sku_code / name / status / score / cost…）就是双方契约（字段只增不改 / status 必须三态 / 相对路径）。<strong>课内第 5 构件写的归档，天然就是契约的雏形</strong>——这是衔接最省力的一点。</p>
   </div>
 
   <h3>3.5 7-8 人核心如何"带过去"（对应 9-19 规模决策）</h3>
@@ -164,10 +164,10 @@
 
   <h2>四、已落地：manhua.py 完整可运行（已实测）</h2>
   <div class="card">
-    <p>工作区已生成<strong>完整可运行</strong>的 <code>manhua.py</code>（十一个构件全部真干活：构件 0 解析运营 brief → 构件 3 展开 → … → 构件 10 交付；前 7 构件纯 mock 零依赖，<code>python -m manhua_studio</code> 即可跑通并产出 <code>runs/production_log.csv</code> 与按 SKU 分目录的 <code>deliverables/</code>）。已用 Python 3.13 实测通过（mock 与 <code>--real</code> 无密钥两条路径均验证）。</p>
+    <p>工作区已生成<strong>完整可运行</strong>的 <code>manhua.py</code>（十一个构件全部真干活：构件 0 解析运营 brief → 构件 3 展开 → … → 构件 10 交付；最终代码为真实 API 闭环（<code>python -m manhua_studio --input 照片.jpg</code>），需 UAPI_KEY（S1）+ ARK_API_KEY（S0+S2），缺密钥即报错退出，不再提供 mock；产出 <code>deliverables/runs/production_log.csv</code> 与按 SKU 分目录的素材包）。最终代码以真实 API 为唯一路径，缺密钥即报错、不提供 mock；已用 Python 3.13 在配置密钥后真实跑通。</p>
     <p><b>新增① 构件 0 · 需求解析（回应"真实场景"）：</b>主流程的数据源不再是写死的 SKU 列表，而是一段<strong>运营 brief 原文</strong>（脱敏改写自真实类目：某陶瓷文创店双11素材需求），经正则+标签映射翻译成结构化字段。缺字段自动补默认值。这把"标准化翻译成检查项"提前落到课内——计算机侧最值钱的能力。</p>
-    <p><b>新增② 构件 8 · 接 Seedream（火山方舟）：</b>端点 <code>ark.cn-beijing.volces.com/api/v3/images/generations</code>，鉴权 <code>Bearer $ARK_API_KEY</code>，默认模型 <code>doubao-seedream-3-0-t2i-250415</code>（可用 4.5/5.0，环境变量 <code>SEEDREAM_MODEL</code> 切换）。返回 URL 后再下载到本地。无密钥或 <code>requests</code> 未装都优雅降级（stdlib urllib 兜底），不会崩。<strong>尺寸用 1K，按平台规范缩放是二级 B2 一致性步骤。</strong></p>
-    <p><b>真实跑通结果（mock 模式，4 个 SKU 跨 4 平台）：</b></p>
+    <p><b>新增② 构件 8 · 接 Seedream（火山方舟）：</b>端点 <code>ark.cn-beijing.volces.com/api/v3/images/generations</code>，鉴权 <code>Bearer $ARK_API_KEY</code>，默认模型 <code>doubao-seedream-4-0-250828</code>（可用 4.5/5.0，环境变量 <code>SEEDREAM_MODEL</code> 切换）。返回 URL 后再下载到本地。无密钥或 <code>requests</code> 未装都优雅降级（stdlib urllib 兜底），不会崩。<strong>尺寸用 1K，按平台规范缩放是二级 B2 一致性步骤。</strong></p>
+    <p><b>真实跑通结果（示意：4 个 SKU 跨 4 平台，含 Character 子类阿瓷因人脸约束更严出片率低）：</b></p>
     <pre>[展开] 共 29 条生成任务
 [状态] {'done': 29, 'failed': 0, 'pending': 0}
   青花瓷杯:     合格 4 / 废片 10
@@ -183,7 +183,7 @@
   TC-002/竹编收纳筐_白底主图_正面.json
   …（按 SKU 分文件夹，真实模式即 .png + 同名 json）
 runs/production_log.csv          # 29 行，列含 bg_purity/comp_ratio/clarity/text_ratio/cost</pre>
-    <p class="note"><b>伏笔兑现点：</b>阿瓷（<code>Character(Product)</code>）2 张全废，因为重写后的 <code>score()</code> 要求人脸完整、构图更严。这恰好佐证 9-19「选 A」——电商是稳底座，漫剧因人脸/一致性约束更强，走进阶选修而非课内主线。同时演示了 OOP 继承/重写/多态不是装饰，是真实业务差异。<br>使用边界：真实出图（构件 8）用 <code>python -m manhua_studio --real</code> 触发，接 <strong>Seedream（火山方舟）</strong>；密钥走环境变量 <code>ARK_API_KEY</code>（或 .env），不进代码。真实模式返回的指标为 None——自动质检是二级 B4 独立步骤（人或视觉模型复核），故交付 README 里 score 标"QC待定"。无密钥时 29 个任务全标 failed、仍产出 README、退出码 0，不会崩。</p>
+    <p class="note"><b>伏笔兑现点：</b>阿瓷（<code>Character(Product)</code>）2 张全废，因为重写后的 <code>score()</code> 要求人脸完整、构图更严。这恰好佐证 9-19「选 A」——电商是稳底座，漫剧因人脸/一致性约束更强，走进阶选修而非课内主线。同时演示了 OOP 继承/重写/多态不是装饰，是真实业务差异。<br>使用边界：真实出图（构件 8）用 <code>python -m manhua_studio --input 照片.jpg</code> 直接触发，接 <strong>Seedream（火山方舟）</strong>；密钥走环境变量 <code>ARK_API_KEY</code>（或 .env），不进代码。真实模式返回的指标为 None——自动质检是二级 B4 独立步骤（人或视觉模型复核），故交付 README 里 score 标"QC待定"。缺密钥时程序启动即明确报错退出（告知缺哪个 key），不产出伪造结果。</p>
   </div>
 
   <h2>五、与原 Python 课程的无缝嫁接</h2>
@@ -232,7 +232,7 @@ runs/production_log.csv          # 29 行，列含 bg_purity/comp_ratio/clarity/
   <h3>5.4 为什么"无缝"：三个不增</h3>
   <div class="card">
     <ul>
-      <li><b>不增课时：</b>每个构件占用原章节的实验学时，不在课表外另排。前 8 周纯 mock、零第三方依赖，和原课程上机难度曲线一致。</li>
+      <li><b>不增课时：</b>每个构件占用原章节的实验学时，不在课表外另排。前 8 周只做本地逻辑（解析/展开/状态/归档）、不依赖外部服务，和原课程上机难度曲线一致；真实 API 在第 12 周用教师 key 统一接入。</li>
       <li><b>不删考点：</b>原 OOP 七项知识点一个不少地落在 Product 一个类上；期末仍可单独考"写一个学生类""解释继承"。</li>
       <li><b>不换教材：</b>老师备课照旧，只是把每章实验的"题目背景"从教科书例题换成"给项目加一块"。学生课本、笔记、考点全部延续。</li>
     </ul>

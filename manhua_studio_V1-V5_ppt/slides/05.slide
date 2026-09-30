@@ -1,0 +1,38 @@
+<Slide style={{ width: '1280px', height: '720px', padding: 0, background: '#FFFFFF', display: 'flex', flexDirection: 'column' }}>
+  <Box style={{ background: '#0E3F8C', height: 80, display: 'flex', alignItems: 'center', paddingLeft: 48 }}>
+    <Text style={{ color: '#FFFFFF', fontSize: 26, fontWeight: 'bold' }}>V2 场景图</Text>
+  </Box>
+  <Box style={{ flex: 1, display: 'flex', flexDirection: 'row' }}>
+    <Box style={{ width: 320, background: '#F0F5FC', display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: 48 }}>
+      <Text style={{ fontSize: 64, fontWeight: 'bold', color: '#0E3F8C' }}>V2</Text>
+      <Text style={{ fontSize: 22, color: '#4A5568', marginTop: 8 }}>场景图</Text>
+      <Text style={{ fontSize: 16, color: '#8B97A8', marginTop: 14 }}>建议 1 次课</Text>
+    </Box>
+    <Box style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '0 48px', gap: 14 }}>
+      <Box style={{ background: '#F7F9FC', border: '1px solid #D6DCE5', borderRadius: 10, padding: 16, display: 'flex', flexDirection: 'column', gap: 6 }}>
+        <Text style={{ fontSize: 22, fontWeight: 'bold', color: '#0E3F8C' }}>功能目标</Text>
+        <Text style={{ fontSize: 18, color: '#1A2230', lineHeight: 1.5 }}>白底图 → 2–3 张场景图（保留产品外观，生成完整使用场景图）</Text>
+      </Box>
+      <Box style={{ background: '#F7F9FC', border: '1px solid #D6DCE5', borderRadius: 10, padding: 16, display: 'flex', flexDirection: 'column', gap: 6 }}>
+        <Text style={{ fontSize: 22, fontWeight: 'bold', color: '#0E3F8C' }}>学生任务</Text>
+        <Text style={{ fontSize: 18, color: '#1A2230', lineHeight: 1.5 }}>一键包出 2–3 张场景图；中档自己写/调场景 prompts 模板；强档在 generate 加自定义场景</Text>
+      </Box>
+      <Box style={{ background: '#F7F9FC', border: '1px solid #D6DCE5', borderRadius: 10, padding: 16, display: 'flex', flexDirection: 'column', gap: 6 }}>
+        <Text style={{ fontSize: 22, fontWeight: 'bold', color: '#0E3F8C' }}>新增构件</Text>
+        <Text style={{ fontSize: 18, color: '#1A2230', lineHeight: 1.5 }}>adapters.stage2_scene（Seedream 4.0 参考图生图）＋ prompts.py（平台规范 + 提示词模板）</Text>
+      </Box>
+      <Box style={{ background: '#F0F5FC', border: '1px solid #1E4FA8', borderRadius: 10, padding: 16, display: 'flex', flexDirection: 'column', gap: 6 }}>
+        <Text style={{ fontSize: 22, fontWeight: 'bold', color: '#0E3F8C' }}>教师备课</Text>
+        <Text style={{ fontSize: 18, color: '#4A5568', lineHeight: 1.5 }}>prompts.py 模板图文指引（路径/参数已预设，学生主要改模板）</Text>
+      </Box>
+    </Box>
+  </Box>
+  <Box style={{ height: 80, display: 'flex', flexDirection: 'row', alignItems: 'center', padding: '0 32', gap: 16, background: '#E8EFF8' }}>
+    <Text style={{ fontSize: 17, color: '#1A2230' }}><span style={{ fontWeight: 'bold', color: '#1E4FA8' }}>最低</span> 一键包出 2 张场景图</Text>
+    <Text style={{ fontSize: 17, color: '#1A2230' }}><span style={{ fontWeight: 'bold', color: '#1E4FA8' }}>期望</span> 自己写/调场景 prompts</Text>
+    <Text style={{ fontSize: 17, color: '#1A2230' }}><span style={{ fontWeight: 'bold', color: '#1E4FA8' }}>挑战</span> 加一个自定义场景</Text>
+  </Box>
+  <Box style={{ height: 36, display: 'flex', alignItems: 'center', justifyContent: 'flex-end', padding: '0 48px' }}>
+    <Text style={{ fontSize: 14, color: '#8B97A8' }}>05 / 12</Text>
+  </Box>
+</Slide>

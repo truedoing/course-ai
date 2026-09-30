@@ -1,0 +1,61 @@
+<Slide style={{ width: '1280px', height: '720px', padding: 0, background: '#FFFFFF', display: 'flex', flexDirection: 'column' }}>
+  <Box style={{ background: '#0E3F8C', height: 80, display: 'flex', alignItems: 'center', paddingLeft: 48 }}>
+    <Text style={{ color: '#FFFFFF', fontSize: 26, fontWeight: 'bold' }}>目录 · Contents</Text>
+  </Box>
+  <Box style={{ flex: 1, display: 'flex', flexDirection: 'row' }}>
+    <Box style={{ width: 320, background: '#F0F5FC', display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: 48 }}>
+      <Text style={{ fontSize: 56, fontWeight: 'bold', color: '#0E3F8C' }}>05</Text>
+      <Text style={{ fontSize: 20, color: '#4A5568', marginTop: 8 }}>页 · 教学导航</Text>
+    </Box>
+    <Box style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '0 56px', gap: 22 }}>
+      <Box style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 18 }}>
+        <Box style={{ width: 44, height: 44, background: '#1E4FA8', borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <Text style={{ color: '#FFFFFF', fontSize: 19, fontWeight: 'bold' }}>01</Text>
+        </Box>
+        <Box>
+          <Text style={{ fontSize: 22, fontWeight: 'bold', color: '#1A2230' }}>总览：两条轴与 V1–V5 路线</Text>
+          <Text style={{ fontSize: 16, color: '#8B97A8' }}>版本迭代轴 + 三种走法轴，五版递进关系</Text>
+        </Box>
+      </Box>
+      <Box style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 18 }}>
+        <Box style={{ width: 44, height: 44, background: '#1E4FA8', borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <Text style={{ color: '#FFFFFF', fontSize: 19, fontWeight: 'bold' }}>02</Text>
+        </Box>
+        <Box>
+          <Text style={{ fontSize: 22, fontWeight: 'bold', color: '#1A2230' }}>V1–V5 逐版功能与学生任务</Text>
+          <Text style={{ fontSize: 16, color: '#8B97A8' }}>每版功能目标、学生交付物、新增构件、教师备课</Text>
+        </Box>
+      </Box>
+      <Box style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 18 }}>
+        <Box style={{ width: 44, height: 44, background: '#1E4FA8', borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <Text style={{ color: '#FFFFFF', fontSize: 19, fontWeight: 'bold' }}>03</Text>
+        </Box>
+        <Box>
+          <Text style={{ fontSize: 22, fontWeight: 'bold', color: '#1A2230' }}>三种走法：跟跑 / 并跑 / 领跑</Text>
+          <Text style={{ fontSize: 16, color: '#8B97A8' }}>同版本内不同厚度支撑，对应弱/中/强学生</Text>
+        </Box>
+      </Box>
+      <Box style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 18 }}>
+        <Box style={{ width: 44, height: 44, background: '#1E4FA8', borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <Text style={{ color: '#FFFFFF', fontSize: 19, fontWeight: 'bold' }}>04</Text>
+        </Box>
+        <Box>
+          <Text style={{ fontSize: 22, fontWeight: 'bold', color: '#1A2230' }}>验收三档汇总（最低 / 期望 / 挑战）</Text>
+          <Text style={{ fontSize: 16, color: '#8B97A8' }}>期末硬线：所有人至少达期望档</Text>
+        </Box>
+      </Box>
+      <Box style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 18 }}>
+        <Box style={{ width: 44, height: 44, background: '#1E4FA8', borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <Text style={{ color: '#FFFFFF', fontSize: 19, fontWeight: 'bold' }}>05</Text>
+        </Box>
+        <Box>
+          <Text style={{ fontSize: 22, fontWeight: 'bold', color: '#1A2230' }}>防"躺平"策略与反思单</Text>
+          <Text style={{ fontSize: 16, color: '#8B97A8' }}>阶梯钩子 + 低成本区分三档</Text>
+        </Box>
+      </Box>
+    </Box>
+  </Box>
+  <Box style={{ height: 36, display: 'flex', alignItems: 'center', justifyContent: 'flex-end', padding: '0 48px' }}>
+    <Text style={{ fontSize: 14, color: '#8B97A8' }}>02 / 12</Text>
+  </Box>
+</Slide>
