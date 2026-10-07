@@ -1,0 +1,62 @@
+<Slide style={{ width: '1280px', height: '720px', background: '#FFFFFF', padding: 0 }}>
+  <Box style={{ height: 56, background: '#0E3F8C', flexDirection: 'row', alignItems: 'center', paddingLeft: 40, paddingRight: 40, justifyContent: 'space-between' }}>
+    <Text style={{ fontSize: 22, fontWeight: 'bold', color: '#FFFFFF' }}>核心概念：用 f-string 拼装提示词</Text>
+    <Text style={{ fontSize: 13, color: '#C7D6EE' }}>manhua.py 章节切片教学包</Text>
+  </Box>
+  <Box style={{ flex: 1, flexDirection: 'row', padding: '26px 40px', gap: 28 }}>
+    <Box style={{ flex: 1, background: '#F0F5FC', border: '1px solid #D6DCE5', borderRadius: 12, padding: '18px 20px', flexDirection: 'column', gap: 12 }}>
+      <Box style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
+        <Box style={{ background: '#D9534F', borderRadius: 6, padding: '4px 10px' }}>
+          <Text style={{ fontSize: 16, fontWeight: 'bold', color: '#FFFFFF' }}>不推荐</Text>
+        </Box>
+        <Text style={{ fontSize: 22, fontWeight: 'bold', color: '#0E3F8C' }}>字符串拼接（+）</Text>
+      </Box>
+      <CodeBlock
+        code={`name = "青瓷茶漏"
+selling_point = "过滤细腻"
+scene = "北欧客厅场景"
+
+# 拼接：变量一多就乱，易漏空格/分号
+p = "场景=" + scene
+p += "；商品名=" + name
+p += "；卖点=" + selling_point`}
+        language='python'
+        width={460}
+        fontSize={13}
+        theme='github-light'
+        background='#FFFFFF'
+      />
+    </Box>
+    <Box style={{ flex: 1, background: '#E8EFF8', border: '1px solid #3D7BD9', borderRadius: 12, padding: '18px 20px', flexDirection: 'column', gap: 12 }}>
+      <Box style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
+        <Box style={{ background: '#1E4FA8', borderRadius: 6, padding: '4px 10px' }}>
+          <Text style={{ fontSize: 16, fontWeight: 'bold', color: '#FFFFFF' }}>推荐</Text>
+        </Box>
+        <Text style={{ fontSize: 22, fontWeight: 'bold', color: '#0E3F8C' }}>f-string</Text>
+      </Box>
+      <CodeBlock
+        code={`name = "青瓷茶漏"
+selling_point = "过滤细腻"
+scene = "北欧客厅场景"
+
+# f-string：变量直接嵌入，可读不易错
+prompt = (f"场景={scene}；商品名={name}；"
+          f"卖点={selling_point}；真实摄影质感，"
+          f"柔和自然光，主体突出")`}
+        language='python'
+        width={460}
+        fontSize={13}
+        theme='github-light'
+        background='#FFFFFF'
+      />
+    </Box>
+  </Box>
+  <Box style={{ margin: '0 40px 36px 40px', background: '#0E3F8C', borderRadius: 10, padding: '14px 22px' }}>
+    <Text style={{ fontSize: 20, color: '#FFFFFF', lineHeight: 1.6 }}>
+      记住：漏写 <span style={{ fontWeight: 'bold' }}>f</span> 前缀，<span style={{ fontWeight: 'bold' }}>{"{场景}"}</span> 不会替换，会原样输出花括号——这是初学者最高频的错误。
+    </Text>
+  </Box>
+  <Box style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: 34, flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end', paddingRight: 40 }}>
+    <Text style={{ fontSize: 14, color: '#1E4FA8' }}>05 / 09</Text>
+  </Box>
+</Slide>

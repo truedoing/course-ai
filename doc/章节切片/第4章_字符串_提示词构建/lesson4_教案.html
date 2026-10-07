@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第4章切片教案 · 字符串→提示词构建</title>
+<style>
+  :root{ --blue:#0C447C; --amber:#854F0B; --ink:#2C2C2A; --mut:#5F5E5A; --line:#D3D1C7; --bg:#FFFFFF; }
+  *{ box-sizing:border-box; }
+  body{ font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif; color:var(--ink); background:#F1EFE8; margin:0; padding:32px 16px; line-height:1.7; }
+  .wrap{ max-width:960px; margin:0 auto; background:var(--bg); border:1px solid var(--line); border-radius:16px; padding:32px 40px; }
+  h1{ font-size:23px; color:var(--blue); margin:0 0 4px; }
+  .sub{ color:var(--mut); font-size:14px; margin:0 0 20px; }
+  h2{ font-size:17px; color:var(--blue); border-left:4px solid var(--blue); padding-left:10px; margin:30px 0 12px; }
+  h3{ font-size:15px; color:var(--amber); margin:18px 0 8px; }
+  p{ font-size:14px; margin:8px 0; }
+  ul,ol{ font-size:14px; padding-left:22px; }
+  li{ margin:6px 0; }
+  .tags span{ display:inline-block; font-size:12px; color:#fff; background:var(--blue); border-radius:6px; padding:3px 9px; margin-right:6px; }
+  .meta{ background:#E6F1FB; border:1px solid #BBD6F2; border-radius:10px; padding:12px 16px; font-size:13px; margin:14px 0; }
+  .meta b{ color:var(--blue); }
+  .key{ background:#FAEEDA; border:1px solid #FAC775; border-radius:10px; padding:14px 16px; font-size:14px; margin:14px 0; }
+  .key b{ color:var(--amber); }
+  .map{ background:#E6F1FB; border-left:4px solid var(--blue); border-radius:0 10px 10px 0; padding:12px 16px; margin:12px 0; font-size:13px; }
+  code{ background:#F1EFE8; padding:1px 5px; border-radius:4px; font-size:12px; }
+  pre{ background:#2C2C2A; color:#F1EFE8; padding:14px 16px; border-radius:10px; font-size:12.5px; overflow:auto; line-height:1.55; }
+  pre .c{ color:#9FB3C8; } /* comment */
+  pre .s{ color:#E6C07B; } /* string */
+  table{ width:100%; border-collapse:collapse; margin:14px 0; font-size:13px; }
+  th,td{ border:1px solid var(--line); padding:9px 10px; text-align:left; vertical-align:top; }
+  th{ background:#E6F1FB; color:var(--blue); font-weight:500; }
+  tr:nth-child(even) td{ background:#F7F8FA; }
+  .badge{ display:inline-block; font-size:12px; padding:2px 8px; border-radius:6px; }
+  .ok{ background:#EAF3DE; color:#27500A; border:1px solid #97C459; }
+  .no{ background:#FCEBEB; color:#791F1F; border:1px solid #F09595; }
+  .warn{ background:#FCEFD6; color:#854F0B; border:1px solid #FAC775; }
+  .step{ font-size:13px; }
+  .step .t{ font-weight:600; color:var(--blue); }
+  .foot{ color:var(--mut); font-size:12px; margin-top:28px; border-top:1px solid var(--line); padding-top:12px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>第4章切片教案 · 字符串 → 提示词构建</h1>
+  <p class="sub">一级底座 · Python 课程改造 · 章节切片教学包（第1讲）</p>
+  <div class="tags"><span>构件2·提示词</span><span>零环境依赖</span><span>母体一致性</span></div>
+
+  <div class="meta">
+    <b>切片定位：</b>manhua.py 综合案例的第 1 个微切片，对应母体「十一个构件」中的 <b>构件 2·提示词构建</b>。<br>
+    <b>对应章节：</b>第 4 章 字符串　|　<b>新技术点：</b>仅字符串运算（f-string 拼装），不调 API、不联网、不配 key。<br>
+    <b>母体函数：</b><code>build_scene_prompt(name, selling_point, scene)</code> + <code>DEFAULT_SCENES</code>（与 <code>manhua_studio/prompts.py</code> 逐字一致）。<br>
+    <b>配套文件：</b><code>lesson4_prompt.py</code>（可运行代码）、<code>lesson4_配套PPT.pptx</code>（课堂演示）。
+  </div>
+
+  <h2>一、教学目标</h2>
+  <ul>
+    <li><b>知识：</b>掌握 f-string 拼装字符串；理解字符串是不可变序列；区分 f-string / <code>+</code> 拼接 / <code>.format()</code> 三种写法。</li>
+    <li><b>能力：</b>能把"给画图模型的提示词"这一真实需求，拆成一个带参数的纯函数 <code>build_scene_prompt</code>，并用循环批量生成。</li>
+    <li><b>素养：</b>建立"字符串是人和 AI 模型之间的契约语言"这一观念——你写出的每个字都会原样交给模型。</li>
+  </ul>
+
+  <h2>二、与母体的关系（先讲清楚，避免"切片变散沙"）</h2>
+  <div class="map">
+    <b>开课第一句就点明：</b>"今天写的 <code>build_scene_prompt</code>，就是综合案例（manhua.py）里『拼提示词』那一步。到时候综合阶段你不用重写，直接从 <code>manhua_studio.prompts</code> 里 import 这个同名函数就能用——因为名字、参数、输出，今天和将来一模一样。"
+  </div>
+  <p>这是"调味一致"硬约束的落地：切片里写的函数名 / 变量名，必须和最终 <code>manhua_studio</code> 一致。反面教训是切片随便起名、综合阶段又换一套，等于白切片，学生面对的是另一套陌生代码。</p>
+
+  <h2>三、课堂流程（建议 50 分钟）</h2>
+  <table>
+    <thead><tr><th>环节</th><th>时长</th><th>教师动作</th><th>学生产出</th></tr></thead>
+    <tbody>
+      <tr><td class="step"><span class="t">导入</span></td><td>5′</td><td>展示一张白底商品图 → "我们想让 AI 把它放进北欧客厅，得先告诉模型一段话，这段话怎么用代码生成？"</td><td>产生疑问：提示词也是字符串</td></tr>
+      <tr><td class="step"><span class="t">讲解</span></td><td>15′</td><td>讲 f-string：<code>f"…{变量}…"</code>；对比 <code>+</code> 拼接的繁琐；强调中英文标点、占位要全。</td><td>记笔记，跟着敲两行</td></tr>
+      <tr><td class="step"><span class="t">演示</span></td><td>10′</td><td>在 <code>lesson4_prompt.py</code> 里现场写出 <code>build_scene_prompt</code>，跑练习1/2 看输出。</td><td>观察输出，理解"一商品×三场景"</td></tr>
+      <tr><td class="step"><span class="t">练习</span></td><td>15′</td><td>学生独立完成练习1（自己写函数体）、练习2（循环），学有余力做练习3（封装成函数返回列表）。</td><td>可运行 .py 文件</td></tr>
+      <tr><td class="step"><span class="t">验收</span></td><td>5′</td><td>随机抽 2 人投屏，按"验收三档"当场点评。</td><td>明确自己落在哪一档</td></tr>
+    </tbody>
+  </table>
+
+  <h2>四、核心讲解要点</h2>
+  <h3>1. 为什么用 f-string，而不是字符串拼接</h3>
+  <pre><span class="c"># 拼接：变量一多就乱，还容易漏空格</span>
+prompt = "场景=" + scene + "；商品名=" + name + "；卖点=" + selling_point
+
+<span class="c"># f-string：变量直接嵌在字符串里，可读、不易错（推荐）</span>
+prompt = <span class="s">f"场景={scene}；商品名={name}；卖点={selling_point}"</span></pre>
+
+  <h3>2. 字符串是不可变的</h3>
+  <p>每拼一次都生成新字符串。对初学者而言，重点是"用 f-string 一次成型"，而不是反复 <code>+=</code> 累加——后者既慢又易错。</p>
+
+  <h3>3. 中英文标点与占位完整</h3>
+  <p>提示词是给模型看的"契约"，标点、分号、字段顺序都要稳定。告诉学生：字段用 <code>；</code> 分隔（全角），变量值直接嵌入，结尾的质量描述（真实摄影质感…）是固定文案。</p>
+
+  <h2>五、学生练习任务（对应 lesson4_prompt.py）</h2>
+  <ul>
+    <li><b>练习1（必做）：</b>给定 <code>name / selling_point / scene</code>，用 f-string 写出 <code>build_scene_prompt</code> 函数体，并输出一条提示词。</li>
+    <li><b>练习2（必做）：</b>用 <code>for</code> 循环遍历 <code>DEFAULT_SCENES</code>，为一商品批量生成三条场景提示词（巩固第2/3章循环）。</li>
+    <li><b>练习3（选做）：</b>把循环封装成 <code>make_all_prompts(name, selling_point)</code>，返回提示词列表。</li>
+  </ul>
+
+  <h2>六、常见错误与纠偏</h2>
+  <table>
+    <thead><tr><th>典型错误</th><th>后果</th><th>纠偏话术</th></tr></thead>
+    <tbody>
+      <tr><td>漏写 <code>f</code> 前缀，写成 <code>"场景={scene}"</code></td><td>输出字面量 <code>{scene}</code>，没替换</td><td>"忘记 f，花括号只是普通字符"</td></tr>
+      <tr><td>用 <code>+</code> 拼接却漏了空格/分号</td><td>字段粘连，模型读歪</td><td>"先写最终句子，再决定哪个词是变量"</td></tr>
+      <tr><td>字段顺序与母体不一致</td><td>综合阶段接回时解析错位</td><td>"顺序就是契约，今天定下综合阶段照用"</td></tr>
+      <tr><td>把 <code>DEFAULT_SCENES</code> 写成新名字</td><td>与 <code>manhua_studio.prompts</code> 对不上</td><td>"这个场景库名是母体定的，照搬"</td></tr>
+    </tbody>
+  </table>
+
+  <h2>七、验收三档（对照学生版构建指南验收口径）</h2>
+  <table>
+    <thead><tr><th>档位</th><th>达标标准</th></tr></thead>
+    <tbody>
+      <tr><td><span class="badge ok">合格</span></td><td>能写出 <code>build_scene_prompt</code>，输出字符串包含 <code>name / selling_point / scene</code> 三个变量值；练习1 跑通。</td></tr>
+      <tr><td><span class="badge warn">良好</span></td><td>用 f-string 实现（非 <code>+</code> 拼接）；练习2 循环批量生成三条提示词跑通。</td></tr>
+      <tr><td><span class="badge no">优秀</span></td><td>完成练习3 <code>make_all_prompts</code> 返回列表；能口头说明"这个函数综合阶段会被 S2 出图阶段直接调用"。</td></tr>
+    </tbody>
+  </table>
+
+  <h2>八、母体映射框（下课结语）</h2>
+  <div class="map">
+    <b>第4章下课：</b>"你写的 <code>build_scene_prompt</code> 就是综合案例构件2——拼提示词的那一步。综合阶段 S2 出图会直接调用它。第7章我们再把商品数据从写死的变量，换成从文件读进来的 SKU。"
+  </div>
+
+  <h2>九、与下一章衔接</h2>
+  <p>第 7 章（文件与数据格式）切片将引入 <code>parse_products_csv</code> / 商品数据结构：把本节课"写死在变量里"的 <code>name / selling_point</code> 改为从本地 CSV 读取，提示词照常调用本课的 <code>build_scene_prompt</code>——学生立刻看到"第4章零件被第7章复用"。</p>
+
+  <div class="foot">注：本教案与 <code>manhua章节切片映射方案.html</code>（总纲）、<code>manhua.py 学生版构建指南（V1-V5）</code>（综合任务书）配套使用。代码已通过"与 manhua_studio.prompts 输出逐字一致"自检。</div>
+</div>
+</body>
+</html>

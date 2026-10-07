@@ -1,0 +1,43 @@
+<Slide style={{ width: '1280px', height: '720px', background: '#FFFFFF', padding: 0 }}>
+  <Box style={{ height: 56, background: '#0E3F8C', flexDirection: 'row', alignItems: 'center', paddingLeft: 40, paddingRight: 40, justifyContent: 'space-between' }}>
+    <Text style={{ fontSize: 22, fontWeight: 'bold', color: '#FFFFFF' }}>母体函数：build_scene_prompt（与源码逐字一致）</Text>
+    <Text style={{ fontSize: 13, color: '#C7D6EE' }}>manhua.py 章节切片教学包</Text>
+  </Box>
+  <Box style={{ flex: 1, flexDirection: 'row', padding: '26px 40px', gap: 28 }}>
+    <Box style={{ width: 620, background: '#F0F5FC', border: '1px solid #D6DCE5', borderRadius: 12, padding: '18px 20px', flexDirection: 'column', gap: 12 }}>
+      <Text style={{ fontSize: 22, fontWeight: 'bold', color: '#0E3F8C' }}>本节课写的代码（母体）</Text>
+      <CodeBlock
+        code={`DEFAULT_SCENES = ["北欧客厅场景", "办公桌使用场景", "礼品盒包装场景"]
+
+def build_scene_prompt(name, selling_point, scene):
+    return (
+        f"将同一件商品原样放入以下场景，"
+        f"商品外观须与白底图完全一致、不可变形变色："
+        f"场景={scene}；商品名={name}；"
+        f"卖点={selling_point}；真实摄影质感，"
+        f"柔和自然光，主体突出，无文字、无水印、无其他无关物体"
+    )`}
+        language='python'
+        width={440}
+        fontSize={13}
+        theme='github-light'
+        background='#FFFFFF'
+      />
+    </Box>
+    <Box style={{ flex: 1, background: '#E8EFF8', border: '1px solid #3D7BD9', borderRadius: 12, padding: '22px 24px', flexDirection: 'column', gap: 14 }}>
+      <Text style={{ fontSize: 26, fontWeight: 'bold', color: '#0E3F8C' }}>为什么叫「母体」</Text>
+      <Text style={{ fontSize: 22, color: '#1A2230', lineHeight: 1.75 }}>
+        这个函数名、参数、输出，和 <span style={{ fontWeight: 'bold', color: '#1E4FA8' }}>manhua_studio/prompts.py</span> 里的 build_scene_prompt <span style={{ fontWeight: 'bold' }}>逐字相同</span>。
+      </Text>
+      <Text style={{ fontSize: 22, color: '#1A2230', lineHeight: 1.75 }}>
+        综合阶段学生不用重写，直接 <span style={{ fontWeight: 'bold', color: '#1E4FA8' }}>from manhua_studio.prompts import build_scene_prompt</span> 复用——<span style={{ fontWeight: 'bold' }}>零跳变</span>。
+      </Text>
+      <Text style={{ fontSize: 20, color: '#4A5568', lineHeight: 1.7 }}>
+        DEFAULT_SCENES 是默认场景库（S2 展开单元）：一张白底图 → 这几个场景各出一张。
+      </Text>
+    </Box>
+  </Box>
+  <Box style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: 34, flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end', paddingRight: 40 }}>
+    <Text style={{ fontSize: 14, color: '#1E4FA8' }}>06 / 09</Text>
+  </Box>
+</Slide>

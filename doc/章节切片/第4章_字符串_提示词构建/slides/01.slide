@@ -1,0 +1,14 @@
+<Slide style={{ width: '1280px', height: '720px', background: '#FFFFFF', padding: 0 }}>
+  <Box style={{ height: 10, background: '#0E3F8C' }} />
+  <Box style={{ flex: 1, flexDirection: 'column', justifyContent: 'center', padding: '0 90px', gap: 18 }}>
+    <Text style={{ fontSize: 15, color: '#1E4FA8', letterSpacing: 2, fontWeight: 'bold' }}>一级底座 · Python 课程改造</Text>
+    <Text style={{ fontSize: 52, fontWeight: 'bold', color: '#0E3F8C' }}>第4章切片 · 字符串 → 提示词构建</Text>
+    <Text style={{ fontSize: 24, color: '#4A5568' }}>manhua.py 章节切片教学包（构件2 · 提示词）</Text>
+    <Box style={{ height: 1, background: '#D6DCE5', marginTop: 8, marginBottom: 8 }} />
+    <Text style={{ fontSize: 18, color: '#8B97A8' }}>面向刚学完 if / for 的学生 · 零环境依赖 · 母体一致性</Text>
+  </Box>
+  <Box style={{ height: 56, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', padding: '0 90px', background: '#F0F5FC' }}>
+    <Text style={{ fontSize: 15, color: '#4A5568' }}>授课：张老师　|　课程：Python 基础</Text>
+    <Text style={{ fontSize: 15, color: '#4A5568' }}>2026 秋</Text>
+  </Box>
+</Slide>

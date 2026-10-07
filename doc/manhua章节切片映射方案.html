@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>manhua.py 章节切片映射方案</title>
+<style>
+  :root{ --blue:#0C447C; --amber:#854F0B; --ink:#2C2C2A; --mut:#5F5E5A; --line:#D3D1C7; --bg:#FFFFFF; }
+  *{ box-sizing:border-box; }
+  body{ font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif; color:var(--ink); background:#F1EFE8; margin:0; padding:32px 16px; line-height:1.65; }
+  .wrap{ max-width:920px; margin:0 auto; background:var(--bg); border:1px solid var(--line); border-radius:16px; padding:32px 40px; }
+  h1{ font-size:22px; color:var(--blue); margin:0 0 4px; }
+  .sub{ color:var(--mut); font-size:14px; margin:0 0 24px; }
+  h2{ font-size:17px; color:var(--blue); border-left:4px solid var(--blue); padding-left:10px; margin:30px 0 12px; }
+  h3{ font-size:15px; color:var(--amber); margin:18px 0 8px; }
+  p{ font-size:14px; margin:8px 0; }
+  ul{ font-size:14px; padding-left:20px; }
+  li{ margin:6px 0; }
+  .tags span{ display:inline-block; font-size:12px; color:#fff; background:var(--blue); border-radius:6px; padding:3px 9px; margin-right:6px; }
+  .key{ background:#FAEEDA; border:1px solid #FAC775; border-radius:10px; padding:14px 16px; font-size:14px; margin:14px 0; }
+  .key b{ color:var(--amber); }
+  table{ width:100%; border-collapse:collapse; margin:14px 0; font-size:13px; }
+  th,td{ border:1px solid var(--line); padding:9px 10px; text-align:left; vertical-align:top; }
+  th{ background:#E6F1FB; color:var(--blue); font-weight:500; }
+  tr:nth-child(even) td{ background:#F7F8FA; }
+  .map{ background:#E6F1FB; border-left:4px solid var(--blue); border-radius:0 10px 10px 0; padding:12px 16px; margin:12px 0; font-size:13px; }
+  .badge{ display:inline-block; font-size:12px; padding:2px 8px; border-radius:6px; }
+  .ok{ background:#EAF3DE; color:#27500A; border:1px solid #97C459; }
+  .no{ background:#FCEBEB; color:#791F1F; border:1px solid #F09595; }
+  code{ background:#F1EFE8; padding:1px 5px; border-radius:4px; font-size:12px; }
+  .foot{ color:var(--mut); font-size:12px; margin-top:28px; border-top:1px solid var(--line); padding-top:12px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>manhua.py 章节切片映射方案</h1>
+  <p class="sub">一级底座 · Python 课程改造 · 综合案例切片总纲（配套学生版构建指南 V1–V5）</p>
+  <div class="tags"><span>螺旋式课程</span><span>母体一致性</span><span>零环境依赖</span></div>
+
+  <h2>一、为什么切片</h2>
+  <p>manhua.py 是课程综合体，但 V1 一起步就同时踩到：<b>文件读写 + HTTP 请求 + base64 编码 + 环境变量 + 异常处理</b>。刚学完 <code>if</code>/<code>for</code> 的学生直接上，会被一堆陌生符号淹没——他不是不会分支循环，是认知过载。</p>
+  <p>解法对应两个经典原理：<b>螺旋式课程设计</b>（Bruner，同一母体的复杂度逐轮上升）与<b>认知负荷控制</b>（Sweller，每步只叠加一个新技术点）。本方案把综合案例按 Python 课程章节切成微案例，最后再组装。</p>
+
+  <h2>二、三条硬约束（贯穿所有切片）</h2>
+
+  <h3>1. 母体一致性（成败关键）</h3>
+  <p>切片里写的函数名 / 变量名 / 类，<b>必须和最终 <code>manhua_studio</code> 里一致</b>：</p>
+  <ul>
+    <li>第 4 章写 <code>build_scene_prompt(name, selling_point, scene)</code></li>
+    <li>第 7 章写 <code>parse_products_csv</code> / 商品数据结构</li>
+    <li>面向对象章写 <code>class Product</code>（含 <code>.score</code> 方法）</li>
+  </ul>
+  <p>这些名字在综合阶段<b>原样复用</b>。反面教训：切片里随便起名、综合阶段又换一套 → 等于白切片，学生面对的是另一套陌生代码。</p>
+  <div class="key"><b>对齐说明：</b>真实母体 <code>manhua_studio/prompts.py</code> （master 完好）已定义 <code>build_scene_prompt(name, selling_point, scene)</code> 与 <code>DEFAULT_SCENES</code>（V2 引入提示词、V3 加平台规范）。第 4 章切片即<b>逐字复刻</b>此函数，综合阶段学生直接从 <code>manhua_studio.prompts</code> import 同名函数，零跳变。（此前误判"V5 删除 prompts.py"系工作树曾 detached 在 v1 所致，v1 本就无 prompts.py。）</div>
+
+  <h3>2. 零环境依赖（切片阶段）</h3>
+  <p>第 4 章纯字符串、第 7 章用<b>本地假 SKU 数据</b>，都不要求配 key / 联网。真实的 <code>requests</code> API 调用 + <code>.env</code> 密钥，<b>全推到综合阶段</b>。这正好把"V1 涉及 HTTP/文件/key 认知重"的痛点整个挪到最后一关。</p>
+
+  <h3>3. 切片不碎</h3>
+  <p>每个切片末尾加一个「母体映射」框，显式说清"这个练习 = 综合案例里的构件 X"，保持全局感，否则切片变散沙。</p>
+
+  <h2>三、四台阶映射表</h2>
+  <table>
+    <thead><tr><th>章节</th><th>切片（母体构件）</th><th>任务（学生写什么）</th><th>新技术点</th><th>预埋落点（与最终代码同名）</th><th>零依赖</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>第 4 章<br>字符串</td>
+        <td><b>构件 2</b><br>提示词构建</td>
+        <td>给定 <code>name / selling_point / scene</code>，用 f-string 拼出给画图模型的提示词字符串</td>
+        <td>仅字符串运算（不调 API）</td>
+        <td><code>build_scene_prompt(name, selling_point, scene)</code></td>
+        <td><span class="badge ok">✓ 纯字符串</span></td>
+      </tr>
+      <tr>
+        <td>第 7 章<br>文件与数据</td>
+        <td><b>构件 0</b> 需求解析<br>+ <b>构件 6</b> 商品数据</td>
+        <td>读本地 SKU（CSV/JSON）→ 解析成字段；把提示词 / 结果写回 JSON</td>
+        <td>文件读写 + JSON/CSV 解析（仍不联网）</td>
+        <td><code>parse_products_csv</code> / 商品数据结构</td>
+        <td><span class="badge ok">✓ 本地文件</span></td>
+      </tr>
+      <tr>
+        <td>面向对象章</td>
+        <td><b>构件 6</b> Product 类<br>+ 模块封装</td>
+        <td>把商品数据从 dict 升级为 <code>class Product</code>；函数收进模块 / 包</td>
+        <td>类 / 对象 / 封装 / 方法</td>
+        <td><code>class Product</code>（含 <code>.score</code> 方法）</td>
+        <td><span class="badge ok">✓ 不联网</span></td>
+      </tr>
+      <tr>
+        <td>综合案例<br>（面向对象后）</td>
+        <td><b>V1→V5</b><br>全管线</td>
+        <td>S1 去底 + S2 场景 + S0 识别 + V3 商品页 + V5 工程化（从空包一步步写出，对照 GitHub v1–v5 范本）</td>
+        <td>HTTP(requests) + .env(key) + 异常/重试 + 包结构</td>
+        <td>整包 <code>manhua_studio</code>；切片 1–3 的零件在此组装</td>
+        <td><span class="badge no">✗ 此处才需 key/联网</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>四、每台阶「母体映射」话术示例</h2>
+  <div class="map"><b>第 4 章下课：</b>"你写的 <code>build_scene_prompt</code> 就是综合案例里拼提示词的那一步——到时候它会被 S2 出图直接调用。"</div>
+  <div class="map"><b>第 7 章下课：</b>"你解析的 SKU、写的 JSON，就是综合案例构件 0 / 构件 6 的输入输出格式。"</div>
+  <div class="map"><b>面向对象章下课：</b>"你这个 <code>Product</code> 类，综合案例里要带 <code>.score</code> 方法做质检。"</div>
+
+  <h2>五、与现有文档的关系</h2>
+  <ul>
+    <li><b>本方案</b>：切片阶段的总纲（各章节微案例怎么切、命名怎么对齐）。</li>
+    <li><code>manhua.py 学生版构建指南（V1-V5）</code>：综合阶段的总任务书（从空包一步步写出完整管线，GitHub v1–v5 仅作范本对照）。</li>
+    <li><code>V1-V5 工程演进教学 PPT</code>：老师的教案（每版教什么、备课、验收三档）。</li>
+  </ul>
+  <p>三者互补：本方案管"切片怎么切"，学生指南管"综合怎么写"，PPT 管"老师怎么教"。</p>
+
+  <div class="foot">注：本方案为总纲，各切片的具体教案 / 学生练习另写。构件编号沿用教学侧「十一个构件（0–10）」定义表，已与 V5 源码注释对齐。</div>
+</div>
+</body>
+</html>

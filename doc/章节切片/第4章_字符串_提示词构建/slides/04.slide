@@ -1,0 +1,29 @@
+<Slide style={{ width: '1280px', height: '720px', background: '#FFFFFF', padding: 0 }}>
+  <Box style={{ height: 56, background: '#0E3F8C', flexDirection: 'row', alignItems: 'center', paddingLeft: 40, paddingRight: 40, justifyContent: 'space-between' }}>
+    <Text style={{ fontSize: 22, fontWeight: 'bold', color: '#FFFFFF' }}>学习目标：知识 / 能力 / 素养</Text>
+    <Text style={{ fontSize: 13, color: '#C7D6EE' }}>manhua.py 章节切片教学包</Text>
+  </Box>
+  <Box style={{ flex: 1, flexDirection: 'row', padding: '30px 40px', gap: 26 }}>
+    <Box style={{ flex: 1, background: '#F0F5FC', border: '1px solid #D6DCE5', borderRadius: 12, padding: '22px 24px', flexDirection: 'column', gap: 12 }}>
+      <Text style={{ fontSize: 26, fontWeight: 'bold', color: '#0E3F8C' }}>知识</Text>
+      <Text style={{ fontSize: 22, color: '#1A2230', lineHeight: 1.75 }}>
+        掌握 f-string 拼装字符串的写法；理解字符串是不可变序列这一特性；能区分 f-string、『+』拼接、『.format()』三种方式，并说明各自适用场景——变量多时优先 f-string，既可读又不易漏字段。
+      </Text>
+    </Box>
+    <Box style={{ flex: 1, background: '#E8EFF8', border: '1px solid #3D7BD9', borderRadius: 12, padding: '22px 24px', flexDirection: 'column', gap: 12 }}>
+      <Text style={{ fontSize: 26, fontWeight: 'bold', color: '#0E3F8C' }}>能力</Text>
+      <Text style={{ fontSize: 22, color: '#1A2230', lineHeight: 1.75 }}>
+        能把『给画图模型的提示词』这一真实需求，拆成一个带参数的纯函数 build_scene_prompt；掌握用 for 循环遍历场景库批量生成提示词；学有余力时把循环封装为返回列表的函数。
+      </Text>
+    </Box>
+    <Box style={{ flex: 1, background: '#F0F5FC', border: '1px solid #D6DCE5', borderRadius: 12, padding: '22px 24px', flexDirection: 'column', gap: 12 }}>
+      <Text style={{ fontSize: 26, fontWeight: 'bold', color: '#0E3F8C' }}>素养</Text>
+      <Text style={{ fontSize: 22, color: '#1A2230', lineHeight: 1.75 }}>
+        建立『字符串是人与 AI 模型之间的契约语言』这一观念——你写出的每个字都会原样交给模型。养成字段顺序稳定、标点规范、变量值完整的好习惯，为综合阶段接回管线打底。
+      </Text>
+    </Box>
+  </Box>
+  <Box style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: 34, flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end', paddingRight: 40 }}>
+    <Text style={{ fontSize: 14, color: '#1E4FA8' }}>04 / 09</Text>
+  </Box>
+</Slide>

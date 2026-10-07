@@ -1,0 +1,38 @@
+<Slide style={{ width: '1280px', height: '720px', background: '#FFFFFF', padding: 0 }}>
+  <Box style={{ height: 56, background: '#0E3F8C', flexDirection: 'row', alignItems: 'center', paddingLeft: 40, paddingRight: 40, justifyContent: 'space-between' }}>
+    <Text style={{ fontSize: 22, fontWeight: 'bold', color: '#FFFFFF' }}>为什么切片：把综合案例拆到学生够得着的高度</Text>
+    <Text style={{ fontSize: 13, color: '#C7D6EE' }}>manhua.py 章节切片教学包</Text>
+  </Box>
+  <Box style={{ flex: 1, flexDirection: 'row', padding: '30px 40px', gap: 28 }}>
+    <Box style={{ flex: 1, background: '#F0F5FC', border: '1px solid #D6DCE5', borderRadius: 12, padding: '22px 24px', flexDirection: 'column', gap: 14 }}>
+      <Box style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
+        <Box style={{ background: '#D9534F', borderRadius: 6, padding: '4px 10px' }}>
+          <Text style={{ fontSize: 16, fontWeight: 'bold', color: '#FFFFFF' }}>痛点</Text>
+        </Box>
+        <Text style={{ fontSize: 22, fontWeight: 'bold', color: '#0E3F8C' }}>一步到位太重</Text>
+      </Box>
+      <Text style={{ fontSize: 23, color: '#1A2230', lineHeight: 1.7 }}>
+        manhua.py 是综合案例，但 V1 一起步就同时踩到 <span style={{ fontWeight: 'bold', color: '#D9534F' }}>文件读写 + HTTP 请求 + base64 编码 + 环境变量 + 异常处理</span>。刚学完 if / for 的学生直接上，会被一堆陌生符号淹没——他不是不会分支循环，是认知过载。
+      </Text>
+    </Box>
+    <Box style={{ flex: 1, background: '#E8EFF8', border: '1px solid #3D7BD9', borderRadius: 12, padding: '22px 24px', flexDirection: 'column', gap: 14 }}>
+      <Box style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
+        <Box style={{ background: '#1E4FA8', borderRadius: 6, padding: '4px 10px' }}>
+          <Text style={{ fontSize: 16, fontWeight: 'bold', color: '#FFFFFF' }}>解法</Text>
+        </Box>
+        <Text style={{ fontSize: 22, fontWeight: 'bold', color: '#0E3F8C' }}>切片到够得着</Text>
+      </Box>
+      <Text style={{ fontSize: 23, color: '#1A2230', lineHeight: 1.7 }}>
+        按 Python 课程章节把综合案例切成微案例，<span style={{ fontWeight: 'bold', color: '#1E4FA8' }}>每步只叠加一个新技术点</span>。第4章只学字符串拼提示词，零依赖；文件、HTTP、key 全推到最后一关。学生一路都在复用同一套母体零件。
+      </Text>
+    </Box>
+  </Box>
+  <Box style={{ margin: '0 40px 40px 40px', background: '#0E3F8C', borderRadius: 10, padding: '16px 22px' }}>
+    <Text style={{ fontSize: 20, color: '#FFFFFF', lineHeight: 1.6 }}>
+      原理支撑：<span style={{ fontWeight: 'bold' }}>Bruner 螺旋式课程</span>（同一母体复杂度逐轮上升） + <span style={{ fontWeight: 'bold' }}>Sweller 认知负荷控制</span>（每步只加一个新点）。
+    </Text>
+  </Box>
+  <Box style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: 34, flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end', paddingRight: 40 }}>
+    <Text style={{ fontSize: 14, color: '#1E4FA8' }}>03 / 09</Text>
+  </Box>
+</Slide>
