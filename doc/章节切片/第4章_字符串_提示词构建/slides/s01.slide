@@ -1,0 +1,13 @@
+<Slide style={{ width: '1280px', height: '720px', background: '#FFFFFF', padding: 0 }}>
+  <Box style={{ height: 72, background: '#0E3F8C', flexDirection: 'row', alignItems: 'center', paddingLeft: 40 }}>
+    <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#FFFFFF' }}>第4章 · 案例实训</Text>
+  </Box>
+  <Box style={{ flex: 1, flexDirection: 'column', justifyContent: 'center', padding: '0 72px', gap: 22 }}>
+    <Text style={{ fontSize: 46, fontWeight: 'bold', color: '#0E3F8C' }}>用字符串拼出 AI 出图提示词</Text>
+    <Text style={{ fontSize: 22, color: '#475569' }}>manhua 综合案例 · 第4章切片（字符串）</Text>
+    <Text style={{ fontSize: 16, color: '#64748B' }}>学完原教材本章后，用这份实训单完成案例编码</Text>
+  </Box>
+  <Box style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: 34, flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end', paddingRight: 40 }}>
+    <Text style={{ fontSize: 14, color: '#1E4FA8' }}>01 / 09</Text>
+  </Box>
+</Slide>

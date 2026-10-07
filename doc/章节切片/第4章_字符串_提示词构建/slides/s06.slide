@@ -1,0 +1,18 @@
+<Slide style={{ width: '1280px', height: '720px', background: '#FFFFFF', padding: 0 }}>
+  <Box style={{ height: 56, background: '#0E3F8C', flexDirection: 'row', alignItems: 'center', paddingLeft: 40 }}>
+    <Text style={{ fontSize: 20, fontWeight: 'bold', color: '#FFFFFF' }}>任务二 · 批量提示词（必做）</Text>
+  </Box>
+  <Box style={{ flex: 1, flexDirection: 'column', justifyContent: 'center', padding: '0 64px', gap: 16 }}>
+    <Text style={{ fontSize: 17, color: '#334155' }}>用 <b>for</b> 循环遍历 <code style={{ background:'#EEF2F7', padding:'1px 6px', borderRadius:4 }}>DEFAULT_SCENES</code>，</Text>
+    <Text style={{ fontSize: 17, color: '#334155' }}>为每一个场景各生成一条提示词并打印。</Text>
+    <Box style={{ background: '#F0F5FC', border: '1px solid #D6DCE5', borderRadius: 12, padding: '16px 20px', flexDirection: 'column', gap: 6 }}>
+      <Text style={{ fontSize: 16, color: '#334155' }}>提示写法：</Text>
+      <Text style={{ fontSize: 16, color: '#0E3F8C' }}>  for scene in DEFAULT_SCENES:</Text>
+      <Text style={{ fontSize: 16, color: '#0E3F8C' }}>      print(build_scene_prompt(name, sp, scene))</Text>
+    </Box>
+    <Text style={{ fontSize: 17, color: '#334155' }}>自检：控制台应输出 <b>3 条</b> 提示词，每条场景不同。</Text>
+  </Box>
+  <Box style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: 34, flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end', paddingRight: 40 }}>
+    <Text style={{ fontSize: 14, color: '#1E4FA8' }}>06 / 09</Text>
+  </Box>
+</Slide>

@@ -1,0 +1,17 @@
+<Slide style={{ width: '1280px', height: '720px', background: '#FFFFFF', padding: 0 }}>
+  <Box style={{ height: 56, background: '#0E3F8C', flexDirection: 'row', alignItems: 'center', paddingLeft: 40 }}>
+    <Text style={{ fontSize: 20, fontWeight: 'bold', color: '#FFFFFF' }}>任务一 · 单条提示词（必做）</Text>
+  </Box>
+  <Box style={{ flex: 1, flexDirection: 'column', justifyContent: 'center', padding: '0 64px', gap: 16 }}>
+    <Box style={{ background: '#F0F5FC', border: '1px solid #D6DCE5', borderRadius: 12, padding: '16px 20px', flexDirection: 'column', gap: 6 }}>
+      <Text style={{ fontSize: 16, color: '#334155' }}>给定：</Text>
+      <Text style={{ fontSize: 16, color: '#0E3F8C' }}>  name = "青瓷茶漏"</Text>
+      <Text style={{ fontSize: 16, color: '#0E3F8C' }}>  selling_point = "过滤细腻，不挂茶渍"</Text>
+    </Box>
+    <Text style={{ fontSize: 17, color: '#334155' }}>要求：用 f-string 拼出提示词并打印（场景先用 "北欧客厅场景"）。</Text>
+    <Text style={{ fontSize: 17, color: '#334155' }}>自检：输出里必须包含 <b>场景 / 商品 / 卖点</b> 三要素。</Text>
+  </Box>
+  <Box style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: 34, flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end', paddingRight: 40 }}>
+    <Text style={{ fontSize: 14, color: '#1E4FA8' }}>05 / 09</Text>
+  </Box>
+</Slide>

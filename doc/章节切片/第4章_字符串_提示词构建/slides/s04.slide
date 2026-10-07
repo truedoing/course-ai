@@ -1,0 +1,29 @@
+<Slide style={{ width: '1280px', height: '720px', background: '#FFFFFF', padding: 0 }}>
+  <Box style={{ height: 56, background: '#0E3F8C', flexDirection: 'row', alignItems: 'center', paddingLeft: 40 }}>
+    <Text style={{ fontSize: 20, fontWeight: 'bold', color: '#FFFFFF' }}>母体函数（你直接用的代码）</Text>
+  </Box>
+  <Box style={{ flex: 1, flexDirection: 'column', justifyContent: 'center', padding: '0 64px', gap: 16 }}>
+    <CodeBlock
+      code={`DEFAULT_SCENES = [
+    "北欧客厅场景",
+    "办公桌使用场景",
+    "礼品盒包装场景",
+]
+
+def build_scene_prompt(name, selling_point, scene):
+    return (
+        f"将同一件商品原样放入以下场景，"
+        f"外观须与白底图一致："
+        f"场景={scene}；商品={name}；"
+        f"卖点={selling_point}；真实摄影质感"
+    )`}
+      language='python'
+      width={640}
+      fontSize={16}
+    />
+    <Text style={{ fontSize: 15, color: '#64748B' }}>这就是期末综合项目里用的函数，现在照着写 / 理解它，后面直接复用，不用改。</Text>
+  </Box>
+  <Box style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: 34, flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end', paddingRight: 40 }}>
+    <Text style={{ fontSize: 14, color: '#1E4FA8' }}>04 / 09</Text>
+  </Box>
+</Slide>

@@ -59,7 +59,7 @@
   <h3>3. 切片不碎</h3>
   <p>每个切片末尾加一个「母体映射」框，显式说清"这个练习 = 综合案例里的构件 X"，保持全局感，否则切片变散沙。</p>
 
-  <h2>三、四台阶映射表</h2>
+  <h2>三、章节映射表（按教材顺序）</h2>
   <table>
     <thead><tr><th>章节</th><th>切片（母体构件）</th><th>任务（学生写什么）</th><th>新技术点</th><th>预埋落点（与最终代码同名）</th><th>零依赖</th></tr></thead>
     <tbody>
@@ -70,6 +70,22 @@
         <td>仅字符串运算（不调 API）</td>
         <td><code>build_scene_prompt(name, selling_point, scene)</code></td>
         <td><span class="badge ok">✓ 纯字符串</span></td>
+      </tr>
+      <tr>
+        <td>第 5 章<br>列表 / 字典</td>
+        <td><b>构件 6</b> 商品数据<br>（铺垫）</td>
+        <td>用字典描述一个商品（name / selling_point / scene）；用列表管理多个场景 / 多个商品</td>
+        <td>列表 / 字典 / 遍历（教材正常讲，此处仅挂轻量切片）</td>
+        <td>商品数据结构（字段与综合阶段 <code>class Product</code> 对齐）</td>
+        <td><span class="badge ok">✓ 纯数据</span></td>
+      </tr>
+      <tr>
+        <td>第 6 章<br>函数</td>
+        <td><b>构件 2</b> 提示词<br>（成形）</td>
+        <td>把第 4 章的拼接逻辑封装成 <code>build_scene_prompt(name, selling_point, scene)</code> 函数</td>
+        <td>函数定义 / 参数 / 返回值</td>
+        <td><code>build_scene_prompt(name, selling_point, scene)</code></td>
+        <td><span class="badge ok">✓ 纯函数</span></td>
       </tr>
       <tr>
         <td>第 7 章<br>文件与数据</td>
@@ -98,7 +114,9 @@
     </tbody>
   </table>
 
-  <h2>四、每台阶「母体映射」话术示例</h2>
+    <div class="key"><b>关于顺序：</b>上表按教材章节<b>逐章顺延</b>（4→5→6→7→面向对象→综合）。原草稿只标了 manhua 构件首次出现的章节（4 / 7 / 面向对象 / 综合），易让人误以为 5、6 章被跳过——其实 5（列表/字典）、6（函数）是教材正常讲授的"胶水章"，此处仅挂轻量切片（5 章管商品数据结构、6 章正式封装 <code>build_scene_prompt</code>），且第 4 章切片已预习性用到函数与列表。</div>
+
+<h2>四、每台阶「母体映射」话术示例</h2>
   <div class="map"><b>第 4 章下课：</b>"你写的 <code>build_scene_prompt</code> 就是综合案例里拼提示词的那一步——到时候它会被 S2 出图直接调用。"</div>
   <div class="map"><b>第 7 章下课：</b>"你解析的 SKU、写的 JSON，就是综合案例构件 0 / 构件 6 的输入输出格式。"</div>
   <div class="map"><b>面向对象章下课：</b>"你这个 <code>Product</code> 类，综合案例里要带 <code>.score</code> 方法做质检。"</div>

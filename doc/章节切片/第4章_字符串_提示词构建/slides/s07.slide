@@ -1,0 +1,20 @@
+<Slide style={{ width: '1280px', height: '720px', background: '#FFFFFF', padding: 0 }}>
+  <Box style={{ height: 56, background: '#0E3F8C', flexDirection: 'row', alignItems: 'center', paddingLeft: 40 }}>
+    <Text style={{ fontSize: 20, fontWeight: 'bold', color: '#FFFFFF' }}>任务三 · 封装成函数（进阶选做）</Text>
+  </Box>
+  <Box style={{ flex: 1, flexDirection: 'column', justifyContent: 'center', padding: '0 64px', gap: 16 }}>
+    <Text style={{ fontSize: 17, color: '#334155' }}>把任务一的拼接写成函数：</Text>
+    <CodeBlock
+      code={`def build_scene_prompt(name, selling_point, scene):
+    return f"场景={scene}；商品={name}；卖点={selling_point}"`}
+      language='python'
+      width={560}
+      fontSize={16}
+    />
+    <Text style={{ fontSize: 17, color: '#334155' }}>对比你写的函数和幻灯片 04 的母体函数，输出是否一致？</Text>
+    <Text style={{ fontSize: 15, color: '#64748B' }}>一致就说明你已经掌握「把一段逻辑封装成可复用函数」。</Text>
+  </Box>
+  <Box style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: 34, flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end', paddingRight: 40 }}>
+    <Text style={{ fontSize: 14, color: '#1E4FA8' }}>07 / 09</Text>
+  </Box>
+</Slide>

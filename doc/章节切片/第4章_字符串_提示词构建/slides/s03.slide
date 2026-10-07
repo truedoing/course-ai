@@ -1,0 +1,37 @@
+<Slide style={{ width: '1280px', height: '720px', background: '#FFFFFF', padding: 0 }}>
+  <Box style={{ height: 56, background: '#0E3F8C', flexDirection: 'row', alignItems: 'center', paddingLeft: 40 }}>
+    <Text style={{ fontSize: 20, fontWeight: 'bold', color: '#FFFFFF' }}>你要用的知识（参考）</Text>
+  </Box>
+  <Box style={{ flex: 1, flexDirection: 'row', padding: '40px 56px', gap: 40 }}>
+    <Box style={{ flex: 1, flexDirection: 'column', gap: 12 }}>
+      <Text style={{ fontSize: 18, fontWeight: 'bold', color: '#1E4FA8' }}>① 字符串格式化</Text>
+      <CodeBlock
+        code={`# 写法一：拼接（易漏空格/分号）
+p = "场景=" + scene + "；商品=" + name
+
+# 写法二：f-string（推荐）
+p = f"场景={scene}；商品={name}"`}
+        language='python'
+        width={500}
+        fontSize={15}
+      />
+    </Box>
+    <Box style={{ flex: 1, flexDirection: 'column', gap: 12 }}>
+      <Text style={{ fontSize: 18, fontWeight: 'bold', color: '#1E4FA8' }}>② 列表与循环</Text>
+      <CodeBlock
+        code={`# 场景列表
+scenes = ["客厅", "办公桌", "礼盒"]
+
+# 遍历每个场景
+for s in scenes:
+    print(build_prompt(name, sp, s))`}
+        language='python'
+        width={500}
+        fontSize={15}
+      />
+    </Box>
+  </Box>
+  <Box style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: 34, flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end', paddingRight: 40 }}>
+    <Text style={{ fontSize: 14, color: '#1E4FA8' }}>03 / 09</Text>
+  </Box>
+</Slide>

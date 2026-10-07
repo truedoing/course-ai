@@ -1,0 +1,15 @@
+<Slide style={{ width: '1280px', height: '720px', background: '#FFFFFF', padding: 0 }}>
+  <Box style={{ height: 56, background: '#0E3F8C', flexDirection: 'row', alignItems: 'center', paddingLeft: 40 }}>
+    <Text style={{ fontSize: 20, fontWeight: 'bold', color: '#FFFFFF' }}>完成自检清单</Text>
+  </Box>
+  <Box style={{ flex: 1, flexDirection: 'column', justifyContent: 'center', padding: '0 64px', gap: 16 }}>
+    <Text style={{ fontSize: 18, color: '#334155' }}>☐ 任务一能运行，输出含 场景 / 商品 / 卖点 三要素</Text>
+    <Text style={{ fontSize: 18, color: '#334155' }}>☐ 任务二输出 3 条提示词，场景各不相同</Text>
+    <Text style={{ fontSize: 18, color: '#334155' }}>☐ 没有把 f-string 写成普通字符串（花括号被替换）</Text>
+    <Text style={{ fontSize: 18, color: '#334155' }}>☐ （选做）任务三函数与母体函数输出一致</Text>
+    <Text style={{ fontSize: 15, color: '#64748B' }}>全部打勾 = 本章切片完成。下一步（第7章）会把这些提示词存进文件、读商品表。</Text>
+  </Box>
+  <Box style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: 34, flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end', paddingRight: 40 }}>
+    <Text style={{ fontSize: 14, color: '#1E4FA8' }}>09 / 09</Text>
+  </Box>
+</Slide>
