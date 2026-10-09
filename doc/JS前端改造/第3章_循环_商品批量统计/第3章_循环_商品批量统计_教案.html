@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第3章 循环·商品批量统计 · 教案（教师版）</title>
+<style>
+  :root { --navy:#0E3F8C; --blue:#F0F5FC; --ink:#1f2733; --line:#d8e2f2; --warn:#b8860b; }
+  * { box-sizing:border-box; }
+  body { font-family: "Microsoft YaHei","PingFang SC",sans-serif; color:var(--ink); margin:0; background:#fafbfd; line-height:1.7; }
+  header { background:var(--navy); color:#fff; padding:18px 28px; }
+  header h1 { margin:0; font-size:22px; }
+  header p { margin:4px 0 0; opacity:.85; font-size:13px; }
+  main { max-width:920px; margin:0 auto; padding:24px 28px 60px; }
+  h2 { color:var(--navy); border-left:6px solid var(--navy); padding-left:10px; margin-top:34px; font-size:18px; }
+  h3 { color:#234; font-size:15px; margin:18px 0 6px; }
+  table { width:100%; border-collapse:collapse; margin:10px 0; font-size:14px; }
+  th,td { border:1px solid var(--line); padding:8px 10px; vertical-align:top; }
+  th { background:var(--blue); text-align:left; }
+  .card { background:#fff; border:1px solid var(--line); border-radius:8px; padding:14px 16px; margin:12px 0; }
+  .code { background:#0f172a; color:#e2e8f0; padding:12px 14px; border-radius:8px; font-family:"Cascadia Code",Consolas,monospace; font-size:13px; overflow-x:auto; white-space:pre; }
+  .warn { background:#fff8e6; border:1px solid #f0d488; border-radius:8px; padding:12px 16px; margin:12px 0; color:#7a5a00; }
+  .good { background:#eafaf0; border:1px solid #a8dcb8; border-radius:8px; padding:12px 16px; margin:12px 0; color:#1f6b3a; }
+  .meta { display:flex; flex-wrap:wrap; gap:8px; margin:8px 0 0; }
+  .tag { background:var(--blue); color:var(--navy); padding:3px 10px; border-radius:20px; font-size:12px; }
+  ul,ol { padding-left:22px; } li { margin:4px 0; }
+</style>
+</head>
+<body>
+<header>
+  <h1>第3章 · 循环 / 数组 → 商品批量统计</h1>
+  <p>JS 前端课程 AI 原生改造 · 项目三切片（教材项目三：成绩单·循环）｜ 教师版教案（含教学设计）</p>
+</header>
+<main>
+
+  <div class="meta">
+    <span class="tag">学时：2 学时（连排）</span>
+    <span class="tag">载体：某某小店模板（js-course）</span>
+    <span class="tag">母体函数：aggregate(products)</span>
+    <span class="tag">前序：项目一/二已讲</span>
+  </div>
+
+  <div class="warn">
+    <b>⏱ 课堂时间现实（来自 Python 课实测）：</b>装 git / 注册 / fork / clone 全流程顺利走完已耗费大量课堂时间，
+    本章<b>正课内容只能「先看一下」</b>，细讲顺延下节课。因此：本堂课目标 = ①完成 git 闭环 ②让同学看懂 aggregate 雏形并跑通自检；
+    完整讲解、练习、变式放到下节课。学生版材料已做成可独立自学。
+  </div>
+
+  <h2>一、教学目标</h2>
+  <table>
+    <tr><th>维度</th><th>目标</th></tr>
+    <tr><td>知识</td><td>for / for...of / while 三种循环；数组 length、索引、遍历；累加器模式；用对象做分组计数；极值与均值。</td></tr>
+    <tr><td>能力</td><td>独立写出 <code>aggregate(products)</code>，从商品数组算出种类 / 库存 / 分类 / 最贵最便宜 / 均价；把结果渲染到首页统计条。</td></tr>
+    <tr><td>素养</td><td>理解「一次写好、处处复用」的母体一致性；习惯「先跑通自检再提交」的 AI 落地执行者工作流。</td></tr>
+  </table>
+
+  <h2>二、重难点</h2>
+  <ul>
+    <li><b>重点</b>：循环遍历数组 + 累加器（sum / count）；分组统计（对象当计数桶）。</li>
+    <li><b>难点</b>：① 对象当桶时「桶不存在先给 0」(cats[c] || 0)；② 极值初始值设 ±Infinity 而非 0；③ 均价四舍五入保留两位。</li>
+    <li><b>易错</b>：while 忘记自增 → 死循环；混淆 <code>stock</code>（库存）与 <code>price</code>（价格）。</li>
+  </ul>
+
+  <h2>三、教学过程（时间分配以 git 已顺完为前提；若未顺完，跳过演示直接布置自学）</h2>
+  <table>
+    <tr><th>环节</th><th>时长</th><th>内容与教学设计</th></tr>
+    <tr><td>① git 闭环收尾</td><td>随堂</td><td>确认每位同学已 fork→clone 模板、改店名/商品、push 成功并看到自己的小店。这是「可视化闭环成果感」的关键，优先级最高。</td></tr>
+    <tr><td>② 导入（1 分钟）</td><td>1'</td><td>提问：首页那条统计条（商品种类 / 库存 / 分类）怎么算出来的？引出「要遍历每一条商品 → 循环」。</td></tr>
+    <tr><td>③ 三种循环（精讲）</td><td>8'</td><td>用库存总和一个例子，分别写 for / for...of / while，强调结果等价、写法不同。板书三版代码。</td></tr>
+    <tr><td>④ 分组统计（难点突破）</td><td>6'</td><td>演示「对象当计数桶」：cats[c] = (cats[c]||0)+1。对比「写 5 个 if 判断分类」的低效写法。</td></tr>
+    <tr><td>⑤ 母体函数 aggregate（演示）</td><td>6'</td><td>把上面串成 <code>aggregate(products)</code>，强调<b>函数名/签名全程不变</b>，期末综合案例直接复用。</td></tr>
+    <tr><td>⑥ 学生跑通 + 自检</td><td>余下</td><td>打开切片代码，node 跑一遍，看到「✅ 自检通过」。改 1 个商品数据，自检仍通过 → 理解「数据驱动」。</td></tr>
+    <tr><td>⑦ 收尾 & 顺延预告</td><td>2'</td><td>讲清：今天先看懂 + 跑通；<b>完整练习、变式、渲染到页面放到下节课</b>。课后按《作业说明》自己写。</td></tr>
+  </table>
+
+  <h2>四、核心代码（板书 / 投影）</h2>
+  <div class="code">// 母体函数：与期末综合案例（项目七 renderProducts 数据驱动渲染汇合处）同名同签名
+function aggregate(list) {
+  const r = { total:list.length, stockSum:0, priceSum:0, cats:{},
+              maxPrice:-Infinity, minPrice:Infinity };
+  for (const p of list) {
+    r.stockSum += p.stock;
+    r.priceSum += p.price;
+    r.cats[p.category] = (r.cats[p.category] || 0) + 1;
+    if (p.price > r.maxPrice) r.maxPrice = p.price;
+    if (p.price < r.minPrice) r.minPrice = p.price;
+  }
+  r.catCount = Object.keys(r.cats).length;
+  r.avgPrice = Math.round(r.priceSum / r.total * 100) / 100;
+  return r;
+}</div>
+
+  <h2>五、验收三档（对照「硬交付物」评分）</h2>
+  <table>
+    <tr><th>档位</th><th>标准</th></tr>
+    <tr><td>★ 合格</td><td>切片代码 node 跑通、自检通过；能口头说出 for / for...of / while 区别。</td></tr>
+    <tr><td>★★ 良好</td><td>新建 <code>products.js</code> 数据文件、把 aggregate 接到首页统计条（替换写死的静态数字），浏览器打开能看到真实数字；提交到自己的 fork。</td></tr>
+    <tr><td>★★★ 优秀</td><td>额外算出「各分类明细 / 均价」并渲染；写一份 ≤200 字操作手册（截图画圈 + 三步说明），体现交付表达。</td></tr>
+  </table>
+
+  <h2>六、母体一致性映射（务必向学生点明）</h2>
+  <div class="good">
+    本切片 <code>aggregate(products)</code> = 期末综合案例「某某小店」（项目七 <code>renderProducts</code> 数据驱动渲染汇合处）的统计构件。
+    注意：js-course 静态起步模板目前<b>还没有</b> <code>products.js</code> 和 <code>aggregate</code>，它们由学生在项目三从零创建；
+    函数名、参数、返回结构<b>逐字一致</b>，期末直接复用，<b>零跳变</b>。这与 Python 线 <code>manhua_studio</code> 的
+    <code>build_scene_prompt</code> 是同一套「切片即母体零件」逻辑。
+  </div>
+
+  <h2>七、课后（细讲顺延）</h2>
+  <ul>
+    <li>《作业说明》已发学生，含任务 / 参考代码 / 自检清单 / 提交方式，可独立自学。</li>
+    <li>下节课再用 25 分钟把循环难点、变式（过滤某分类、按销量排序）讲透，并收操作手册。</li>
+  </ul>
+
+</main>
+</body>
+</html>

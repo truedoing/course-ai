@@ -1,0 +1,19 @@
+<Slide style={{ width: '1280px', height: '720px', background: '#FFFFFF', padding: 0 }}>
+  <Box style={{ height: 88, background: '#0E3F8C', width: '100%', flexDirection: 'row', alignItems: 'center', paddingLeft: 40 }}>
+    <Text style={{ color: '#FFFFFF', fontSize: 22, fontWeight: 'bold' }}>收尾与下节课预告</Text>
+  </Box>
+  <Box style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 60 }}>
+    <Text style={{ fontSize: 52, fontWeight: 'bold', color: '#0E3F8C' }}>先看懂，跑通自检；细讲留给下节课</Text>
+    <Box style={{ marginTop: 36, padding: 26, background: '#F0F5FC', borderRadius: 8, maxWidth: 900 }}>
+      <Text style={{ fontSize: 24, color: '#1A2230', lineHeight: 1.8, textAlign: 'center' }}>
+        本堂课优先级：git 闭环 + 看懂 aggregate 雏形并跑通自检。<br />
+        下节课用 25 分钟把循环难点、变式（分类过滤 / 销量排序）讲透，并收操作手册。<br />
+        学生版实训 PPT 与《作业说明》已可独立自学，无需等课堂。
+      </Text>
+    </Box>
+  </Box>
+  <Box style={{ height: 40, paddingLeft: 40, paddingRight: 40, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+    <Text style={{ fontSize: 14, color: '#8B97A8' }}>JS 前端 · 项目三 · 循环与商品批量统计</Text>
+    <Text style={{ fontSize: 14, color: '#0E3F8C' }}>08 / 08</Text>
+  </Box>
+</Slide>

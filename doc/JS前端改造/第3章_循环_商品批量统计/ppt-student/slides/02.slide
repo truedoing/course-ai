@@ -1,0 +1,31 @@
+<Slide style={{ width: '1280px', height: '720px', background: '#FFFFFF', padding: 0 }}>
+  <Box style={{ height: 88, background: '#0E3F8C', width: '100%', flexDirection: 'row', alignItems: 'center', paddingLeft: 40, justifyContent: 'space-between' }}>
+    <Text style={{ color: '#FFFFFF', fontSize: 24, fontWeight: 'bold' }}>本节课要你做的事</Text>
+    <Text style={{ color: '#FFFFFF', fontSize: 16, opacity: 0.8 }}>JS 前端 · 项目三</Text>
+  </Box>
+  <Box style={{ flexDirection: 'row', flex: 1, padding: 32, gap: 28 }}>
+    <Box style={{ flex: 1, background: '#F0F5FC', borderRadius: 8, padding: 26 }}>
+      <Text style={{ fontSize: 26, fontWeight: 'bold', color: '#0E3F8C' }}>核心任务</Text>
+      <Text style={{ fontSize: 22, color: '#1A2230', lineHeight: 1.8, marginTop: 14 }}>
+        给首页的<span style={{ fontWeight: 'bold' }}>统计条</span>加上真实数据：<br />
+        • 商品种类　• 库存总量<br />
+        • 分类数　　• 最贵 / 最便宜<br />
+        • 均价<br /><br />
+        核心就一个函数：<span style={{ fontWeight: 'bold', color: '#1E4FA8' }}>aggregate(products)</span>
+      </Text>
+    </Box>
+    <Box style={{ flex: 1, background: '#FFFFFF', border: '1px solid #D6DCE5', borderRadius: 8, padding: 26 }}>
+      <Text style={{ fontSize: 26, fontWeight: 'bold', color: '#0E3F8C' }}>前置（已完成）</Text>
+      <Text style={{ fontSize: 22, color: '#1A2230', lineHeight: 1.9, marginTop: 14 }}>
+        ☐ fork 并 clone 模板，仓库名保持 <span style={{ fontWeight: 'bold' }}>js-course</span><br />
+        ☐ 改了店名 / 商品并 push，看到自己的小店<br />
+        ☐ 本地装好 Node（node -v 有版本号）<br /><br />
+        任一步没完成，先找同桌或老师补齐。
+      </Text>
+    </Box>
+  </Box>
+  <Box style={{ height: 40, paddingLeft: 40, paddingRight: 40, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+    <Text style={{ fontSize: 14, color: '#8B97A8' }}>JS 前端 · 项目三 · 商品批量统计实训</Text>
+    <Text style={{ fontSize: 14, color: '#0E3F8C' }}>02 / 08</Text>
+  </Box>
+</Slide>

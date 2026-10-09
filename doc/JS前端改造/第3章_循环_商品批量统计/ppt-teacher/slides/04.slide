@@ -1,0 +1,50 @@
+<Slide style={{ width: '1280px', height: '720px', background: '#FFFFFF', padding: 0 }}>
+  <Box style={{ height: 88, background: '#0E3F8C', width: '100%', flexDirection: 'row', alignItems: 'center', paddingLeft: 40, justifyContent: 'space-between' }}>
+    <Text style={{ color: '#FFFFFF', fontSize: 24, fontWeight: 'bold' }}>三种循环遍历数组（结果等价）</Text>
+    <Text style={{ color: '#FFFFFF', fontSize: 16, opacity: 0.8 }}>JS 前端 · 项目三</Text>
+  </Box>
+  <Box style={{ flexDirection: 'row', flex: 1, padding: 32, gap: 28 }}>
+    <Box style={{ width: 640, background: '#0F172A', borderRadius: 8, padding: 18 }}>
+      <CodeBlock
+        code={`// 示例商品：A001库存12, A002库存8, A003库存5
+// 三种循环都算出 库存总量 = 25
+
+// 1) for 循环（带索引，最通用）
+let s1 = 0;
+for (let i = 0; i < products.length; i++) {
+  s1 += products[i].stock;
+}
+
+// 2) for...of（直接拿元素，最清爽）
+let s2 = 0;
+for (const p of products) { s2 += p.stock; }
+
+// 3) while（满足条件才继续）
+let s3 = 0, idx = 0;
+while (idx < products.length) {
+  s3 += products[idx].stock; idx++;
+}`}
+        language='javascript'
+        width={604}
+        fontSize={14}
+      />
+    </Box>
+    <Box style={{ flex: 1, gap: 18 }}>
+      <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#0E3F8C' }}>为什么都要讲</Text>
+      <Text style={{ fontSize: 22, color: '#1A2230', lineHeight: 1.7 }}>
+        • <span style={{ fontWeight: 'bold' }}>for</span>：带索引，改第 i 个、跳过某条最方便。<br />
+        • <span style={{ fontWeight: 'bold' }}>for...of</span>：只拿元素，写起来最省心，本作业首选。<br />
+        • <span style={{ fontWeight: 'bold' }}>while</span>：条件驱动，但<span style={{ color: '#D9534F', fontWeight: 'bold' }}>忘自增会死循环</span>。
+      </Text>
+      <Box style={{ background: '#F0F5FC', borderRadius: 8, padding: 16, marginTop: 8 }}>
+        <Text style={{ fontSize: 20, color: '#1A2230', lineHeight: 1.6 }}>
+          板书三版 → 让学生看到「写法不同、结果一样」，破除对循环的畏难。
+        </Text>
+      </Box>
+    </Box>
+  </Box>
+  <Box style={{ height: 40, paddingLeft: 40, paddingRight: 40, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+    <Text style={{ fontSize: 14, color: '#8B97A8' }}>JS 前端 · 项目三 · 循环与商品批量统计</Text>
+    <Text style={{ fontSize: 14, color: '#0E3F8C' }}>04 / 08</Text>
+  </Box>
+</Slide>

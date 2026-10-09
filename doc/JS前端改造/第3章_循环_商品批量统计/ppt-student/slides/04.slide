@@ -1,0 +1,51 @@
+<Slide style={{ width: '1280px', height: '720px', background: '#FFFFFF', padding: 0 }}>
+  <Box style={{ height: 88, background: '#0E3F8C', width: '100%', flexDirection: 'row', alignItems: 'center', paddingLeft: 40, justifyContent: 'space-between' }}>
+    <Text style={{ color: '#FFFFFF', fontSize: 24, fontWeight: 'bold' }}>第二步：自己写 aggregate</Text>
+    <Text style={{ color: '#FFFFFF', fontSize: 16, opacity: 0.8 }}>JS 前端 · 项目三</Text>
+  </Box>
+  <Box style={{ flexDirection: 'row', flex: 1, padding: 32, gap: 28 }}>
+    <Box style={{ width: 640, background: '#0F172A', borderRadius: 8, padding: 18 }}>
+      <CodeBlock
+        code={`function aggregate(list) {
+  const r = { total: list.length, stockSum: 0,
+    priceSum: 0, cats: {}, maxPrice: -Infinity,
+    minPrice: Infinity };
+  for (const p of list) {
+    r.stockSum += p.stock;
+    r.priceSum += p.price;
+    r.cats[p.category] =
+      (r.cats[p.category] || 0) + 1;
+    if (p.price > r.maxPrice)
+      r.maxPrice = p.price;
+    if (p.price < r.minPrice)
+      r.minPrice = p.price;
+  }
+  r.catCount = Object.keys(r.cats).length;
+  r.avgPrice = Math.round(
+    r.priceSum / r.total * 100) / 100;
+  return r;
+}`}
+        language='javascript'
+        width={604}
+        fontSize={13}
+      />
+    </Box>
+    <Box style={{ flex: 1, gap: 14 }}>
+      <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#0E3F8C' }}>两个最容易错的坑</Text>
+      <Box style={{ background: '#F0F5FC', borderRadius: 8, padding: 14 }}>
+        <Text style={{ fontSize: 20, color: '#1A2230', lineHeight: 1.6 }}>
+          <span style={{ color: '#D9534F', fontWeight: 'bold' }}>① 极值初值</span>：写 0 会让最便宜变成 0。正确用 <span style={{ fontWeight: 'bold' }}>-Infinity / Infinity</span>。
+        </Text>
+      </Box>
+      <Box style={{ background: '#F0F5FC', borderRadius: 8, padding: 14 }}>
+        <Text style={{ fontSize: 20, color: '#1A2230', lineHeight: 1.6 }}>
+          <span style={{ color: '#D9534F', fontWeight: 'bold' }}>② while</span> 忘了 idx++ 会死循环卡死。本作业用 for...of 最省心。
+        </Text>
+      </Box>
+    </Box>
+  </Box>
+  <Box style={{ height: 40, paddingLeft: 40, paddingRight: 40, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+    <Text style={{ fontSize: 14, color: '#8B97A8' }}>JS 前端 · 项目三 · 商品批量统计实训</Text>
+    <Text style={{ fontSize: 14, color: '#0E3F8C' }}>04 / 08</Text>
+  </Box>
+</Slide>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JavaScript 前端课程 AI 原生升级改造方案（商品展示主线 · 双课统一母体）</title>
+<style>
+  body { font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; color:#1a1a1a; background:#f5f7fa; margin:0; padding:32px; line-height:1.7; }
+  .wrap { max-width:960px; margin:0 auto; background:#ffffff; padding:40px 48px; border-radius:12px; box-shadow:0 1px 3px rgba(0,0,0,.08); }
+  h1 { font-size:23px; color:#0e3f8c; border-bottom:3px solid #0e3f8c; padding-bottom:12px; }
+  h2 { font-size:18px; color:#c62828; margin-top:34px; border-left:4px solid #c62828; padding-left:10px; }
+  h3 { font-size:15px; color:#0e3f8c; margin-top:22px; }
+  p, li { font-size:14px; }
+  .meta { color:#666; font-size:13px; }
+  table { width:100%; border-collapse:collapse; margin:14px 0; font-size:13px; }
+  th, td { border:1px solid #d0d7de; padding:8px 10px; text-align:left; vertical-align:top; }
+  th { background:#eef3fb; color:#0e3f8c; }
+  td.code { font-family:"SFMono-Regular",Consolas,monospace; color:#a32d2d; white-space:nowrap; }
+  .note { background:#fff6e6; border-left:4px solid #ef9f27; padding:12px 16px; border-radius:6px; margin:16px 0; }
+  .good { background:#eaf3de; border-left:4px solid #639922; padding:12px 16px; border-radius:6px; margin:16px 0; }
+  .bad { background:#fcebeb; border-left:4px solid #e24b4a; padding:12px 16px; border-radius:6px; margin:16px 0; }
+  code { background:#f0f2f5; padding:1px 5px; border-radius:4px; font-size:12px; }
+  ul { margin:8px 0; } li { margin:4px 0; }
+  .svgbox { background:#fafbfc; border:1px solid #e3e8ef; border-radius:8px; padding:8px; margin:16px 0; text-align:center; }
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>JavaScript 前端开发课程 · AI 原生升级改造方案<br><span style="font-size:15px;color:#555;">商品展示主线 · 双课统一母体</span></h1>
+<p class="meta">本次修订（2026-10-09）落实三条定调：① 八/九项目替换为综合案例；② 基础课层淡化 FDE 表述；③ 两课共用 Python 线「商品展示」作为统一母体。<br>
+依据：Python 改造定型思路（螺旋切片 / 母体一致性 / 验收改硬交付物）+ 大课程体系（双线并行 / 三级火箭）。</p>
+
+<h2>一、本次修订要点（先说结论）</h2>
+<ul>
+<li><b>统一母体 = 商品展示（电商素材）</b>：Python 班和 JS 班基础层用<b>同一个案例域</b>——Python 负责「生成商品图 + 商品数据」，JS 负责「把商品数据渲染成可交互展示页」。两课在 <code>Product</code> 数据契约上汇合，基础班案例统一。</li>
+<li><b>原项目八（自制滚动条）、项目九（滑动侧边栏）不再单列</b>：合并为<b>综合项目——商品展示页</b>，原 10+10=20 学时并入综合。滚动条/侧边栏所教的「高级事件」「基础运动」技术不丢，转为综合页里的真实特性（商品轮播、分类侧滑导航）。</li>
+<li><b>基础课层淡化 FDE 表述</b>：一级底座就是「AI 落地执行者」的通用前端训练（读懂/改/调 API + 交付表达），不硬套 FDE 框架名词；FDE 仅作为「二级/三级往上走的方向」一句话带过。</li>
+<li><b>相册→商品图集、商品列表原样保留</b>：项目六多功能相册适配成「商品图集展示」，项目七商品列表本就是商品，直接承接。</li>
+<li><b>新增「首页·某某小店」作为 git 教学入口与可视化外壳</b>：学生在第 0 步 fork 模板 → 改店名/换商品 → 提交，立刻看到自己的小店，获得可视化闭环成果感；后续每个项目都是给这家店加一块功能。它也是两课数据契约的可视化落地壳。</li>
+<li><b>项目一、项目二已讲，从项目三起做切片</b>：一（对话框/输出）、二（计算器/判断）本学期不重做，改造从项目三（循环/商品批量统计）开始。</li>
+</ul>
+
+<h2>二、双课统一母体：Product 数据契约</h2>
+<p>两课能统一，关键不是函数名相同，而是<b>数据模型相同</b>。Python 的 <code>manhua_studio/pipeline.py</code> 里已有完整商品数据链路：<code>parse_products_csv</code> 读入、<code>write_sku_data(product, ...)</code> 写出 sku 数据、<code>deliver(...)</code> 交付图与页。JS 前端直接消费这份数据。</p>
+
+<div class="svgbox">
+<svg viewBox="0 0 680 250" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,sans-serif">
+  <rect x="14" y="40" width="186" height="150" rx="10" fill="#eef3fb" stroke="#0e3f8c" stroke-width="2"/>
+  <text x="107" y="68" text-anchor="middle" font-size="14" font-weight="bold" fill="#0e3f8c">Python · 生成侧</text>
+  <text x="107" y="94" text-anchor="middle" font-size="12" fill="#333">manhua_studio</text>
+  <text x="107" y="116" text-anchor="middle" font-size="12" fill="#333">出商品图(V1/V2)</text>
+  <text x="107" y="136" text-anchor="middle" font-size="12" fill="#333">写 sku 数据(V3)</text>
+  <text x="107" y="160" text-anchor="middle" font-size="11" fill="#a32d2d" font-family="monospace">build_scene_prompt</text>
+  <text x="107" y="178" text-anchor="middle" font-size="11" fill="#a32d2d" font-family="monospace">write_sku_data / deliver</text>
+
+  <rect x="247" y="70" width="186" height="90" rx="10" fill="#fff6e6" stroke="#ef9f27" stroke-width="2"/>
+  <text x="340" y="96" text-anchor="middle" font-size="13" font-weight="bold" fill="#9a6b00">Product 数据契约</text>
+  <text x="340" y="118" text-anchor="middle" font-size="11" fill="#333">sku / name / price</text>
+  <text x="340" y="136" text-anchor="middle" font-size="11" fill="#333">selling_points / images</text>
+  <text x="340" y="152" text-anchor="middle" font-size="11" fill="#333">category / stock</text>
+
+  <rect x="480" y="40" width="186" height="150" rx="10" fill="#eaf3de" stroke="#639922" stroke-width="2"/>
+  <text x="573" y="68" text-anchor="middle" font-size="14" font-weight="bold" fill="#3f6b14">JS · 展示侧</text>
+  <text x="573" y="94" text-anchor="middle" font-size="12" fill="#333">原生 JavaScript</text>
+  <text x="573" y="116" text-anchor="middle" font-size="12" fill="#333">列表/图集/计算器</text>
+  <text x="573" y="136" text-anchor="middle" font-size="12" fill="#333">表单/综合展示页</text>
+  <text x="573" y="160" text-anchor="middle" font-size="11" fill="#a32d2d" font-family="monospace">renderProducts(products)</text>
+  <text x="573" y="178" text-anchor="middle" font-size="11" fill="#a32d2d" font-family="monospace">showProduct / calcPrice</text>
+
+  <line x1="200" y1="115" x2="247" y2="115" stroke="#0e3f8c" stroke-width="2" marker-end="url(#a)"/>
+  <line x1="433" y1="115" x2="480" y2="115" stroke="#639922" stroke-width="2" marker-end="url(#b)"/>
+  <defs>
+    <marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#0e3f8c"/></marker>
+    <marker id="b" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#639922"/></marker>
+  </defs>
+  <text x="340" y="232" text-anchor="middle" font-size="12" fill="#666">同一批商品：Python 产出「图 + 数据」，JS 消费「数据」渲染交互展示——基础班案例域统一</text>
+</svg>
+</div>
+
+<div class="good"><b>母体一致性的真义</b>：跨课统一的是 <code>Product</code> 数据契约；课内统一的是函数家族——Python 用 <code>build_scene_prompt / write_sku_data / deliver</code>，JS 用 <code>renderProducts / showProduct / calcPrice / collectProduct</code>。所有切片里的字段名、函数名与最终综合案例<b>逐字一致</b>，学生后期零跳变复用。</div>
+
+<h2>三、JS 母体设计（展示侧锚点）</h2>
+<p>JS 主线函数 = <code>renderProducts(products)</code>（项目七·DOM 商品列表），它是所有前置项目的汇合点。项目一~六分别产出它的「零件」，函数名全程不变：</p>
+<table>
+<tr><th>JS 零件函数</th><th>引入项目</th><th>作用</th><th>对应 Python 侧</th></tr>
+<tr><td class="code">showProduct(p)</td><td>项目一 对话框/输出</td><td>展示单条商品基础信息（名称/价格/卖点）</td><td>商品数据可视化起点</td></tr>
+<tr><td class="code">calcPrice(p, rule)</td><td>项目二 计算器/判断</td><td>按会员/满减规则计算最终价</td><td>price 字段来源</td></tr>
+<tr><td class="code">aggregate(products)</td><td>项目三 循环/统计</td><td>批量遍历统计库存/总价/分类</td><td>products 数组遍历</td></tr>
+<tr><td class="code">collectProduct(form)</td><td>项目四 注册页/事件</td><td>表单录入商品 + 校验</td><td>parse_products_csv 的反向</td></tr>
+<tr><td class="code">openDetail(p) / 多窗体</td><td>项目五 窗体对象</td><td>商品详情/编辑窗体</td><td>商品多视图</td></tr>
+<tr><td class="code">showGallery(p.images)</td><td>项目六 相册→商品图集</td><td>商品图集轮播（文档对象）</td><td>images 字段消费</td></tr>
+<tr><td class="code">renderProducts(products)</td><td>项目七 商品列表·DOM</td><td><b>汇合：动态渲染商品列表</b></td><td>sku 数据落地成页</td></tr>
+</table>
+<p>说明：基础课层不必把 <code>deliver/FDE</code> 挂在嘴边，但零件函数的「读得懂、改得动、接得上接口」正是 FDE 落地执行者的底层能力——二级/三级往上走时再显式接 FDE 框架。</p>
+
+<h2>四、逐章切片映射（首页 + 7 项目 + 1 综合，螺旋累积）</h2>
+<table>
+<tr><th>台阶</th><th>原项目(学时)</th><th>改造后主题</th><th>本章载体/技术</th><th>商品展示母体复用</th></tr>
+<tr style="background:#fff6e6;"><td><b>首页</b>（第0步）</td><td>— 新增</td><td><b>某某小店</b>·git 入口+可视化外壳</td><td>静态页 + 改店名/换商品 + fork提交</td><td class="code">products / renderProducts 雏形</td></tr>
+<tr><td>项目一</td><td>对话框/输出(4)</td><td><span style="color:#aaa;">已讲，不重做</span></td><td>变量/输出/事件触发</td><td class="code">showProduct(p)</td></tr>
+<tr><td>项目二</td><td>计算器(6)</td><td><span style="color:#aaa;">已讲，不重做</span></td><td>if/else 判断 + 输入处理</td><td class="code">calcPrice(p,rule)</td></tr>
+<tr><td>项目三</td><td>成绩单(10)</td><td>商品批量统计</td><td>for/while 循环 + 数组</td><td class="code">aggregate(products)</td></tr>
+<tr><td>项目四</td><td>注册页(8)</td><td>商品上架表单</td><td>事件绑定 + 正则校验</td><td class="code">collectProduct(form)</td></tr>
+<tr><td>项目五</td><td>多窗体(8)</td><td>商品多视图</td><td>窗体对象/多页</td><td class="code">openDetail(p)</td></tr>
+<tr><td>项目六</td><td>多功能相册(8)</td><td><b>商品图集展示</b>（相册适配）</td><td>文档对象/图片轮播</td><td class="code">showGallery(p.images)</td></tr>
+<tr><td>项目七</td><td>商品列表(8)</td><td><b>商品列表</b>（原样承接）</td><td>DOM 节点增删改查</td><td class="code">renderProducts(products)</td></tr>
+<tr><td>综合项目</td><td>滚动条+侧边栏(20→并入)</td><td><b>综合：商品展示页</b></td><td>高级事件/运动转为特性</td><td>汇总调用上述全部零件</td></tr>
+</table>
+<div class="note"><b>综合项目怎么吃下八/九的技术</b>：①「自制滚动条·高级事件」→ 商品轮播/横向滚动展示条；②「滑动侧边栏·基础运动」→ 商品分类侧滑筛选导航。技术不丢，只是从抽象 demo 变成商品页里的真实功能，比原教材更贴近「能交付的东西」。</div>
+
+<h2>五、验收改造（硬交付物 + 三档，基础层通用）</h2>
+<p><b>从「交代码 + 反思八股」改为「交硬交付物」</b>：每件项目学生提交 ①操作手册（怎么用/怎么改）②演示录屏（跑通+讲解）③讲解稿。评分三档：</p>
+<ul>
+<li><b>及格</b>：<code>renderProducts</code> 等零件在本章规格下跑通；仓库按 <code>manhua-course-&lt;学号&gt;</code> 惯例可定位；比 Fork 时多实现一项商品字段/能力。</li>
+<li><b>良好</b>：操作手册步骤通顺、字段（商品规格/构件/校验）齐全，录屏能复现。</li>
+<li><b>优秀</b>：选了真实感强的传统企业商品场景（像真能上架的），并附一句「为什么这样翻译这个需求」的思考（注释或手册均可）。</li>
+</ul>
+
+<h2>六、删减优化策略（针对现有教案）</h2>
+<ul>
+<li><b>砍冗余实例</b>：实例 2.1~2.5、4.1~4.13 等大量 demo 仅保留「任务 + 项目 N 主线」，删掉重复演示。</li>
+<li><b>砍八股</b>：每项目反复出现的「思政融入 / 教学反思（部分学生…增加更多实例）」压缩为一行要点。</li>
+<li><b>八/九合并</b>：原 自制滚动条、滑动侧边栏 两章不再独立成项目，技术并入综合项目，节省的 20 学时回流给综合案例与复习。</li>
+<li><b>重构为四件套</b>：每章产出与 Python 对齐的 ①代码（切片，与母体逐字一致）②教案（教师版）③教师版 PPT ④学生版实训 PPT（无教学设计）。</li>
+<li><b>量化</b>：2991 段 → 目标精简到约 1/3，只留「任务 + 商品项目主线 + 验收」。</li>
+</ul>
+
+<h2>七、本学期落地范围（三级火箭，基础层淡化 FDE 名词）</h2>
+<ul>
+<li><b>一级（课内必修 · 全体）</b>：7 项目重设计为「商品展示」螺旋 + 1 综合项目，原生 JS，零算力起步。这是本学期主体，案例域与 Python 班统一。</li>
+<li><b>二级（社团志愿 · 工程能力轨）</b>：批量并发 / 一致性 / 归档版本 / 质检筛选 / 工作流封装，用前端可触及方式呈现（批量生成商品页、接口 mock、一致性检查）。此处才显式接 FDE 框架名词。</li>
+<li><b>三级（核心项目组 · 真实交付）</b>：<b>暂缓</b>——校内客户暂无眉目，等有客户再升三级，方案预留升级接口。</li>
+</ul>
+<p>与 Python 线接口：共享连接器技术（调接口 / 读报错 / Git）；应用层分叉（AIGC 视觉资产生成 vs 商品展示前端）。两条线在 <code>Product</code> 数据契约上天然咬合——Python 出数据，JS 消费数据，可做成跨课联合大作业。</p>
+
+<h2>八、建议动手顺序</h2>
+<ol>
+<li>确认本方案（商品展示母体、八/九合并、首页入口已就位）。</li>
+<li><b>首页「某某小店」模板</b>已建好（<code>doc/JS前端改造/js-course-template/</code>：index.html + products.js + style.css + images + README），待你建 Gitee 仓库后我推送，作为 git 教学第一闭环。</li>
+<li><b>从项目三起</b>做切片四件套（代码/教案/教师PPT/学生实训PPT），对齐 Python 第4章做法，验证「商品展示」螺旋切片在手感上成立。项目一/二已讲，不重做。</li>
+<li>逐章推进项目四~七，每章四件套 + 映射表更新。</li>
+<li>综合项目（吃下原八/九技术）单独设计为一站式商品展示页。</li>
+<li>二级训练营（工程能力轨）素材单独成库，与一级切片解耦。</li>
+</ol>
+
+<div class="good"><b>已闭环的早期开放问题</b>：① 母体函数——JS 侧定为 <code>renderProducts(products)</code> 家族，跨课统一在 <code>Product</code> 数据契约（不再是抽象的 <code>deliver(spec)</code> 提案）；② 改造范围——由「全做 9 项目」改为「首页 + 7 项目 + 1 综合」，八/九合并；③ FDE 在基础课层淡化表述已落实。<br>
+<b>本轮回应的三条</b>：① 从项目三开始（一/二已讲）；② 原 PPT 偏纯代码（document.write 文本输出、alert 弹窗、抽象控件 demo），我方改为「看得见的小店功能」可视化/交付形态；③ 新增首页「某某小店」作 git 教学入口与可视化外壳，模板已建。</div>
+</div>
+</body>
+</html>

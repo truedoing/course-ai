@@ -1,0 +1,31 @@
+<Slide style={{ width: '1280px', height: '720px', background: '#FFFFFF', padding: 0 }}>
+  <Box style={{ height: 88, background: '#0E3F8C', width: '100%', flexDirection: 'row', alignItems: 'center', paddingLeft: 40, justifyContent: 'space-between' }}>
+    <Text style={{ color: '#FFFFFF', fontSize: 24, fontWeight: 'bold' }}>课堂时间现实：先保 git 闭环</Text>
+    <Text style={{ color: '#FFFFFF', fontSize: 16, opacity: 0.8 }}>JS 前端 · 项目三</Text>
+  </Box>
+  <Box style={{ flexDirection: 'row', flex: 1, padding: 32, gap: 28 }}>
+    <Box style={{ flex: 1, background: '#FFFFFF', border: '1px solid #D6DCE5', borderRadius: 8, padding: 26 }}>
+      <Box style={{ background: '#D9534F', borderRadius: 6, padding: '6px 14px', alignSelf: 'flex-start' }}>
+        <Text style={{ color: '#FFFFFF', fontSize: 18, fontWeight: 'bold' }}>来自 Python 课实测</Text>
+      </Box>
+      <Text style={{ fontSize: 22, color: '#1A2230', lineHeight: 1.7, marginTop: 16 }}>
+        装 git / 注册 / fork / clone 全流程顺完，已耗费大量课堂时间。<br /><br />
+        本章正课内容只能「先看一下」，<span style={{ fontWeight: 'bold', color: '#D9534F' }}>细讲顺延下节课</span>。<br /><br />
+        本堂课优先级：① 完成 git 闭环 ② 看懂 aggregate 雏形并跑通自检。
+      </Text>
+    </Box>
+    <Box style={{ flex: 1, background: '#F0F5FC', borderRadius: 8, padding: 26 }}>
+      <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#0E3F8C' }}>本节课对策</Text>
+      <Text style={{ fontSize: 22, color: '#1A2230', lineHeight: 1.8, marginTop: 14 }}>
+        1. 学生版材料做成<span style={{ fontWeight: 'bold' }}>可独立自学</span>：任务 / 参考代码 / 自检清单齐全。<br />
+        2. 课堂只做引导 + 演示，不硬塞完整练习。<br />
+        3. 验收放宽为「跑通自检 + 看懂」即合格。<br />
+        4. 下节课用 25 分钟把难点、变式讲透并收操作手册。
+      </Text>
+    </Box>
+  </Box>
+  <Box style={{ height: 40, paddingLeft: 40, paddingRight: 40, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+    <Text style={{ fontSize: 14, color: '#8B97A8' }}>JS 前端 · 项目三 · 循环与商品批量统计</Text>
+    <Text style={{ fontSize: 14, color: '#0E3F8C' }}>03 / 08</Text>
+  </Box>
+</Slide>

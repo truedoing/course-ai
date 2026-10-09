@@ -1,0 +1,39 @@
+<Slide style={{ width: '1280px', height: '720px', background: '#FFFFFF', padding: 0 }}>
+  <Box style={{ height: 88, background: '#0E3F8C', width: '100%', flexDirection: 'row', alignItems: 'center', paddingLeft: 40, justifyContent: 'space-between' }}>
+    <Text style={{ color: '#FFFFFF', fontSize: 24, fontWeight: 'bold' }}>第一步：跑通切片代码</Text>
+    <Text style={{ color: '#FFFFFF', fontSize: 16, opacity: 0.8 }}>JS 前端 · 项目三</Text>
+  </Box>
+  <Box style={{ flexDirection: 'row', flex: 1, padding: 32, gap: 28 }}>
+    <Box style={{ width: 660, background: '#0F172A', borderRadius: 8, padding: 18 }}>
+      <CodeBlock
+        code={`# 打开仓库里的切片文件，在终端运行
+node 项目三_循环_商品批量统计.js
+
+# 你会看到：
+#   三种循环算出的库存都是 25
+#   最后打印 ✅ 自检通过
+
+# 改 1 个商品的价格或库存再跑一次，
+# 自检依然通过 → 理解「数据变，统计自动变」`}
+        language='javascript'
+        width={624}
+        fontSize={14}
+      />
+    </Box>
+    <Box style={{ flex: 1, gap: 16 }}>
+      <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#0E3F8C' }}>这一步在确认</Text>
+      <Text style={{ fontSize: 22, color: '#1A2230', lineHeight: 1.7 }}>
+        • 你的 Node 环境能跑 JS。<br />
+        • 切片里的循环、统计逻辑是对的。<br />
+        • 数据驱动：改数据，结果跟着变。
+      </Text>
+      <Box style={{ background: '#F0F5FC', borderRadius: 8, padding: 16, marginTop: 6 }}>
+        <Text style={{ fontSize: 20, color: '#1A2230', lineHeight: 1.6 }}>跑不通？先检查 node 是否安装，再看终端报错是哪一行。</Text>
+      </Box>
+    </Box>
+  </Box>
+  <Box style={{ height: 40, paddingLeft: 40, paddingRight: 40, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+    <Text style={{ fontSize: 14, color: '#8B97A8' }}>JS 前端 · 项目三 · 商品批量统计实训</Text>
+    <Text style={{ fontSize: 14, color: '#0E3F8C' }}>03 / 08</Text>
+  </Box>
+</Slide>

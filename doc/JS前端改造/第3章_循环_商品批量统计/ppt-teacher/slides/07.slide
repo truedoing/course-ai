@@ -1,0 +1,30 @@
+<Slide style={{ width: '1280px', height: '720px', background: '#FFFFFF', padding: 0 }}>
+  <Box style={{ height: 88, background: '#0E3F8C', width: '100%', flexDirection: 'row', alignItems: 'center', paddingLeft: 40, justifyContent: 'space-between' }}>
+    <Text style={{ color: '#FFFFFF', fontSize: 24, fontWeight: 'bold' }}>验收三档（对照硬交付物）</Text>
+    <Text style={{ color: '#FFFFFF', fontSize: 16, opacity: 0.8 }}>JS 前端 · 项目三</Text>
+  </Box>
+  <Box style={{ flex: 1, padding: 32, flexDirection: 'row', gap: 22, alignItems: 'stretch' }}>
+    <Box style={{ flex: 1, background: '#F0F5FC', border: '1px solid #D6DCE5', borderRadius: 8, padding: 22 }}>
+      <Text style={{ fontSize: 26, fontWeight: 'bold', color: '#4A5568' }}>★ 合格</Text>
+      <Text style={{ fontSize: 20, color: '#1A2230', lineHeight: 1.7, marginTop: 12 }}>
+        切片代码 node 跑通、自检通过；能口头说出 for / for...of / while 的区别。
+      </Text>
+    </Box>
+    <Box style={{ flex: 1, background: '#0E3F8C', borderRadius: 8, padding: 22 }}>
+      <Text style={{ fontSize: 26, fontWeight: 'bold', color: '#FFFFFF' }}>★★ 良好</Text>
+      <Text style={{ fontSize: 20, color: '#FFFFFF', lineHeight: 1.7, marginTop: 12 }}>
+        新建 products.js + 把 aggregate 接到首页统计条（替换写死的静态数字），浏览器打开能看到真实数字；提交到自己的 fork。
+      </Text>
+    </Box>
+    <Box style={{ flex: 1, background: '#F0F5FC', border: '1px solid #D6DCE5', borderRadius: 8, padding: 22 }}>
+      <Text style={{ fontSize: 26, fontWeight: 'bold', color: '#4A5568' }}>★★★ 优秀</Text>
+      <Text style={{ fontSize: 20, color: '#1A2230', lineHeight: 1.7, marginTop: 12 }}>
+        额外渲染「各分类明细 / 均价」，并写 ≤200 字操作手册，体现交付表达。
+      </Text>
+    </Box>
+  </Box>
+  <Box style={{ height: 40, paddingLeft: 40, paddingRight: 40, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+    <Text style={{ fontSize: 14, color: '#8B97A8' }}>JS 前端 · 项目三 · 循环与商品批量统计</Text>
+    <Text style={{ fontSize: 14, color: '#0E3F8C' }}>07 / 08</Text>
+  </Box>
+</Slide>

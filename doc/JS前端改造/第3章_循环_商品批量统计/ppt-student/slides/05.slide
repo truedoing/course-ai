@@ -1,0 +1,49 @@
+<Slide style={{ width: '1280px', height: '720px', background: '#FFFFFF', padding: 0 }}>
+  <Box style={{ height: 88, background: '#0E3F8C', width: '100%', flexDirection: 'row', alignItems: 'center', paddingLeft: 40, justifyContent: 'space-between' }}>
+    <Text style={{ color: '#FFFFFF', fontSize: 24, fontWeight: 'bold' }}>第三步：把统计条接上数据（选做）</Text>
+    <Text style={{ color: '#FFFFFF', fontSize: 16, opacity: 0.8 }}>JS 前端 · 项目三</Text>
+  </Box>
+  <Box style={{ flexDirection: 'row', flex: 1, padding: 32, gap: 28 }}>
+    <Box style={{ width: 700, background: '#0F172A', borderRadius: 8, padding: 18 }}>
+      <CodeBlock
+        code={`// 1) 新建 products.js —— 把首页 3 件商品写成数据
+const products = [
+  { sku:"A001", name:"手作陶瓷杯", price:39, selling_point:"粗陶质感·微波可用",
+    category:"家居", stock:12, images:["images/p1.svg","images/p2.svg","images/p3.svg"] },
+  { sku:"A002", name:"帆布托特包", price:59, selling_point:"加厚帆布·通勤百搭",
+    category:"箱包", stock:8,  images:["images/p2.svg","images/p1.svg","images/p3.svg"] },
+  { sku:"A003", name:"极简台灯",   price:89, selling_point:"护眼暖光·三档调光",
+    category:"家居", stock:5,  images:["images/p3.svg","images/p1.svg","images/p2.svg"] },
+];
+
+// 2) index.html：把写死的统计条清空成空容器
+//    <section class="stats" id="stats"></section>
+
+// 3) 在 </body> 前加脚本，调用你写的 aggregate 填充
+function statBox(n, l) {
+  return '<div class="stat"><div class="num">'+n+'</div><div class="label">'+l+'</div></div>';
+}
+const r = aggregate(products);
+document.getElementById("stats").innerHTML =
+  statBox(r.total, "商品种类") + statBox(r.stockSum, "库存总量") + statBox(r.catCount, "分类数");`}
+        language='javascript'
+        width={664}
+        fontSize={13}
+      />
+    </Box>
+    <Box style={{ flex: 1, gap: 16 }}>
+      <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#0E3F8C' }}>这一步做到「良好」档</Text>
+      <Text style={{ fontSize: 22, color: '#1A2230', lineHeight: 1.7 }}>
+        • 新建 <b>products.js</b>，把首页 3 件商品写成数据数组。<br />
+        • 把 index.html 里写死的统计数字清空，留一个空容器。<br />
+        • 在 &lt;/body&gt; 前加一小段脚本，调用你的 aggregate 填充统计条。<br />
+        • 浏览器打开，统计条显示真实数字；改 products.js 刷新即变。<br />
+        • 没时间可先跳过，下节课再接；不影响合格档。
+      </Text>
+    </Box>
+  </Box>
+  <Box style={{ height: 40, paddingLeft: 40, paddingRight: 40, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+    <Text style={{ fontSize: 14, color: '#8B97A8' }}>JS 前端 · 项目三 · 商品批量统计实训</Text>
+    <Text style={{ fontSize: 14, color: '#0E3F8C' }}>05 / 08</Text>
+  </Box>
+</Slide>
