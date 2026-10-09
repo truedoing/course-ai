@@ -24,3 +24,9 @@ test.jpg
 _archive/
 manhua任务背景引入/
 .slidep/
+
+# ===== 学期作业模板：Python 线（独立仓库 manhua-course，已推送 Gitee，父仓库不跟踪）=====
+doc/章节切片/第4章_字符串_提示词构建/manhua-course-template/
+
+# ===== 学期作业模板：JS 线（独立仓库 js-course-template，待推送 Gitee，父仓库不跟踪）=====
+doc/JS前端改造/js-course-template/
